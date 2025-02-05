@@ -1,0 +1,28 @@
+$screen-s: 480px;
+$screen-m: 880px;
+$screen-l: 1120px;
+$screen-xl: 1520px;
+
+@mixin screen-s($bounds: "min") {
+  @media (#{$bounds}-width: #{$screen-s}) {
+    @content;
+  }
+}
+
+@mixin screen-m($bounds: "min") {
+  @media (#{$bounds}-width: #{$screen-m}) {
+    @content;
+  }
+}
+
+@mixin screen-l($bounds: "min") {
+  @media (#{$bounds}-width: #{$screen-l}) {
+    @content;
+  }
+}
+
+@mixin screen-xl($bounds: "min") {
+  @media (#{$bounds}-width: #{$screen-xl}) {
+    @content;
+  }
+}

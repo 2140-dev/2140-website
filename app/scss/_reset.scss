@@ -1,0 +1,77 @@
+@use "./breakpoints";
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400;1,600&display=swap");
+
+html {
+  background-color: #fff;
+  color: #212121;
+  margin: 0;
+  font-family:
+    "Poppins",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Roboto",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  font-size: 8px;
+}
+
+body {
+  color: #303030;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #212121;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 10rem;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: 7rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+section {
+  padding-bottom: 10rem;
+  padding-top: 10rem;
+
+  @include breakpoints.screen-m {
+    padding-bottom: 15rem;
+    padding-top: 15rem;
+  }
+}

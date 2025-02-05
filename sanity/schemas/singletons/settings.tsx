@@ -1,8 +1,6 @@
 import { CogIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
-import * as demo from "@/sanity/lib/demo";
-
 export default defineType({
   name: "settings",
   title: "Settings",
@@ -11,70 +9,72 @@ export default defineType({
   fields: [
     defineField({
       name: "title",
-      description: "This field is the title of your blog.",
+      description: "This is the title of your website.",
       title: "Title",
       type: "string",
-      initialValue: demo.title,
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "description",
-      description:
-        "Used both for the <meta> description tag for SEO, and the blog subheader.",
+      description: "Used for the <meta> description tag for SEO.",
       title: "Description",
-      type: "array",
-      initialValue: demo.description,
-      of: [
-        defineArrayMember({
-          type: "block",
-          options: {},
-          styles: [],
-          lists: [],
-          marks: {
-            decorators: [],
-            annotations: [
-              defineField({
-                type: "object",
-                name: "link",
-                fields: [
-                  {
-                    type: "string",
-                    name: "href",
-                    title: "URL",
-                    validation: (rule) => rule.required(),
-                  },
-                ],
-              }),
-            ],
+      type: "text",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "logo",
+      type: "image",
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Alternative text",
+          type: "string",
+          validation: (rule) => {
+            return rule.custom((alt, context) => {
+              if ((context.document?.logo as any)?.asset?._ref && !alt) {
+                return "Required";
+              }
+              return true;
+            });
           },
         }),
       ],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "footer",
-      description:
-        "This is a block of text that will be displayed at the bottom of the page.",
-      title: "Footer Info",
-      type: "array",
-      of: [
-        defineArrayMember({
-          type: "block",
-          marks: {
-            annotations: [
-              {
-                name: "link",
-                type: "object",
-                title: "Link",
-                fields: [
+      title: "Footer",
+      type: "object",
+      fields: [
+        defineField({
+          name: "email",
+          type: "string",
+          validation: (rule) => rule.required(),
+        }),
+        defineField({
+          name: "description",
+          type: "array",
+          of: [
+            defineArrayMember({
+              type: "block",
+              marks: {
+                annotations: [
                   {
-                    name: "href",
-                    type: "url",
-                    title: "Url",
+                    name: "link",
+                    type: "object",
+                    title: "Link",
+                    fields: [
+                      {
+                        name: "href",
+                        type: "url",
+                        title: "Url",
+                      },
+                    ],
                   },
                 ],
               },
-            ],
-          },
+            }),
+          ],
         }),
       ],
     }),
@@ -103,18 +103,6 @@ export default defineType({
               return true;
             });
           },
-        }),
-        defineField({
-          name: "metadataBase",
-          type: "url",
-          description: (
-            <a
-              href="https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase"
-              rel="noreferrer noopener"
-            >
-              More information
-            </a>
-          ),
         }),
       ],
     }),

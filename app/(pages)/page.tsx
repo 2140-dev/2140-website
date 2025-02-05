@@ -2,16 +2,16 @@ import Link from "next/link";
 import { Suspense } from "react";
 
 import Avatar from "./avatar";
-import CoverImage from "./cover-image";
 import DateComponent from "./date";
 import MoreStories from "./more-stories";
 import Onboarding from "./onboarding";
-import PortableText from "./portable-text";
 
 import type { HeroQueryResult } from "@/sanity.types";
 import * as demo from "@/sanity/lib/demo";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { heroQuery, settingsQuery } from "@/sanity/lib/queries";
+import { heroQuery, homepageQuery, settingsQuery } from "@/sanity/lib/queries";
+import { CoverImage } from "@/app/components/CoverImage/CoverImage";
+import { TextEditorRenderer } from "@/app/components/TextEditorRenderer/TextEditorRenderer";
 
 function Intro(props: { title: string | null | undefined; description: any }) {
   const title = props.title || demo.title;
@@ -24,7 +24,7 @@ function Intro(props: { title: string | null | undefined; description: any }) {
         {title || demo.title}
       </h1>
       <h2 className="text-pretty mt-5 text-center text-lg lg:pl-8 lg:text-left">
-        <PortableText
+        <TextEditorRenderer
           className="prose-lg"
           value={description?.length ? description : demo.description}
         />
@@ -73,18 +73,15 @@ function HeroPost({
   );
 }
 
-export default async function Page() {
-  const [settings, heroPost] = await Promise.all([
-    sanityFetch({
-      query: settingsQuery,
-    }),
-    sanityFetch({ query: heroQuery }),
-  ]);
+export default async function Homepage() {
+  const pageProps = sanityFetch({
+    query: homepageQuery,
+  });
 
   return (
     <div className="container mx-auto px-5">
-      <Intro title={settings?.title} description={settings?.description} />
-      {heroPost ? (
+      <Intro title={pageProps?.title} description={pageProps?.excerpt} />
+      {/* {heroPost ? (
         <HeroPost
           title={heroPost.title}
           slug={heroPost.slug}
@@ -105,7 +102,7 @@ export default async function Page() {
             <MoreStories skip={heroPost._id} limit={100} />
           </Suspense>
         </aside>
-      )}
+      )} */}
     </div>
   );
 }

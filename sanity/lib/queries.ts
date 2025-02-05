@@ -1,6 +1,19 @@
 import { defineQuery } from "next-sanity";
 
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
+export const menuQuery = defineQuery(`*[_type == "menu"][0] {
+  items[] {
+    ...,
+    external {
+      ...
+    },
+    internal {
+      ...,
+      '_type': reference->_type,
+      'url': reference->slug.current
+    }
+  }
+}`);
 
 const postFields = /* groq */ `
   _id,
@@ -30,5 +43,11 @@ export const postQuery = defineQuery(`
   *[_type == "post" && slug.current == $slug] [0] {
     content,
     ${postFields}
+  }
+`);
+
+export const homepageQuery = defineQuery(`
+  *[_type == "homepage" && slug.current == '/'] [0] {
+    ...
   }
 `);

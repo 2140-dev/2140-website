@@ -1,0 +1,17 @@
+@use "../../scss/breakpoints";
+
+.page-title {
+  padding-top: 10rem;
+
+  @include breakpoints.screen-m {
+    padding-top: 15rem;
+  }
+
+  .excerpt {
+    font-size: 2.5rem;
+  }
+
+  .date {
+    font-size: 1.5rem;
+  }
+}

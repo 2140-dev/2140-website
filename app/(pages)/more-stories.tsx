@@ -1,11 +1,12 @@
 import Link from "next/link";
 
 import Avatar from "./avatar";
-import CoverImage from "./cover-image";
+
 import DateComponent from "./date";
 
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { moreStoriesQuery } from "@/sanity/lib/queries";
+import { CoverImage } from "@/app/components/CoverImage/CoverImage";
 
 export default async function MoreStories(params: {
   skip: string;

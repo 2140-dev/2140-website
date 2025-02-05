@@ -2,8 +2,6 @@ import { DocumentTextIcon } from "@sanity/icons";
 import { format, parseISO } from "date-fns";
 import { defineField, defineType } from "sanity";
 
-import author from "./team";
-
 /**
  * This file is the schema definition for a post.
  *
@@ -17,8 +15,8 @@ import author from "./team";
  */
 
 export default defineType({
-  name: "post",
-  title: "Post",
+  name: "page",
+  title: "Page",
   icon: DocumentTextIcon,
   type: "document",
   fields: [
@@ -32,7 +30,7 @@ export default defineType({
       name: "slug",
       title: "Slug",
       type: "slug",
-      description: "A slug is required for the post to show up in the preview",
+      description: "A slug is required for the post to show up in the preview.",
       options: {
         source: "title",
         maxLength: 96,
@@ -41,43 +39,51 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "excerpt",
-      title: "Excerpt",
-      type: "text",
-    }),
-    defineField({
       name: "content",
       title: "Content",
       type: "array",
       of: [{ type: "block" }],
     }),
     defineField({
-      name: "date",
-      title: "Date",
-      type: "datetime",
-      initialValue: () => new Date().toISOString(),
+      name: "excerpt",
+      title: "Excerpt",
+      type: "text",
     }),
     defineField({
-      name: "author",
-      title: "Author",
-      type: "reference",
-      to: [{ type: author.name }],
+      name: "coverImage",
+      title: "Cover Image",
+      type: "image",
+      options: {
+        hotspot: true,
+        aiAssist: {
+          imageDescriptionField: "alt",
+        },
+      },
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
+          description: "Important for SEO and accessiblity.",
+          validation: (rule) => {
+            return rule.custom((alt, context) => {
+              if ((context.document?.coverImage as any)?.asset?._ref && !alt) {
+                return "Required";
+              }
+              return true;
+            });
+          },
+        },
+      ],
+      validation: (rule) => rule.required(),
     }),
   ],
   preview: {
     select: {
       title: "title",
-      author: "author.name",
-      date: "date",
-      media: "coverImage",
     },
-    prepare({ title, media, author, date }) {
-      const subtitles = [
-        author && `by ${author}`,
-        date && `on ${format(parseISO(date), "LLL d, yyyy")}`,
-      ].filter(Boolean);
-
-      return { title, media, subtitle: subtitles.join(" ") };
+    prepare({ title }) {
+      return { title };
     },
   },
 });

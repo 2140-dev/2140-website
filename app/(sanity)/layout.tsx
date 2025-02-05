@@ -1,11 +1,11 @@
-import "../globals.css";
+import "../tailwind.css";
 
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+const poppins = Poppins({
+  variable: "--font-poppins",
   display: "swap",
+  weight: "400",
 });
 
 export { metadata, viewport } from "next-sanity/studio";
@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={poppins.variable}>
       <body className="min-h-screen">{children}</body>
     </html>
   );

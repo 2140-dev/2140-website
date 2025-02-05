@@ -16,10 +16,13 @@ import { structureTool } from "sanity/structure";
 import { apiVersion, dataset, projectId, studioUrl } from "@/sanity/lib/api";
 import { pageStructure, singletonPlugin } from "@/sanity/plugins/settings";
 import { assistWithPresets } from "@/sanity/plugins/assist";
-import author from "@/sanity/schemas/documents/author";
+import team from "@/sanity/schemas/documents/team";
 import post from "@/sanity/schemas/documents/post";
 import settings from "@/sanity/schemas/singletons/settings";
 import { resolveHref } from "@/sanity/lib/utils";
+import menu from "@/sanity/schemas/singletons/menu";
+import { components } from "@/sanity/schemas/components";
+import page from "@/sanity/schemas/documents/page";
 
 const homeLocation = {
   title: "Home",
@@ -32,11 +35,14 @@ export default defineConfig({
   dataset,
   schema: {
     types: [
+      ...components,
       // Singletons
       settings,
+      menu,
       // Documents
+      page,
       post,
-      author,
+      team,
     ],
   },
   plugins: [
@@ -73,7 +79,7 @@ export default defineConfig({
       },
       previewUrl: { previewMode: { enable: "/api/draft-mode/enable" } },
     }),
-    structureTool({ structure: pageStructure([settings]) }),
+    structureTool({ structure: pageStructure([settings, menu]) }),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton
     singletonPlugin([settings.name]),
     // Add an image asset source for Unsplash
