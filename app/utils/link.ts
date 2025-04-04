@@ -1,9 +1,11 @@
-export const getInternalLink = (document: string, slug: string): string => {
-  switch (document) {
+import { InternalResultType } from "@/sanity/lib/results";
+
+export const getInternalLinkUrl = (link: InternalResultType): string => {
+  switch (link.document) {
     case "post":
-      return `/${document}/${slug}`;
+      return `/${link.document}/${link.slug}`;
     case "page":
     default:
-      return `/${slug}`;
+      return `/${link.slug}`;
   }
 };

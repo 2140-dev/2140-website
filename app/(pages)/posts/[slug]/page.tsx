@@ -2,15 +2,12 @@ import { defineQuery, type PortableTextBlock } from "next-sanity";
 import type { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 
-import Avatar from "../../avatar";
-import DateComponent from "../../date";
-import MoreStories from "../../more-stories";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { postQuery, settingsQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
-import { PageTitle } from "@/app/components/PageTitle/PageTitle";
-import { TextEditorRenderer } from "@/app/components/TextEditorRenderer/TextEditorRenderer";
-import { CoverImage } from "@/app/components/CoverImage/CoverImage";
+import { PageTitle } from "@/app/shared/components/PageTitle/PageTitle";
+import { TextEditorRenderer } from "@/app/shared/components/TextEditorRenderer/TextEditorRenderer";
+import { CoverImage } from "@/app/shared/components/CoverImage/CoverImage";
 
 type Props = {
   params: Promise<{ slug: string }>;

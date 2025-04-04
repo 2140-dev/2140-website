@@ -5,10 +5,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
-import Avatar from "../avatar";
-import DateComponent from "../date";
-import MoreStories from "../more-stories";
-
 import * as demo from "@/sanity/lib/demo";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { postQuery, settingsQuery } from "@/sanity/lib/queries";
