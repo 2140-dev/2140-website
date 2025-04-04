@@ -42,6 +42,15 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      title: "Donation link",
+      type: "url",
+      name: "donation",
+      validation: (Rule) =>
+        Rule.required().uri({
+          scheme: ["http", "https", "tel", "mailto"],
+        }),
+    }),
+    defineField({
       name: "footer",
       title: "Footer",
       type: "object",

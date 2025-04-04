@@ -1,15 +1,48 @@
-import type {StructureResolver} from 'sanity/structure'
+// /sanity/structure.ts
 
-// https://www.sanity.io/docs/structure-builder-cheat-sheet
+import type { StructureResolver } from "sanity/structure";
+import { HomeIcon, CogIcon, MenuIcon } from "@sanity/icons";
+
 export const structure: StructureResolver = (S) =>
   S.list()
-    .title('Blog')
+    .title("Content")
     .items([
-      S.documentTypeListItem('post').title('Posts'),
-      S.documentTypeListItem('category').title('Categories'),
-      S.documentTypeListItem('author').title('Authors'),
+      // 🛠️ Singleton: Settings
+      S.listItem()
+        .title("Settings")
+        .icon(CogIcon)
+        .child(
+          S.editor()
+            .id("settings")
+            .schemaType("settings")
+            .documentId("settings")
+        ),
+
+      // 🧭 Singleton: Menu
+      S.listItem()
+        .title("Menu")
+        .icon(MenuIcon)
+        .child(S.editor().id("menu").schemaType("menu").documentId("menu")),
+
+      // Divider 1
       S.divider(),
+
+      // 🏠 Singleton: Homepage
+      S.listItem()
+        .title("Homepage")
+        .icon(HomeIcon)
+        .child(
+          S.editor()
+            .id("homepage")
+            .schemaType("homepage")
+            .documentId("homepage")
+        ),
+
+      // Divider 2
+      S.divider(),
+
+      // 🗂️ The rest of your document types
       ...S.documentTypeListItems().filter(
-        (item) => item.getId() && !['post', 'category', 'author'].includes(item.getId()!),
+        (item) => !["settings", "menu", "homepage"].includes(item.getId() ?? "")
       ),
-    ])
+    ]);

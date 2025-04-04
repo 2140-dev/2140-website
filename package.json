@@ -10,7 +10,8 @@
     "presetup": "echo 'about to setup env variables, follow the guide here: https://github.com/vercel/next.js/tree/canary/examples/cms-sanity#using-the-sanity-cli'",
     "setup": "npx sanity@latest init --env .env.local",
     "postsetup": "echo 'create the read token by following the rest of the guide: https://github.com/vercel/next.js/tree/canary/examples/cms-sanity#creating-a-read-token'",
-    "typegen": "sanity schema extract && sanity typegen generate"
+    "typegen": "cd sanity && sanity schema extract && sanity typegen generate --output=./sanity/sanity.types.ts",
+    "studio": "sanity dev --cwd sanity"
   },
   "dependencies": {
     "@sanity/assist": "^3.0.8",
@@ -21,10 +22,12 @@
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^22.7.8",
     "@types/react": "^18.3.11",
+    "@types/lodash": "^4.14.202",
     "@types/react-dom": "^18.3.1",
     "@vercel/speed-insights": "^1.0.13",
     "autoprefixer": "^10.4.20",
     "date-fns": "^4.1.0",
+    "lodash": "^4.17.21",
     "next": "^15.0.0",
     "next-sanity": "^9.7.0",
     "postcss": "^8.4.47",

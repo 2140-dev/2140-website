@@ -1,15 +1,16 @@
 interface External {
   _key: string;
-  _type: string;
-  external: { _type?: string; label?: string; url?: string };
-  type?: "external";
+  _type: "external";
+  url: string;
+  label: string;
 }
 
-interface Internal {
+export interface Internal {
   _key: string;
-  _type: string;
-  internal: { _type?: string; label?: string; url?: string };
-  type?: "internal";
+  _type: "internal";
+  label: string;
+  slug: string;
+  document: string;
 }
 
 export type Link = External | Internal | undefined;

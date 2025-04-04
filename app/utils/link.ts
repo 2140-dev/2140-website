@@ -1,17 +1,9 @@
-import { Link } from "@/app/types/link";
-
-export const resolveLink = (
-  link: Link
-): { _type?: string; label?: string; url?: string } | undefined => {
-  if (!link) return undefined;
-
-  if (link.type === "external" && link?.external) {
-    return link.external;
+export const getInternalLink = (document: string, slug: string): string => {
+  switch (document) {
+    case "post":
+      return `/${document}/${slug}`;
+    case "page":
+    default:
+      return `/${slug}`;
   }
-
-  if (link.type === "internal" && link?.internal) {
-    return link.internal;
-  }
-
-  return link;
 };

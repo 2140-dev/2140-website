@@ -3,19 +3,20 @@ import { urlForImage } from "@/sanity/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import "./styles.scss";
 
 interface Props {
   image: ImageType;
 }
 export const Logo = ({ image }: Props) => (
-  <div className="h-10 flex items-center">
+  <div className="flex items-center">
     <Link href="/">
       <Image
         alt={image?.alt || ""}
-        className="max-w-10"
+        className="logo"
         width={0}
         height={0}
-        src={urlForImage(image)?.width(80).fit("fill").url() as string}
+        src={urlForImage(image)?.width(120).fit("fill").url() as string}
         style={{ width: "100%", height: "auto" }}
       />
     </Link>

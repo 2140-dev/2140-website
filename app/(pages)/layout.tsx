@@ -59,6 +59,7 @@ export default async function RootLayout({
     sanityFetch({ query: menuQuery }),
     sanityFetch({ query: settingsQuery }),
   ]);
+  console.log(menu);
   const { isEnabled: isDraftMode } = await draftMode();
 
   try {

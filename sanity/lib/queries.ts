@@ -1,17 +1,18 @@
-import { defineQuery } from "next-sanity";
+import { Homepage } from "@/sanity/sanity.types";
+import { SanityClient, defineQuery } from "next-sanity";
+
+const internalLinkFields = /* groq */ `
+  "_type": _type,
+  "label": label,
+  "slug": reference->slug.current,
+  "document": reference->_type
+`;
 
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
 export const menuQuery = defineQuery(`*[_type == "menu"][0] {
   items[] {
     ...,
-    external {
-      ...
-    },
-    internal {
-      ...,
-      '_type': reference->_type,
-      'url': reference->slug.current
-    }
+    ${internalLinkFields}
   }
 }`);
 
@@ -47,7 +48,15 @@ export const postQuery = defineQuery(`
 `);
 
 export const homepageQuery = defineQuery(`
-  *[_type == "homepage" && slug.current == '/'] [0] {
-    ...
+  *[_type == "homepage"][0] {
+    ...,
+    link {
+      ${internalLinkFields}
+    }
   }
 `);
+
+export const fetchHomepage = async (client: SanityClient) => {
+  const result = await client.fetch<Homepage>(homepageQuery);
+  return result;
+};

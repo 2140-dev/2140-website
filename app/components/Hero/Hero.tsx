@@ -1,32 +1,29 @@
+import { getInternalLink } from "@/app/utils/link";
+import { urlForImage } from "@/sanity/lib/utils";
+import { Homepage } from "@/sanity/sanity.types";
+import { Image } from "next-sanity/image";
 import Link from "next/link";
 import React from "react";
 
-interface Props {
-  title: string;
-  blurb: string;
-  link: any;
-  image: any;
-}
-export const Hero = ({ title, blurb, link, image }: Props) => {
+type Props = Pick<Homepage, "title" | "excerpt" | "link" | "image">;
+export const Hero = ({ title, excerpt, link, image }: Props) => {
   return (
-    <div className="wrapper">
-      <div className="container-l">
-        <div className="left">
-          <h1 className="mb-4">
-            {/* <MarkdownRender>{HERO_WORDING.title}</MarkdownRender> */}
-            {title}
-          </h1>
-          <p className="blurb body1">{blurb}</p>
-          <Link href="about" className="button mt-4">
-            {link.text}
-          </Link>
-        </div>
-        <div className="background">
-          <img src="/" alt="Background swiggle" />
-        </div>
-        <div className="image">
-          <img src={image.src} alt="Hero graphic" />
-        </div>
+    <div className="container-xl flex items-center gap-10">
+      <div className="pl-10 left flex-1">
+        <h1 className="mb-4">{title}</h1>
+        <p className="blurb body1">{excerpt}</p>
+      </div>
+      <div className="background">
+        <img src="../../images/background.svg" alt="" />
+      </div>
+      <div className="right flex-1">
+        <Image
+          alt={image?.alt || ""}
+          width={0}
+          height={0}
+          src={urlForImage(image)?.url() as string}
+          style={{ width: "100%", height: "auto" }}
+        />
       </div>
     </div>
   );

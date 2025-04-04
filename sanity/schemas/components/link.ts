@@ -46,7 +46,7 @@ export const internal = defineType({
       title: "Document",
       name: "reference",
       type: "reference" as const,
-      to: [{ type: "post" }], // { type: "home" }, { type: "page" },
+      to: [{ type: "post" }, { type: "page" }],
       options: {
         filter: `defined(slug) || _id == "home" && (!defined(date) || (defined(date) && dateTime(date + 'T00:00:00Z') < dateTime(now())))`,
       },
