@@ -42,6 +42,7 @@ export type HomepageQueryResultType = {
   excerpt?: string;
   link?: InternalResultType;
   image: ImageResultType;
+  slices?: { _key: string; _type: string } & any[];
 };
 
 export type PageQueryResultType = {
@@ -50,5 +51,6 @@ export type PageQueryResultType = {
   title: string;
   slug: string;
   excerpt?: string;
+  link?: InternalResultType;
   slices?: { _key: string; _type: string } & any[];
 };

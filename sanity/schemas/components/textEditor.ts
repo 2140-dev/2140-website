@@ -33,7 +33,7 @@ export default defineType({
               {
                 title: "URL",
                 name: "href",
-                type: "url", // <-- changed from "link" to "url"
+                type: "string",
               },
             ],
           },

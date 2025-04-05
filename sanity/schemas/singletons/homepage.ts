@@ -1,5 +1,7 @@
+import callToAction from "@/sanity/schemas/slices/callToAction";
+import centeredText from "@/sanity/schemas/slices/centeredText";
+import { sliceTypeFromNames } from "@/sanity/util/slice";
 import { HomeIcon } from "@sanity/icons";
-import { format, parseISO } from "date-fns";
 import { defineField, defineType } from "sanity";
 
 /**
@@ -13,7 +15,7 @@ import { defineField, defineType } from "sanity";
   https://www.sanity.io/docs/schema-types
 
  */
-
+const slices = [callToAction, centeredText];
 export default defineType({
   name: "homepage",
   icon: HomeIcon,
@@ -53,6 +55,14 @@ export default defineType({
         },
       ],
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      title: "Slices",
+      name: "slices",
+      type: "array" as const,
+      of: [
+        ...sliceTypeFromNames(slices), //.sort((a, b) => a.title?.localeCompare(b.title)
+      ],
     }),
   ],
   preview: {

@@ -1,26 +1,12 @@
-import { stripHTMLMarkup } from "@/app/utils/markdown";
-import { BoltIcon } from "@sanity/icons";
+import { TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  title: "Donate call to action",
-  name: "callToAction",
-  icon: BoltIcon,
-  type: "object",
+  title: "Centered text",
+  name: "centeredText",
+  icon: TextIcon,
+  type: "object", // ✅ must be object
   fields: [
-    defineField({
-      name: "layout",
-      type: "string",
-      options: {
-        list: [
-          { title: "Text on the left", value: "left" },
-          { title: "Text on the right", value: "right" },
-        ],
-        layout: "radio",
-        direction: "horizontal",
-      },
-      initialValue: "left",
-    }),
     defineField({
       title: "Eyebrow",
       name: "eyebrow",
@@ -33,15 +19,14 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "content",
+      title: "Content",
+      type: "textBlock",
+    }),
+    defineField({
       name: "link",
       title: "Link",
       type: "internal",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      title: "Content",
-      name: "content",
-      type: "textBlock",
     }),
     defineField({
       name: "image",
@@ -62,7 +47,6 @@ export default defineType({
             }),
         },
       ],
-      validation: (rule) => rule.required(),
     }),
   ],
   preview: {
@@ -70,10 +54,7 @@ export default defineType({
       title: "title",
     },
     prepare({ title }) {
-      return {
-        title: stripHTMLMarkup(title),
-        subtitle: "Donate call to action",
-      };
+      return { title, subtitle: "Centered text" };
     },
   },
 });

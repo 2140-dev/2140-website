@@ -1,3 +1,4 @@
+import { SlicesComp } from "@/app/shared/layouts/SlicesComp/SlicesComp";
 import { Hero } from "./components/Hero/Hero";
 import { HomepageQueryResultType } from "@/sanity/lib/results";
 
@@ -6,12 +7,13 @@ export const HomepageTemplate = ({
   excerpt,
   image,
   link,
+  slices,
 }: HomepageQueryResultType) => {
-  const heroProps = { title, excerpt, image, link };
+  const heroProps = { title, excerpt, image, link, slices };
   return (
     <>
       <Hero {...heroProps} />
-      <div className="container mx-auto px-5"></div>
+      {slices && <SlicesComp slices={slices} />}
     </>
   );
 };

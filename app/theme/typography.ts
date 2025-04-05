@@ -40,11 +40,13 @@ export const typography: TypographyOptions = {
   h5: {
     ...headings,
     fontSize: "1.25rem",
+    marginBottom: "0.5rem",
     fontWeight: 600,
   },
   h6: {
     ...headings,
     fontSize: "1rem",
+    marginBottom: "0.5rem",
     fontWeight: 600,
   },
   body1: {

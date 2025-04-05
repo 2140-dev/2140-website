@@ -67,16 +67,34 @@ export const fetchSettingsAndMenu = async (client: SanityClient) => {
   return { settings: result[0], menu: result[1] };
 };
 
-export const homepageQuery = defineQuery(`
-  *[_type == "homepage"][0] {
-    ...,
-    link {
-      ${internalLinkFields}
-    }
-  }
-`);
 export const fetchHomepageProps = async (client: SanityClient) => {
-  const result = await client.fetch<HomepageQueryResultType>(homepageQuery);
+  const query = defineQuery(`
+    *[_type == "homepage"][0] {
+      ...,
+      link {
+        ${internalLinkFields}
+      },
+      slices[] {
+        ...,
+        link {
+          ${internalLinkFields}
+        },
+        callToAction {
+          ...,
+          link {
+            ${internalLinkFields}
+          }
+        },
+        centeredText {
+          ...,
+          link {
+            ${internalLinkFields}
+          }
+        }
+      }
+    }
+  `);
+  const result = await client.fetch<HomepageQueryResultType>(query);
   return result;
 };
 

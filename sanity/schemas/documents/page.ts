@@ -4,6 +4,7 @@ import { defineField, defineType } from "sanity";
 import textBlockWithImage from "../slices/textBlockWithImage";
 import { stripHTMLMarkup } from "@/app/utils/markdown";
 import callToAction from "../slices/callToAction";
+import donors from "../slices/donors";
 /**
  * This file is the schema definition for a post.
  *
@@ -15,7 +16,7 @@ import callToAction from "../slices/callToAction";
   https://www.sanity.io/docs/schema-types
 
  */
-const slices = [callToAction, textBlockWithImage];
+const slices = [callToAction, donors, textBlockWithImage];
 
 export default defineType({
   name: "page",

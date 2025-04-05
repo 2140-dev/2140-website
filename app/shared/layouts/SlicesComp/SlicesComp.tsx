@@ -1,14 +1,14 @@
-import { SchemaTypeDefinition } from "sanity";
-
 import React, { Fragment, Suspense } from "react";
 import dynamic from "next/dynamic";
 import { PageQueryResultType } from "@/sanity/lib/results.js";
 
 const mapSliceTypeToComponent = {
+  callToAction: dynamic(() => import("../../slices/CallToAction/CallToAction")),
+  centeredText: dynamic(() => import("../../slices/CenteredText/CenteredText")),
+  donors: dynamic(() => import("../../slices/Donors/Donors")),
   textBlockWithImage: dynamic(
     () => import("../../slices/TextBlockWithImage/TextBlockWithImage")
   ),
-  callToAction: dynamic(() => import("../../slices/CallToAction/CallToAction")),
 };
 interface Props {
   slices: PageQueryResultType["slices"];

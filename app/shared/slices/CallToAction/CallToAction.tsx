@@ -1,9 +1,7 @@
-"use client";
-
 import { Image as ImageType } from "@/app/types/image";
 import { urlForImage } from "@/sanity/lib/utils";
 import { Box, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { PortableTextBlock } from "next-sanity";
 import { RichTextRenderer } from "@/app/shared/components/RichTextRenderer/RichTextRenderer";
@@ -12,8 +10,6 @@ import { Section } from "@/app/shared/layouts/Section/Section";
 import { Eyebrow } from "@/app/shared/components/Eyebrow/Eyebrow";
 import { getStylishMarkdown } from "@/app/utils/markdown";
 import { Button } from "@/app/shared/components/Button/Button";
-import { client } from "@/sanity/lib/client";
-import { fetchDonateLink } from "@/sanity/lib/queries";
 import { InternalResultType } from "@/sanity/lib/results";
 import { getInternalLinkUrl } from "@/app/utils/link";
 import { MarkdownRender } from "@/app/shared/components/MarkdownRenderer/MarkdownRenderer";
@@ -34,7 +30,6 @@ const CallToAction = ({
   content,
   link,
 }: Props) => {
-  // console.log(link);
   return (
     <Section
       sx={{
