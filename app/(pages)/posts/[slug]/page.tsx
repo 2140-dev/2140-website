@@ -54,7 +54,6 @@ export default async function PostPage({ params }: Props) {
     return notFound();
   }
 
-  console.log(post.content);
   return (
     <div>
       <PageTitle

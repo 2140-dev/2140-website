@@ -2,7 +2,6 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import {
   backgroundSx,
-  blurbSx,
   containerSx,
   imageSx,
   childSx,
@@ -28,11 +27,17 @@ export const Hero = ({
     <Box sx={wrapperSx}>
       <Container size="lg" sx={containerSx}>
         <Box sx={{ ...childSx, ...leftSx }}>
-          <Typography variant="h1" mb={4}>
+          <Typography variant="h1" sx={{ fontSize: "5rem !important" }}>
             <MarkdownRender>{title}</MarkdownRender>
           </Typography>
           {excerpt && (
-            <Typography sx={blurbSx} variant="body1">
+            <Typography
+              sx={{
+                mt: 5,
+                maxWidth: 600,
+              }}
+              variant="body1"
+            >
               {excerpt}
             </Typography>
           )}

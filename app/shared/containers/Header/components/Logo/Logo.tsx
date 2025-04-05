@@ -3,13 +3,13 @@ import { urlForImage } from "@/sanity/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import "./styles.scss";
+import { Box } from "@mui/material";
 
 interface Props {
   image: ImageType;
 }
 export const Logo = ({ image }: Props) => (
-  <div className="flex items-center">
+  <Box sx={{ position: "relative", zIndex: 99, maxWidth: 80 }}>
     <Link href="/">
       <Image
         alt={image?.alt || ""}
@@ -20,5 +20,5 @@ export const Logo = ({ image }: Props) => (
         style={{ width: "100%", height: "auto" }}
       />
     </Link>
-  </div>
+  </Box>
 );

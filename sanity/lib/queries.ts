@@ -1,10 +1,12 @@
+import { sanityFetch } from "@/sanity/lib/fetch";
 import {
   HomepageQueryResultType,
   MenuQueryResultType,
+  PageQueryResultType,
   SettingsQueryResultType,
 } from "@/sanity/lib/results";
-import { Homepage, Menu, Settings } from "@/sanity/sanity.types";
 import { SanityClient, defineQuery } from "next-sanity";
+import { QueryParams } from "sanity";
 
 const internalLinkFields = /* groq */ `
   "_type": _type,
@@ -44,15 +46,6 @@ export const postQuery = defineQuery(`
   }
 `);
 
-export const homepageQuery = defineQuery(`
-  *[_type == "homepage"][0] {
-    ...,
-    link {
-      ${internalLinkFields}
-    }
-  }
-`);
-
 export const menuQuery = defineQuery(`*[_type == "menu"][0] {
   items[] {
     ...,
@@ -61,7 +54,7 @@ export const menuQuery = defineQuery(`*[_type == "menu"][0] {
 }`);
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
 export const fetchSettings = async (client: SanityClient) => {
-  const result = await client.fetch<Settings>(settingsQuery);
+  const result = await client.fetch<SettingsQueryResultType>(settingsQuery);
 
   return result;
 };
@@ -73,7 +66,29 @@ export const fetchSettingsAndMenu = async (client: SanityClient) => {
 
   return { settings: result[0], menu: result[1] };
 };
-export const fetchHomepage = async (client: SanityClient) => {
+
+export const homepageQuery = defineQuery(`
+  *[_type == "homepage"][0] {
+    ...,
+    link {
+      ${internalLinkFields}
+    }
+  }
+`);
+export const fetchHomepageProps = async (client: SanityClient) => {
   const result = await client.fetch<HomepageQueryResultType>(homepageQuery);
+  return result;
+};
+
+export const fetchPageProps = async (
+  client: SanityClient,
+  params?: QueryParams | Promise<QueryParams>
+) => {
+  const query = defineQuery(`
+    *[_type == "page" && slug.current == $slug] [0] {
+      ...,
+    }
+  `);
+  const result: PageQueryResultType = await sanityFetch({ query, params });
   return result;
 };

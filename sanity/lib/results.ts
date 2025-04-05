@@ -43,3 +43,11 @@ export type HomepageQueryResultType = {
   link?: InternalResultType;
   image: ImageResultType;
 };
+
+export type PageQueryResultType = {
+  _id: string;
+  _type: "page";
+  title: string;
+  slug: string;
+  excerpt?: string;
+};

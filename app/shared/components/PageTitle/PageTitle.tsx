@@ -1,5 +1,5 @@
 import { Image } from "@/app/types/image";
-import "./styles.scss";
+// import "./styles.scss";
 import { CoverImage } from "@/app/shared/components/CoverImage/CoverImage";
 import { Typography } from "@mui/material";
 

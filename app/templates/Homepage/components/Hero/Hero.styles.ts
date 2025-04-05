@@ -80,8 +80,3 @@ export const backgroundSx: SxProps = {
 export const imageSx = {
   zIndex: 1,
 };
-
-export const blurbSx: SxProps = {
-  mt: 1,
-  maxWidth: 600,
-};

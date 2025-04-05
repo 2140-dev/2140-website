@@ -1,3 +1,4 @@
+import { sliceTypeFromNames } from "@/sanity/util/slice";
 import { DocumentTextIcon } from "@sanity/icons";
 import { format, parseISO } from "date-fns";
 import { defineField, defineType } from "sanity";
@@ -13,6 +14,7 @@ import { defineField, defineType } from "sanity";
   https://www.sanity.io/docs/schema-types
 
  */
+const pageSlices = [];
 
 export default defineType({
   name: "page",
@@ -39,16 +41,24 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "content",
-      title: "Content",
-      type: "array",
-      of: [{ type: "block" }],
-    }),
-    defineField({
       name: "excerpt",
       title: "Excerpt",
       type: "text",
     }),
+    defineField({
+      title: "Slices",
+      name: "slices",
+      type: "array" as const,
+      of: [...sliceTypeFromNames(pageSlices)].sort((a, b) =>
+        a.title?.localeCompare(b.title)
+      ),
+    }),
+    // defineField({
+    //   name: "content",
+    //   title: "Content",
+    //   type: "array",
+    //   of: [{ type: "block" }],
+    // }),
   ],
   preview: {
     select: {

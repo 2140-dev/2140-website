@@ -1,7 +1,7 @@
 import { Hero } from "./components/Hero/Hero";
 import { HomepageQueryResultType } from "@/sanity/lib/results";
 
-export const Home = ({
+export const HomepageTemplate = ({
   title,
   excerpt,
   image,

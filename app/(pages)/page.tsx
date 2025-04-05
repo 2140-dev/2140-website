@@ -1,10 +1,10 @@
-import { Home } from "@/app/pages/Home/Home";
+import { HomepageTemplate } from "@/app/templates/Homepage/HomepageTemplate";
 import { client } from "@/sanity/lib/client";
 
-import { fetchHomepage } from "@/sanity/lib/queries";
+import { fetchHomepageProps } from "@/sanity/lib/queries";
 
 export default async function Homepage() {
-  const pageProps = await fetchHomepage(client);
+  const pageProps = await fetchHomepageProps(client);
 
-  return <Home {...pageProps} />;
+  return <HomepageTemplate {...pageProps} />;
 }
