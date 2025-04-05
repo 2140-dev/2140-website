@@ -52,7 +52,7 @@ export const menuQuery = defineQuery(`*[_type == "menu"][0] {
     ${internalLinkFields}
   }
 }`);
-export const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
+const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
 export const fetchSettings = async (client: SanityClient) => {
   const result = await client.fetch<SettingsQueryResultType>(settingsQuery);
 
@@ -85,10 +85,22 @@ export const fetchPageProps = async (
   params?: QueryParams | Promise<QueryParams>
 ) => {
   const query = defineQuery(`
-    *[_type == "page" && slug.current == $slug] [0] {
+  *[_type == "page" && slug.current == $slug][0] {
+    ...,
+    slices[] {
       ...,
+      link {
+        ${internalLinkFields}
+      },
+      callToAction {
+        ...,
+        link {
+          ${internalLinkFields}
+        }
+      }
     }
-  `);
+  }
+`);
   const result: PageQueryResultType = await sanityFetch({ query, params });
   return result;
 };

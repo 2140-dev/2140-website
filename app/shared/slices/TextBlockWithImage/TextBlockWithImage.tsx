@@ -39,7 +39,7 @@ const TextBlockWithImage = ({ layout, image, content }: Props) => {
             sx={{
               flex: 1,
               order: {
-                md: layout === "left" ? -1 : 1,
+                md: layout === "right" ? -1 : 1,
               },
             }}
           >

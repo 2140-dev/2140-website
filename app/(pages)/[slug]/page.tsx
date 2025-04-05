@@ -36,5 +36,6 @@ export async function generateMetadata(
 export default async function Page({ params }: Props) {
   const pageProps = await fetchPageProps(client, params);
 
+  console.log(pageProps.slices);
   return <PageTemplate {...pageProps} />;
 }

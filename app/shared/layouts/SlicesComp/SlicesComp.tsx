@@ -8,6 +8,7 @@ const mapSliceTypeToComponent = {
   textBlockWithImage: dynamic(
     () => import("../../slices/TextBlockWithImage/TextBlockWithImage")
   ),
+  callToAction: dynamic(() => import("../../slices/CallToAction/CallToAction")),
 };
 interface Props {
   slices: PageQueryResultType["slices"];

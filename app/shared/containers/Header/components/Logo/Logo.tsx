@@ -9,13 +9,13 @@ interface Props {
   image: ImageType;
 }
 export const Logo = ({ image }: Props) => (
-  <Box sx={{ position: "relative", zIndex: 99, maxWidth: 80 }}>
+  <Box sx={{ position: "relative", zIndex: 99, maxWidth: 100 }}>
     <Link href="/">
       <Image
         alt={image?.alt || ""}
         width={0}
         height={0}
-        src={urlForImage(image)?.width(120).fit("fill").url() as string}
+        src={urlForImage(image)?.fit("fill").url() as string}
         style={{ width: "100%", height: "auto" }}
       />
     </Link>

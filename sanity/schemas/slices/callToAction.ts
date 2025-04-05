@@ -1,11 +1,12 @@
-import { BlockContentIcon } from "@sanity/icons";
+import { stripHTMLMarkup } from "@/app/utils/markdown";
+import { BoltIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  title: "Text block with image",
-  name: "textBlockWithImage",
-  icon: BlockContentIcon,
-  type: "object", // ✅ must be object
+  title: "Donate call to action",
+  name: "callToAction",
+  icon: BoltIcon,
+  type: "object",
   fields: [
     defineField({
       name: "layout",
@@ -21,9 +22,27 @@ export default defineType({
       initialValue: "left",
     }),
     defineField({
-      name: "content",
+      title: "Eyebrow",
+      name: "eyebrow",
+      type: "string",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "title",
+      title: "Title",
+      type: "string",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "link",
+      title: "Link",
+      type: "internal",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       title: "Content",
-      type: "textEditor",
+      name: "content",
+      type: "textBlock",
     }),
     defineField({
       name: "image",
@@ -48,8 +67,14 @@ export default defineType({
     }),
   ],
   preview: {
-    prepare() {
-      return { title: "Text block with image" };
+    select: {
+      title: "title",
+    },
+    prepare({ title }) {
+      return {
+        title: stripHTMLMarkup(title),
+        subtitle: "Donate call to action",
+      };
     },
   },
 });

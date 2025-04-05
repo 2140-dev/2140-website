@@ -3,11 +3,10 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { postQuery, settingsQuery } from "@/sanity/lib/queries";
+import { postQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
 import { PageTitle } from "@/app/shared/components/PageTitle/PageTitle";
 import { TextEditorRenderer } from "@/app/shared/components/TextEditorRenderer/TextEditorRenderer";
-import { CoverImage } from "@/app/shared/components/CoverImage/CoverImage";
 
 type Props = {
   params: Promise<{ slug: string }>;
