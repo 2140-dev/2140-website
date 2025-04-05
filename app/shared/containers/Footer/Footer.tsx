@@ -56,7 +56,15 @@ export const Footer = ({ email, disclaimer, gpg }: Props) => {
           </Typography>
         )}
       </Box>
-      <Typography variant="caption" component="div">
+      <Typography
+        variant="caption"
+        component="div"
+        sx={{
+          ".MuiTypography-root": {
+            fontSize: "0.75rem !important",
+          },
+        }}
+      >
         <RichTextRenderer content={disclaimer} />
       </Typography>
     </Container>

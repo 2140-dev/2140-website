@@ -4,6 +4,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { fetchPageProps } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
 import { PageTemplate } from "@/app/templates/Page/PageTemplate";
+import { stripHTMLMarkup } from "@/app/utils/markdown";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -25,7 +26,7 @@ export async function generateMetadata(
 
   return {
     title: `2140 | ${page?.title}`,
-    description: "", // page?.excerpt,
+    description: page?.excerpt,
     openGraph: {
       images: [],
     },

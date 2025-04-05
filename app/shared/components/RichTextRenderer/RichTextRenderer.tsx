@@ -1,3 +1,6 @@
+import { Eyebrow } from "@/app/shared/components/Eyebrow/Eyebrow";
+import { getStylishMarkdown } from "@/app/utils/markdown";
+import { Typography } from "@mui/material";
 import {
   PortableText,
   PortableTextBlock,
@@ -8,10 +11,17 @@ import React from "react";
 
 const components: Partial<PortableTextReactComponents> = {
   block: {
-    h2: ({ children }) => <h2>{children}</h2>,
-    h3: ({ children }) => <h3>{children}</h3>,
-    h4: ({ children }) => <h4>{children}</h4>,
-    normal: ({ children }) => <p>{children}</p>,
+    eyebrow: ({ children }) => <Eyebrow color="blue" text={children} />,
+    h2: ({ children }) => (
+      <Typography variant="h2" sx={getStylishMarkdown("black")}>
+        {children}
+      </Typography>
+    ),
+    h3: ({ children }) => <Typography variant="h3">{children}</Typography>,
+    h4: ({ children }) => <Typography variant="h4">{children}</Typography>,
+    normal: ({ children }) => (
+      <Typography variant="body1">{children}</Typography>
+    ),
   },
   list: {},
   marks: {

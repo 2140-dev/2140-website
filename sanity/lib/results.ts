@@ -50,4 +50,5 @@ export type PageQueryResultType = {
   title: string;
   slug: string;
   excerpt?: string;
+  slices?: { _key: string; _type: string } & any[];
 };

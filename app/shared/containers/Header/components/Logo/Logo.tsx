@@ -13,7 +13,6 @@ export const Logo = ({ image }: Props) => (
     <Link href="/">
       <Image
         alt={image?.alt || ""}
-        className="logo"
         width={0}
         height={0}
         src={urlForImage(image)?.width(120).fit("fill").url() as string}

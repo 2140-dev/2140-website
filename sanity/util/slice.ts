@@ -1,2 +1,4 @@
-export const sliceTypeFromNames = (types: { name: string; title: string }[]) =>
-  types?.map(({ name, title }) => ({ type: name, title }));
+import { SchemaTypeDefinition } from "sanity";
+
+export const sliceTypeFromNames = (slices: SchemaTypeDefinition[]) =>
+  slices?.map(({ name, title }) => ({ type: name, title, name }));

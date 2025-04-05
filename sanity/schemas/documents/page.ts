@@ -2,7 +2,8 @@ import { sliceTypeFromNames } from "@/sanity/util/slice";
 import { DocumentTextIcon } from "@sanity/icons";
 import { format, parseISO } from "date-fns";
 import { defineField, defineType } from "sanity";
-
+import textBlockWithImage from "../slices/textBlockWithImage";
+import { stripHTMLMarkup } from "@/app/utils/markdown";
 /**
  * This file is the schema definition for a post.
  *
@@ -14,7 +15,7 @@ import { defineField, defineType } from "sanity";
   https://www.sanity.io/docs/schema-types
 
  */
-const pageSlices = [];
+const slices = [textBlockWithImage];
 
 export default defineType({
   name: "page",
@@ -49,9 +50,9 @@ export default defineType({
       title: "Slices",
       name: "slices",
       type: "array" as const,
-      of: [...sliceTypeFromNames(pageSlices)].sort((a, b) =>
-        a.title?.localeCompare(b.title)
-      ),
+      of: [
+        ...sliceTypeFromNames(slices), //.sort((a, b) => a.title?.localeCompare(b.title)
+      ],
     }),
     // defineField({
     //   name: "content",
@@ -65,7 +66,7 @@ export default defineType({
       title: "title",
     },
     prepare({ title }) {
-      return { title };
+      return { title: stripHTMLMarkup(title) };
     },
   },
 });

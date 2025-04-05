@@ -1,47 +1,56 @@
-import { TextIcon } from "@sanity/icons";
+import { BlockContentIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "page",
-  title: "Page",
-  icon: TextIcon,
-  type: "document",
+  title: "Text block with image",
+  name: "textBlockWithImage",
+  icon: BlockContentIcon,
+  type: "object", // ✅ must be object
   fields: [
     defineField({
-      name: "eyebrow",
+      name: "layout",
       type: "string",
-    }),
-    defineField({
-      name: "title",
-      title: "Title",
-      type: "string",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      description: "A slug is required for the post to show up in the preview.",
       options: {
-        source: "title",
-        maxLength: 96,
-        isUnique: (value, context) => context.defaultIsUnique(value, context),
+        list: [
+          { title: "Text on the left", value: "left" },
+          { title: "Text on the right", value: "right" },
+          { title: "Centered text", value: "center" },
+        ],
+        layout: "radio",
+        direction: "horizontal",
       },
-      validation: (rule) => rule.required(),
+      initialValue: "left",
     }),
     defineField({
       name: "content",
       title: "Content",
-      type: "array",
-      of: [{ type: "blockContent" }],
+      type: "textEditor",
+    }),
+    defineField({
+      name: "image",
+      type: "image",
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
+          description: "Important for SEO and accessibility.",
+          validation: (rule) =>
+            rule.custom((alt, context) => {
+              const hasImage = (context.parent as any)?.asset?._ref;
+              if (hasImage && !alt) {
+                return "Required";
+              }
+              return true;
+            }),
+        },
+      ],
+      validation: (rule) => rule.required(),
     }),
   ],
   preview: {
-    select: {
-      title: "title",
-    },
-    prepare({ title }) {
-      return { title };
+    prepare() {
+      return { title: "Text block with image" };
     },
   },
 });
