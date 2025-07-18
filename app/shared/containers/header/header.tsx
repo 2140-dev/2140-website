@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu } from "@/app/shared/containers/header-1/components/menu/menu";
+import { Menu } from "@/app/shared/containers/header/components/menu/menu";
 import { Container } from "@/app/shared/layouts/container/container";
 import { colors } from "@/app/theme/colors";
 import { ImageResultType, InternalResultType } from "@/sanity/lib/results";

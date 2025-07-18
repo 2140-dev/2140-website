@@ -6,7 +6,7 @@ import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
 
 import { Footer } from "@/app/shared/containers/footer/footer";
-import { Header } from "@/app/shared/containers/header-1/header";
+import { Header } from "@/app/shared/containers/header/header";
 import { ThemeRegistry } from "@/app/ThemeRegistry";
 import { client } from "@/sanity/lib/client";
 import * as demo from "@/sanity/lib/demo";
