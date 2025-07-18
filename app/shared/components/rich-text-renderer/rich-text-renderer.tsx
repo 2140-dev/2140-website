@@ -1,4 +1,4 @@
-import { Eyebrow } from "@/app/shared/components/eyebrow/eyebrow";
+import { Eyebrow } from "@/app/shared/components/eyebrow-1/eyebrow";
 import { getStylishMarkdown } from "@/app/utils/markdown";
 import { Typography } from "@mui/material";
 import {

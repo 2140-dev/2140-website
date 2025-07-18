@@ -1,5 +1,5 @@
 import { Button } from "@/app/shared/components/button/button";
-import { Eyebrow } from "@/app/shared/components/eyebrow/eyebrow";
+import { Eyebrow } from "@/app/shared/components/eyebrow-1/eyebrow";
 import { MarkdownRender } from "@/app/shared/components/markdown-renderer/markdown-renderer";
 import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
 import { Container } from "@/app/shared/layouts/container/container";
