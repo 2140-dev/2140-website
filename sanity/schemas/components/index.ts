@@ -1,11 +1,13 @@
 import { type SchemaTypeDefinition } from "sanity";
 
 import { link, internal, external } from "./link";
-import { blockContent } from "./blockContent";
+import textBlock from "./textBlock";
+import textEditor from "@/sanity/schemas/components/textEditor";
 
 export const components: SchemaTypeDefinition[] = [
   internal,
   external,
   link,
-  blockContent,
+  textBlock,
+  textEditor,
 ];

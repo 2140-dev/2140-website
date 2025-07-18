@@ -1,21 +1,20 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import {
-  backgroundSx,
-  containerSx,
-  imageSx,
-  childSx,
-  leftSx,
-  wrapperSx,
-} from "./Hero.styles";
-import { Container } from "@/app/shared/layouts/Container/Container";
-import Link from "next/link";
+import { Button } from "@/app/shared/components/button/button";
+import { MarkdownRender } from "@/app/shared/components/markdown-renderer/markdown-renderer";
+import { Container } from "@/app/shared/layouts/container/container";
 import { getInternalLinkUrl } from "@/app/utils/link";
 import { HomepageQueryResultType } from "@/sanity/lib/results";
-import { Button } from "@/app/shared/components/Button/Button";
-import Image from "next/image";
 import { urlForImage } from "@/sanity/lib/utils";
-import { MarkdownRender } from "@/app/shared/components/MarkdownRenderer/MarkdownRenderer";
+import { Box, Typography } from "@mui/material";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  backgroundSx,
+  childSx,
+  containerSx,
+  imageSx,
+  leftSx,
+  wrapperSx,
+} from "./hero.styles";
 
 export const Hero = ({
   title,

@@ -1,6 +1,6 @@
+import { Container } from "@/app/shared/layouts/container/container";
+import { Section } from "@/app/shared/layouts/section/section";
 import { Typography } from "@mui/material";
-import { Container } from "@/app/shared/layouts/Container/Container";
-import { Section } from "@/app/shared/layouts/Section/Section";
 
 interface Props {
   title: string;
@@ -8,8 +8,8 @@ interface Props {
 }
 export const PageTitle = ({ title, excerpt }: Props) => {
   return (
-    <Container size="sm">
-      <Section sx={{ pb: 0, textAlign: "center" }}>
+    <Section sx={{ pb: 0, pt: { xs: 15, md: 20 }, textAlign: "center" }}>
+      <Container size="sm">
         <Typography variant="h1">{title}</Typography>
         {excerpt && (
           <Typography
@@ -22,7 +22,7 @@ export const PageTitle = ({ title, excerpt }: Props) => {
             {excerpt}
           </Typography>
         )}
-      </Section>
-    </Container>
+      </Container>
+    </Section>
   );
 };

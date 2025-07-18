@@ -5,13 +5,13 @@ import type { Metadata } from "next";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
 
+import { Footer } from "@/app/shared/containers/footer/footer";
+import { Header } from "@/app/shared/containers/header/header";
+import { ThemeRegistry } from "@/app/ThemeRegistry"; // ✅ Ensure path is correct!
+import { client } from "@/sanity/lib/client";
 import * as demo from "@/sanity/lib/demo";
 import { fetchSettings, fetchSettingsAndMenu } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
-import { Header } from "@/app/shared/containers/Header/Header";
-import { Footer } from "@/app/shared/containers/Footer/Footer";
-import { client } from "@/sanity/lib/client";
-import { ThemeRegistry } from "@/app/ThemeRegistry"; // ✅ Ensure path is correct!
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await fetchSettings(client);

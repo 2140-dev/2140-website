@@ -1,13 +1,9 @@
-import { defineQuery } from "next-sanity";
 import type { Metadata, ResolvingMetadata } from "next";
-import { type PortableTextBlock } from "next-sanity";
-import Link from "next/link";
+import { defineQuery } from "next-sanity";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
 
-import * as demo from "@/sanity/lib/demo";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { postQuery, settingsQuery } from "@/sanity/lib/queries";
+import { postQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
 
 type Props = {
@@ -28,7 +24,6 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  console.log("Here");
   const post = await sanityFetch({
     query: postQuery,
     params,
@@ -48,9 +43,9 @@ export async function generateMetadata(
 }
 
 export default async function AllPosts({ params }: Props) {
-  const [post, settings] = await Promise.all([
+  const [post] = await Promise.all([
     sanityFetch({ query: postQuery, params }),
-    sanityFetch({ query: settingsQuery }),
+    // sanityFetch({ query: settingsQuery }),
   ]);
 
   if (!post?._id) {

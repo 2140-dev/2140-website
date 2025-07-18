@@ -1,15 +1,14 @@
 "use client";
 
-import { Box } from "@mui/material";
-import { Logo } from "./components/Logo/Logo";
-import debounce from "lodash/debounce";
-import React, { useEffect, useRef, useState } from "react";
-import { ImageResultType, InternalResultType } from "@/sanity/lib/results";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material";
+import { Menu } from "@/app/shared/containers/header/components/menu/menu";
+import { Container } from "@/app/shared/layouts/container/container";
 import { colors } from "@/app/theme/colors";
-import { Container } from "@/app/shared/layouts/Container/Container";
-import { Menu } from "@/app/shared/containers/Header/components/Menu/Menu";
+import { ImageResultType, InternalResultType } from "@/sanity/lib/results";
+import { Box, useTheme } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import debounce from "lodash/debounce";
+import { useEffect, useRef, useState } from "react";
+import { Logo } from "./components/logo/logo";
 
 interface Props {
   logo: ImageResultType;

@@ -1,9 +1,7 @@
-import React from "react";
 import { Box, List, ListItem } from "@mui/material";
-import { desktopItemSx, desktopMenuSx } from "./Menu.styles";
-import { MenuProps } from "./Menu";
 import Link from "next/link";
-import { getInternalLinkUrl } from "@/app/utils/link";
+import { MenuProps } from "./menu";
+import { desktopItemSx, desktopMenuSx } from "./menu.styles";
 
 export const DesktopMenu = ({ items }: MenuProps) => {
   return (

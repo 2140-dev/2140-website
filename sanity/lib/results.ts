@@ -21,6 +21,17 @@ export type MenuQueryResultType = {
   items: InternalResultType[];
 };
 
+export type TeamResultType = {
+  _id: string;
+  _type: "team";
+  name: string;
+  role: string;
+  bio: PortableTextBlock;
+  picture: Image;
+  x?: string;
+  github?: string;
+};
+
 export type SettingsQueryResultType = {
   _id: string;
   _type: "settings";
@@ -42,6 +53,7 @@ export type HomepageQueryResultType = {
   excerpt?: string;
   link?: InternalResultType;
   image: ImageResultType;
+  slices?: { _key: string; _type: string } & any[];
 };
 
 export type PageQueryResultType = {
@@ -50,4 +62,6 @@ export type PageQueryResultType = {
   title: string;
   slug: string;
   excerpt?: string;
+  link?: InternalResultType;
+  slices?: { _key: string; _type: string } & any[];
 };

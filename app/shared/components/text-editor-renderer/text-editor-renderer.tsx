@@ -8,10 +8,11 @@
  *
  */
 
+import { Typography } from "@mui/material";
 import {
   PortableText,
-  type PortableTextComponents,
   type PortableTextBlock,
+  type PortableTextComponents,
 } from "next-sanity";
 
 export const TextEditorRenderer = ({
@@ -23,6 +24,7 @@ export const TextEditorRenderer = ({
 }) => {
   const components: PortableTextComponents = {
     block: {
+      p: ({ children }) => <Typography variant="body2">{children}</Typography>,
       h5: ({ children }) => <h5>{children}</h5>,
       h6: ({ children }) => <h6>{children}</h6>,
     },

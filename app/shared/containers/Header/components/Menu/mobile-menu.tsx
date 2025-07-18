@@ -1,9 +1,9 @@
 "use client";
-import React, { useState } from "react";
-import { List, ListItem, Box, ButtonBase } from "@mui/material";
-import { buttonSx, iconSx, mobileItemSx, mobileMenuSx } from "./Menu.styles";
-import { MenuProps } from "./Menu";
+import { Box, ButtonBase, List, ListItem } from "@mui/material";
 import Link from "next/link";
+import { useState } from "react";
+import { MenuProps } from "./menu";
+import { buttonSx, iconSx, mobileItemSx, mobileMenuSx } from "./menu.styles";
 
 export const MobileMenu = ({ items }: MenuProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

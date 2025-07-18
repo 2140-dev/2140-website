@@ -1,13 +1,12 @@
-import { defineQuery, type PortableTextBlock } from "next-sanity";
 import type { Metadata, ResolvingMetadata } from "next";
+import { defineQuery, type PortableTextBlock } from "next-sanity";
 import { notFound } from "next/navigation";
 
+import { PostTitle } from "@/app/shared/components/post-title/post-title";
+import { TextEditorRenderer } from "@/app/shared/components/text-editor-renderer/text-editor-renderer";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { postQuery, settingsQuery } from "@/sanity/lib/queries";
+import { postQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
-import { PageTitle } from "@/app/shared/components/PageTitle/PageTitle";
-import { TextEditorRenderer } from "@/app/shared/components/TextEditorRenderer/TextEditorRenderer";
-import { CoverImage } from "@/app/shared/components/CoverImage/CoverImage";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -56,7 +55,7 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <div>
-      <PageTitle
+      <PostTitle
         title={post.title}
         excerpt={post.excerpt}
         image={post.coverImage}

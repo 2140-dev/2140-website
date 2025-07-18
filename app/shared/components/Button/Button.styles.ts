@@ -92,6 +92,7 @@ export const buttonVariantSx: Record<
     fontWeight: 600,
     borderRadius: 100,
     fontSize: "2rem",
+    boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
     letterSpacing: 5,
     height: 100,
     px: [5, 10],

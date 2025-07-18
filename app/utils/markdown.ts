@@ -1,4 +1,6 @@
-import { SxProps } from "@mui/material";
+export const stripHTMLMarkup = (str: string) => {
+  return str.replace(/<[^>]*>/g, "");
+};
 
 export const getStylishMarkdown = (color: "white" | "yellow" | "black") => ({
   s: {

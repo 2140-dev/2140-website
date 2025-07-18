@@ -1,6 +1,6 @@
 import { Image } from "@/app/types/image";
 // import "./styles.scss";
-import { CoverImage } from "@/app/shared/components/CoverImage/CoverImage";
+import { CoverImage } from "@/app/shared/components/cover-image/cover-image";
 import { Typography } from "@mui/material";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
   image?: Image | null;
   date?: string | null;
 }
-export const PageTitle = ({ title, excerpt, image, date }: Props) => {
+export const PostTitle = ({ title, excerpt, image, date }: Props) => {
   return (
     <div className="container-l text-center page-title">
       <div className="container">

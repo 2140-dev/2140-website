@@ -14,6 +14,28 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "role",
+      title: "Role",
+      type: "string",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "github",
+      title: "Github",
+      type: "url",
+    }),
+    defineField({
+      name: "x",
+      title: "X (a.k.a. Twitter)",
+      type: "url",
+    }),
+    defineField({
+      name: "bio",
+      title: "Biography",
+      type: "textBlock",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "picture",
       title: "Picture",
       type: "image",
