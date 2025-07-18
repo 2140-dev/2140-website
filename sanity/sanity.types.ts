@@ -180,6 +180,7 @@ export type TeamMembers = {
   eyebrow?: string;
   title?: string;
   text?: string;
+  variant?: "teaser" | "full";
   team?: Array<{
     _ref: string;
     _type: "reference";
@@ -493,6 +494,7 @@ export type Team = {
   role?: string;
   github?: string;
   x?: string;
+  bio?: TextBlock;
   picture?: {
     asset?: {
       _ref: string;
