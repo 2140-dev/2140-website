@@ -1,8 +1,7 @@
-import React from "react";
-import { DesktopMenu } from "./DesktopMenu";
-import { MobileMenu } from "./MobileMenu";
-import { InternalResultType } from "@/sanity/lib/results";
 import { getInternalLinkUrl } from "@/app/utils/link";
+import { InternalResultType } from "@/sanity/lib/results";
+import { DesktopMenu } from "./desktop-menu";
+import { MobileMenu } from "./mobile-menu";
 
 export interface MenuProps {
   items: InternalResultType[];

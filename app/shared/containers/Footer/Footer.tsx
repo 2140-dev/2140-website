@@ -1,10 +1,9 @@
 "use client";
-import React from "react";
-import Link from "next/link";
-import { RichTextRenderer } from "@/app/shared/components/RichTextRenderer/RichTextRenderer";
+import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
+import { Container } from "@/app/shared/layouts/container/container";
 import { SettingsQueryResultType } from "@/sanity/lib/results";
 import { Box, Typography } from "@mui/material";
-import { Container } from "@/app/shared/layouts/Container/Container";
+import Link from "next/link";
 
 type Props = Pick<SettingsQueryResultType, "email" | "gpg" | "disclaimer">;
 

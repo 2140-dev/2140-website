@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
 import { Box, ButtonProps, Button as MuiButton } from "@mui/material";
 import { SystemStyleObject } from "@mui/system";
+import { ReactNode } from "react";
 import { colors } from "../../../theme/colors";
-import { commonButtonSx, buttonVariantSx } from "./Button.styles";
+import { buttonVariantSx, commonButtonSx } from "./button.styles";
 
 type Props = Omit<ButtonProps, "sx" | "variant"> & {
   children?: ReactNode;

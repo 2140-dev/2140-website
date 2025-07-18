@@ -21,6 +21,17 @@ export type MenuQueryResultType = {
   items: InternalResultType[];
 };
 
+export type TeamResultType = {
+  _id: string;
+  _type: "team";
+  name: string;
+  role: string;
+  bio: PortableTextBlock;
+  picture: Image;
+  x?: string;
+  github?: string;
+};
+
 export type SettingsQueryResultType = {
   _id: string;
   _type: "settings";

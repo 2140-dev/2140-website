@@ -99,7 +99,6 @@ export const fetchHomepageProps = async (client: SanityClient) => {
 };
 
 export const fetchPageProps = async (
-  client: SanityClient,
   params?: QueryParams | Promise<QueryParams>
 ) => {
   const query = defineQuery(`
@@ -110,15 +109,28 @@ export const fetchPageProps = async (
       link {
         ${internalLinkFields}
       },
-      callToAction {
+      _type == 'callToAction' => {
         ...,
         link {
           ${internalLinkFields}
         }
-      }
+      },
+      _type == 'team-members' => {
+        ...,
+        team[]->{
+          name,
+          role,
+          github,
+          x,
+          bio,
+          picture
+        }
+      },
     }
   }
 `);
+
   const result: PageQueryResultType = await sanityFetch({ query, params });
+
   return result;
 };

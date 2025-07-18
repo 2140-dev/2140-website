@@ -91,7 +91,9 @@ export type Homepage = {
   };
   slices?: Array<{
     _key: string;
-  } & CallToAction>;
+  } & CallToAction | {
+    _key: string;
+  } & CenteredText>;
 };
 
 export type Menu = {
@@ -170,6 +172,20 @@ export type Settings = {
     level?: number;
     _type: "block";
     _key: string;
+  }>;
+};
+
+export type TeamMembers = {
+  _type: "team-members";
+  eyebrow?: string;
+  title?: string;
+  text?: string;
+  team?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "team";
   }>;
 };
 
@@ -255,6 +271,43 @@ export type Donors = {
     _type: "image";
     _key: string;
   }>;
+};
+
+export type CenteredText = {
+  _type: "centeredText";
+  eyebrow?: string;
+  title?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  link?: Internal;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
 };
 
 export type CallToAction = {
@@ -389,6 +442,8 @@ export type Page = {
     _key: string;
   } & Donors | {
     _key: string;
+  } & TeamMembers | {
+    _key: string;
   } & TextBlockWithImage>;
 };
 
@@ -435,6 +490,9 @@ export type Team = {
   _updatedAt: string;
   _rev: string;
   name?: string;
+  role?: string;
+  github?: string;
+  x?: string;
   picture?: {
     asset?: {
       _ref: string;
@@ -633,5 +691,5 @@ export type SanityAssistSchemaTypeField = {
   } & SanityAssistInstruction>;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Homepage | Menu | Settings | TextBlockWithImage | Donors | CallToAction | TextEditor | TextBlock | Link | External | Internal | Page | Post | Team | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Homepage | Menu | Settings | TeamMembers | TextBlockWithImage | Donors | CenteredText | CallToAction | TextEditor | TextBlock | Link | External | Internal | Page | Post | Team | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField;
 export declare const internalGroqTypeReferenceTo: unique symbol;

@@ -1,10 +1,10 @@
-import { UserIcon } from "@sanity/icons";
+import { UsersIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
   title: "Donors & sponsors",
   name: "donors",
-  icon: UserIcon,
+  icon: UsersIcon,
   type: "object", // ✅ must be object
   fields: [
     defineField({

@@ -1,11 +1,7 @@
-import { defineQuery } from "next-sanity";
 import type { Metadata, ResolvingMetadata } from "next";
-import { type PortableTextBlock } from "next-sanity";
-import Link from "next/link";
+import { defineQuery } from "next-sanity";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
 
-import * as demo from "@/sanity/lib/demo";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { postQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
@@ -28,7 +24,6 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  console.log("Here");
   const post = await sanityFetch({
     query: postQuery,
     params,

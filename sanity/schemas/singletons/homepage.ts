@@ -1,5 +1,5 @@
-import callToAction from "@/sanity/schemas/slices/callToAction";
-import centeredText from "@/sanity/schemas/slices/centeredText";
+import callToAction from "@/sanity/schemas/slices/call-to-action";
+import centeredText from "@/sanity/schemas/slices/centered-text";
 import { sliceTypeFromNames } from "@/sanity/util/slice";
 import { HomeIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
