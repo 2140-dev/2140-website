@@ -1,9 +1,10 @@
+import { Button } from "@/app/shared/components/button/button";
 import { MarkdownRender } from "@/app/shared/components/markdown-renderer/markdown-renderer";
 import { Container } from "@/app/shared/layouts/container/container";
 import { getInternalLinkUrl } from "@/app/utils/link";
 import { HomepageQueryResultType } from "@/sanity/lib/results";
 import { urlForImage } from "@/sanity/lib/utils";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import {

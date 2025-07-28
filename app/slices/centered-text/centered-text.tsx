@@ -1,4 +1,4 @@
-import { Button } from "@/app/shared/components/button-1/button";
+import { Button } from "@/app/shared/components/button/button";
 import { Eyebrow } from "@/app/shared/components/eyebrow/eyebrow";
 import { MarkdownRender } from "@/app/shared/components/markdown-renderer/markdown-renderer";
 import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
