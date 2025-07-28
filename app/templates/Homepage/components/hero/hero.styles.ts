@@ -25,7 +25,7 @@ export const containerSx: SxProps = {
 
 export const childSx = {
   flex: 1,
-  maxWidth: "calc(50% - 5rem)",
+  maxWidth: { lg: "calc(50% - 5rem)" },
 };
 export const leftSx = {
   pl: {

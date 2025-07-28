@@ -36,9 +36,11 @@ const TeamMembers = ({
     <Section>
       <Container {...commonContainerProps}>
         {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
-        <Typography variant="h2" sx={getStylishMarkdown("white")}>
-          <MarkdownRender>{title}</MarkdownRender>
-        </Typography>
+        {title && (
+          <Typography variant="h2" sx={getStylishMarkdown("white")}>
+            <MarkdownRender>{title}</MarkdownRender>
+          </Typography>
+        )}
         {summary && <Typography variant="body1">{summary}</Typography>}
       </Container>
       <Container size="md" sx={{ mt: 10 }}>
@@ -53,7 +55,7 @@ const TeamMembers = ({
             gap: [5, 5, 8],
           }}
         >
-          {team.map((team) => (
+          {team.map((team, index) => (
             <TeamMember key={team._id} team={team} variant={variant} />
           ))}
         </Box>
