@@ -3,7 +3,7 @@
 import { Menu } from "@/app/shared/containers/header/components/menu/menu";
 import { Container } from "@/app/shared/layouts/container/container-1";
 import { colors } from "@/app/theme/colors";
-import { ImageResultType, InternalResultType } from "@/sanity/lib/results";
+import { ImageResultType, LinkResultType } from "@/sanity/lib/results";
 import { Box, useTheme } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import debounce from "lodash/debounce";
@@ -12,12 +12,7 @@ import { Logo } from "./components/logo/logo";
 
 interface Props {
   logo: ImageResultType;
-  items: InternalResultType[];
-}
-
-interface Props {
-  logo: ImageResultType;
-  items: InternalResultType[];
+  items: LinkResultType[];
 }
 
 export const Header = ({ logo, items }: Props) => {
@@ -89,7 +84,8 @@ export const Header = ({ logo, items }: Props) => {
         color: "primary.main",
         position: "absolute",
         width: "100%",
-        zIndex: 999,
+        zIndex: 4,
+        overflow: isSticky ? "hidden" : "initial",
       }}
     >
       <Container

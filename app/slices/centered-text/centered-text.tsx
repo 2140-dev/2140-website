@@ -18,34 +18,47 @@ interface Props {
   content?: PortableTextBlock;
   image?: ImageType;
   link?: InternalResultType;
+  layout?: "above" | "below";
 }
-const CenteredText = ({ eyebrow, title, content, image, link }: Props) => {
+const CenteredText = ({
+  eyebrow,
+  title,
+  content,
+  image,
+  link,
+  layout,
+}: Props) => {
   return (
     <Section>
       <Container
         size="sm"
         sx={{
+          display: "flex",
+          flexDirection: "column",
           textAlign: "center",
+          gap: 10,
         }}
       >
-        {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
-        <Typography variant="h2" sx={getStylishMarkdown("black")}>
-          <MarkdownRender>{title}</MarkdownRender>
-        </Typography>
-        {content && <RichTextRenderer content={content} />}
+        <Box>
+          {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
+          <Typography variant="h2" sx={getStylishMarkdown("black")}>
+            <MarkdownRender>{title}</MarkdownRender>
+          </Typography>
+          {content && <RichTextRenderer content={content} />}
 
-        {link && (
-          <Button
-            variant="secondary"
-            href={getInternalLinkUrl(link)}
-            component="a"
-            sx={{ mt: 5 }}
-          >
-            {link?.label}
-          </Button>
-        )}
+          {link && (
+            <Button
+              variant="secondary"
+              href={getInternalLinkUrl(link)}
+              component="a"
+              sx={{ mt: 5 }}
+            >
+              {link?.label}
+            </Button>
+          )}
+        </Box>
         {image && (
-          <Box sx={{ mt: 10, px: 10 }}>
+          <Box sx={{ px: 10, order: layout === "below" ? -1 : 1 }}>
             <SanityImage image={image} />
           </Box>
         )}

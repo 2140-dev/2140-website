@@ -16,6 +16,7 @@ export const PageTitle = ({ title, excerpt }: Props) => {
             sx={{
               mt: 4,
               px: [0, 10],
+              fontSize: "1.25rem",
             }}
             variant="body1"
           >

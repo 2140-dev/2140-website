@@ -11,9 +11,7 @@ import React from "react";
 
 const components: Partial<PortableTextReactComponents> = {
   block: {
-    eyebrow: ({ children }) => (
-      <Eyebrow color="blue" sx={{ textTransform: "none" }} text={children} />
-    ),
+    eyebrow: ({ children }) => <Eyebrow color="blue" text={children} />,
     h2: ({ children }) => (
       <Typography variant="h2" sx={getStylishMarkdown("black")}>
         {children}
