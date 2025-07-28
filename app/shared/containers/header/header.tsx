@@ -1,7 +1,7 @@
 "use client";
 
 import { Menu } from "@/app/shared/containers/header/components/menu/menu";
-import { Container } from "@/app/shared/layouts/container/container-1";
+import { Container } from "@/app/shared/layouts/container/container";
 import { colors } from "@/app/theme/colors";
 import { ImageResultType, LinkResultType } from "@/sanity/lib/results";
 import { Box, useTheme } from "@mui/material";
