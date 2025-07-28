@@ -20,14 +20,14 @@ export default defineType({
     }),
     defineField({
       title: "Summary",
-      name: "text",
+      name: "summary",
       type: "text",
     }),
     defineField({
       title: "Variant",
       name: "variant",
       type: "string",
-      description: `Specify the team's card variant; if you choose "Full content", biographies will be included for each team member`,
+      description: `Specify the team's card variant; if you choose "Full content", biographies will be included for each team member.`,
       options: {
         list: [
           { title: "Teaser", value: "teaser" },

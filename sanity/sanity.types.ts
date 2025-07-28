@@ -93,7 +93,13 @@ export type Homepage = {
     _key: string;
   } & CallToAction | {
     _key: string;
-  } & CenteredText>;
+  } & CenteredText | {
+    _key: string;
+  } & Donors | {
+    _key: string;
+  } & TeamMembers | {
+    _key: string;
+  } & TextBlockWithImage>;
 };
 
 export type Menu = {
@@ -179,7 +185,7 @@ export type TeamMembers = {
   _type: "team-members";
   eyebrow?: string;
   title?: string;
-  text?: string;
+  summary?: string;
   variant?: "teaser" | "full";
   team?: Array<{
     _ref: string;
@@ -191,7 +197,7 @@ export type TeamMembers = {
 };
 
 export type TextBlockWithImage = {
-  _type: "textBlockWithImage";
+  _type: "text-block-with-image";
   layout?: "left" | "right";
   content?: Array<{
     children?: Array<{
@@ -275,7 +281,7 @@ export type Donors = {
 };
 
 export type CenteredText = {
-  _type: "centeredText";
+  _type: "centered-text";
   eyebrow?: string;
   title?: string;
   content?: Array<{
@@ -312,29 +318,12 @@ export type CenteredText = {
 };
 
 export type CallToAction = {
-  _type: "callToAction";
+  _type: "call-to-action";
   layout?: "left" | "right";
   eyebrow?: string;
   title?: string;
+  content?: string;
   link?: Internal;
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "blockquote";
-    listItem?: "bullet";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
   image?: {
     asset?: {
       _ref: string;

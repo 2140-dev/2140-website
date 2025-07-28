@@ -3,8 +3,8 @@ import { BoltIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  title: "Donate call to action",
-  name: "callToAction",
+  title: "Call to action",
+  name: "call-to-action",
   icon: BoltIcon,
   type: "object",
   fields: [
@@ -13,8 +13,8 @@ export default defineType({
       type: "string",
       options: {
         list: [
-          { title: "Text on the left", value: "left" },
-          { title: "Text on the right", value: "right" },
+          { title: "Image on the left", value: "left" },
+          { title: "Image on the right", value: "right" },
         ],
         layout: "radio",
         direction: "horizontal",
@@ -33,15 +33,15 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      title: "Content",
+      name: "content",
+      type: "text",
+    }),
+    defineField({
       name: "link",
       title: "Link",
       type: "internal",
       validation: (rule) => rule.required(),
-    }),
-    defineField({
-      title: "Content",
-      name: "content",
-      type: "textBlock",
     }),
     defineField({
       name: "image",
@@ -72,7 +72,7 @@ export default defineType({
     prepare({ title }) {
       return {
         title: stripHTMLMarkup(title),
-        subtitle: "Donate call to action",
+        subtitle: "Call to action",
       };
     },
   },

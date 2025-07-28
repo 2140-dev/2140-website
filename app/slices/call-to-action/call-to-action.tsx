@@ -1,7 +1,6 @@
 import { Button } from "@/app/shared/components/button/button";
 import { Eyebrow } from "@/app/shared/components/eyebrow/eyebrow";
 import { MarkdownRender } from "@/app/shared/components/markdown-renderer/markdown-renderer";
-import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
 import { Container } from "@/app/shared/layouts/container/container";
 import { Section } from "@/app/shared/layouts/section/section";
 import { Image as ImageType } from "@/app/types/image";
@@ -10,7 +9,6 @@ import { getStylishMarkdown } from "@/app/utils/markdown";
 import { InternalResultType } from "@/sanity/lib/results";
 import { urlForImage } from "@/sanity/lib/utils";
 import { Box, Typography } from "@mui/material";
-import { PortableTextBlock } from "next-sanity";
 import Image from "next/image";
 
 interface Props {
@@ -18,7 +16,7 @@ interface Props {
   title: string;
   layout: "left" | "right";
   image: ImageType;
-  content: PortableTextBlock;
+  content: string;
   link: InternalResultType;
 }
 const CallToAction = ({
@@ -50,13 +48,14 @@ const CallToAction = ({
           <Box
             sx={{
               flex: 1,
+              maxWidth: 480,
             }}
           >
             {eyebrow && <Eyebrow color="white" text={eyebrow} />}
             <Typography variant="h2" sx={getStylishMarkdown("white")}>
               <MarkdownRender>{title}</MarkdownRender>
             </Typography>
-            <RichTextRenderer content={content} />
+            <Typography variant="body1">{content}</Typography>
             <Button
               variant="donate"
               component="a"
@@ -69,6 +68,7 @@ const CallToAction = ({
           <Box
             sx={{
               flex: 1,
+              maxWidth: 480,
               order: {
                 md: layout === "left" ? -1 : 1,
               },

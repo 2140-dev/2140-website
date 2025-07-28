@@ -79,18 +79,33 @@ export const fetchHomepageProps = async (client: SanityClient) => {
         link {
           ${internalLinkFields}
         },
-        callToAction {
+        _type == 'text-block-with-image' => {
+          ...,
+        },
+        _type == 'call-to-action' => {
           ...,
           link {
             ${internalLinkFields}
           }
         },
-        centeredText {
+        _type == 'centered-text' => {
           ...,
           link {
             ${internalLinkFields}
           }
+        },
+        _type == 'team-members' => {
+        ...,
+        team[]->{
+          name,
+          role,
+          github,
+          content,
+          x,
+          bio,
+          picture
         }
+      },
       }
     }
   `);
@@ -109,7 +124,7 @@ export const fetchPageProps = async (
       link {
         ${internalLinkFields}
       },
-      _type == 'callToAction' => {
+      _type == 'call-to-action' => {
         ...,
         link {
           ${internalLinkFields}
@@ -119,6 +134,7 @@ export const fetchPageProps = async (
         ...,
         team[]->{
           name,
+          content,
           role,
           github,
           x,
