@@ -1,5 +1,5 @@
 import { Container } from "@/app/shared/layouts/container/container-1";
-import { Section } from "@/app/shared/layouts/section/section";
+import { Section } from "@/app/shared/layouts/section/section-1";
 import { Typography } from "@mui/material";
 
 interface Props {

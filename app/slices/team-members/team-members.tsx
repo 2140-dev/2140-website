@@ -3,7 +3,7 @@ import { MarkdownRender } from "@/app/shared/components/markdown-renderer/markdo
 import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
 import { TeamMember } from "@/app/shared/components/team-member/team-member";
 import { Container } from "@/app/shared/layouts/container/container-1";
-import { Section } from "@/app/shared/layouts/section/section";
+import { Section } from "@/app/shared/layouts/section/section-1";
 import { getStylishMarkdown } from "@/app/utils/markdown";
 import { TeamResultType } from "@/sanity/lib/results";
 import { Box, Typography } from "@mui/material";
