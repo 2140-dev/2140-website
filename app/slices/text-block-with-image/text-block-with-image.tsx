@@ -1,7 +1,7 @@
 import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
 import { SanityImage } from "@/app/shared/components/sanity-image/sanity-image";
 import { Container } from "@/app/shared/layouts/container/container-1";
-import { Section } from "@/app/shared/layouts/section/section-1";
+import { Section } from "@/app/shared/layouts/section/section";
 import { Image as ImageType } from "@/app/types/image";
 import { Box } from "@mui/material";
 import { PortableTextBlock } from "next-sanity";

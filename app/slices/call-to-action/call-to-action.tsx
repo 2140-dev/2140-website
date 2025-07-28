@@ -2,7 +2,7 @@ import { Button } from "@/app/shared/components/button/button-1";
 import { Eyebrow } from "@/app/shared/components/eyebrow/eyebrow";
 import { MarkdownRender } from "@/app/shared/components/markdown-renderer/markdown-renderer";
 import { Container } from "@/app/shared/layouts/container/container-1";
-import { Section } from "@/app/shared/layouts/section/section-1";
+import { Section } from "@/app/shared/layouts/section/section";
 import { Image as ImageType } from "@/app/types/image";
 import { getInternalLinkUrl } from "@/app/utils/link";
 import { getStylishMarkdown } from "@/app/utils/markdown";
