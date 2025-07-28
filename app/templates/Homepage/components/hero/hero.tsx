@@ -26,7 +26,10 @@ export const Hero = ({
     <Box sx={wrapperSx}>
       <Container size="lg" sx={containerSx}>
         <Box sx={{ ...childSx, ...leftSx }}>
-          <Typography variant="h1" sx={{ fontSize: "5rem !important" }}>
+          <Typography
+            variant="h1"
+            sx={{ fontSize: { md: "4rem !important", lg: "5rem !important" } }}
+          >
             <MarkdownRender>{title}</MarkdownRender>
           </Typography>
           {excerpt && (

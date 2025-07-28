@@ -16,7 +16,6 @@ export default defineType({
       name: "title",
       title: "Title",
       type: "string",
-      validation: (rule) => rule.required(),
     }),
     defineField({
       title: "Summary",
@@ -60,7 +59,7 @@ export default defineType({
       title: "title",
     },
     prepare({ title }) {
-      return { title, subtitle: "Team" };
+      return { title: title || "Team members", subtitle: "Team" };
     },
   },
 });

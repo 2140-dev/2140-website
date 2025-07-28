@@ -1,9 +1,8 @@
 import { Image as ImageType } from "@/app/types/image";
 import { urlForImage } from "@/sanity/lib/utils";
+import { Box } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import { Box } from "@mui/material";
 
 interface Props {
   image: ImageType;
@@ -11,13 +10,24 @@ interface Props {
 export const Logo = ({ image }: Props) => (
   <Box
     sx={{
-      // bgcolor: "yellow.200",
-      position: "relative",
-      zIndex: 99,
       maxWidth: 100,
+      position: "relative",
+      zIndex: 5,
+      "&::before": {
+        content: '""',
+        display: "block",
+        height: 600,
+        bgcolor: "yellow.200",
+        right: -250,
+        borderRadius: `100% 30% 60% 70% / 50% 40% 70% 70%`,
+        position: "absolute",
+        width: 1000,
+        zIndex: 4,
+        top: -500,
+      },
     }}
   >
-    <Link href="/">
+    <Link href="/" style={{ position: "relative", zIndex: 4 }}>
       <Image
         alt={image?.alt || ""}
         width={0}
@@ -26,8 +36,6 @@ export const Logo = ({ image }: Props) => (
         style={{
           width: "100%",
           height: "auto",
-          // "-webkit-filter": "drop-shadow(0 0 0 20px, rgba(0, 0, 0, 0.5))",
-          filter: "drop-shadow(0 0 5px rgba(0, 0, 0, 0.10))",
         }}
       />
     </Link>

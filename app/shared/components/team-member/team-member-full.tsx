@@ -2,7 +2,7 @@ import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/ric
 import { SanityImage } from "@/app/shared/components/sanity-image/sanity-image";
 import { colors } from "@/app/theme/colors";
 import { TeamResultType } from "@/sanity/lib/results";
-import { Box, List, ListItem, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 
 const SIZE = 100;
@@ -42,30 +42,38 @@ export const TeamMemberFull = ({ team }: Props) => {
           <SanityImage image={team.picture} />
         </Box>
       </Box>
-      <Typography variant="h4" mb={0.5}>
-        {team.name}
-      </Typography>
-      <Typography variant="body1" color="gray.200">
-        {team.role}
-      </Typography>
-      {(team.github || team.x) && (
-        <List sx={{ display: "flex", gap: 2 }}>
-          {team.github && (
-            <ListItem sx={{ p: 0, width: 16 }}>
-              <Link target="_blank" href={team.github}>
+      <Box
+        sx={{
+          alignItems: "center",
+          display: "flex",
+          gap: 2,
+        }}
+      >
+        <Typography variant="h4" mb={0.5}>
+          {team.name}
+        </Typography>
+        {(team.github || team.x) && (
+          <>
+            {team.github && (
+              <Link target="_blank" href={team.github} style={{ width: 18 }}>
                 <img src="images/icons/github-black.svg" alt="Github icon" />
               </Link>
-            </ListItem>
-          )}
-          {team.x && (
-            <ListItem sx={{ p: 0, width: 16 }}>
+            )}
+            {team.x && (
               <Link target="_blank" href={team.x}>
-                <img src="images/icons/twitter-black.svg" alt="X icon" />
+                <img
+                  src="images/icons/twitter-black.svg"
+                  alt="X icon"
+                  style={{ width: 16 }}
+                />
               </Link>
-            </ListItem>
-          )}
-        </List>
-      )}
+            )}
+          </>
+        )}
+      </Box>
+      <Typography variant="body2" color="gray.200" sx={{ mb: 3 }}>
+        {team.role}
+      </Typography>
       <RichTextRenderer content={team.bio} />
     </Box>
   );

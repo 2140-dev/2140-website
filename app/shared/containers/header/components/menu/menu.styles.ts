@@ -21,7 +21,7 @@ export const desktopItemSx: SxProps = {
 
 export const mobileMenuSx: SxProps = {
   alignItems: "center",
-  bgcolor: "primary.white",
+  bgcolor: "yellow.200",
   display: "flex",
   flexDirection: "column",
   height: "100vh",
@@ -33,7 +33,7 @@ export const mobileMenuSx: SxProps = {
   transition: "all 0.5 ease-in",
   transitionDelay: "1s",
   width: "100vw",
-  zIndex: 11,
+  zIndex: 4,
 };
 
 export const mobileItemSx: SxProps = {
@@ -41,6 +41,10 @@ export const mobileItemSx: SxProps = {
   width: "auto",
   p: 0,
   mb: 3,
+
+  a: {
+    textDecoration: "none",
+  },
 };
 
 export const iconSx: SxProps = {

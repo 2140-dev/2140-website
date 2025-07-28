@@ -8,6 +8,19 @@ export default defineType({
   type: "object", // ✅ must be object
   fields: [
     defineField({
+      name: "layout",
+      type: "string",
+      options: {
+        list: [
+          { title: "Text before image", value: "above" },
+          { title: "Text after image", value: "below" },
+        ],
+        layout: "radio",
+        direction: "horizontal",
+      },
+      initialValue: "above",
+    }),
+    defineField({
       title: "Eyebrow",
       name: "eyebrow",
       type: "string",
