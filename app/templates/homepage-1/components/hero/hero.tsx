@@ -1,9 +1,11 @@
 import { MarkdownRender } from "@/app/shared/components/markdown-renderer/markdown-renderer";
 import { Container } from "@/app/shared/layouts/container/container";
+import { getInternalLinkUrl } from "@/app/utils/link";
 import { HomepageQueryResultType } from "@/sanity/lib/results";
 import { urlForImage } from "@/sanity/lib/utils";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 import {
   backgroundSx,
   childSx,
@@ -40,13 +42,13 @@ export const Hero = ({
               {excerpt}
             </Typography>
           )}
-          {/* {link && (
+          {link && (
             <Link href={getInternalLinkUrl(link)}>
               <Button component="span" sx={{ mt: 4 }}>
                 {link.label}
               </Button>
             </Link>
-          )} */}
+          )}
         </Box>
         <Box sx={{ ...childSx, ...imageSx }}>
           <Box sx={backgroundSx}>

@@ -1,5 +1,5 @@
 import { SlicesComp } from "@/app/shared/layouts/slices-comp/slices-comp";
-import { Hero } from "@/app/templates/homepage/components/hero/hero";
+import { Hero } from "@/app/templates/homepage-1/components/hero/hero";
 import { HomepageQueryResultType } from "@/sanity/lib/results";
 
 export const HomepageTemplate = ({
