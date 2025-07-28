@@ -25,7 +25,7 @@ export default defineConfig({
   basePath: studioUrl,
   projectId,
   dataset,
-  name: "2140",
+  // name: "2140",
   schema: {
     types: schemaTypes,
   },
