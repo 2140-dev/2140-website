@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import { Typography } from "@mui/material";
+import { SxProps, Typography } from "@mui/material";
+import { ReactNode } from "react";
 
 const mapColorsToValues: Record<"yellow" | "white" | "black" | "blue", string> =
   {
@@ -11,8 +11,9 @@ const mapColorsToValues: Record<"yellow" | "white" | "black" | "blue", string> =
 interface Props {
   color: "yellow" | "white" | "black" | "blue";
   text: string | ReactNode;
+  sx?: SxProps;
 }
-export const Eyebrow = ({ color, text }: Props) => {
+export const Eyebrow = ({ color, text, sx }: Props) => {
   return (
     <Typography
       variant="body2"
@@ -24,6 +25,7 @@ export const Eyebrow = ({ color, text }: Props) => {
         textTransform: "uppercase",
         letterSpacing: 1,
         mb: 1,
+        ...sx,
       }}
     >
       {text}

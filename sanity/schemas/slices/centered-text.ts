@@ -3,7 +3,7 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   title: "Centered text",
-  name: "centeredText",
+  name: "centered-text",
   icon: TextIcon,
   type: "object", // ✅ must be object
   fields: [

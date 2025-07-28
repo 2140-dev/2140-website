@@ -3,17 +3,17 @@ import dynamic from "next/dynamic";
 import { Fragment, Suspense } from "react";
 
 const mapSliceTypeToComponent = {
-  callToAction: dynamic(
+  "call-to-action": dynamic(
     () => import("../../../slices/call-to-action/call-to-action")
   ),
-  centeredText: dynamic(
+  "centered-text": dynamic(
     () => import("../../../slices/centered-text/centered-text")
   ),
   "team-members": dynamic(
     () => import("../../../slices/team-members/team-members")
   ),
   donors: dynamic(() => import("../../../slices/donors/donors")),
-  textBlockWithImage: dynamic(
+  "text-block-with-image": dynamic(
     () => import("../../../slices/text-block-with-image/text-block-with-image")
   ),
 };

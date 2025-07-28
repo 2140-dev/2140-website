@@ -36,7 +36,7 @@ export const TeamMemberFull = ({ team }: Props) => {
             width: SIZE,
             height: SIZE,
             overflow: "hidden",
-            "border-radius": "100%",
+            borderRadius: "100%",
           }}
         >
           <SanityImage image={team.picture} />

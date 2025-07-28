@@ -56,10 +56,10 @@ export const TeamMemberTeaser = ({ team }: Props) => {
         </Box>
         <Box
           sx={{
-            width: 80,
-            height: 80,
+            width: SIZE.md,
+            height: SIZE.md,
             overflow: "hidden",
-            "border-radius": 80,
+            borderRadius: SIZE.md,
           }}
         >
           <SanityImage image={team.picture} />

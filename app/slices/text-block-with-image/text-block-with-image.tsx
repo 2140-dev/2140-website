@@ -19,6 +19,9 @@ const TextBlockWithImage = ({ layout, image, content }: Props) => {
           sx={{
             alignItems: "center",
             display: "flex",
+            justifyContent: {
+              md: "space-between",
+            },
             flexDirection: {
               xs: "column",
               md: "row",
@@ -29,6 +32,7 @@ const TextBlockWithImage = ({ layout, image, content }: Props) => {
           <Box
             sx={{
               flex: 1,
+              maxWidth: 480,
             }}
           >
             <RichTextRenderer content={content} />
@@ -36,6 +40,7 @@ const TextBlockWithImage = ({ layout, image, content }: Props) => {
           <Box
             sx={{
               flex: 1,
+              maxWidth: 480,
               order: {
                 md: layout === "right" ? -1 : 1,
               },

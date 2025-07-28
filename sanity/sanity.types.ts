@@ -93,7 +93,13 @@ export type Homepage = {
     _key: string;
   } & CallToAction | {
     _key: string;
-  } & CenteredText>;
+  } & CenteredText | {
+    _key: string;
+  } & Donors | {
+    _key: string;
+  } & TeamMembers | {
+    _key: string;
+  } & TextBlockWithImage>;
 };
 
 export type Menu = {
@@ -103,19 +109,10 @@ export type Menu = {
   _updatedAt: string;
   _rev: string;
   items?: Array<{
-    reference?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    };
-    label?: string;
-    _type: "internal";
+    type?: "internal" | "external";
+    external?: External;
+    internal?: Internal;
+    _type: "link";
     _key: string;
   }>;
 };
@@ -179,7 +176,7 @@ export type TeamMembers = {
   _type: "team-members";
   eyebrow?: string;
   title?: string;
-  text?: string;
+  summary?: string;
   variant?: "teaser" | "full";
   team?: Array<{
     _ref: string;
@@ -188,10 +185,40 @@ export type TeamMembers = {
     _key: string;
     [internalGroqTypeReferenceTo]?: "team";
   }>;
+  additional?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "eyebrow" | "h2" | "h3" | "h4" | "h5" | "normal" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
 };
 
 export type TextBlockWithImage = {
-  _type: "textBlockWithImage";
+  _type: "text-block-with-image";
   layout?: "left" | "right";
   content?: Array<{
     children?: Array<{
@@ -275,7 +302,7 @@ export type Donors = {
 };
 
 export type CenteredText = {
-  _type: "centeredText";
+  _type: "centered-text";
   eyebrow?: string;
   title?: string;
   content?: Array<{
@@ -312,29 +339,12 @@ export type CenteredText = {
 };
 
 export type CallToAction = {
-  _type: "callToAction";
+  _type: "call-to-action";
   layout?: "left" | "right";
   eyebrow?: string;
   title?: string;
+  content?: string;
   link?: Internal;
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "blockquote";
-    listItem?: "bullet";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
   image?: {
     asset?: {
       _ref: string;

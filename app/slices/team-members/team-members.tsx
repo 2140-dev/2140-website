@@ -8,35 +8,44 @@ import { getStylishMarkdown } from "@/app/utils/markdown";
 import { TeamResultType } from "@/sanity/lib/results";
 import { Box, Typography } from "@mui/material";
 import { PortableTextBlock } from "next-sanity";
+import { ComponentProps } from "react";
 
+const commonContainerProps: Partial<ComponentProps<typeof Container>> = {
+  size: "sm",
+  sx: {
+    textAlign: "center",
+  },
+};
 interface Props {
   eyebrow?: string;
   variant?: "teaser" | "full";
   title: string;
-  content?: PortableTextBlock;
+  summary?: string;
   team: TeamResultType[];
+  additional?: PortableTextBlock;
 }
-const TeamMembers = ({ eyebrow, variant, title, content, team }: Props) => {
-  const isTeaserVariant = variant === "teaser";
+const TeamMembers = ({
+  eyebrow,
+  variant,
+  title,
+  summary,
+  team,
+  additional,
+}: Props) => {
   return (
     <Section>
-      <Container
-        size="sm"
-        sx={{
-          textAlign: "center",
-        }}
-      >
+      <Container {...commonContainerProps}>
         {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
-        <Typography variant="h3" sx={getStylishMarkdown("white")}>
+        <Typography variant="h2" sx={getStylishMarkdown("white")}>
           <MarkdownRender>{title}</MarkdownRender>
         </Typography>
-        {content && <RichTextRenderer content={content} />}
+        {summary && <Typography variant="body1">{summary}</Typography>}
       </Container>
       <Container size="md" sx={{ mt: 10 }}>
         <Box
           sx={{
             display: "flex",
-            "flex-wrap": {
+            flexWrap: {
               xs: "wrap",
               md: "nowrap",
             },
@@ -44,11 +53,19 @@ const TeamMembers = ({ eyebrow, variant, title, content, team }: Props) => {
             gap: [5, 5, 8],
           }}
         >
-          {team.map((team, index) => (
+          {team.map((team) => (
             <TeamMember key={team._id} team={team} variant={variant} />
           ))}
         </Box>
       </Container>
+      {additional && (
+        <Container
+          {...commonContainerProps}
+          sx={{ textAlign: "center", mt: 15 }}
+        >
+          <RichTextRenderer content={additional} />
+        </Container>
+      )}
     </Section>
   );
 };
