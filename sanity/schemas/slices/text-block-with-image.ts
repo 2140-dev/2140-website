@@ -21,8 +21,8 @@ export default defineType({
       initialValue: "left",
     }),
     defineField({
-      name: "content",
       title: "Content",
+      name: "content",
       type: "textEditor",
     }),
     defineField({

@@ -109,19 +109,10 @@ export type Menu = {
   _updatedAt: string;
   _rev: string;
   items?: Array<{
-    reference?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    };
-    label?: string;
-    _type: "internal";
+    type?: "internal" | "external";
+    external?: External;
+    internal?: Internal;
+    _type: "link";
     _key: string;
   }>;
 };
@@ -193,6 +184,36 @@ export type TeamMembers = {
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "team";
+  }>;
+  additional?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "eyebrow" | "h2" | "h3" | "h4" | "h5" | "normal" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
   }>;
 };
 

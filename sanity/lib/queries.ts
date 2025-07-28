@@ -15,6 +15,12 @@ const internalLinkFields = /* groq */ `
   "document": reference->_type
 `;
 
+const externalLinkFields = /* groq */ `
+  "_type": _type,
+  "label": label,
+  "url": url,
+`;
+
 const postFields = /* groq */ `
   _id,
   "status": select(_originalId in path("drafts.**") => "draft", "published"),
@@ -49,7 +55,12 @@ export const postQuery = defineQuery(`
 export const menuQuery = defineQuery(`*[_type == "menu"][0] {
   items[] {
     ...,
-    ${internalLinkFields}
+    internal {
+      ${internalLinkFields}
+    },
+    external {
+      ${externalLinkFields}
+    }
   }
 }`);
 const settingsQuery = defineQuery(`*[_type == "settings"][0]`);

@@ -49,6 +49,11 @@ export default defineType({
       ],
       validation: (rule) => rule.required().min(1),
     }),
+    defineField({
+      title: "Additional content",
+      name: "additional",
+      type: "textEditor",
+    }),
   ],
   preview: {
     select: {
