@@ -303,6 +303,7 @@ export type Donors = {
 
 export type CenteredText = {
   _type: "centered-text";
+  layout?: "above" | "below";
   eyebrow?: string;
   title?: string;
   content?: Array<{
@@ -450,6 +451,8 @@ export type Page = {
   slices?: Array<{
     _key: string;
   } & CallToAction | {
+    _key: string;
+  } & CenteredText | {
     _key: string;
   } & Donors | {
     _key: string;

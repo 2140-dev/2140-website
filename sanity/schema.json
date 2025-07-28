@@ -2010,6 +2010,23 @@
             "value": "centered-text"
           }
         },
+        "layout": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "above"
+              },
+              {
+                "type": "string",
+                "value": "below"
+              }
+            ]
+          },
+          "optional": true
+        },
         "eyebrow": {
           "type": "objectAttribute",
           "value": {
@@ -3029,6 +3046,21 @@
                 "rest": {
                   "type": "inline",
                   "name": "call-to-action"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "centered-text"
                 }
               },
               {
