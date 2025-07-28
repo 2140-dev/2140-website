@@ -1,5 +1,5 @@
-import { HomepageTemplate } from "@/app/templates/homepage/homepage-template-1";
 import { client } from "@/sanity/lib/client";
+import { HomepageTemplate } from "../templates/homepage/homepage-template";
 
 import { fetchHomepageProps } from "@/sanity/lib/queries";
 
