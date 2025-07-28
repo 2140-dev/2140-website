@@ -1,6 +1,6 @@
 import { Button } from "@/app/shared/components/button/button";
 import { MarkdownRender } from "@/app/shared/components/markdown-renderer/markdown-renderer";
-import { Container } from "@/app/shared/layouts/container/container";
+import { Container } from "@/app/shared/layouts/container/container-1";
 import { getInternalLinkUrl } from "@/app/utils/link";
 import { HomepageQueryResultType } from "@/sanity/lib/results";
 import { urlForImage } from "@/sanity/lib/utils";

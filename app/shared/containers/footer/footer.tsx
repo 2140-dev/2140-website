@@ -1,6 +1,6 @@
 "use client";
 import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
-import { Container } from "@/app/shared/layouts/container/container";
+import { Container } from "@/app/shared/layouts/container/container-1";
 import { SettingsQueryResultType } from "@/sanity/lib/results";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
