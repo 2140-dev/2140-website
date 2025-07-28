@@ -1,5 +1,5 @@
 import type { Metadata, ResolvingMetadata } from "next";
-import { defineQuery, type PortableTextBlock } from "next-sanity";
+import { type PortableTextBlock } from "next-sanity";
 import { notFound } from "next/navigation";
 
 import { PostTitle } from "@/app/shared/components/post-title/post-title";
@@ -12,17 +12,17 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-const postSlugs = defineQuery(
-  `*[_type == "post" && defined(slug.current)]{"slug": slug.current}`
-);
+// const postSlugs = defineQuery(
+//   `*[_type == "post" && defined(slug.current)]{"slug": slug.current}`
+// );
 
-export async function generateStaticParams() {
-  return await sanityFetch({
-    query: postSlugs,
-    perspective: "published",
-    stega: false,
-  });
-}
+// export async function generateStaticParams() {
+//   return await sanityFetch({
+//     query: postSlugs,
+//     perspective: "published",
+//     stega: false,
+//   });
+// }
 
 export async function generateMetadata(
   { params }: Props,

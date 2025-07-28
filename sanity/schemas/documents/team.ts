@@ -57,9 +57,9 @@ export default defineType({
       ],
       options: {
         hotspot: true,
-        aiAssist: {
-          imageDescriptionField: "alt",
-        },
+        // aiAssist: {
+        //   imageDescriptionField: "alt",
+        // },
       },
       validation: (rule) => rule.required(),
     }),

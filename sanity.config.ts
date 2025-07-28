@@ -8,7 +8,6 @@ import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
 import { type DocumentLocation } from "sanity/presentation";
 
 import { apiVersion, dataset, projectId, studioUrl } from "@/sanity/lib/api";
-import { assistWithPresets } from "@/sanity/plugins/assist";
 import { singletonPlugin } from "@/sanity/plugins/settings";
 import { schemaTypes } from "@/sanity/schemas";
 import menu from "@/sanity/schemas/singletons/menu";
@@ -25,7 +24,6 @@ export default defineConfig({
   basePath: studioUrl,
   projectId,
   dataset,
-  // name: "2140",
   schema: {
     types: schemaTypes,
   },
@@ -78,7 +76,7 @@ export default defineConfig({
     // }),
     singletonPlugin([settings.name, menu.name]),
     unsplashImageAsset(),
-    assistWithPresets(),
+    // assistWithPresets(),
     process.env.NODE_ENV === "development" &&
       visionTool({ defaultApiVersion: apiVersion }),
   ].filter(Boolean) as PluginOptions[],
