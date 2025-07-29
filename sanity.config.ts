@@ -7,7 +7,7 @@ import { PluginOptions, defineConfig } from "sanity";
 import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
 import { type DocumentLocation } from "sanity/presentation";
 
-import { apiVersion, dataset, projectId, studioUrl } from "@/sanity/lib/api";
+import { apiVersion, dataset, projectId } from "@/sanity/lib/api";
 import { singletonPlugin } from "@/sanity/plugins/settings";
 import { schemaTypes } from "@/sanity/schemas";
 import menu from "@/sanity/schemas/singletons/menu";
@@ -21,9 +21,10 @@ const home = {
 } satisfies DocumentLocation;
 
 export default defineConfig({
-  basePath: studioUrl,
+  // basePath: studioUrl,
   projectId,
   dataset,
+  name: "2140",
   schema: {
     types: schemaTypes,
   },
