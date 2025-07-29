@@ -9,10 +9,11 @@ const mapSliceTypeToComponent = {
   "centered-text": dynamic(
     () => import("../../../slices/centered-text/centered-text")
   ),
+  donors: dynamic(() => import("../../../slices/donors/donors")),
+  faqs: dynamic(() => import("../../../slices/faqs/faqs")),
   "team-members": dynamic(
     () => import("../../../slices/team-members/team-members")
   ),
-  donors: dynamic(() => import("../../../slices/donors/donors")),
   "text-block-with-image": dynamic(
     () => import("../../../slices/text-block-with-image/text-block-with-image")
   ),

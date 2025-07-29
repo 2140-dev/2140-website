@@ -6,7 +6,6 @@ import settings from "./singletons/settings";
 import { components } from "@/sanity/schemas/components";
 import { slices } from "@/sanity/schemas/slices";
 import page from "./documents/page";
-// import post from "./documents/post";
 import team from "./documents/team";
 
 export const schemaTypes = [
@@ -16,6 +15,5 @@ export const schemaTypes = [
   menu,
   homepage,
   page,
-  // post,
   team,
 ];
