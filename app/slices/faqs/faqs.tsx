@@ -13,7 +13,7 @@ interface Props {
   content?: string;
   items: AccordionItems;
 }
-const Faqs = ({ eyebrow, title, items }: Props) => {
+const Faqs = ({ eyebrow, title, content, items }: Props) => {
   return (
     <Section>
       <Container size="md">
@@ -23,6 +23,7 @@ const Faqs = ({ eyebrow, title, items }: Props) => {
             <Typography variant="h2" sx={getStylishMarkdown("black")}>
               <MarkdownRender>{title}</MarkdownRender>
             </Typography>
+            {content && <Typography variant="body1">{content}</Typography>}
           </Grid>
           <Grid item xs={12} md={6}>
             <Accordion items={items} />
