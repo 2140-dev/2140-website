@@ -16,18 +16,17 @@ export default defineType({
       name: "title",
       title: "Title",
       type: "string",
-      validation: (rule) => rule.required(),
     }),
     defineField({
       title: "Summary",
-      name: "text",
+      name: "summary",
       type: "text",
     }),
     defineField({
       title: "Variant",
       name: "variant",
       type: "string",
-      description: `Specify the team's card variant; if you choose "Full content", biographies will be included for each team member`,
+      description: `Specify the team's card variant; if you choose "Full content", biographies will be included for each team member.`,
       options: {
         list: [
           { title: "Teaser", value: "teaser" },
@@ -49,13 +48,18 @@ export default defineType({
       ],
       validation: (rule) => rule.required().min(1),
     }),
+    defineField({
+      title: "Additional content",
+      name: "additional",
+      type: "textEditor",
+    }),
   ],
   preview: {
     select: {
       title: "title",
     },
     prepare({ title }) {
-      return { title, subtitle: "Team" };
+      return { title: title || "Team members", subtitle: "Team" };
     },
   },
 });

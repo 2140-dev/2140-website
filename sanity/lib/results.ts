@@ -11,6 +11,19 @@ export type InternalResultType = {
   document: string;
 };
 
+export type ExternalResultType = {
+  _key: string;
+  _type: string;
+  label: string;
+  url: string;
+};
+
+export type LinkResultType = {
+  _key: string;
+  internal: InternalResultType;
+  external?: ExternalResultType;
+};
+
 export type ImageResultType = Image & {
   alt: string;
 };
@@ -18,7 +31,7 @@ export type ImageResultType = Image & {
 export type MenuQueryResultType = {
   _id: string;
   _type: "menu";
-  items: InternalResultType[];
+  items: LinkResultType[];
 };
 
 export type TeamResultType = {

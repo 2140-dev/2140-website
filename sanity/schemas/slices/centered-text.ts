@@ -3,10 +3,23 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   title: "Centered text",
-  name: "centeredText",
+  name: "centered-text",
   icon: TextIcon,
   type: "object", // ✅ must be object
   fields: [
+    defineField({
+      name: "layout",
+      type: "string",
+      options: {
+        list: [
+          { title: "Text before image", value: "above" },
+          { title: "Text after image", value: "below" },
+        ],
+        layout: "radio",
+        direction: "horizontal",
+      },
+      initialValue: "above",
+    }),
     defineField({
       title: "Eyebrow",
       name: "eyebrow",

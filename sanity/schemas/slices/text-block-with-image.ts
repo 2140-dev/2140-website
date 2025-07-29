@@ -3,9 +3,9 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   title: "Text block with image",
-  name: "textBlockWithImage",
+  name: "text-block-with-image",
   icon: BlockContentIcon,
-  type: "object", // ✅ must be object
+  type: "object",
   fields: [
     defineField({
       name: "layout",
@@ -21,8 +21,8 @@ export default defineType({
       initialValue: "left",
     }),
     defineField({
-      name: "content",
       title: "Content",
+      name: "content",
       type: "textEditor",
     }),
     defineField({

@@ -1,6 +1,6 @@
 import { CogIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { internal } from "../components/link";
+import { link } from "../components/link";
 
 export default defineType({
   name: "menu",
@@ -16,7 +16,7 @@ export default defineType({
       validation: (rule) => rule.min(1),
       of: [
         defineField({
-          ...internal,
+          ...link,
         }),
       ],
     }),

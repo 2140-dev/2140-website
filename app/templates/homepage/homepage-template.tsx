@@ -9,7 +9,7 @@ export const HomepageTemplate = ({
   link,
   slices,
 }: HomepageQueryResultType) => {
-  const heroProps = { title, excerpt, image, link, slices };
+  const heroProps = { title, excerpt, image, link };
   return (
     <>
       <Hero {...heroProps} />

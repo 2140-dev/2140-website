@@ -3,7 +3,7 @@ import { Box, ButtonBase, List, ListItem } from "@mui/material";
 import Link from "next/link";
 import { useState } from "react";
 import { MenuProps } from "./menu";
-import { buttonSx, iconSx, mobileItemSx, mobileMenuSx } from "./menu.styles";
+import { mobileMenuSx } from "./menu.styles";
 
 export const MobileMenu = ({ items }: MenuProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -17,21 +17,40 @@ export const MobileMenu = ({ items }: MenuProps) => {
       <MenuIcon isOpen={isMobileMenuOpen} handleClick={handleMenuItemClick} />
       <Box sx={{ display: isMobileMenuOpen ? "block" : "none" }}>
         <List sx={mobileMenuSx}>
-          {items.map((item) => (
-            <ListItem key={item._key} sx={mobileItemSx}>
-              <Link href={item.slug}>{item.label}</Link>
-            </ListItem>
-          ))}
+          {items.map((item) => {
+            return (
+              <ListItem
+                key={item._key}
+                sx={{
+                  fontSize: "1.5rem",
+                  fontWeight: 600,
+                  textAlign: "center",
+                  width: "auto",
+                  "&:not(:last-child)": {
+                    mb: 3,
+                  },
+
+                  a: {
+                    textDecoration: "none",
+                  },
+                }}
+              >
+                <Link
+                  target={item._type === "external" ? "_blank" : undefined}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              </ListItem>
+            );
+          })}
         </List>
       </Box>
     </Box>
   );
 };
 
-const icon = {
-  true: "images/menu-open.svg",
-  false: "images/menu-close.svg",
-};
 const MenuIcon = ({
   handleClick,
   isOpen,
@@ -40,9 +59,25 @@ const MenuIcon = ({
   isOpen: boolean;
 }) => {
   return (
-    <Box sx={iconSx}>
-      <ButtonBase sx={buttonSx} onClick={handleClick}>
-        <img src={icon[`${isOpen}`]} alt="Mobile menu icon" />
+    <Box
+      sx={{
+        position: "relative",
+        zIndex: 5,
+      }}
+    >
+      <ButtonBase
+        sx={{
+          bgcolor: "primary.main",
+          borderRadius: 48,
+          height: 48,
+          width: 48,
+        }}
+        onClick={handleClick}
+      >
+        <img
+          src={isOpen ? "images/menu-close.svg" : "images/menu-open.svg"}
+          alt="Mobile menu icon"
+        />
       </ButtonBase>
     </Box>
   );

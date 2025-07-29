@@ -9,12 +9,11 @@ import { type DocumentLocation } from "sanity/presentation";
 
 import { apiVersion, dataset, projectId, studioUrl } from "@/sanity/lib/api";
 import { singletonPlugin } from "@/sanity/plugins/settings";
-import { assistWithPresets } from "@/sanity/plugins/assist";
-import settings from "@/sanity/schemas/singletons/settings";
-import menu from "@/sanity/schemas/singletons/menu";
 import { schemaTypes } from "@/sanity/schemas";
-import { structureTool } from "sanity/structure";
+import menu from "@/sanity/schemas/singletons/menu";
+import settings from "@/sanity/schemas/singletons/settings";
 import { structure } from "@/sanity/structure";
+import { structureTool } from "sanity/structure";
 
 const home = {
   title: "Home",
@@ -77,7 +76,7 @@ export default defineConfig({
     // }),
     singletonPlugin([settings.name, menu.name]),
     unsplashImageAsset(),
-    assistWithPresets(),
+    // assistWithPresets(),
     process.env.NODE_ENV === "development" &&
       visionTool({ defaultApiVersion: apiVersion }),
   ].filter(Boolean) as PluginOptions[],
