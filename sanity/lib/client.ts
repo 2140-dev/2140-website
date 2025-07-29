@@ -8,7 +8,7 @@ export const client = createClient({
   apiVersion,
   useCdn: false,
   token: process.env.SANITY_API_READ_TOKEN,
-  // perspective: "published",
+  perspective: "published",
   stega: {
     studioUrl,
     logger: console,

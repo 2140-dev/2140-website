@@ -21,7 +21,9 @@ const components: Partial<PortableTextReactComponents> = {
     h4: ({ children }) => <Typography variant="h4">{children}</Typography>,
     h5: ({ children }) => <Typography variant="h6">{children}</Typography>,
     normal: ({ children }) => (
-      <Typography variant="body1">{children}</Typography>
+      <Typography variant="body1" sx={{ marginBottom: "1rem" }}>
+        {children}
+      </Typography>
     ),
   },
   list: {},

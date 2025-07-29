@@ -1,5 +1,5 @@
 import { colors } from "@/app/theme/colors";
-import { SystemStyleObject, SxProps } from "@mui/system";
+import { SxProps, SystemStyleObject } from "@mui/system";
 
 const pseusdoSx: SxProps = {
   content: '""',
@@ -95,7 +95,7 @@ export const buttonVariantSx: Record<
     boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
     letterSpacing: 5,
     height: 100,
-    px: [5, 10],
+    px: [5, 8],
     width: ["100%", "auto"],
     span: {
       ...spanSx,
