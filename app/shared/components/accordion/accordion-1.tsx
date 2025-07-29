@@ -23,10 +23,11 @@ export const Accordion = ({ items }: Props) => {
 
   return (
     <>
-      {items.map((item, index) => (
+      {items.map((item) => (
         <MuiAccordion
-          expanded={expanded === `${index}`}
-          onChange={onChange(`${index}`)}
+          key={item._key}
+          expanded={expanded === item._key}
+          onChange={onChange(item._key)}
           sx={{
             boxShadow: "none",
             border: `solid 1px rgba(0, 0, 0, 0.08)`,
@@ -45,8 +46,8 @@ export const Accordion = ({ items }: Props) => {
           }}
         >
           <AccordionSummary
-            id={`${index}`}
-            aria-controls={`${index}`}
+            id={item._key}
+            aria-controls={item._key}
             expandIcon={<CaretIcon sx={{ color: "primary.main" }} />}
             sx={{
               m: "0 !important",
