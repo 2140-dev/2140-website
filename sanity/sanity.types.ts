@@ -139,6 +139,8 @@ export type Homepage = {
     _key: string;
   } & Donors | {
     _key: string;
+  } & Faqs | {
+    _key: string;
   } & TeamMembers | {
     _key: string;
   } & TextBlockWithImage>;
@@ -214,51 +216,6 @@ export type Settings = {
   }>;
 };
 
-export type TeamMembers = {
-  _type: "team-members";
-  eyebrow?: string;
-  title?: string;
-  summary?: string;
-  variant?: "teaser" | "full";
-  team?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "team";
-  }>;
-  additional?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "eyebrow" | "h2" | "h3" | "h4" | "h5" | "normal" | "blockquote";
-    listItem?: "bullet";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  }>;
-};
-
 export type TextBlockWithImage = {
   _type: "text-block-with-image";
   layout?: "left" | "right";
@@ -304,6 +261,109 @@ export type TextBlockWithImage = {
     alt?: string;
     _type: "image";
   };
+};
+
+export type TeamMembers = {
+  _type: "team-members";
+  eyebrow?: string;
+  title?: string;
+  summary?: string;
+  variant?: "teaser" | "full";
+  team?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "team";
+  }>;
+  additional?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "eyebrow" | "h2" | "h3" | "h4" | "h5" | "normal" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
+};
+
+export type Faqs = {
+  _type: "faqs";
+  eyebrow?: string;
+  title?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  items?: Array<{
+    title?: string;
+    content?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "eyebrow" | "h2" | "h3" | "h4" | "h5" | "normal" | "blockquote";
+      listItem?: "bullet";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    } | {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+      _key: string;
+    }>;
+    _key: string;
+  }>;
 };
 
 export type Donors = {
@@ -493,6 +553,8 @@ export type Page = {
     _key: string;
   } & Donors | {
     _key: string;
+  } & Faqs | {
+    _key: string;
   } & TeamMembers | {
     _key: string;
   } & TextBlockWithImage>;
@@ -561,5 +623,5 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Team | Homepage | Menu | Settings | TeamMembers | TextBlockWithImage | Donors | CenteredText | CallToAction | TextEditor | TextBlock | Link | External | Internal | Page | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Team | Homepage | Menu | Settings | TextBlockWithImage | TeamMembers | Faqs | Donors | CenteredText | CallToAction | TextEditor | TextBlock | Link | External | Internal | Page | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;

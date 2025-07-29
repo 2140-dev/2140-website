@@ -11,9 +11,7 @@ export const DesktopMenu = ({ items }: MenuProps) => {
       return window.location.pathname === item.href;
     });
 
-    if (active) {
-      setActiveLinkKey(active?._key || null);
-    }
+    setActiveLinkKey(active?._key || null);
   }, []);
   return (
     <Box sx={{ display: "flex", gap: 5, justifyContent: "flex-end" }}>
