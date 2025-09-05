@@ -810,20 +810,52 @@
         },
         "optional": true
       },
-      "links": {
+      "items": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
           "of": {
             "type": "object",
             "attributes": {
-              "link": {
+              "type": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "union",
+                  "of": [
+                    {
+                      "type": "string",
+                      "value": "internal"
+                    },
+                    {
+                      "type": "string",
+                      "value": "external"
+                    }
+                  ]
+                },
+                "optional": true
+              },
+              "external": {
                 "type": "objectAttribute",
                 "value": {
                   "type": "inline",
-                  "name": "link"
+                  "name": "external"
                 },
                 "optional": true
+              },
+              "internal": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "inline",
+                  "name": "internal"
+                },
+                "optional": true
+              },
+              "_type": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string",
+                  "value": "link"
+                }
               }
             },
             "rest": {

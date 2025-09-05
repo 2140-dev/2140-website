@@ -1,4 +1,4 @@
-import { Accordion } from "@/app/shared/components/accordion/accordion-1";
+import { Accordion } from "@/app/shared/components/accordion/accordion";
 import { Eyebrow } from "@/app/shared/components/eyebrow/eyebrow";
 import { MarkdownRender } from "@/app/shared/components/markdown-renderer/markdown-renderer";
 import { Container } from "@/app/shared/layouts/container/container";

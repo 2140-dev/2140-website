@@ -136,8 +136,11 @@ export type NotFound = {
     _type: "block";
     _key: string;
   }>;
-  links?: Array<{
-    link?: Link;
+  items?: Array<{
+    type?: "internal" | "external";
+    external?: External;
+    internal?: Internal;
+    _type: "link";
     _key: string;
   }>;
 };
