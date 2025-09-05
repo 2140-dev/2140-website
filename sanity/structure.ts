@@ -1,7 +1,7 @@
 // /sanity/structure.ts
 
+import { CogIcon, ErrorFilledIcon, HomeIcon, MenuIcon } from "@sanity/icons";
 import type { StructureResolver } from "sanity/structure";
-import { HomeIcon, CogIcon, MenuIcon } from "@sanity/icons";
 
 export const structure: StructureResolver = (S) =>
   S.list()
@@ -37,12 +37,24 @@ export const structure: StructureResolver = (S) =>
             .schemaType("homepage")
             .documentId("homepage")
         ),
+      S.listItem()
+        .title("404 Page")
+        .icon(ErrorFilledIcon)
+        .child(
+          S.editor()
+            .id("not-found")
+            .schemaType("not-found")
+            .documentId("not-found")
+        ),
 
       // Divider 2
       S.divider(),
 
       // 🗂️ The rest of your document types
       ...S.documentTypeListItems().filter(
-        (item) => !["settings", "menu", "homepage"].includes(item.getId() ?? "")
+        (item) =>
+          !["settings", "menu", "homepage", "not-found"].includes(
+            item.getId() ?? ""
+          )
       ),
     ]);

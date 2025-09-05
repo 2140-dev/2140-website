@@ -110,6 +110,38 @@ export type Team = {
   };
 };
 
+export type NotFound = {
+  _id: string;
+  _type: "not-found";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  eyebrow?: string;
+  title?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  links?: Array<{
+    link?: Link;
+    _key: string;
+  }>;
+};
+
 export type Homepage = {
   _id: string;
   _type: "homepage";
@@ -493,7 +525,7 @@ export type TextEditor = Array<{
   _key: string;
 }>;
 
-export type TextBlock = Array<{
+export type BasicTextEditor = Array<{
   children?: Array<{
     marks?: Array<string>;
     text?: string;
@@ -623,5 +655,5 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Team | Homepage | Menu | Settings | TextBlockWithImage | TeamMembers | Faqs | Donors | CenteredText | CallToAction | TextEditor | TextBlock | Link | External | Internal | Page | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Team | NotFound | Homepage | Menu | Settings | TextBlockWithImage | TeamMembers | Faqs | Donors | CenteredText | CallToAction | TextEditor | BasicTextEditor | Link | External | Internal | Page | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;

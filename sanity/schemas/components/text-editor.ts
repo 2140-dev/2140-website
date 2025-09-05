@@ -1,10 +1,12 @@
-// schemas/blockContent.ts
-import { ImageIcon } from "@sanity/icons";
-import { defineType, defineArrayMember } from "sanity";
+import { BlockContentIcon, ImageIcon } from "@sanity/icons";
+import { defineArrayMember, defineType } from "sanity";
 
 export default defineType({
-  title: "Block Content",
-  name: "textEditor",
+  title: "Text editor",
+  name: "text-editor",
+  icon: BlockContentIcon,
+  description:
+    "A fully implemented text editor with access to headings, various text elements and images.",
   type: "array",
   of: [
     defineArrayMember({

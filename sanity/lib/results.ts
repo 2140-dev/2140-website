@@ -69,6 +69,15 @@ export type HomepageQueryResultType = {
   slices?: { _key: string; _type: string } & any[];
 };
 
+export type PageNotFoundQueryResultType = {
+  _id: string;
+  _type: "not-found";
+  eyebrow?: string;
+  title: string;
+  content?: PortableTextBlock;
+  items?: LinkResultType[];
+};
+
 export type PageQueryResultType = {
   _id: string;
   _type: "page";

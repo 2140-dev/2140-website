@@ -2,6 +2,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import {
   HomepageQueryResultType,
   MenuQueryResultType,
+  PageNotFoundQueryResultType,
   PageQueryResultType,
   SettingsQueryResultType,
 } from "@/sanity/lib/results";
@@ -76,6 +77,26 @@ export const fetchSettingsAndMenu = async (client: SanityClient) => {
   ]);
 
   return { settings: result[0], menu: result[1] };
+};
+
+export const fetchPageNotFoundProps = async (client: SanityClient) => {
+  const query = defineQuery(`
+    *[_type == "not-found"][0] {
+      ...,
+      items[] {
+        ...,
+        internal {
+          ${internalLinkFields}
+        },
+        external {
+          ${externalLinkFields}
+        }
+      }
+    }
+  `);
+
+  const result = await client.fetch<PageNotFoundQueryResultType>(query);
+  return result;
 };
 
 export const fetchHomepageProps = async (client: SanityClient) => {

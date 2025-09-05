@@ -3,6 +3,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { PageTemplate } from "@/app/templates/page/page-template";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { fetchPageProps } from "@/sanity/lib/queries";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -21,6 +22,9 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await fetchPageProps(params);
+  if (!page) {
+    notFound();
+  }
 
   return {
     title: `2140 | ${page?.title}`,

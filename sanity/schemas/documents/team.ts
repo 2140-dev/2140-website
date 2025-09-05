@@ -32,7 +32,7 @@ export default defineType({
     defineField({
       name: "bio",
       title: "Biography",
-      type: "textBlock",
+      type: "basic-text-editor",
       validation: (rule) => rule.required(),
     }),
     defineField({
