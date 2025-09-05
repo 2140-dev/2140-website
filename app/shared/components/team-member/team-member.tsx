@@ -1,4 +1,4 @@
-import { TeamResultType } from "@/sanity/lib/results";
+import { TeamResultType } from "sanity/lib/results";
 import { Grid } from "@mui/material";
 import { TeamMemberFull } from "./team-member-full";
 import { TeamMemberTeaser } from "./team-member-teaser";

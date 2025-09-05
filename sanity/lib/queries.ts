@@ -1,11 +1,11 @@
-import { sanityFetch } from "@/sanity/lib/fetch";
+import { sanityFetch } from "sanity/lib/fetch";
 import {
   HomepageQueryResultType,
   MenuQueryResultType,
   PageNotFoundQueryResultType,
   PageQueryResultType,
   SettingsQueryResultType,
-} from "@/sanity/lib/results";
+} from "sanity/lib/results";
 import { SanityClient, defineQuery } from "next-sanity";
 import { QueryParams } from "sanity";
 

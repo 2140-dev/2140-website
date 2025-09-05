@@ -1,5 +1,5 @@
-import { ResolvedLink } from "@/app/types/resolved-link";
-import { InternalResultType, LinkResultType } from "@/sanity/lib/results";
+import { ResolvedLink } from "app/types/resolved-link";
+import { InternalResultType, LinkResultType } from "sanity/lib/results";
 
 export const getInternalLinkUrl = (link: InternalResultType): string => {
   switch (link.document) {

@@ -1,6 +1,6 @@
-import { PageTitle } from "@/app/shared/components/page-title/page-title";
-import { SlicesComp } from "@/app/shared/layouts/slices-comp/slices-comp";
-import { PageQueryResultType } from "@/sanity/lib/results";
+import { PageTitle } from "app/shared/components/page-title/page-title";
+import { SlicesComp } from "app/shared/layouts/slices-comp/slices-comp";
+import { PageQueryResultType } from "sanity/lib/results";
 
 export const PageTemplate = ({
   title,

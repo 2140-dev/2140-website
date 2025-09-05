@@ -1,11 +1,6 @@
 import React from 'react';
-import { Box, SxProps } from '@mui/material';
 import styles from './container.module.scss'
-interface Props {
-  size?: 'lg' | 'md' | 'sm' | 'xs';
-  sx?: SxProps;
-  children: React.ReactNode;
-}
+import { cn } from 'app/utils/classname';
 
 const WIDTH: Record<'lg' | 'md' | 'sm' | 'xs', number> = {
   lg: 1568,
@@ -13,8 +8,14 @@ const WIDTH: Record<'lg' | 'md' | 'sm' | 'xs', number> = {
   sm: 848,
   xs: 596,
 };
-export const Container = ({ size = 'md', children, sx }: Props) => (
-  <div className={styles.container} style={{ maxWidth: WIDTH[size] }}>
+
+interface Props {
+  size?: 'lg' | 'md' | 'sm' | 'xs';
+  children: React.ReactNode;
+  className?: string;
+}
+export const Container = ({ size = 'md', className = '', children }: Props) => (
+  <div className={cn([styles.container, className])} style={{ maxWidth: WIDTH[size] }}>
     {children}
   </div>
 );

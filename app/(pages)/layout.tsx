@@ -6,12 +6,12 @@ import type { Metadata } from "next";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
 
-import { Footer } from "@/app/shared/containers/footer/footer";
-import { Header } from "@/app/shared/containers/header/header";
-import { client } from "@/sanity/lib/client";
-import * as demo from "@/sanity/lib/demo";
-import { fetchSettings, fetchSettingsAndMenu } from "@/sanity/lib/queries";
-import { resolveOpenGraphImage } from "@/sanity/lib/utils";
+import { Footer } from "app/shared/containers/footer/footer";
+import { Header } from "app/shared/containers/header/header";
+import { client } from "sanity/lib/client";
+import * as demo from "sanity/lib/demo";
+import { fetchSettings, fetchSettingsAndMenu } from "sanity/lib/queries";
+import { resolveOpenGraphImage } from "sanity/lib/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await fetchSettings(client);

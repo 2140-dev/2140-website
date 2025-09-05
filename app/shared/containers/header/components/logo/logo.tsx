@@ -1,5 +1,5 @@
-import { Image as ImageType } from "@/app/types/image";
-import { urlForImage } from "@/sanity/lib/utils";
+import { Image as ImageType } from "app/types/image";
+import { urlForImage } from "sanity/lib/utils";
 import { Box } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";

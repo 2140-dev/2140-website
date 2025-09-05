@@ -1,11 +1,11 @@
-import { Eyebrow } from "@/app/shared/components/eyebrow/eyebrow";
-import { MarkdownRender } from "@/app/shared/components/markdown-renderer/markdown-renderer";
-import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
-import { Container } from "@/app/shared/layouts/container/container";
-import { Section } from "@/app/shared/layouts/section/section";
-import { Image } from "@/app/types/image";
-import { getStylishMarkdown } from "@/app/utils/markdown";
-import { imageBuilder } from "@/sanity/lib/utils";
+import { Eyebrow } from "app/shared/components/eyebrow/eyebrow";
+import { MarkdownRender } from "app/shared/components/markdown-renderer/markdown-renderer";
+import { RichTextRenderer } from "app/shared/components/rich-text-renderer/rich-text-renderer";
+import { Container } from "app/shared/layouts/container/container";
+import { Section } from "app/shared/layouts/section/section";
+import { Image } from "app/types/image";
+import { getStylishMarkdown } from "app/utils/markdown";
+import { imageBuilder } from "sanity/lib/utils";
 import { Box, Typography } from "@mui/material";
 import { PortableTextBlock } from "next-sanity";
 

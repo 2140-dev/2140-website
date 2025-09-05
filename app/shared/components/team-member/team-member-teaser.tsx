@@ -1,6 +1,6 @@
-import { SanityImage } from "@/app/shared/components/sanity-image/sanity-image";
-import { colors } from "@/app/theme/colors";
-import { TeamResultType } from "@/sanity/lib/results";
+import { SanityImage } from "app/shared/components/sanity-image/sanity-image";
+import { colors } from "app/theme/colors";
+import { TeamResultType } from "sanity/lib/results";
 import { Box, List, ListItem, Typography } from "@mui/material";
 import Link from "next/link";
 

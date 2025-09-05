@@ -1,7 +1,81 @@
 .hero {
+  overflow: hidden;
+
+  @include desktop {
+    height: 100vh
+  }
+
+  .container {
+    align-items: center;
+    gap: 4rem;
+    height: 100%;
+    justify-content: space-between;
+    position: relative;
+  }
+
   .title {
     @include desktop {
       font-size: 5rem;
+    }
+
+    u {
+      &::after {
+        background-image: url('/images/underline.svg');
+      }
+    }
+  }
+
+  @include desktop-xlarge {
+    overflow: visible;
+
+    .container {
+      display: flex
+    }
+  }
+
+  .child {
+    flex: 1;
+  }
+
+  .left {
+    padding-top: 5rem;
+
+    @include desktop {
+      padding-top: 0;
+      padding-left: 5rem;
+    }
+  }
+
+  .right {
+    z-index: 1;
+  }
+
+  .background {
+    left: 10%;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+
+    @include tablet {
+      left: auto;
+      right: -8%;
+    }
+
+    &::after {
+      display: none;
+      background: $yellow-200;
+      content: '';
+      height: 100%;
+      left: 99%;
+      position: absolute;
+      top: 0;
+      width: 100vw;
+    }
+
+    @include desktop {
+      &::after {
+        display: block
+      }
     }
   }
 }

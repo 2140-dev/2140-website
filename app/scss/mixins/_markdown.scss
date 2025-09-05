@@ -1,0 +1,44 @@
+@mixin strikethrough($color: black) {
+  s {
+    text-decoration: none;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -2.5%;
+      height: 1rem;
+
+      // Position the line behind the text so that
+      // it is still easily readable
+      z-index: 1;
+      width: 105%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url('/images/strikethrough-#{$color}.svg');
+    }
+  }
+
+}
+
+@mixin underline($color: black) {
+  u {
+    text-decoration: none;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -0.5rem;
+      height: 1rem;
+      z-index: -1;
+      width: 105%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url('/images/underline-#{$color}.svg');
+    }
+
+  }
+}

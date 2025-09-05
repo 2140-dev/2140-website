@@ -1,18 +1,16 @@
-import { Eyebrow } from "@/app/shared/components/eyebrow/eyebrow";
-import { getStylishMarkdown } from "@/app/utils/markdown";
-import Link from "@/node_modules/next/link";
-import {
-  PortableText,
-  PortableTextBlock,
-} from "@/node_modules/@portabletext/react";
+
+import Link from 'next/link';
 
 import React from "react";
-
+import { PortableText, PortableTextBlock, PortableTextReactComponents } from 'next-sanity';
+import { Eyebrow } from '../eyebrow/eyebrow';
+import styles from './rich-text-renderer.module.scss'
+import { cn } from 'app/utils/classname';
 const components: Partial<PortableTextReactComponents> = {
   block: {
     eyebrow: ({ children }) => <Eyebrow color="blue" text={children} />,
     h2: ({ children }) => (
-      <h2 style={getStylishMarkdown("black")}>
+      <h2 className="strike-black under-black">
         {children}
       </h2>
     ),
@@ -60,7 +58,10 @@ const components: Partial<PortableTextReactComponents> = {
 
 interface Props {
   content: PortableTextBlock;
+  className?: string
 }
-export const RichTextRenderer = ({ content }: Props) => {
-  return <PortableText value={content} components={components} />;
+export const RichTextRenderer = ({ content, className = '' }: Props) => {
+  return <div className={cn([styles['rich-text-renderer'], className])}>
+    <PortableText value={content} components={components} />
+  </div>;
 };

@@ -1,5 +1,5 @@
-import { Container } from "@/app/shared/layouts/container/container";
-import { Section } from "@/app/shared/layouts/section/section";
+import { Container } from "app/shared/layouts/container/container";
+import { Section } from "app/shared/layouts/section/section";
 import styles from './page-title.module.scss'
 
 interface Props {

@@ -1,4 +1,4 @@
-import { colors } from "@/app/theme/colors";
+import { colors } from "app/theme/colors";
 import { SxProps, SystemStyleObject } from "@mui/system";
 
 const pseusdoSx: SxProps = {

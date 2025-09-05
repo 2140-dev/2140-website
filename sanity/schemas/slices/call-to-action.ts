@@ -1,4 +1,4 @@
-import { stripHTMLMarkup } from "@/app/utils/markdown";
+import { stripHTMLMarkup } from "app/utils/markdown";
 import { BoltIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 

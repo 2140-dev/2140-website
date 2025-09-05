@@ -1,0 +1,26 @@
+.call-to-action {
+  background-color: $yellow-200;
+
+  .wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+
+    @include desktop {
+      gap: 10rem;
+      flex-direction: row;
+    }
+  }
+
+  .inner {
+    flex: 1;
+    max-width: 480;
+
+    @include tablet {
+      &.left {
+        order: -1
+      }
+    }
+  }
+}

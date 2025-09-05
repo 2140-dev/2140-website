@@ -1,11 +1,11 @@
-import { Accordion } from "@/app/shared/components/accordion/accordion";
-import { Eyebrow } from "@/app/shared/components/eyebrow/eyebrow";
-import { MarkdownRender } from "@/app/shared/components/markdown-renderer/markdown-renderer";
-import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
-import { Container } from "@/app/shared/layouts/container/container";
-import { Section } from "@/app/shared/layouts/section/section";
-import { AccordionItems } from "@/app/types/accordion";
-import { getStylishMarkdown } from "@/app/utils/markdown";
+import { Accordion } from "app/shared/components/accordion/accordion";
+import { Eyebrow } from "app/shared/components/eyebrow/eyebrow";
+import { MarkdownRender } from "app/shared/components/markdown-renderer/markdown-renderer";
+import { RichTextRenderer } from "app/shared/components/rich-text-renderer/rich-text-renderer";
+import { Container } from "app/shared/layouts/container/container";
+import { Section } from "app/shared/layouts/section/section";
+import { AccordionItems } from "app/types/accordion";
+import { getStylishMarkdown } from "app/utils/markdown";
 import { Grid, Typography } from "@mui/material";
 import { PortableTextBlock } from "next-sanity";
 

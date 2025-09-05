@@ -1,15 +1,15 @@
-import { Button } from "@/app/shared/components/button/button";
-import { Eyebrow } from "@/app/shared/components/eyebrow/eyebrow";
-import { MarkdownRender } from "@/app/shared/components/markdown-renderer/markdown-renderer";
-import { Container } from "@/app/shared/layouts/container/container";
-import { Section } from "@/app/shared/layouts/section/section";
-import { Image as ImageType } from "@/app/types/image";
-import { getInternalLinkUrl } from "@/app/utils/link";
-import { getStylishMarkdown } from "@/app/utils/markdown";
-import { InternalResultType } from "@/sanity/lib/results";
-import { urlForImage } from "@/sanity/lib/utils";
-import { Box, Typography } from "@mui/material";
+import { Button } from "app/shared/components/button/button";
+import { Eyebrow } from "app/shared/components/eyebrow/eyebrow";
+import { MarkdownRender } from "app/shared/components/markdown-renderer/markdown-renderer";
+import { Container } from "app/shared/layouts/container/container";
+import { Section } from "app/shared/layouts/section/section";
+import { Image as ImageType } from "app/types/image";
+import { getInternalLinkUrl } from "app/utils/link";
+import { InternalResultType } from "sanity/lib/results";
+import { urlForImage } from "sanity/lib/utils";
 import Image from "next/image";
+import styles from './call-to-action.module.scss'
+import { cn } from "app/utils/classname";
 
 interface Props {
   eyebrow?: string;
@@ -28,34 +28,17 @@ const CallToAction = ({
   link,
 }: Props) => {
   return (
-    <Section
-      sx={{
-        bgcolor: "yellow.200",
-      }}
-    >
+    <Section className={styles['call-to-action']}>
       <Container>
-        <Box
-          sx={{
-            alignItems: "center",
-            display: "flex",
-            flexDirection: {
-              xs: "column",
-              md: "row",
-            },
-            gap: [5, 20],
-          }}
-        >
-          <Box
-            sx={{
-              flex: 1,
-              maxWidth: 480,
-            }}
+        <div className={styles.wrapper}>
+          <div
+            className={styles.inner}
           >
             {eyebrow && <Eyebrow color="white" text={eyebrow} />}
-            <Typography variant="h2" sx={getStylishMarkdown("white")}>
+            <h2 className="strike-white under-white">
               <MarkdownRender>{title}</MarkdownRender>
-            </Typography>
-            <Typography variant="body1">{content}</Typography>
+            </h2>
+            <p>{content}</p>
             <Button
               variant="donate"
               component="a"
@@ -64,16 +47,8 @@ const CallToAction = ({
             >
               {link.label}
             </Button>
-          </Box>
-          <Box
-            sx={{
-              flex: 1,
-              maxWidth: 480,
-              order: {
-                md: layout === "left" ? -1 : 1,
-              },
-            }}
-          >
+          </div>
+          <div className={cn([styles.inner, layout === "left" ? styles.left : ''])}>
             <Image
               src={urlForImage(image)?.url() as string}
               width={0}
@@ -81,8 +56,8 @@ const CallToAction = ({
               style={{ width: "100%", height: "auto" }}
               alt={image?.alt || ""}
             />
-          </Box>
-        </Box>
+          </div>
+        </div>
       </Container>
     </Section>
   );

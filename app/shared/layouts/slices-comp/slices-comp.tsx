@@ -1,4 +1,4 @@
-import { PageQueryResultType } from "@/sanity/lib/results.js";
+import { PageQueryResultType } from "sanity/lib/results.js";
 import dynamic from "next/dynamic";
 import { Fragment, Suspense } from "react";
 
@@ -32,18 +32,18 @@ export const SlicesComp = ({ slices }: Props) => {
         <Suspense key={slice._key || i} fallback={null}>
           <Component
             {...sliceProps}
-            // prevSliceType={i && _slices[i - 1]._type}
-            // nextSliceType={i < _slices.length - 1 && _slices[i + 1]._type}
-            // totalSlices={_slices.length}
-            // prevSlice={i !== 0 ? _slices[i - 1] : null}
-            // nextSlice={i < _slices.length - 1 ? _slices[i + 1] : null}
-            // index={i}
-            // theme={theme}
-            // sliceType={slice._type}
-            // sliceTitle={slice.title || slice.header?.title}
-            // {...slice}
-            // {...slicesProps}
-            // {...extraProps}
+          // prevSliceType={i && _slices[i - 1]._type}
+          // nextSliceType={i < _slices.length - 1 && _slices[i + 1]._type}
+          // totalSlices={_slices.length}
+          // prevSlice={i !== 0 ? _slices[i - 1] : null}
+          // nextSlice={i < _slices.length - 1 ? _slices[i + 1] : null}
+          // index={i}
+          // theme={theme}
+          // sliceType={slice._type}
+          // sliceTitle={slice.title || slice.header?.title}
+          // {...slice}
+          // {...slicesProps}
+          // {...extraProps}
           />
         </Suspense>
       );

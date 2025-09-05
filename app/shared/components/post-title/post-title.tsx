@@ -1,6 +1,6 @@
-import { Image } from "@/app/types/image";
+import { Image } from "app/types/image";
 // import "./styles.scss";
-import { CoverImage } from "@/app/shared/components/cover-image/cover-image";
+import { CoverImage } from "app/shared/components/cover-image/cover-image";
 import { Typography } from "@mui/material";
 
 interface Props {

@@ -25,3 +25,28 @@
 .text-s {
   @include text-s
 }
+
+
+.strike-black {
+  @include strikethrough;
+}
+
+.strike-white {
+  @include strikethrough(white);
+}
+
+.strike-yellow {
+  @include strikethrough(yellow);
+}
+
+.under-black {
+  @include underline;
+}
+
+.under-white {
+  @include underline(white);
+}
+
+.under-yellow {
+  @include underline(yellow);
+}

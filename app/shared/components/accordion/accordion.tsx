@@ -1,7 +1,7 @@
 "use client";
-import { CaretIcon } from "@/app/icons/caret";
-import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
-import { AccordionItems } from "@/app/types/accordion";
+import { CaretIcon } from "app/icons/caret";
+import { RichTextRenderer } from "app/shared/components/rich-text-renderer/rich-text-renderer";
+import { AccordionItems } from "app/types/accordion";
 import {
   AccordionDetails,
   AccordionSummary,

@@ -1,7 +1,7 @@
-import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
-import { SanityImage } from "@/app/shared/components/sanity-image/sanity-image";
-import { colors } from "@/app/theme/colors";
-import { TeamResultType } from "@/sanity/lib/results";
+import { RichTextRenderer } from "app/shared/components/rich-text-renderer/rich-text-renderer";
+import { SanityImage } from "app/shared/components/sanity-image/sanity-image";
+import { colors } from "app/theme/colors";
+import { TeamResultType } from "sanity/lib/results";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 

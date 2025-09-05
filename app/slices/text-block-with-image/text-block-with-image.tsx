@@ -1,10 +1,10 @@
-import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
-import { SanityImage } from "@/app/shared/components/sanity-image/sanity-image";
-import { Container } from "@/app/shared/layouts/container/container";
-import { Section } from "@/app/shared/layouts/section/section";
-import { Image as ImageType } from "@/app/types/image";
-import { Box } from "@mui/material";
+import { RichTextRenderer } from "app/shared/components/rich-text-renderer/rich-text-renderer";
+import { SanityImage } from "app/shared/components/sanity-image/sanity-image";
+import { Container } from "app/shared/layouts/container/container";
+import { Section } from "app/shared/layouts/section/section";
+import { Image as ImageType } from "app/types/image";
 import { PortableTextBlock } from "next-sanity";
+import styles from './text-block-with-image.module.scss'
 
 interface Props {
   layout: "left" | "right";
@@ -13,42 +13,15 @@ interface Props {
 }
 const TextBlockWithImage = ({ layout, image, content }: Props) => {
   return (
-    <Section>
+    <Section className={styles['text-block-with-image']}>
       <Container>
-        <Box
-          sx={{
-            alignItems: "center",
-            display: "flex",
-            justifyContent: {
-              md: "space-between",
-            },
-            flexDirection: {
-              xs: "column",
-              md: "row",
-            },
-            gap: [5, 20],
-          }}
+        <div className={styles.wrapper}
         >
-          <Box
-            sx={{
-              flex: 1,
-              maxWidth: 480,
-            }}
-          >
-            <RichTextRenderer content={content} />
-          </Box>
-          <Box
-            sx={{
-              flex: 1,
-              maxWidth: 480,
-              order: {
-                md: layout === "right" ? -1 : 1,
-              },
-            }}
-          >
+          <RichTextRenderer className={styles.editor} content={content} />
+          <div className={layout === "right" ? styles.right : ''}>
             <SanityImage image={image} />
-          </Box>
-        </Box>
+          </div>
+        </div>
       </Container>
     </Section>
   );

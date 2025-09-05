@@ -1,11 +1,10 @@
-import { Button } from "@/app/shared/components/button/button";
-import { Eyebrow } from "@/app/shared/components/eyebrow/eyebrow";
-import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
-import { Container } from "@/app/shared/layouts/container/container";
-import { resolveInternalOrExternalLink } from "@/app/utils/link";
-import { PageNotFoundQueryResultType } from "@/sanity/lib/results";
-import { Box, Typography } from "@mui/material";
 import styles from './not-found-template.module.scss'
+import { PageNotFoundQueryResultType } from "sanity/lib/results";
+import { Container } from "app/shared/layouts/container/container";
+import { Eyebrow } from "app/shared/components/eyebrow/eyebrow";
+import { RichTextRenderer } from "app/shared/components/rich-text-renderer/rich-text-renderer";
+import { resolveInternalOrExternalLink } from "app/utils/link";
+import { Button } from "app/shared/components/button/button";
 export const NotFoundTemplate = ({
   eyebrow,
   title,

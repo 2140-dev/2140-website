@@ -1,8 +1,8 @@
 import type { Metadata, ResolvingMetadata } from "next";
 
-import { PageTemplate } from "@/app/templates/page/page-template";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { fetchPageProps } from "@/sanity/lib/queries";
+import { PageTemplate } from "app/templates/page/page-template";
+import { sanityFetch } from "sanity/lib/fetch";
+import { fetchPageProps } from "sanity/lib/queries";
 import { notFound } from "next/navigation";
 
 type Props = {
