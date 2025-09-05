@@ -1,6 +1,6 @@
 import { Container } from "@/app/shared/layouts/container/container";
 import { Section } from "@/app/shared/layouts/section/section";
-import { Typography } from "@mui/material";
+import styles from './page-title.module.scss'
 
 interface Props {
   title: string;
@@ -8,20 +8,13 @@ interface Props {
 }
 export const PageTitle = ({ title, excerpt }: Props) => {
   return (
-    <Section sx={{ pb: 0, pt: { xs: 15, md: 20 }, textAlign: "center" }}>
+    <Section className={styles['page-title']}>
       <Container size="sm">
-        <Typography variant="h1">{title}</Typography>
+        <h1>{title}</h1>
         {excerpt && (
-          <Typography
-            sx={{
-              mt: 4,
-              px: [0, 10],
-              fontSize: "1.25rem",
-            }}
-            variant="body1"
-          >
+          <p className="text-l">
             {excerpt}
-          </Typography>
+          </p>
         )}
       </Container>
     </Section>

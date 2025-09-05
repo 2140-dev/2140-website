@@ -1,0 +1,63 @@
+html {
+  font-family: Poppins, monospace;
+}
+
+body {
+  font-size: 18px;
+  font-weight: 400;
+  color: $dark-gray;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $black;
+  font-weight: 600;
+  margin: 0 0 1.5rem;
+}
+
+h6 {
+  margin-bottom: 1.75rem;
+}
+
+h1 {
+  @include text-4xl
+}
+
+h2 {
+  @include text-3xl
+}
+
+h3 {
+  @include text-3xl
+}
+
+h4 {
+  @include text-2xl
+}
+
+h5 {
+  @include text-xl
+}
+
+h6 {
+  @include text-l
+}
+
+p {
+  line-height: 1.45;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+
+  &:hover {
+    color: $black;
+  }
+}

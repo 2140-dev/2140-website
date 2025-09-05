@@ -1,27 +1,18 @@
 import React, { ReactNode } from 'react';
-import { Box } from '@mui/material';
-import { SystemStyleObject } from '@mui/system';
-
+import styles from './section.module.scss'
 interface Props {
   children: ReactNode;
-  sx?: SystemStyleObject;
+  className?: string;
   id?: string;
 }
 
-export const Section = ({ children, sx, id }: Props) => {
+export const Section = ({ children, className = '', id }: Props) => {
   return (
-    <Box
+    <section
       id={id}
-      sx={{
-        py: 15,
-        overflow: {
-          xs: 'hidden',
-          md: 'auto',
-        },
-        ...sx,
-      }}
+      className={[styles.section, className].join(' ')}
     >
       {children}
-    </Box>
+    </section>
   );
 };

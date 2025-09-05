@@ -1,4 +1,5 @@
 import "../styles/normalize.css";
+import "../scss/index.scss";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
@@ -7,7 +8,6 @@ import { draftMode } from "next/headers";
 
 import { Footer } from "@/app/shared/containers/footer/footer";
 import { Header } from "@/app/shared/containers/header/header";
-import { ThemeRegistry } from "@/app/theme-registry";
 import { client } from "@/sanity/lib/client";
 import * as demo from "@/sanity/lib/demo";
 import { fetchSettings, fetchSettingsAndMenu } from "@/sanity/lib/queries";
@@ -40,14 +40,17 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet" />
+      </head>
       <body>
-        <ThemeRegistry>
-          <Header logo={settings.logo} items={menu.items} />
-          {children}
-          {isDraftMode && <VisualEditing />}
-          <Footer email={settings.email} disclaimer={settings.disclaimer} />
-          <SpeedInsights />
-        </ThemeRegistry>
+        <Header logo={settings.logo} items={menu.items} />
+        {children}
+        {isDraftMode && <VisualEditing />}
+        <Footer email={settings.email} disclaimer={settings.disclaimer} />
+        <SpeedInsights />
       </body>
     </html>
   );

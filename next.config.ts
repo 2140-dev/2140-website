@@ -1,9 +1,13 @@
 import type { NextConfig } from "next";
-import path from "path";
 
 const nextConfig: NextConfig = {
   images: {
     domains: ["cdn.sanity.io"],
+  },
+  sassOptions: {
+    prependData: `
+				@import 'app/scss/global.scss';
+			`
   },
   SC_DISABLE_SPEEDY: "false",
 };

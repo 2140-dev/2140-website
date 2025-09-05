@@ -7,6 +7,7 @@ import { urlForImage } from "@/sanity/lib/utils";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import styles from './hero.module.scss'
 import {
   backgroundSx,
   childSx,
@@ -23,25 +24,18 @@ export const Hero = ({
   link,
 }: Partial<HomepageQueryResultType>) => {
   return (
-    <Box sx={wrapperSx}>
+    <Box className={styles.hero} sx={wrapperSx}>
       <Container size="lg" sx={containerSx}>
         <Box sx={{ ...childSx, ...leftSx }}>
-          <Typography
-            variant="h1"
-            sx={{ fontSize: { md: "4rem !important", lg: "5rem !important" } }}
+          <h1
+            className={styles.title}
           >
             <MarkdownRender>{title}</MarkdownRender>
-          </Typography>
+          </h1>
           {excerpt && (
-            <Typography
-              sx={{
-                mt: 5,
-                maxWidth: 600,
-              }}
-              variant="body1"
-            >
+            <p className="text-l">
               {excerpt}
-            </Typography>
+            </p>
           )}
           {link && (
             <Link href={getInternalLinkUrl(link)}>

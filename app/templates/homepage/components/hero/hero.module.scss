@@ -1,0 +1,7 @@
+.hero {
+  .title {
+    @include desktop {
+      font-size: 5rem;
+    }
+  }
+}

@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import styles from "./accordion.module.scss";
+
 interface Props {
   items: AccordionItems;
 }

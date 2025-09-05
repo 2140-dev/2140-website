@@ -5,7 +5,7 @@ import { Container } from "@/app/shared/layouts/container/container";
 import { resolveInternalOrExternalLink } from "@/app/utils/link";
 import { PageNotFoundQueryResultType } from "@/sanity/lib/results";
 import { Box, Typography } from "@mui/material";
-
+import styles from './not-found-template.module.scss'
 export const NotFoundTemplate = ({
   eyebrow,
   title,
@@ -13,20 +13,12 @@ export const NotFoundTemplate = ({
   items,
 }: PageNotFoundQueryResultType) => {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "100vh",
-        textAlign: "center",
-      }}
-    >
+    <div className={styles['not-found']}>
       <Container size="sm">
         {eyebrow && <Eyebrow color="blue" text={eyebrow} />}
-        <Typography variant="h1" sx={{ mb: "2rem" }}>
+        <h1>
           {title}
-        </Typography>
+        </h1>
         {content && <RichTextRenderer content={content} />}
         {items?.map((item, index) => {
           const { href, label } = resolveInternalOrExternalLink(item);
@@ -42,6 +34,6 @@ export const NotFoundTemplate = ({
           );
         })}
       </Container>
-    </Box>
+    </div>
   );
 };

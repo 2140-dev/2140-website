@@ -1,5 +1,5 @@
+import { PageTitle } from "@/app/shared/components/page-title/page-title";
 import { SlicesComp } from "@/app/shared/layouts/slices-comp/slices-comp";
-import { PageTitle } from "@/app/templates/page/components/page-title/page-title";
 import { PageQueryResultType } from "@/sanity/lib/results";
 
 export const PageTemplate = ({
