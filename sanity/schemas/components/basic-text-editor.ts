@@ -1,9 +1,11 @@
 import { TextIcon } from "@sanity/icons";
-import { defineType, defineArrayMember } from "sanity";
+import { defineArrayMember, defineType } from "sanity";
 
 export default defineType({
-  title: "Text block",
-  name: "textBlock",
+  title: "Basic text editor",
+  name: "basic-text-editor",
+  description:
+    "This is a stripped-down version of the text editor; it contains limited text formatting options such as blockquotes, lists and links.",
   type: "array",
   icon: TextIcon,
   of: [

@@ -1,4 +1,4 @@
-import { DocumentIcon, LaunchIcon, LinkIcon } from "@sanity/icons";
+import { LinkIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export const external = defineType({
@@ -16,9 +16,9 @@ export const external = defineType({
         }),
     }),
     defineField({
-      type: "string",
-      name: "label",
       title: "Label",
+      name: "label",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
   ],
@@ -28,10 +28,10 @@ export const external = defineType({
   preview: {
     select: {
       title: "label",
-      subtitle: "url",
     },
     prepare: (selection) => ({
       ...selection,
+      subtitle: "External Link",
       media: LinkIcon,
     }),
   },
@@ -59,19 +59,6 @@ export const internal = defineType({
   ],
   options: {
     collapsible: false,
-  },
-  preview: {
-    select: {
-      title: "label",
-      referenceSlug: "reference.slug",
-    },
-    prepare: ({ title, referenceSlug }) => {
-      return {
-        title: title,
-        subtitle: referenceSlug.current,
-        media: DocumentIcon,
-      };
-    },
   },
 });
 
@@ -106,29 +93,14 @@ export const link = defineType({
   ],
   preview: {
     select: {
-      type: "type",
-      external: "external",
-      internal: "internal",
-      referenceSlug: "internal.reference.slug.current",
+      link: "link",
     },
-    prepare: ({ type, external, internal }) => {
-      if (type === "internal") {
-        return {
-          title: internal?.label || "Internal link",
-          subtitle: internal?.slug || "",
-          media: DocumentIcon,
-        };
-      }
-      if (type === "external") {
-        return {
-          title: external?.label || "External link",
-          subtitle: external?.url || "",
-          media: LaunchIcon,
-        };
-      }
-
+    prepare: ({ link }) => {
+      const isInternal = link.type === "internal";
       return {
-        title: "Link",
+        title: link[link.type].label,
+        subtitle: `${isInternal ? "Internal" : "External"} link`,
+        media: LinkIcon,
       };
     },
   },

@@ -12,7 +12,11 @@ interface Props {
 }
 export const TeamMemberFull = ({ team }: Props) => {
   return (
-    <>
+    <Box
+      sx={{
+        maxWidth: 350,
+      }}
+    >
       <Box
         sx={{
           alignItems: "center",
@@ -80,7 +84,7 @@ export const TeamMemberFull = ({ team }: Props) => {
         {team.role}
       </Typography>
       <RichTextRenderer content={team.bio} />
-    </>
+    </Box>
   );
 };
 

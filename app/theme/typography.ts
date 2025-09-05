@@ -1,6 +1,6 @@
 import { TypographyOptions } from "@mui/material/styles/createTypography";
-import { colors } from "./colors";
 import { CSSProperties } from "react";
+import { colors } from "./colors";
 
 export const typeface = {
   // heading: 'Bricolage Grotesque, monospace',

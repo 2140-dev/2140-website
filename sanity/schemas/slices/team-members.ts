@@ -51,7 +51,7 @@ export default defineType({
     defineField({
       title: "Additional content",
       name: "additional",
-      type: "textEditor",
+      type: "text-editor",
     }),
   ],
   preview: {

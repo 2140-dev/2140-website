@@ -6,7 +6,7 @@ import { Container } from "@/app/shared/layouts/container/container";
 import { Section } from "@/app/shared/layouts/section/section";
 import { getStylishMarkdown } from "@/app/utils/markdown";
 import { TeamResultType } from "@/sanity/lib/results";
-import { Box, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { PortableTextBlock } from "next-sanity";
 import { ComponentProps } from "react";
 
@@ -44,21 +44,11 @@ const TeamMembers = ({
         {summary && <Typography variant="body1">{summary}</Typography>}
       </Container>
       <Container size="md" sx={{ mt: 10 }}>
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: {
-              xs: "wrap",
-              md: "nowrap",
-            },
-            justifyContent: "center",
-            gap: [5, 5, 8],
-          }}
-        >
+        <Grid container spacing={[5, 8]} justifyContent="center">
           {team.map((team, index) => (
             <TeamMember key={team._id} team={team} variant={variant} />
           ))}
-        </Box>
+        </Grid>
       </Container>
       {additional && (
         <Container

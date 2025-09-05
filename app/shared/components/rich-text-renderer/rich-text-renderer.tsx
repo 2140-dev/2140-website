@@ -35,8 +35,7 @@ const components: Partial<PortableTextReactComponents> = {
       value,
     }: {
       children: React.ReactNode;
-      value?: // | InternalOrExternalLink
-      {
+      value?: {
         href: string;
       };
     }) => {

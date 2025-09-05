@@ -23,7 +23,7 @@ export default defineType({
     defineField({
       title: "Content",
       name: "content",
-      type: "textEditor",
+      type: "text-editor",
     }),
     defineField({
       name: "image",
