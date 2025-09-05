@@ -28,10 +28,15 @@ export const NotFoundTemplate = ({
           {title}
         </Typography>
         {content && <RichTextRenderer content={content} />}
-        {items?.map((item) => {
+        {items?.map((item, index) => {
           const { href, label } = resolveInternalOrExternalLink(item);
           return (
-            <Button variant="secondary" href={href} sx={{ mt: "4rem" }}>
+            <Button
+              key={index}
+              variant="secondary"
+              href={href}
+              sx={{ mt: "4rem" }}
+            >
               {label}
             </Button>
           );
