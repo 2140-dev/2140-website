@@ -35,24 +35,25 @@ const CenteredText = ({
         size="sm"
         className={styles.container}
       >
-        <Box>
+        <div>
           {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
           <h2 className="strike-black under-black">
             <MarkdownRender>{title}</MarkdownRender>
           </h2>
-          {content && <RichTextRenderer content={content} />}
-
-          {link && (
-            <Button
-              variant="secondary"
-              href={getInternalLinkUrl(link)}
-              component="a"
-              sx={{ mt: 5 }}
-            >
-              {link?.label}
-            </Button>
-          )}
-        </Box>
+          <Container size="xs">
+            {content && <RichTextRenderer content={content} />}
+            {link && (
+              <Button
+                variant="secondary"
+                href={getInternalLinkUrl(link)}
+                component="a"
+                sx={{ mt: 5 }}
+              >
+                {link?.label}
+              </Button>
+            )}
+          </Container>
+        </div>
         {image && (
           <div className={styles.image} style={{ order: layout === "below" ? -1 : 1 }}>
             <SanityImage image={image} />
