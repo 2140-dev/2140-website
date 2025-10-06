@@ -1,7 +1,7 @@
 // /sanity/structure.ts
 
 import { CogIcon, ErrorFilledIcon, HomeIcon, MenuIcon } from '@sanity/icons'
-import type { StructureResolver } from 'sanity/desk-structure'
+import { StructureResolver } from 'sanity/structure'
 
 export const structure: StructureResolver = (S) =>
   S.list()
