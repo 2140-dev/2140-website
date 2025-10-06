@@ -1,5 +1,4 @@
 .footer {
-  @include text-s;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -9,28 +8,24 @@
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+  }
 
-    .email {
-      display: flex;
-      justify-content: flex-start;
-      flex-direction: row;
-      gap: 1.5rem;
-    }
+  .link {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .icon {
+    max-width: 1.25rem;
   }
 
   .email {
     display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
     gap: 0.5rem;
-
-    span {
-      font-weight: 600;
-    }
   }
 
   .text {
-    color: rgb(94, 93, 91);
-    font-size: 0.75rem;
+    color: $gray-200;
   }
 }

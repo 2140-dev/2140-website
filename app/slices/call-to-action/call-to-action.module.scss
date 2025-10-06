@@ -20,8 +20,12 @@
 
     @include tablet {
       &.left {
-        order: -1
+        order: -1;
       }
     }
+  }
+
+  .content {
+    margin-bottom: 2.5rem;
   }
 }

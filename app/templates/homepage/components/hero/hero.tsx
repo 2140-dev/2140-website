@@ -1,40 +1,33 @@
-import { Button } from "app/shared/components/button/button";
-import { MarkdownRender } from "app/shared/components/markdown-renderer/markdown-renderer";
-import { Container } from "app/shared/layouts/container/container";
-import { getInternalLinkUrl } from "app/utils/link";
-import { HomepageQueryResultType } from "sanity/lib/results";
-import { urlForImage } from "sanity/lib/utils";
-import Image from "next/image";
-import Link from "next/link";
+import { Button } from 'app/shared/components/button/button'
+import { MarkdownRender } from 'app/shared/components/markdown-renderer/markdown-renderer'
+import { Container } from 'app/shared/layouts/container/container'
+import { getInternalLinkUrl } from 'app/utils/link'
+import { HomepageQueryResultType } from 'sanity/lib/results'
+import { urlForImage } from 'sanity/lib/utils'
+import Image from 'next/image'
+import Link from 'next/link'
 import styles from './hero.module.scss'
-import { cn } from "app/utils/classname";
+import { cn } from 'app/utils/classname'
+import classNames from 'classnames'
 
 export const Hero = ({
   title,
   excerpt,
   image,
-  link,
+  link
 }: Partial<HomepageQueryResultType>) => {
   return (
     <div className={styles.hero}>
       <Container size="lg" className={styles.container}>
-        <div className={cn([styles.child, styles.left])}>
+        <div className={classNames(styles.child, styles.left)}>
           <h1
-            className={cn([styles.title, 'under-yellow strike-yellow'])}
+            className={classNames(styles.title, 'under-yellow strike-yellow')}
           >
             <MarkdownRender>{title}</MarkdownRender>
           </h1>
-          {excerpt && (
-            <p className="text-l">
-              {excerpt}
-            </p>
-          )}
+          {excerpt && <p className="text-l">{excerpt}</p>}
           {link && (
-            <Link href={getInternalLinkUrl(link)}>
-              <Button component="span" sx={{ mt: 4 }}>
-                {link.label}
-              </Button>
-            </Link>
+            <Button href={getInternalLinkUrl(link)}>{link.label}</Button>
           )}
         </div>
         <div className={cn([styles.child, styles.right])}>
@@ -44,17 +37,17 @@ export const Hero = ({
           <Image
             width={0}
             height={0}
-            alt={image?.alt || ""}
+            alt={image?.alt || ''}
             src={urlForImage(image)?.url() as string}
             priority
             style={{
-              maxWidth: "100%",
-              width: "100%",
-              height: "auto",
+              maxWidth: '100%',
+              width: '100%',
+              height: 'auto'
             }}
           />
         </div>
       </Container>
     </div>
-  );
-};
+  )
+}

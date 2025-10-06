@@ -1,78 +1,50 @@
-import { Box, List, ListItem } from "@mui/material";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { MenuProps } from "./menu";
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { MenuProps } from './menu'
+import styles from './desktop-menu.module.scss'
+import { usePathname } from 'next/navigation'
+import classNames from 'classnames'
 
 export const DesktopMenu = ({ items }: MenuProps) => {
-  const [activeLinkKey, setActiveLinkKey] = useState<string | null>(null);
+  const [activeLinkKey, setActiveLinkKey] = useState<string | null>(null)
 
+  const pathname = usePathname()
   useEffect(() => {
-    const active = items.find((item) => {
-      return window.location.pathname === item.href;
-    });
+    const key = items.find((link) => link.href === pathname)?._key
+    setActiveLinkKey(key || null)
+  }, [pathname])
 
-    setActiveLinkKey(active?._key || null);
-  }, []);
   return (
-    <Box sx={{ display: "flex", gap: 5, justifyContent: "flex-end" }}>
-      <List
-        sx={{
-          display: "flex",
-          p: 0,
-        }}
-      >
+    <nav className={styles['desktop-menu']}>
+      <ul className={styles.list}>
         {items.map((item) => {
-          const isActive = activeLinkKey === item._key;
+          const isActive = activeLinkKey === item._key
+          const isExternalLink = item._type === 'external'
           return (
-            <ListItem
+            <li
               key={item._key}
-              sx={{
-                mb: 0,
-                py: 0.5,
-                px: 0,
-                position: "relative",
-                whiteSpace: "nowrap",
-                "&:not(:last-child)": {
-                  mr: 7,
-                },
-
-                "&::before, &::after": {
-                  content: "''",
-                  bgcolor: "primary.main",
-                  bottom: 0,
-                  width: isActive ? "50%" : 0,
-                  height: "1px",
-                  position: "absolute",
-                  transition: "all 0.2s ease-in",
-                },
-                "&::before": {
-                  right: "50%",
-                },
-                "&::after": {
-                  left: "50%",
-                },
-                "&:hover": {
-                  "&::before, &::after": {
-                    width: "50%",
-                  },
-                },
-
-                a: {
-                  textDecoration: "none",
-                },
-              }}
+              className={classNames(
+                styles.item,
+                isActive ? styles['is-active'] : '',
+                isExternalLink ? styles['is-external'] : ''
+              )}
             >
               <Link
-                target={item._type === "external" ? "_blank" : undefined}
+                className={styles.link}
+                target={item._type === 'external' ? '_blank' : undefined}
                 href={item.href}
-                onClick={() => setActiveLinkKey(item._key)}
               >
                 {item.label}
               </Link>
-            </ListItem>
-          );
+              {item._type === 'external' && (
+                <div className={styles.icon}>
+                  <img src="images/icons/external-link.svg" alt="" />
+                </div>
+              )}
+            </li>
+          )
         })}
-      </List>
-    </Box>
-  );
-};
+      </ul>
+    </nav>
+  )
+}

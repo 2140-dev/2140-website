@@ -1,1 +1,1 @@
-export const cn = (classNames: string[]) => classNames.join(' ')
+export const cn = (...classNames) => classNames.join(' ')

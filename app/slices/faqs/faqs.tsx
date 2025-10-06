@@ -5,9 +5,8 @@ import { RichTextRenderer } from "app/shared/components/rich-text-renderer/rich-
 import { Container } from "app/shared/layouts/container/container";
 import { Section } from "app/shared/layouts/section/section";
 import { AccordionItems } from "app/types/accordion";
-import { getStylishMarkdown } from "app/utils/markdown";
-import { Grid, Typography } from "@mui/material";
 import { PortableTextBlock } from "next-sanity";
+import styles from './faqs.module.scss';
 
 interface Props {
   eyebrow?: string;
@@ -17,20 +16,20 @@ interface Props {
 }
 const Faqs = ({ eyebrow, title, content, items }: Props) => {
   return (
-    <Section>
+    <Section className={styles.faqs}>
       <Container size="md">
-        <Grid container spacing={["5rem", "10rem"]}>
-          <Grid item xs={12} md={6}>
+        <div className={styles.grid}>
+          <div className={styles.content}>
             {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
-            <Typography variant="h2" sx={getStylishMarkdown("black")}>
+            <h2 className="strike-white under-white">
               <MarkdownRender>{title}</MarkdownRender>
-            </Typography>
+            </h2>
             {content && <RichTextRenderer content={content} />}
-          </Grid>
-          <Grid item xs={12} md={6}>
+          </div>
+          <div className={styles.accordion}>
             <Accordion items={items} />
-          </Grid>
-        </Grid>
+          </div>
+        </div>
       </Container>
     </Section>
   );

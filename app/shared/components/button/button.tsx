@@ -1,42 +1,65 @@
-import { Box, ButtonProps, Button as MuiButton } from "@mui/material";
-import { SystemStyleObject } from "@mui/system";
-import { ReactNode } from "react";
-import { colors } from "../../../theme/colors";
-import { buttonVariantSx, commonButtonSx } from "./button.styles";
+import { ComponentPropsWithoutRef } from 'react'
+import { colors } from '../../../theme/colors'
+import styles from './button.module.scss'
+import classNames from 'classnames'
+import Link from 'next/link'
+import { Url } from 'next/dist/shared/lib/router/router'
 
-type Props = Omit<ButtonProps, "sx" | "variant"> & {
-  children?: ReactNode;
-  sx?: SystemStyleObject;
-  variant?: "primary" | "secondary" | "donate";
-};
+type Props = Omit<ComponentPropsWithoutRef<'a'>, 'className'> & {
+  children?: string
+  variant?: 'primary' | 'secondary' | 'donate'
+  href?: Url
+}
 
 export const Button = ({
   children,
-  sx,
-  variant = "primary",
+  variant = 'primary',
+  href,
   ...rest
 }: Props) => {
-  return (
-    <MuiButton
-      sx={{ ...commonButtonSx, ...buttonVariantSx[variant], ...sx }}
-      {...rest}
-    >
+  const className = classNames(styles.button, styles[`button-${variant}`])
+
+  const Content = (
+    <>
       {children}
-      <Box component="span">
-        {variant !== "secondary" && <OutlineCircle variant={variant} />}
-      </Box>
-    </MuiButton>
-  );
-};
+      <span className={styles.icon}>
+        {['primary', 'donate'].includes(variant) && (
+          <OutlineCircle variant={variant} />
+        )}
+      </span>
+    </>
+  )
+
+  if (href) {
+    return (
+      <Link href={href} className={className} {...rest}>
+        {Content}
+      </Link>
+    )
+  }
+
+  return (
+    <button className={className} {...(rest as any)}>
+      {Content}
+    </button>
+  )
+}
 
 const strokeColor: Record<string, string> = {
   primary: colors.primary.main,
-  secondary: "transparent",
-  donate: colors.primary.main,
-};
-const OutlineCircle = ({ variant = "primary" }: Pick<Props, "variant">) => {
+  secondary: 'transparent',
+  donate: colors.primary.main
+}
+
+const OutlineCircle = ({ variant = 'primary' }: Pick<Props, 'variant'>) => {
   return (
-    <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+    <svg
+      className={styles.outline}
+      width="64"
+      height="64"
+      viewBox="0 0 64 64"
+      fill="none"
+    >
       <circle
         cx="32"
         cy="32"
@@ -44,9 +67,9 @@ const OutlineCircle = ({ variant = "primary" }: Pick<Props, "variant">) => {
         style={{
           stroke: strokeColor[variant],
           strokeWidth: 1,
-          strokeDasharray: 170,
+          strokeDasharray: 170
         }}
       />
     </svg>
-  );
-};
+  )
+}

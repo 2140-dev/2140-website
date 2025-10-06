@@ -1,97 +1,49 @@
-import { SanityImage } from "app/shared/components/sanity-image/sanity-image";
-import { colors } from "app/theme/colors";
-import { TeamResultType } from "sanity/lib/results";
-import { Box, List, ListItem, Typography } from "@mui/material";
-import Link from "next/link";
-
-const SIZE = {
-  xs: 50,
-  md: 80,
-};
+import { SanityImage } from 'app/shared/components/sanity-image/sanity-image'
+import { colors } from 'app/theme/colors'
+import { TeamResultType } from 'sanity/lib/results'
+import Link from 'next/link'
+import styles from './team-member-teaser.module.scss'
+import classNames from 'classnames'
 
 interface Props {
-  team: Omit<TeamResultType, "bio">;
+  team: Omit<TeamResultType, 'bio'>
 }
 export const TeamMemberTeaser = ({ team }: Props) => {
   return (
-    <Box
-      sx={{
-        alignItems: "center",
-        background: colors.yellow[200],
-        borderRadius: SIZE,
-        display: "flex",
-        gap: 3,
-        py: 3,
-        px: [3, 4],
-      }}
-    >
-      <Box
-        sx={{
-          alignItems: "center",
-          borderRadius: SIZE,
-          display: "flex",
-          height: SIZE,
-          justifyContent: "center",
-          m: 1,
-          maxWidth: SIZE,
-          position: "relative",
-        }}
-      >
-        <Box
-          sx={{
-            position: "absolute",
-            svg: {
-              height: {
-                xs: 70,
-                md: 110,
-              },
-              width: {
-                xs: 70,
-                md: 110,
-              },
-            },
-          }}
-        >
+    <div className={styles.teaser}>
+      <div className={styles['image-wrapper']}>
+        <div className={styles.outline}>
           <OutlineCircle />
-        </Box>
-        <Box
-          sx={{
-            width: SIZE.md,
-            height: SIZE.md,
-            overflow: "hidden",
-            borderRadius: SIZE.md,
-          }}
-        >
+        </div>
+        <div className={styles.image}>
           <SanityImage image={team.picture} />
-        </Box>
-      </Box>
-      <Box>
-        <Typography variant="h6" mb={0.5} textAlign="left">
-          {team.name}
-        </Typography>
-        <Typography variant="body2">{team.role}</Typography>
+        </div>
+      </div>
+      <div className={styles.content}>
+        <p className={styles.name}>{team.name}</p>
+        <span className={classNames('text-s', styles.role)}>{team.role}</span>
         {(team.github || team.x) && (
-          <List sx={{ display: "flex", gap: 2 }}>
+          <ul className={styles.social}>
             {team.github && (
-              <ListItem sx={{ p: 0, width: 24 }}>
+              <li>
                 <Link target="_blank" href={team.github}>
                   <img src="images/icons/github.svg" alt="Github icon" />
                 </Link>
-              </ListItem>
+              </li>
             )}
             {team.x && (
-              <ListItem sx={{ p: 0, width: 24 }}>
+              <li>
                 <Link target="_blank" href={team.x}>
                   <img src="images/icons/twitter.svg" alt="X icon" />
                 </Link>
-              </ListItem>
+              </li>
             )}
-          </List>
+          </ul>
         )}
-      </Box>
-    </Box>
-  );
-};
+      </div>
+    </div>
+  )
+}
 
 const OutlineCircle = () => {
   return (
@@ -103,9 +55,9 @@ const OutlineCircle = () => {
         style={{
           stroke: colors.primary.white,
           strokeWidth: 1,
-          strokeDasharray: 280,
+          strokeDasharray: 280
         }}
       />
     </svg>
-  );
-};
+  )
+}

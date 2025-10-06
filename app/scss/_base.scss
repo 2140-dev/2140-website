@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   color: $dark-gray;
   overflow-x: hidden;
@@ -25,27 +25,27 @@ h6 {
 }
 
 h1 {
-  @include text-4xl
+  @include text-4xl;
 }
 
 h2 {
-  @include text-3xl
+  @include text-3xl;
 }
 
 h3 {
-  @include text-3xl
+  @include text-2xl;
 }
 
 h4 {
-  @include text-2xl
+  @include text-xl;
 }
 
 h5 {
-  @include text-xl
+  @include text-l;
 }
 
 h6 {
-  @include text-l
+  @include text-m;
 }
 
 p {
@@ -59,5 +59,23 @@ a {
 
   &:hover {
     color: $black;
+  }
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+}
+
+ul,
+ol {
+  text-align: left;
+
+  li {
+    line-height: 1.45;
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
   }
 }
