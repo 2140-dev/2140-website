@@ -2,7 +2,6 @@
 import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
 import { Container } from 'app/shared/layouts/container/container'
 import { SettingsQueryResultType } from '@/sanity/lib/results'
-import { Box, Typography } from '@mui/material'
 import Link from 'next/link'
 import styles from './footer.module.scss'
 import classNames from 'classnames'
