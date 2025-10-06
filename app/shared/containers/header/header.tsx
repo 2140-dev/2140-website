@@ -2,7 +2,7 @@
 
 import { Menu } from 'app/shared/containers/header/components/menu/menu'
 import { Container } from 'app/shared/layouts/container/container'
-import { ImageResultType, LinkResultType } from 'sanity/lib/results'
+import { ImageResultType, LinkResultType } from '@/sanity/lib/results'
 import debounce from 'lodash/debounce'
 import { useEffect, useRef, useState } from 'react'
 import { Logo } from './components/logo/logo'

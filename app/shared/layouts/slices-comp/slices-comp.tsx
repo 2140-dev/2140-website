@@ -1,4 +1,4 @@
-import { PageQueryResultType } from "sanity/lib/results.js";
+import { PageQueryResultType } from '@/sanity/lib/results.js";
 import dynamic from "next/dynamic";
 import { Fragment, Suspense } from "react";
 

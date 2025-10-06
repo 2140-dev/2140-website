@@ -8,9 +8,9 @@ import { draftMode } from 'next/headers'
 import { Footer } from 'app/shared/containers/footer/footer'
 import { Header } from 'app/shared/containers/header/header'
 import { SanityVisualEditing } from 'app/shared/components/sanity-visual-editing/sanity-visual-editing'
-import { client } from 'sanity/lib/client'
-import { fetchSettings, fetchSettingsAndMenu } from 'sanity/lib/queries'
-import { resolveOpenGraphImage } from 'sanity/lib/utils'
+import { client } from '@/sanity/lib/client'
+import { fetchSettings, fetchSettingsAndMenu } from '@/sanity/lib/queries'
+import { resolveOpenGraphImage } from '@/sanity/lib/utils'
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await fetchSettings(client)

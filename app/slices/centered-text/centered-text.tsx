@@ -7,7 +7,7 @@ import { Container } from 'app/shared/layouts/container/container'
 import { Section } from 'app/shared/layouts/section/section'
 import { Image as ImageType } from 'app/types/image'
 import { getInternalLinkUrl } from 'app/utils/link'
-import { InternalResultType } from 'sanity/lib/results'
+import { InternalResultType } from '@/sanity/lib/results'
 import { PortableTextBlock } from 'next-sanity'
 import styles from './centered-text.module.scss'
 

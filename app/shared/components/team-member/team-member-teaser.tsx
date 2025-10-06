@@ -1,5 +1,5 @@
 import { SanityImage } from 'app/shared/components/sanity-image/sanity-image'
-import { TeamResultType } from 'sanity/lib/results'
+import { TeamResultType } from '@/sanity/lib/results'
 import Link from 'next/link'
 import styles from './team-member-teaser.module.scss'
 import classNames from 'classnames'

@@ -4,7 +4,7 @@ import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-
 import { TeamMember } from 'app/shared/components/team-member/team-member'
 import { Container } from 'app/shared/layouts/container/container'
 import { Section } from 'app/shared/layouts/section/section'
-import { TeamResultType } from 'sanity/lib/results'
+import { TeamResultType } from '@/sanity/lib/results'
 import { PortableTextBlock } from 'next-sanity'
 import styles from './team-members.module.scss'
 import classNames from 'classnames'

@@ -4,7 +4,7 @@ import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-
 import { Container } from 'app/shared/layouts/container/container'
 import { Section } from 'app/shared/layouts/section/section'
 import { Image } from 'app/types/image'
-import { imageBuilder } from 'sanity/lib/utils'
+import { imageBuilder } from '@/sanity/lib/utils'
 import { PortableTextBlock } from 'next-sanity'
 import styles from './donors.module.scss'
 

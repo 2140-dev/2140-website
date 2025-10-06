@@ -1,6 +1,6 @@
 import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
 import { SanityImage } from 'app/shared/components/sanity-image/sanity-image'
-import { TeamResultType } from 'sanity/lib/results'
+import { TeamResultType } from '@/sanity/lib/results'
 import Link from 'next/link'
 import styles from './team-member-full.module.scss'
 import classNames from 'classnames'

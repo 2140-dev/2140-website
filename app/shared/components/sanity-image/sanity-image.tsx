@@ -1,5 +1,5 @@
 import { Image as ImageType } from 'app/types/image'
-import { urlForImage } from 'sanity/lib/utils'
+import { urlForImage } from '@/sanity/lib/utils'
 import Image from 'next/image'
 
 interface Props {
