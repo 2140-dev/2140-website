@@ -9,13 +9,12 @@ import { Footer } from 'app/shared/containers/footer/footer'
 import { Header } from 'app/shared/containers/header/header'
 import { SanityVisualEditing } from 'app/shared/components/sanity-visual-editing/sanity-visual-editing'
 import { client } from 'sanity/lib/client'
-import * as demo from 'sanity/lib/demo'
 import { fetchSettings, fetchSettingsAndMenu } from 'sanity/lib/queries'
 import { resolveOpenGraphImage } from 'sanity/lib/utils'
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await fetchSettings(client)
-  const title = settings?.title || demo.title
+  const title = settings?.title || '2140'
   const ogImage = resolveOpenGraphImage(settings?.ogImage)
 
   return {
