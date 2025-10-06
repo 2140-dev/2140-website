@@ -5,9 +5,7 @@ import { getInternalLinkUrl } from 'app/utils/link'
 import { HomepageQueryResultType } from '@/sanity/lib/results'
 import { urlForImage } from '@/sanity/lib/utils'
 import Image from 'next/image'
-import Link from 'next/link'
 import styles from './hero.module.scss'
-import { cn } from 'app/utils/classname'
 import classNames from 'classnames'
 
 export const Hero = ({
@@ -30,7 +28,7 @@ export const Hero = ({
             <Button href={getInternalLinkUrl(link)}>{link.label}</Button>
           )}
         </div>
-        <div className={cn([styles.child, styles.right])}>
+        <div className={classNames(styles.child, styles.right)}>
           <div className={styles.background}>
             <img src="images/background.svg" alt="" />
           </div>

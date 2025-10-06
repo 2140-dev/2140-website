@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './container.module.scss'
-import { cn } from 'app/utils/classname'
 import classNames from 'classnames'
 
 const WIDTH: Record<'lg' | 'md' | 'sm' | 'xs', number> = {

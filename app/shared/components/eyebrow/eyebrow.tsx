@@ -1,4 +1,3 @@
-import { cn } from 'app/utils/classname'
 import { ReactNode } from 'react'
 import styles from './eyebrow.module.scss'
 import classNames from 'classnames'

@@ -8,7 +8,6 @@ import {
 } from 'next-sanity'
 import { Eyebrow } from '../eyebrow/eyebrow'
 import styles from './rich-text-renderer.module.scss'
-import { cn } from 'app/utils/classname'
 import classNames from 'classnames'
 const components: Partial<PortableTextReactComponents> = {
   block: {

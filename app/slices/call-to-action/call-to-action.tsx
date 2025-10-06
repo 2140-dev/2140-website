@@ -9,7 +9,6 @@ import { InternalResultType } from '@/sanity/lib/results'
 import { urlForImage } from '@/sanity/lib/utils'
 import Image from 'next/image'
 import styles from './call-to-action.module.scss'
-import { cn } from 'app/utils/classname'
 import classNames from 'classnames'
 
 interface Props {
