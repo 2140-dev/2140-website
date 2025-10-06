@@ -1,5 +1,5 @@
 import styles from './not-found-template.module.scss'
-import { PageNotFoundQueryResultType } from '@/sanity/lib/results";
+import { PageNotFoundQueryResultType } from '@/sanity/lib/results';
 import { Container } from "app/shared/layouts/container/container";
 import { Eyebrow } from "app/shared/components/eyebrow/eyebrow";
 import { RichTextRenderer } from "app/shared/components/rich-text-renderer/rich-text-renderer";
