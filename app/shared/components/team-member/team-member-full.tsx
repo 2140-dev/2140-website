@@ -1,6 +1,5 @@
 import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
 import { SanityImage } from 'app/shared/components/sanity-image/sanity-image'
-import { colors } from 'app/theme/colors'
 import { TeamResultType } from 'sanity/lib/results'
 import Link from 'next/link'
 import styles from './team-member-full.module.scss'
@@ -51,7 +50,7 @@ const OutlineCircle = () => {
         cy="65"
         r="54.5"
         style={{
-          stroke: colors.yellow[200],
+          stroke: '#FBCC31',
           strokeWidth: 1,
           strokeDasharray: 280
         }}

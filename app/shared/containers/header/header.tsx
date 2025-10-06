@@ -2,7 +2,6 @@
 
 import { Menu } from 'app/shared/containers/header/components/menu/menu'
 import { Container } from 'app/shared/layouts/container/container'
-import { colors } from 'app/theme/colors'
 import { ImageResultType, LinkResultType } from 'sanity/lib/results'
 import debounce from 'lodash/debounce'
 import { useEffect, useRef, useState } from 'react'
@@ -51,7 +50,7 @@ export const Header = ({ logo, items }: Props) => {
         if (window.scrollY > height) {
           div.style.position = 'fixed'
           div.style.transform = 'translateY(-100%)'
-          div.style.background = colors.primary.white
+          div.style.background = '#fff'
 
           setTimeout(() => {
             div.style.transition = 'all 0.4s cubic-bezier(0.83, 0, 0.17, 1)'

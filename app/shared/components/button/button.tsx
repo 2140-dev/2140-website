@@ -1,5 +1,4 @@
 import { ComponentPropsWithoutRef } from 'react'
-import { colors } from '../../../theme/colors'
 import styles from './button.module.scss'
 import classNames from 'classnames'
 import Link from 'next/link'
@@ -46,9 +45,9 @@ export const Button = ({
 }
 
 const strokeColor: Record<string, string> = {
-  primary: colors.primary.main,
+  primary: '#212121',
   secondary: 'transparent',
-  donate: colors.primary.main
+  donate: '#212121'
 }
 
 const OutlineCircle = ({ variant = 'primary' }: Pick<Props, 'variant'>) => {
