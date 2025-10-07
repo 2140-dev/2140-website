@@ -1,14 +1,15 @@
+import type { PortableTextBlock } from 'sanity'
 import Link from 'next/link'
 
 import React from 'react'
-import {
-  PortableText,
-  PortableTextBlock,
-  PortableTextReactComponents
-} from 'next-sanity'
 import { Eyebrow } from '../eyebrow/eyebrow'
 import styles from './rich-text-renderer.module.scss'
 import classNames from 'classnames'
+import {
+  PortableText,
+  // PortableTextBlock,
+  PortableTextReactComponents
+} from 'next-sanity'
 const components: Partial<PortableTextReactComponents> = {
   block: {
     eyebrow: ({ children }) => <Eyebrow color="blue" text={children} />,
@@ -20,7 +21,14 @@ const components: Partial<PortableTextReactComponents> = {
     h5: ({ children }) => <h5>{children}</h5>,
     normal: ({ children }) => <p>{children}</p>
   },
-  list: {},
+  list: {
+    bullet: ({ children }) => {
+      return <ul>{children}</ul>
+    },
+    number: ({ children }) => {
+      return <ol>{children}</ol>
+    }
+  },
   marks: {
     strong: ({ children }) => <b>{children}</b>,
     em: ({ children }) => <i>{children}</i>,
@@ -57,7 +65,7 @@ const components: Partial<PortableTextReactComponents> = {
 }
 
 interface Props {
-  content: PortableTextBlock
+  content: PortableTextBlock[]
   className?: string
 }
 export const RichTextRenderer = ({ content, className = '' }: Props) => {

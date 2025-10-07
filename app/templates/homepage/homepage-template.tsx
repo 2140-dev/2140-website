@@ -1,18 +1,12 @@
 import { SlicesComp } from 'app/shared/layouts/slices-comp/slices-comp'
 import { Hero } from './components/hero/hero'
-import { HomepageQueryResultType } from '@/sanity/lib/results'
+import { HomepageQueryResult } from 'sanity.types'
 
-export const HomepageTemplate = ({
-  title,
-  excerpt,
-  image,
-  link,
-  slices
-}: HomepageQueryResultType) => {
-  const heroProps = { title, excerpt, image, link }
+export const HomepageTemplate = ({ ...props }: HomepageQueryResult) => {
+  const { title, excerpt, image, link, slices } = props
   return (
     <>
-      <Hero {...heroProps} />
+      <Hero title={title} excerpt={excerpt} image={image} link={link} />
       {slices && <SlicesComp slices={slices} />}
     </>
   )

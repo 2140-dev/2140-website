@@ -19,11 +19,11 @@ export type Team = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  name?: string
-  role?: string
+  name: string
+  role: string
   github?: string
   x?: string
-  bio?: Array<{
+  bio: Array<{
     children?: Array<{
       marks?: Array<string>
       text?: string
@@ -41,7 +41,7 @@ export type Team = {
     _type: 'block'
     _key: string
   }>
-  picture?: {
+  picture: {
     asset?: {
       _ref: string
       _type: 'reference'
@@ -63,7 +63,7 @@ export type NotFound = {
   _updatedAt: string
   _rev: string
   eyebrow?: string
-  title?: string
+  title: string
   content?: Array<{
     children?: Array<{
       marks?: Array<string>
@@ -97,10 +97,10 @@ export type Homepage = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
+  title: string
   excerpt?: string
   link?: Internal
-  image?: {
+  image: {
     asset?: {
       _ref: string
       _type: 'reference'
@@ -156,8 +156,8 @@ export type Settings = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
-  logo?: {
+  title: string
+  logo: {
     asset?: {
       _ref: string
       _type: 'reference'
@@ -170,8 +170,8 @@ export type Settings = {
     alt?: string
     _type: 'image'
   }
-  donation?: string
-  description?: string
+  donation: string
+  description: string
   ogImage?: {
     asset?: {
       _ref: string
@@ -185,9 +185,9 @@ export type Settings = {
     alt?: string
     _type: 'image'
   }
-  email?: string
+  email: string
   gpg?: string
-  disclaimer?: Array<{
+  disclaimer: Array<{
     children?: Array<{
       marks?: Array<string>
       text?: string
@@ -244,7 +244,7 @@ export type TextBlockWithImage = {
         _key: string
       }
   >
-  image?: {
+  image: {
     asset?: {
       _ref: string
       _type: 'reference'
@@ -265,7 +265,7 @@ export type TeamMembers = {
   title?: string
   summary?: string
   variant?: 'teaser' | 'full'
-  team?: Array<{
+  team: Array<{
     _ref: string
     _type: 'reference'
     _weak?: boolean
@@ -311,7 +311,7 @@ export type TeamMembers = {
 export type Faqs = {
   _type: 'faqs'
   eyebrow?: string
-  title?: string
+  title: string
   content?: Array<{
     children?: Array<{
       marks?: Array<string>
@@ -330,9 +330,9 @@ export type Faqs = {
     _type: 'block'
     _key: string
   }>
-  items?: Array<{
-    title?: string
-    content?: Array<
+  items: Array<{
+    title: string
+    content: Array<
       | {
           children?: Array<{
             marks?: Array<string>
@@ -380,7 +380,7 @@ export type Faqs = {
 export type Donors = {
   _type: 'donors'
   eyebrow?: string
-  title?: string
+  title: string
   content?: Array<{
     children?: Array<{
       marks?: Array<string>
@@ -399,7 +399,7 @@ export type Donors = {
     _type: 'block'
     _key: string
   }>
-  logos?: Array<{
+  logos: Array<{
     asset?: {
       _ref: string
       _type: 'reference'
@@ -419,7 +419,7 @@ export type CenteredText = {
   _type: 'centered-text'
   layout?: 'above' | 'below'
   eyebrow?: string
-  title?: string
+  title: string
   content?: Array<{
     children?: Array<{
       marks?: Array<string>
@@ -458,10 +458,10 @@ export type CallToAction = {
   _type: 'call-to-action'
   layout?: 'left' | 'right'
   eyebrow?: string
-  title?: string
+  title: string
   content?: string
-  link?: Internal
-  image?: {
+  link: Internal
+  image: {
     asset?: {
       _ref: string
       _type: 'reference'
@@ -539,8 +539,8 @@ export type Link = {
 
 export type External = {
   _type: 'external'
-  url?: string
-  label?: string
+  url: string
+  label: string
 }
 
 export type Internal = {
@@ -560,8 +560,8 @@ export type Page = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
-  slug?: Slug
+  title: string
+  slug: Slug
   excerpt?: string
   slices?: Array<
     | ({
@@ -606,25 +606,25 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: 'sanity.imageDimensions'
-  height?: number
-  width?: number
-  aspectRatio?: number
+  height: number
+  width: number
+  aspectRatio: number
 }
 
 export type SanityImageHotspot = {
   _type: 'sanity.imageHotspot'
-  x?: number
-  y?: number
-  height?: number
-  width?: number
+  x: number
+  y: number
+  height: number
+  width: number
 }
 
 export type SanityImageCrop = {
   _type: 'sanity.imageCrop'
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
+  top: number
+  bottom: number
+  left: number
+  right: number
 }
 
 export type SanityFileAsset = {
@@ -692,7 +692,7 @@ export type Geopoint = {
 
 export type Slug = {
   _type: 'slug'
-  current?: string
+  current: string
   source?: string
 }
 

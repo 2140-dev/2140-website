@@ -1099,7 +1099,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "email": {
         "type": "objectAttribute",

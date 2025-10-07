@@ -1,16 +1,13 @@
 import styles from './not-found-template.module.scss'
-import { PageNotFoundQueryResultType } from '@/sanity/lib/results'
 import { Container } from 'app/shared/layouts/container/container'
 import { Eyebrow } from 'app/shared/components/eyebrow/eyebrow'
 import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
 import { resolveInternalOrExternalLink } from 'app/utils/link'
 import { Button } from 'app/shared/components/button/button'
-export const NotFoundTemplate = ({
-  eyebrow,
-  title,
-  content,
-  items
-}: PageNotFoundQueryResultType) => {
+import { PageNotFoundQueryResult } from 'sanity.types'
+
+export const NotFoundTemplate = ({ ...props }: PageNotFoundQueryResult) => {
+  const { eyebrow, title, content, items } = props
   return (
     <div className={styles['not-found']}>
       <Container size="sm">

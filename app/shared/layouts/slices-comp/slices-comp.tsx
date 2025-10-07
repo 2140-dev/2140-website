@@ -1,4 +1,3 @@
-import { PageQueryResultType } from '@/sanity/lib/results'
 import dynamic from 'next/dynamic'
 import { Fragment, Suspense } from 'react'
 
@@ -19,7 +18,7 @@ const mapSliceTypeToComponent = {
   )
 }
 interface Props {
-  slices: PageQueryResultType['slices']
+  slices: any[]
 }
 export const SlicesComp = ({ slices }: Props) => {
   return slices?.map((slice, i) => {
@@ -29,7 +28,7 @@ export const SlicesComp = ({ slices }: Props) => {
       // const sliceProps = slicesPropsPerType?.[slice._type] || {};
       const sliceProps = slice
       return (
-        <Suspense key={slice._key || i} fallback={null}>
+        <Suspense key={slice._key} fallback={null}>
           <Component
             {...sliceProps}
             // prevSliceType={i && _slices[i - 1]._type}

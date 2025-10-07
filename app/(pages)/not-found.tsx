@@ -1,9 +1,9 @@
-import { NotFoundTemplate } from "app/templates/not-found/not-found-template";
-import { client } from '@/sanity/lib/client';
-import { fetchPageNotFoundProps } from '@/sanity/lib/queries';
+import { NotFoundTemplate } from 'app/templates/not-found/not-found-template'
+import { client } from '@/sanity/lib/client'
+import { getPageNotFoundProps } from '@/sanity/lib/queries'
 
 export default async function NotFound() {
-  const pageProps = await fetchPageNotFoundProps(client);
+  const props = await getPageNotFoundProps(client)
 
-  return <NotFoundTemplate {...pageProps} />;
+  return <NotFoundTemplate {...props} />
 }
