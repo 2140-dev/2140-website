@@ -1,21 +1,24 @@
-import { Image } from "@/app/types/image";
-// import "./styles.scss";
-import { CoverImage } from "@/app/shared/components/cover-image/cover-image";
-import { Typography } from "@mui/material";
+import { Image } from 'app/types/image'
+import { CoverImage } from 'app/shared/components/cover-image/cover-image'
+import styles from './post-title.module.scss'
+import classNames from 'classnames'
 
 interface Props {
-  title: string;
-  excerpt?: string | null;
-  image?: Image | null;
-  date?: string | null;
+  title: string
+  excerpt?: string | null
+  image?: Image | null
+  date?: string | null
 }
 export const PostTitle = ({ title, excerpt, image, date }: Props) => {
   return (
-    <div className="container-l text-center page-title">
+    <div
+      className={classNames(
+        'container-l text-center page-title',
+        styles['post-title']
+      )}
+    >
       <div className="container">
-        <Typography variant="h1" mb={4}>
-          {title}
-        </Typography>
+        <h1 className={styles.title}>{title}</h1>
         {excerpt && <p className="excerpt">{excerpt}</p>}
         {date && (
           <p className="date mt-2">
@@ -29,5 +32,5 @@ export const PostTitle = ({ title, excerpt, image, date }: Props) => {
       </div>
       {image && <CoverImage image={image} />}
     </div>
-  );
-};
+  )
+}

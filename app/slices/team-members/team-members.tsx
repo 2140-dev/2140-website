@@ -1,65 +1,60 @@
-import { Eyebrow } from "@/app/shared/components/eyebrow/eyebrow";
-import { MarkdownRender } from "@/app/shared/components/markdown-renderer/markdown-renderer";
-import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
-import { TeamMember } from "@/app/shared/components/team-member/team-member";
-import { Container } from "@/app/shared/layouts/container/container";
-import { Section } from "@/app/shared/layouts/section/section";
-import { getStylishMarkdown } from "@/app/utils/markdown";
-import { TeamResultType } from "@/sanity/lib/results";
-import { Grid, Typography } from "@mui/material";
-import { PortableTextBlock } from "next-sanity";
-import { ComponentProps } from "react";
+import { Eyebrow } from 'app/shared/components/eyebrow/eyebrow'
+import { MarkdownRender } from 'app/shared/components/markdown-renderer/markdown-renderer'
+import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
+import { TeamMember } from 'app/shared/components/team-member/team-member'
+import { Container } from 'app/shared/layouts/container/container'
+import { Section } from 'app/shared/layouts/section/section'
+import { TeamResultType } from '@/sanity/lib/results'
+import { PortableTextBlock } from 'next-sanity'
+import styles from './team-members.module.scss'
+import classNames from 'classnames'
 
-const commonContainerProps: Partial<ComponentProps<typeof Container>> = {
-  size: "sm",
-  sx: {
-    textAlign: "center",
-  },
-};
 interface Props {
-  eyebrow?: string;
-  variant?: "teaser" | "full";
-  title: string;
-  summary?: string;
-  team: TeamResultType[];
-  additional?: PortableTextBlock;
+  eyebrow?: string
+  variant?: 'teaser' | 'full'
+  title: string
+  summary?: string
+  team: TeamResultType[]
+  additional?: PortableTextBlock
 }
 const TeamMembers = ({
   eyebrow,
-  variant,
+  variant = 'full',
   title,
   summary,
   team,
-  additional,
+  additional
 }: Props) => {
   return (
-    <Section>
-      <Container {...commonContainerProps}>
+    <Section className={styles['team-members']}>
+      <Container size="sm" className={styles.header}>
         {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
         {title && (
-          <Typography variant="h2" sx={getStylishMarkdown("white")}>
+          <h2 className="strike-black under-black">
             <MarkdownRender>{title}</MarkdownRender>
-          </Typography>
+          </h2>
         )}
-        {summary && <Typography variant="body1">{summary}</Typography>}
+        {summary && <p>{summary}</p>}
       </Container>
-      <Container size="md" sx={{ mt: 10 }}>
-        <Grid container spacing={[5, 8]} justifyContent="center">
-          {team.map((team, index) => (
-            <TeamMember key={team._id} team={team} variant={variant} />
-          ))}
-        </Grid>
+      <Container size="md" className={classNames(styles.grid, styles[variant])}>
+        {team.map((member, index) => (
+          <TeamMember
+            key={`${member._id}-${index}`}
+            team={member}
+            variant={variant}
+          />
+        ))}
       </Container>
       {additional && (
         <Container
-          {...commonContainerProps}
-          sx={{ textAlign: "center", mt: 15 }}
+          size="sm"
+          className={classNames(styles.header, styles.additional)}
         >
           <RichTextRenderer content={additional} />
         </Container>
       )}
     </Section>
-  );
-};
+  )
+}
 
-export default TeamMembers;
+export default TeamMembers

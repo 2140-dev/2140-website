@@ -1,0 +1,49 @@
+.full {
+  max-width: 350px;
+
+  .image-wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1.25rem;
+    padding-top: 0.75rem;
+
+    .outline {
+      position: absolute;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+      border-radius: 100%;
+    }
+  }
+
+  .header {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+
+    .name {
+      margin-bottom: 0.125rem;
+    }
+
+    .social {
+      display: flex;
+      gap: 0.5rem;
+
+      .icon {
+        width: 1.25rem;
+      }
+    }
+  }
+
+  .role {
+    margin-bottom: 0.75rem;
+    text-align: center;
+    color: $gray-200;
+  }
+}

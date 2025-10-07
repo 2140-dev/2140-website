@@ -1,8 +1,8 @@
 "use client";
-import { styled } from "@mui/material";
 import pickBy from "lodash/pickBy";
 import Markdown from "markdown-to-jsx";
 import React, { ComponentType, createElement } from "react";
+import styles from "./markdown-renderer.module.scss";
 
 interface ComponentsOverrides {
   [name: string]: ComponentType<any>;
@@ -37,19 +37,6 @@ interface Props {
   children?: string | string[];
 }
 
-const StyledMarkdown = styled(Markdown)({
-  paddingLeft: "0",
-  counterReset: "item",
-
-  "& li": {
-    position: "relative",
-    flexDirection: "row",
-  },
-  "& li p": {
-    display: "inline",
-  },
-});
-
 export const MarkdownRender = ({ children, components }: Props) => {
   if (!children) {
     return null;
@@ -57,14 +44,16 @@ export const MarkdownRender = ({ children, components }: Props) => {
 
   const str = Array.isArray(children) ? children.join("") : children;
   return (
-    <StyledMarkdown
-      options={{
-        createElement: executableSafeCreateElement,
-        overrides: { ...components, script: () => null },
-        namedCodesToUnicode,
-      }}
-    >
-      {str}
-    </StyledMarkdown>
+    <div className={styles.markdown}>
+      <Markdown
+        options={{
+          createElement: executableSafeCreateElement,
+          overrides: { ...components, script: () => null },
+          namedCodesToUnicode,
+        }}
+      >
+        {str}
+      </Markdown>
+    </div>
   );
 };

@@ -1,6 +1,6 @@
-import { ResolvedLink } from "@/app/types/resolved-link";
-import { resolveInternalOrExternalLink } from "@/app/utils/link";
-import { LinkResultType } from "@/sanity/lib/results";
+import { ResolvedLink } from "app/types/resolved-link";
+import { resolveInternalOrExternalLink } from "app/utils/link";
+import { LinkResultType } from '@/sanity/lib/results';
 import { DesktopMenu } from "./desktop-menu";
 import { MobileMenu } from "./mobile-menu";
 

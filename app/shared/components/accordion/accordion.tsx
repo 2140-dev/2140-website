@@ -1,77 +1,52 @@
-"use client";
-import { CaretIcon } from "@/app/icons/caret";
-import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
-import { AccordionItems } from "@/app/types/accordion";
-import {
-  AccordionDetails,
-  AccordionSummary,
-  Accordion as MuiAccordion,
-  Typography,
-} from "@mui/material";
-import React, { useState } from "react";
+'use client'
+// import { CaretIcon } from 'app/icons/caret'
+import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
+import { AccordionItems } from 'app/types/accordion'
+import React, { useState } from 'react'
+import styles from './accordion.module.scss'
+import classNames from 'classnames'
 
 interface Props {
-  items: AccordionItems;
+  items: AccordionItems
 }
 export const Accordion = ({ items }: Props) => {
-  const [expanded, setExpanded] = useState<string | false>(false);
+  const [expanded, setExpanded] = useState<string | false>(false)
 
-  const onChange =
-    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false);
-    };
+  const handleToggle = (panel: string) => () => {
+    setExpanded(expanded === panel ? false : panel)
+  }
 
   return (
-    <>
+    <div className={styles.accordionWrapper}>
       {items.map((item) => (
-        <MuiAccordion
+        <div
           key={item._key}
-          expanded={expanded === item._key}
-          onChange={onChange(item._key)}
-          sx={{
-            boxShadow: "none",
-            border: `solid 1px rgba(0, 0, 0, 0.08)`,
-            borderRadius: "1rem !important",
-            m: 0,
-            p: 0,
-            my: "0.75rem !important",
-            transition: "all 0.4s ease-in",
-            overflow: "hidden",
-            "&:hover": {
-              backgroundColor: "yellow.50",
-            },
-            "&::before": {
-              display: "none",
-            },
-          }}
+          className={classNames(
+            styles.accordion,
+            expanded === item._key ? styles.expanded : ''
+          )}
         >
-          <AccordionSummary
+          <button
             id={item._key}
-            aria-controls={item._key}
-            expandIcon={<CaretIcon sx={{ color: "primary.main" }} />}
-            sx={{
-              m: "0 !important",
-              p: "1.5rem !important",
-              ".MuiAccordionSummary-content": {
-                m: "0 !important",
-                pr: "1rem !important",
-              },
-              "&.Mui-expanded": {
-                bgcolor: "yellow.50",
-              },
-            }}
+            aria-controls={`panel-${item._key}`}
+            aria-expanded={expanded === item._key}
+            onClick={handleToggle(item._key)}
+            className={styles.summary}
           >
-            <Typography variant="h5" sx={{ mb: 0 }}>
-              {item.title}
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails
-            sx={{ p: 2.5, pt: 0, backgroundColor: "yellow.50" }}
+            <h5 className={styles.title}>{item.title}</h5>
+            <span className={styles.icon}>
+              {/* <CaretIcon color={colors.primary.main} /> */}
+            </span>
+          </button>
+          <div
+            id={`panel-${item._key}`}
+            className={styles.details}
+            hidden={expanded !== item._key}
           >
             <RichTextRenderer content={item.content} />
-          </AccordionDetails>
-        </MuiAccordion>
+          </div>
+        </div>
       ))}
-    </>
-  );
-};
+    </div>
+  )
+}

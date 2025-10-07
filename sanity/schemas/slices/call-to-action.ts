@@ -1,79 +1,79 @@
-import { stripHTMLMarkup } from "@/app/utils/markdown";
-import { BoltIcon } from "@sanity/icons";
-import { defineField, defineType } from "sanity";
+import { BoltIcon } from '@sanity/icons'
+import { defineField, defineType } from 'sanity'
+import { stripHTMLMarkup } from '@/sanity/utils/markdown'
 
 export default defineType({
-  title: "Call to action",
-  name: "call-to-action",
+  title: 'Call to action',
+  name: 'call-to-action',
   icon: BoltIcon,
-  type: "object",
+  type: 'object',
   fields: [
     defineField({
-      name: "layout",
-      type: "string",
+      name: 'layout',
+      type: 'string',
       options: {
         list: [
-          { title: "Image on the left", value: "left" },
-          { title: "Image on the right", value: "right" },
+          { title: 'Image on the left', value: 'left' },
+          { title: 'Image on the right', value: 'right' }
         ],
-        layout: "radio",
-        direction: "horizontal",
+        layout: 'radio',
+        direction: 'horizontal'
       },
-      initialValue: "left",
+      initialValue: 'left'
     }),
     defineField({
-      title: "Eyebrow",
-      name: "eyebrow",
-      type: "string",
+      title: 'Eyebrow',
+      name: 'eyebrow',
+      type: 'string'
     }),
     defineField({
-      name: "title",
-      title: "Title",
-      type: "string",
-      validation: (rule) => rule.required(),
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      validation: (rule) => rule.required()
     }),
     defineField({
-      title: "Content",
-      name: "content",
-      type: "text",
+      title: 'Content',
+      name: 'content',
+      type: 'text'
     }),
     defineField({
-      name: "link",
-      title: "Link",
-      type: "internal",
-      validation: (rule) => rule.required(),
+      name: 'link',
+      title: 'Link',
+      type: 'internal',
+      validation: (rule) => rule.required()
     }),
     defineField({
-      name: "image",
-      type: "image",
+      name: 'image',
+      type: 'image',
       fields: [
         {
-          name: "alt",
-          type: "string",
-          title: "Alternative text",
-          description: "Important for SEO and accessibility.",
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description: 'Important for SEO and accessibility.',
           validation: (rule) =>
             rule.custom((alt, context) => {
-              const hasImage = (context.parent as any)?.asset?._ref;
+              const hasImage = (context.parent as any)?.asset?._ref
               if (hasImage && !alt) {
-                return "Required";
+                return 'Required'
               }
-              return true;
-            }),
-        },
+              return true
+            })
+        }
       ],
-      validation: (rule) => rule.required(),
-    }),
+      validation: (rule) => rule.required()
+    })
   ],
   preview: {
     select: {
-      title: "title",
+      title: 'title'
     },
     prepare({ title }) {
       return {
         title: stripHTMLMarkup(title),
-        subtitle: "Call to action",
-      };
-    },
-  },
-});
+        subtitle: 'Call to action'
+      }
+    }
+  }
+})

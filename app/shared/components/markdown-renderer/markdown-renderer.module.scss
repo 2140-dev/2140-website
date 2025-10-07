@@ -1,0 +1,13 @@
+.markdown {
+  padding-left: 0;
+  counter-reset: item;
+
+  li {
+    position: relative;
+    flex-direction: row;
+
+    p {
+      display: inline;
+    }
+  }
+}

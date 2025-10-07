@@ -1,26 +1,26 @@
-import { sanityFetch } from "@/sanity/lib/fetch";
+import { sanityFetch } from '@/sanity/lib/fetch'
 import {
   HomepageQueryResultType,
   MenuQueryResultType,
   PageNotFoundQueryResultType,
   PageQueryResultType,
-  SettingsQueryResultType,
-} from "@/sanity/lib/results";
-import { SanityClient, defineQuery } from "next-sanity";
-import { QueryParams } from "sanity";
+  SettingsQueryResultType
+} from '@/sanity/lib/results'
+import { SanityClient, defineQuery } from 'next-sanity'
+import { QueryParams } from 'sanity'
 
 const internalLinkFields = /* groq */ `
   "_type": _type,
   "label": label,
   "slug": reference->slug.current,
   "document": reference->_type
-`;
+`
 
 const externalLinkFields = /* groq */ `
   "_type": _type,
   "label": label,
   "url": url,
-`;
+`
 
 const postFields = /* groq */ `
   _id,
@@ -31,27 +31,27 @@ const postFields = /* groq */ `
   coverImage,
   "date": coalesce(date, _updatedAt),
   "author": author->{"name": coalesce(name, "Anonymous"), picture},
-`;
+`
 
 export const heroQuery = defineQuery(`
   *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {
     content,
     ${postFields}
   }
-`);
+`)
 
 export const moreStoriesQuery = defineQuery(`
   *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
     ${postFields}
   }
-`);
+`)
 
 export const postQuery = defineQuery(`
   *[_type == "post" && slug.current == $slug] [0] {
     content,
     ${postFields}
   }
-`);
+`)
 
 export const menuQuery = defineQuery(`*[_type == "menu"][0] {
   items[] {
@@ -63,21 +63,21 @@ export const menuQuery = defineQuery(`*[_type == "menu"][0] {
       ${externalLinkFields}
     }
   }
-}`);
-const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
+}`)
+const settingsQuery = defineQuery(`*[_type == "settings"][0]`)
 export const fetchSettings = async (client: SanityClient) => {
-  const result = await client.fetch<SettingsQueryResultType>(settingsQuery);
+  const result = await client.fetch<SettingsQueryResultType>(settingsQuery)
 
-  return result;
-};
+  return result
+}
 export const fetchSettingsAndMenu = async (client: SanityClient) => {
   const result = await Promise.all([
     client.fetch<SettingsQueryResultType>(settingsQuery),
-    client.fetch<MenuQueryResultType>(menuQuery),
-  ]);
+    client.fetch<MenuQueryResultType>(menuQuery)
+  ])
 
-  return { settings: result[0], menu: result[1] };
-};
+  return { settings: result[0], menu: result[1] }
+}
 
 export const fetchPageNotFoundProps = async (client: SanityClient) => {
   const query = defineQuery(`
@@ -93,11 +93,11 @@ export const fetchPageNotFoundProps = async (client: SanityClient) => {
         }
       }
     }
-  `);
+  `)
 
-  const result = await client.fetch<PageNotFoundQueryResultType>(query);
-  return result;
-};
+  const result = await client.fetch<PageNotFoundQueryResultType>(query)
+  return result
+}
 
 export const fetchHomepageProps = async (client: SanityClient) => {
   const query = defineQuery(`
@@ -140,10 +140,10 @@ export const fetchHomepageProps = async (client: SanityClient) => {
       },
       }
     }
-  `);
-  const result = await client.fetch<HomepageQueryResultType>(query);
-  return result;
-};
+  `)
+  const result = await client.fetch<HomepageQueryResultType>(query)
+  return result
+}
 
 export const fetchPageProps = async (
   params?: QueryParams | Promise<QueryParams>
@@ -176,9 +176,9 @@ export const fetchPageProps = async (
       },
     }
   }
-`);
+`)
 
-  const result: PageQueryResultType = await sanityFetch({ query, params });
+  const result: PageQueryResultType = await sanityFetch({ query, params })
 
-  return result;
-};
+  return result
+}

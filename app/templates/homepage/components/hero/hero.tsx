@@ -1,74 +1,51 @@
-import { Button } from "@/app/shared/components/button/button";
-import { MarkdownRender } from "@/app/shared/components/markdown-renderer/markdown-renderer";
-import { Container } from "@/app/shared/layouts/container/container";
-import { getInternalLinkUrl } from "@/app/utils/link";
-import { HomepageQueryResultType } from "@/sanity/lib/results";
-import { urlForImage } from "@/sanity/lib/utils";
-import { Box, Typography } from "@mui/material";
-import Image from "next/image";
-import Link from "next/link";
-import {
-  backgroundSx,
-  childSx,
-  containerSx,
-  imageSx,
-  leftSx,
-  wrapperSx,
-} from "./hero.styles";
+import { Button } from 'app/shared/components/button/button'
+import { MarkdownRender } from 'app/shared/components/markdown-renderer/markdown-renderer'
+import { Container } from 'app/shared/layouts/container/container'
+import { getInternalLinkUrl } from 'app/utils/link'
+import { HomepageQueryResultType } from '@/sanity/lib/results'
+import { urlForImage } from '@/sanity/lib/utils'
+import Image from 'next/image'
+import styles from './hero.module.scss'
+import classNames from 'classnames'
 
 export const Hero = ({
   title,
   excerpt,
   image,
-  link,
+  link
 }: Partial<HomepageQueryResultType>) => {
   return (
-    <Box sx={wrapperSx}>
-      <Container size="lg" sx={containerSx}>
-        <Box sx={{ ...childSx, ...leftSx }}>
-          <Typography
-            variant="h1"
-            sx={{ fontSize: { md: "4rem !important", lg: "5rem !important" } }}
+    <div className={styles.hero}>
+      <Container size="lg" className={styles.container}>
+        <div className={classNames(styles.child, styles.left)}>
+          <h1
+            className={classNames(styles.title, 'under-yellow strike-yellow')}
           >
             <MarkdownRender>{title}</MarkdownRender>
-          </Typography>
-          {excerpt && (
-            <Typography
-              sx={{
-                mt: 5,
-                maxWidth: 600,
-              }}
-              variant="body1"
-            >
-              {excerpt}
-            </Typography>
-          )}
+          </h1>
+          {excerpt && <p className="text-l">{excerpt}</p>}
           {link && (
-            <Link href={getInternalLinkUrl(link)}>
-              <Button component="span" sx={{ mt: 4 }}>
-                {link.label}
-              </Button>
-            </Link>
+            <Button href={getInternalLinkUrl(link)}>{link.label}</Button>
           )}
-        </Box>
-        <Box sx={{ ...childSx, ...imageSx }}>
-          <Box sx={backgroundSx}>
+        </div>
+        <div className={classNames(styles.child, styles.right)}>
+          <div className={styles.background}>
             <img src="images/background.svg" alt="" />
-          </Box>
+          </div>
           <Image
             width={0}
             height={0}
-            alt={image?.alt || ""}
+            alt={image?.alt || ''}
             src={urlForImage(image)?.url() as string}
             priority
             style={{
-              maxWidth: "100%",
-              width: "100%",
-              height: "auto",
+              maxWidth: '100%',
+              width: '100%',
+              height: 'auto'
             }}
           />
-        </Box>
+        </div>
       </Container>
-    </Box>
-  );
-};
+    </div>
+  )
+}

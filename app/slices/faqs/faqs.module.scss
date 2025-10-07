@@ -1,0 +1,20 @@
+.faqs {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5rem;
+
+    @include desktop {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10rem;
+    }
+  }
+
+  .content {
+    // Content styling inherited from global styles
+  }
+
+  .accordion {
+    // Accordion styling inherited from accordion component
+  }
+}

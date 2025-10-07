@@ -1,30 +1,24 @@
-import { Eyebrow } from "@/app/shared/components/eyebrow/eyebrow";
-import { getStylishMarkdown } from "@/app/utils/markdown";
-import { Typography } from "@mui/material";
+import Link from 'next/link'
+
+import React from 'react'
 import {
   PortableText,
   PortableTextBlock,
-  PortableTextReactComponents,
-} from "@portabletext/react";
-import Link from "next/link";
-import React from "react";
-
+  PortableTextReactComponents
+} from 'next-sanity'
+import { Eyebrow } from '../eyebrow/eyebrow'
+import styles from './rich-text-renderer.module.scss'
+import classNames from 'classnames'
 const components: Partial<PortableTextReactComponents> = {
   block: {
     eyebrow: ({ children }) => <Eyebrow color="blue" text={children} />,
     h2: ({ children }) => (
-      <Typography variant="h2" sx={getStylishMarkdown("black")}>
-        {children}
-      </Typography>
+      <h2 className="strike-black under-black">{children}</h2>
     ),
-    h3: ({ children }) => <Typography variant="h3">{children}</Typography>,
-    h4: ({ children }) => <Typography variant="h4">{children}</Typography>,
-    h5: ({ children }) => <Typography variant="h6">{children}</Typography>,
-    normal: ({ children }) => (
-      <Typography variant="body1" sx={{ marginBottom: "1rem" }}>
-        {children}
-      </Typography>
-    ),
+    h3: ({ children }) => <h3>{children}</h3>,
+    h4: ({ children }) => <h4>{children}</h4>,
+    h5: ({ children }) => <h5>{children}</h5>,
+    normal: ({ children }) => <p>{children}</p>
   },
   list: {},
   marks: {
@@ -32,19 +26,19 @@ const components: Partial<PortableTextReactComponents> = {
     em: ({ children }) => <i>{children}</i>,
     link: ({
       children,
-      value,
+      value
     }: {
-      children: React.ReactNode;
+      children: React.ReactNode
       value?: {
-        href: string;
-      };
+        href: string
+      }
     }) => {
       if (value?.href) {
         return (
           <Link href={value.href} target="_blank">
             {children}
           </Link>
-        );
+        )
       }
 
       // const type = value?.type;
@@ -57,14 +51,19 @@ const components: Partial<PortableTextReactComponents> = {
       //   }
       // }
 
-      return children;
-    },
-  },
-};
+      return children
+    }
+  }
+}
 
 interface Props {
-  content: PortableTextBlock;
+  content: PortableTextBlock
+  className?: string
 }
-export const RichTextRenderer = ({ content }: Props) => {
-  return <PortableText value={content} components={components} />;
-};
+export const RichTextRenderer = ({ content, className = '' }: Props) => {
+  return (
+    <div className={classNames(styles['rich-text-renderer'], className)}>
+      <PortableText value={content} components={components} />
+    </div>
+  )
+}

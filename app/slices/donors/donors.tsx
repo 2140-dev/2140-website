@@ -1,62 +1,41 @@
-import { Eyebrow } from "@/app/shared/components/eyebrow/eyebrow";
-import { MarkdownRender } from "@/app/shared/components/markdown-renderer/markdown-renderer";
-import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
-import { Container } from "@/app/shared/layouts/container/container";
-import { Section } from "@/app/shared/layouts/section/section";
-import { Image } from "@/app/types/image";
-import { getStylishMarkdown } from "@/app/utils/markdown";
-import { imageBuilder } from "@/sanity/lib/utils";
-import { Box, Typography } from "@mui/material";
-import { PortableTextBlock } from "next-sanity";
+import { Eyebrow } from 'app/shared/components/eyebrow/eyebrow'
+import { MarkdownRender } from 'app/shared/components/markdown-renderer/markdown-renderer'
+import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
+import { Container } from 'app/shared/layouts/container/container'
+import { Section } from 'app/shared/layouts/section/section'
+import { Image } from 'app/types/image'
+import { imageBuilder } from '@/sanity/lib/utils'
+import { PortableTextBlock } from 'next-sanity'
+import styles from './donors.module.scss'
 
 interface Props {
-  eyebrow?: string;
-  title: string;
-  content?: PortableTextBlock;
-  logos: Image[];
+  eyebrow?: string
+  title: string
+  content?: PortableTextBlock
+  logos: Image[]
 }
 const Donors = ({ eyebrow, title, content, logos }: Props) => {
   return (
-    <Section>
-      <Container
-        size="sm"
-        sx={{
-          textAlign: "center",
-        }}
-      >
+    <Section className={styles.donors}>
+      <Container size="sm">
         {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
-        <Typography variant="h2" sx={getStylishMarkdown("white")}>
+        <h2 className="strike-black under-black">
           <MarkdownRender>{title}</MarkdownRender>
-        </Typography>
+        </h2>
         {content && <RichTextRenderer content={content} />}
       </Container>
-      <Container
-        sx={{
-          alignItems: "center",
-          display: "flex",
-          justifyContent: "center",
-          gap: 10,
-          mt: 10,
-          flexWrap: "wrap",
-        }}
-      >
+      <Container className={styles.logos}>
         {logos.map((image, index) => (
-          <Box key={index} sx={{ maxWidth: 180 }}>
+          <div key={index} className={styles.logo}>
             <img
               src={imageBuilder?.image(image).url()}
-              alt={image?.alt || ""}
-              style={{
-                maxWidth: "100%",
-                width: "auto",
-                height: "auto",
-                maxHeight: 80,
-              }}
+              alt={image?.alt || ''}
             />
-          </Box>
+          </div>
         ))}
       </Container>
     </Section>
-  );
-};
+  )
+}
 
-export default Donors;
+export default Donors

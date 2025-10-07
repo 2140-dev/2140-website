@@ -1,34 +1,26 @@
-import { SxProps, Typography } from "@mui/material";
-import { ReactNode } from "react";
-
-const mapColorsToValues: Record<"yellow" | "white" | "black" | "blue", string> =
+import { ReactNode } from 'react'
+import styles from './eyebrow.module.scss'
+import classNames from 'classnames'
+const mapColorsToValues: Record<'yellow' | 'white' | 'black' | 'blue', string> =
   {
-    yellow: "yellow.300",
-    black: "primary.main",
-    white: "primary.white",
-    blue: "blue.100",
-  };
+    yellow: '#eeba0e',
+    black: '#212121',
+    white: '#fff',
+    blue: '#62ccef'
+  }
 interface Props {
-  color: "yellow" | "white" | "black" | "blue";
-  text: string | ReactNode;
-  sx?: SxProps;
+  color: 'yellow' | 'white' | 'black' | 'blue'
+  text: string | ReactNode
+  className?: string
 }
-export const Eyebrow = ({ color, text, sx }: Props) => {
+export const Eyebrow = ({ color, text, className = '' }: Props) => {
   return (
-    <Typography
-      variant="body2"
-      component="span"
-      fontWeight={600}
+    <span
       color={mapColorsToValues[color]}
-      sx={{
-        display: "inline-block",
-        textTransform: "uppercase",
-        letterSpacing: 1,
-        mb: 1,
-        ...sx,
-      }}
+      className={classNames('text-s', styles.eyebrow, className)}
+      style={{ color: mapColorsToValues[color] }}
     >
       {text}
-    </Typography>
-  );
-};
+    </span>
+  )
+}

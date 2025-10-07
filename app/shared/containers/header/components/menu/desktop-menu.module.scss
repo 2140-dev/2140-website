@@ -1,0 +1,68 @@
+.desktop-menu {
+  display: flex;
+  justify-content: flex-end;
+
+  .list {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .item {
+    margin-bottom: 0;
+    padding: 0;
+    position: relative;
+    white-space: nowrap;
+
+    &::before,
+    &::after {
+      content: '';
+      background-color: $black;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      position: absolute;
+      transition: all 0.2s ease-in;
+    }
+
+    &::before {
+      right: 50%;
+    }
+
+    &::after {
+      left: 50%;
+    }
+
+    &:hover {
+      &::before,
+      &::after {
+        width: 50%;
+      }
+    }
+
+    &.is-active {
+      &::before,
+      &::after {
+        width: 50%;
+      }
+    }
+
+    &.is-external {
+      align-items: center;
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 1.25rem;
+    }
+
+    .icon {
+      height: 1rem;
+      left: calc(100% + 0.25rem);
+      position: absolute;
+      width: 1rem;
+    }
+
+    .link {
+      text-decoration: none;
+    }
+  }
+}

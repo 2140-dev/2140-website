@@ -1,7 +1,7 @@
 import { Image } from "next-sanity/image";
 
-import { urlForImage } from "@/sanity/lib/utils";
-import { Image as ImageType } from "@/app/types/image";
+import { urlForImage } from '@/sanity/lib/utils';
+import { Image as ImageType } from "app/types/image";
 
 interface CoverImageProps {
   image: ImageType | null;

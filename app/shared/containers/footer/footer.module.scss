@@ -1,0 +1,31 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem 0;
+
+  @include tablet {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .link {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .icon {
+    max-width: 1.25rem;
+  }
+
+  .email {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .text {
+    color: $gray-200;
+  }
+}

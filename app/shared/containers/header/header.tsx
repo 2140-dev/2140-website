@@ -1,105 +1,93 @@
-"use client";
+'use client'
 
-import { Menu } from "@/app/shared/containers/header/components/menu/menu";
-import { Container } from "@/app/shared/layouts/container/container";
-import { colors } from "@/app/theme/colors";
-import { ImageResultType, LinkResultType } from "@/sanity/lib/results";
-import { Box, useTheme } from "@mui/material";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import debounce from "lodash/debounce";
-import { useEffect, useRef, useState } from "react";
-import { Logo } from "./components/logo/logo";
+import { Menu } from 'app/shared/containers/header/components/menu/menu'
+import { Container } from 'app/shared/layouts/container/container'
+import { ImageResultType, LinkResultType } from '@/sanity/lib/results'
+import debounce from 'lodash/debounce'
+import { useEffect, useRef, useState } from 'react'
+import { Logo } from './components/logo/logo'
+import styles from './header.module.scss'
+import classNames from 'classnames'
 
 interface Props {
-  logo: ImageResultType;
-  items: LinkResultType[];
+  logo: ImageResultType
+  items: LinkResultType[]
 }
 
 export const Header = ({ logo, items }: Props) => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const ref = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
 
-  const [isSticky, setIsSticky] = useState(false);
+  const [isSticky, setIsSticky] = useState(false)
 
-  const [hasWindow, setHasWindow] = useState(false);
+  const [hasWindow, setHasWindow] = useState(false)
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setHasWindow(true);
+    if (typeof window !== 'undefined') {
+      setHasWindow(true)
+      const checkMobile = () => setIsMobile(window.innerWidth < 900)
+      checkMobile()
+      window.addEventListener('resize', checkMobile)
+      return () => window.removeEventListener('resize', checkMobile)
     }
-  }, []);
+  }, [])
 
   const handleScroll = debounce(() => {
-    const div = ref?.current;
-    const scrollY = window.scrollY;
+    const div = ref?.current
+    const scrollY = window.scrollY
 
     if (div) {
       if (scrollY < 80) {
-        div.style.position = "absolute";
-        div.style.transform = "none";
-        div.style.transition = "none";
-        div.style.boxShadow = "none";
-        div.style.background = "transparent";
-        setIsSticky(false);
+        div.style.position = 'absolute'
+        div.style.transform = 'none'
+        div.style.transition = 'none'
+        div.style.boxShadow = 'none'
+        div.style.background = 'transparent'
+        setIsSticky(false)
       }
       // set isSticky to true if the user has scrolled more than 80px
       if (scrollY >= 80 && !isSticky) {
-        const height = div.getBoundingClientRect().height;
+        const height = div.getBoundingClientRect().height
         if (window.scrollY > height) {
-          div.style.position = "fixed";
-          div.style.transform = "translateY(-100%)";
-          div.style.background = colors.primary.white;
+          div.style.position = 'fixed'
+          div.style.transform = 'translateY(-100%)'
+          div.style.background = '#fff'
 
           setTimeout(() => {
-            div.style.transition = "all 0.4s cubic-bezier(0.83, 0, 0.17, 1)";
-          }, 100);
+            div.style.transition = 'all 0.4s cubic-bezier(0.83, 0, 0.17, 1)'
+          }, 100)
 
           setTimeout(() => {
-            div.style.transform = "translateY(0)";
-            div.style.boxShadow = "0 0 40px rgba(0, 0, 0, 0.1)";
-          }, 300);
+            div.style.transform = 'translateY(0)'
+            div.style.boxShadow = '0 0 40px rgba(0, 0, 0, 0.1)'
+          }, 300)
 
-          setIsSticky(true);
+          setIsSticky(true)
         }
       }
     }
-  }, 100);
+  }, 100)
 
   useEffect(() => {
     if (hasWindow) {
-      window.addEventListener("scroll", handleScroll);
+      window.addEventListener('scroll', handleScroll)
 
       return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
+        window.removeEventListener('scroll', handleScroll)
+      }
     }
 
-    return;
-  }, [handleScroll]);
+    return
+  }, [handleScroll])
 
   return (
-    <Box
+    <header
       ref={ref}
-      sx={{
-        color: "primary.main",
-        position: "absolute",
-        width: "100%",
-        zIndex: 4,
-        overflow: isSticky ? "hidden" : "initial",
-      }}
+      className={classNames(styles.header, isSticky ? styles.sticky : '')}
     >
-      <Container
-        size="lg"
-        sx={{
-          alignItems: "center",
-          height: 80,
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
+      <Container size="lg" className={styles.container}>
         <Logo image={logo} />
         <Menu isMobile={isMobile} items={items} />
       </Container>
-    </Box>
-  );
-};
+    </header>
+  )
+}

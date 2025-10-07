@@ -1,92 +1,46 @@
-import { RichTextRenderer } from "@/app/shared/components/rich-text-renderer/rich-text-renderer";
-import { SanityImage } from "@/app/shared/components/sanity-image/sanity-image";
-import { colors } from "@/app/theme/colors";
-import { TeamResultType } from "@/sanity/lib/results";
-import { Box, Typography } from "@mui/material";
-import Link from "next/link";
-
-const SIZE = 100;
+import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
+import { SanityImage } from 'app/shared/components/sanity-image/sanity-image'
+import { TeamResultType } from '@/sanity/lib/results'
+import Link from 'next/link'
+import styles from './team-member-full.module.scss'
+import classNames from 'classnames'
 
 interface Props {
-  team: TeamResultType;
+  team: TeamResultType
 }
 export const TeamMemberFull = ({ team }: Props) => {
   return (
-    <Box
-      sx={{
-        maxWidth: 350,
-      }}
-    >
-      <Box
-        sx={{
-          alignItems: "center",
-          display: "flex",
-          justifyContent: "center",
-          position: "relative",
-          height: 130,
-          mb: 5,
-          pt: 3,
-        }}
-      >
-        <Box
-          sx={{
-            position: "absolute",
-          }}
-        >
+    <div className={styles.full}>
+      <div className={styles['image-wrapper']}>
+        <div className={styles.outline}>
           <OutlineCircle />
-        </Box>
-        <Box
-          sx={{
-            width: SIZE,
-            height: SIZE,
-            overflow: "hidden",
-            borderRadius: "100%",
-          }}
-        >
+        </div>
+        <div className={styles.avatar}>
           <SanityImage image={team.picture} />
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          alignItems: "center",
-          display: "flex",
-          justifyContent: "center",
-          gap: 2,
-        }}
-      >
-        <Typography variant="h4" mb={0.5}>
-          {team.name}
-        </Typography>
+        </div>
+      </div>
+      <div className={styles.header}>
+        <h4 className={styles.name}>{team.name}</h4>
         {(team.github || team.x) && (
-          <>
+          <div className={styles.social}>
             {team.github && (
-              <Link target="_blank" href={team.github} style={{ width: 18 }}>
+              <Link target="_blank" href={team.github} className={styles.icon}>
                 <img src="images/icons/github-black.svg" alt="Github icon" />
               </Link>
             )}
             {team.x && (
-              <Link target="_blank" href={team.x}>
-                <img
-                  src="images/icons/twitter-black.svg"
-                  alt="X icon"
-                  style={{ width: 16 }}
-                />
+              <Link target="_blank" href={team.x} className={styles.icon}>
+                <img src="images/icons/twitter-black.svg" alt="X icon" />
               </Link>
             )}
-          </>
+          </div>
         )}
-      </Box>
-      <Typography
-        variant="body2"
-        color="gray.200"
-        sx={{ mb: 3, textAlign: "center" }}
-      >
-        {team.role}
-      </Typography>
+      </div>
+      <p className={classNames(styles.role, 'text-s')}>{team.role}</p>
       <RichTextRenderer content={team.bio} />
-    </Box>
-  );
-};
+    </div>
+  )
+}
 
 const OutlineCircle = () => {
   return (
@@ -96,11 +50,11 @@ const OutlineCircle = () => {
         cy="65"
         r="54.5"
         style={{
-          stroke: colors.yellow[200],
+          stroke: '#FBCC31',
           strokeWidth: 1,
-          strokeDasharray: 280,
+          strokeDasharray: 280
         }}
       />
     </svg>
-  );
-};
+  )
+}

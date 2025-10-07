@@ -1,36 +1,36 @@
-"use client";
+'use client'
 /**
  * This config is used to set up Sanity Studio that's mounted on the `app/(sanity)/studio/[[...tool]]/page.tsx` route
  */
-import { visionTool } from "@sanity/vision";
-import { PluginOptions, defineConfig } from "sanity";
-import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
-import { type DocumentLocation } from "sanity/presentation";
+import { visionTool } from '@sanity/vision'
+import { PluginOptions, defineConfig } from 'sanity'
+import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
+import { type DocumentLocation } from 'sanity/presentation'
 
-import { apiVersion, dataset, projectId } from "@/sanity/lib/api";
-import { singletonPlugin } from "@/sanity/plugins/settings";
-import { schemaTypes } from "@/sanity/schemas";
-import menu from "@/sanity/schemas/singletons/menu";
-import settings from "@/sanity/schemas/singletons/settings";
-import { structure } from "@/sanity/structure";
-import { structureTool } from "sanity/structure";
+import { apiVersion, dataset, projectId } from './sanity/lib/api'
+import { singletonPlugin } from './sanity/plugins/settings'
+import { schemaTypes } from './sanity/schemas'
+import menu from './sanity/schemas/singletons/menu'
+import settings from './sanity/schemas/singletons/settings'
+import { structure } from './sanity/desk-structure'
+import { structureTool } from 'sanity/structure'
 
 const home = {
-  title: "Home",
-  href: "/",
-} satisfies DocumentLocation;
+  title: 'Home',
+  href: '/'
+} satisfies DocumentLocation
 
 export default defineConfig({
   // basePath: studioUrl,
   projectId,
   dataset,
-  name: "2140",
+  name: '2140',
   schema: {
-    types: schemaTypes,
+    types: schemaTypes
   },
   plugins: [
     structureTool({
-      structure: structure,
+      structure: structure
     }),
     // presentationTool({
     //   resolve: {
@@ -78,7 +78,7 @@ export default defineConfig({
     singletonPlugin([settings.name, menu.name]),
     unsplashImageAsset(),
     // assistWithPresets(),
-    process.env.NODE_ENV === "development" &&
-      visionTool({ defaultApiVersion: apiVersion }),
-  ].filter(Boolean) as PluginOptions[],
-});
+    process.env.NODE_ENV === 'development' &&
+      visionTool({ defaultApiVersion: apiVersion })
+  ].filter(Boolean) as PluginOptions[]
+})
