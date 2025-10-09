@@ -131,12 +131,10 @@ const homepageQuery = defineQuery(`
       _type == 'call-to-action' => {
         ...,
         link {
-          internal {
-            "_type": _type,
-            "label": label,
-            "slug": reference->slug.current,
-            "document": reference->_type
-          },
+          "_type": _type,
+          "label": label,
+          "slug": reference->slug.current,
+          "document": reference->_type
         }
       },
       _type == 'centered-text' => {
@@ -188,12 +186,10 @@ const pageQuery = defineQuery(`
     _type == 'call-to-action' => {
       ...,
       link {
-        internal {
-          "_type": _type,
-          "label": label,
-          "slug": reference->slug.current,
-          "document": reference->_type
-        },
+        "_type": _type,
+        "label": label,
+        "slug": reference->slug.current,
+        "document": reference->_type
       }
     },
     _type == 'team-members' => {

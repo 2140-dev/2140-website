@@ -17,7 +17,7 @@
     grid-template-columns: 1fr;
     gap: 2rem;
 
-    @include tablet {
+    @include mobile {
       grid-template-columns: repeat(2, 1fr);
 
       &.teaser {
@@ -36,6 +36,6 @@
 
   .additional {
     text-align: center;
-    margin-top: 3.75rem;
+    margin-top: 2.5rem;
   }
 }

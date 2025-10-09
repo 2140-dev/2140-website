@@ -1,5 +1,10 @@
 .call-to-action {
   background-color: $yellow-200;
+  margin-top: 5rem;
+
+  &:not(:last-of-type) {
+    margin-bottom: 5rem;
+  }
 
   .wrapper {
     align-items: center;
