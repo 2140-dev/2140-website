@@ -1,16 +1,16 @@
-import { Image } from "next-sanity/image";
+import { Image } from 'next-sanity/image'
 
-import { urlForImage } from '@/sanity/lib/utils';
-import { Image as ImageType } from "app/types/image";
+import { urlForImage } from '@/sanity/lib/utils'
+import { SanityImage } from '@/app/types/image'
 
 interface CoverImageProps {
-  image: ImageType | null;
-  priority?: boolean;
+  image: SanityImage | null
+  priority?: boolean
 }
 
 export const CoverImage = (props: CoverImageProps) => {
-  const { image: source, priority } = props;
-  const src = urlForImage(source)?.url();
+  const { image: source, priority } = props
+  const src = urlForImage(source)?.url()
 
   if (src) {
     return (
@@ -18,19 +18,19 @@ export const CoverImage = (props: CoverImageProps) => {
         <Image
           width={0}
           height={0}
-          alt={source?.alt || ""}
+          alt={source?.alt || ''}
           src={urlForImage(source)?.url() as string}
           style={{
-            width: "100%",
-            maxWidth: "100%",
-            height: "40%",
-            objectFit: "cover",
+            width: '100%',
+            maxWidth: '100%',
+            height: '40%',
+            objectFit: 'cover'
           }}
           priority={priority}
         />
       </div>
-    );
+    )
   }
 
-  return null;
-};
+  return null
+}
