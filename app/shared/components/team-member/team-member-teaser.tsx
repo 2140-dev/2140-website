@@ -1,13 +1,12 @@
 import { SanityImage } from 'app/shared/components/sanity-image/sanity-image'
-import { TeamResultType } from '@/sanity/lib/results'
 import Link from 'next/link'
 import styles from './team-member-teaser.module.scss'
 import classNames from 'classnames'
+import { TeamMemberProps } from '@/app/types/team'
 
-interface Props {
-  team: Omit<TeamResultType, 'bio'>
-}
-export const TeamMemberTeaser = ({ team }: Props) => {
+export const TeamMemberTeaser = ({
+  team
+}: Omit<TeamMemberProps, 'variant'>) => {
   return (
     <div className={styles.teaser}>
       <div className={styles['image-wrapper']}>

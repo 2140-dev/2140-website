@@ -1,14 +1,11 @@
 import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
 import { SanityImage } from 'app/shared/components/sanity-image/sanity-image'
-import { TeamResultType } from '@/sanity/lib/results'
 import Link from 'next/link'
 import styles from './team-member-full.module.scss'
 import classNames from 'classnames'
+import { TeamMemberProps } from '@/app/types/team'
 
-interface Props {
-  team: TeamResultType
-}
-export const TeamMemberFull = ({ team }: Props) => {
+export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
   return (
     <div className={styles.full}>
       <div className={styles['image-wrapper']}>

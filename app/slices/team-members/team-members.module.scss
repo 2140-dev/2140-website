@@ -1,6 +1,11 @@
 .team-members {
-  .header {
+  .header,
+  .additional {
     text-align: center;
+  }
+
+  .header {
+    margin-bottom: 5rem;
   }
 
   .grid {

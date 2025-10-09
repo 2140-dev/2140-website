@@ -73,7 +73,7 @@ export default async function RootLayout({
         <Footer
           gpg={settings?.gpg}
           email={settings.email}
-          disclaimer={settings.disclaimer as PortableTextBlock[]}
+          disclaimer={settings.disclaimer}
         />
         <SpeedInsights />
       </body>

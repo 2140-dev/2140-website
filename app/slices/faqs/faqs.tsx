@@ -4,17 +4,10 @@ import { MarkdownRender } from 'app/shared/components/markdown-renderer/markdown
 import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
 import { Container } from 'app/shared/layouts/container/container'
 import { Section } from 'app/shared/layouts/section/section'
-import { AccordionItems } from 'app/types/accordion'
 import styles from './faqs.module.scss'
-import { PortableTextBlock } from 'sanity'
+import { Faqs as FaqsProps } from 'sanity.types'
 
-interface Props {
-  eyebrow?: string
-  title: string
-  content?: PortableTextBlock[]
-  items: AccordionItems
-}
-const Faqs = ({ eyebrow, title, content, items }: Props) => {
+const Faqs = ({ eyebrow, title, content, items }: FaqsProps) => {
   return (
     <Section className={styles.faqs}>
       <Container size="md">
