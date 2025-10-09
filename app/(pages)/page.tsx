@@ -1,15 +1,15 @@
-import { HomepageTemplate } from "app/templates/homepage/homepage-template";
-import { client } from '@/sanity/lib/client';
+import { HomepageTemplate } from 'app/templates/homepage/homepage-template'
+import { client } from '@/sanity/lib/client'
 
-import { fetchHomepageProps } from '@/sanity/lib/queries';
-import { notFound } from "next/navigation";
+import { notFound } from 'next/navigation'
+import { getHomepageProps } from '@/sanity/lib/queries'
 
 export default async function Homepage() {
-  const pageProps = await fetchHomepageProps(client);
+  const props = await getHomepageProps(client)
 
-  if (!pageProps) {
-    notFound();
+  if (!props) {
+    notFound()
   }
 
-  return <HomepageTemplate {...pageProps} />;
+  return <HomepageTemplate {...props} />
 }

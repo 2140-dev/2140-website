@@ -1,14 +1,12 @@
 import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
 import { SanityImage } from 'app/shared/components/sanity-image/sanity-image'
-import { TeamResultType } from '@/sanity/lib/results'
 import Link from 'next/link'
 import styles from './team-member-full.module.scss'
 import classNames from 'classnames'
+import { TeamMemberProps } from '@/app/types/team'
+import Image from 'next/image'
 
-interface Props {
-  team: TeamResultType
-}
-export const TeamMemberFull = ({ team }: Props) => {
+export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
   return (
     <div className={styles.full}>
       <div className={styles['image-wrapper']}>
@@ -25,12 +23,12 @@ export const TeamMemberFull = ({ team }: Props) => {
           <div className={styles.social}>
             {team.github && (
               <Link target="_blank" href={team.github} className={styles.icon}>
-                <img src="images/icons/github-black.svg" alt="Github icon" />
+                <Image src="images/icons/github-black.svg" alt="Github icon" />
               </Link>
             )}
             {team.x && (
               <Link target="_blank" href={team.x} className={styles.icon}>
-                <img src="images/icons/twitter-black.svg" alt="X icon" />
+                <Image src="images/icons/twitter-black.svg" alt="X icon" />
               </Link>
             )}
           </div>

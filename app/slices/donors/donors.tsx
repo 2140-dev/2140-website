@@ -3,18 +3,12 @@ import { MarkdownRender } from 'app/shared/components/markdown-renderer/markdown
 import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
 import { Container } from 'app/shared/layouts/container/container'
 import { Section } from 'app/shared/layouts/section/section'
-import { Image } from 'app/types/image'
 import { imageBuilder } from '@/sanity/lib/utils'
-import { PortableTextBlock } from 'next-sanity'
 import styles from './donors.module.scss'
+import { Donors as DonorsProps } from 'sanity.types'
+import Image from 'next/image'
 
-interface Props {
-  eyebrow?: string
-  title: string
-  content?: PortableTextBlock
-  logos: Image[]
-}
-const Donors = ({ eyebrow, title, content, logos }: Props) => {
+const Donors = ({ eyebrow, title, content, logos }: DonorsProps) => {
   return (
     <Section className={styles.donors}>
       <Container size="sm">
@@ -27,7 +21,7 @@ const Donors = ({ eyebrow, title, content, logos }: Props) => {
       <Container className={styles.logos}>
         {logos.map((image, index) => (
           <div key={index} className={styles.logo}>
-            <img
+            <Image
               src={imageBuilder?.image(image).url()}
               alt={image?.alt || ''}
             />

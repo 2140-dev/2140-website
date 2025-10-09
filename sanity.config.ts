@@ -80,5 +80,9 @@ export default defineConfig({
     // assistWithPresets(),
     process.env.NODE_ENV === 'development' &&
       visionTool({ defaultApiVersion: apiVersion })
-  ].filter(Boolean) as PluginOptions[]
+  ].filter(Boolean) as PluginOptions[],
+  typegen: {
+    path: './sanity.types.ts',
+    addOptionalDefaults: false
+  }
 })

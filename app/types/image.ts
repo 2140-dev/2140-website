@@ -1,10 +1,10 @@
 interface Asset {
-  _ref?: string;
-  _type?: string;
+  _ref?: string
+  _type?: string
 }
 
-export interface Image {
-  _type?: string;
-  alt?: string;
-  asset?: Asset;
+export interface SanityImage {
+  _type?: string
+  alt?: string
+  asset?: Asset
 }

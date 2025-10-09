@@ -1,7 +1,10 @@
-import { ResolvedLink } from 'app/types/resolved-link'
-import { InternalResultType, LinkResultType } from '@/sanity/lib/results'
+import {
+  InternalLink,
+  InternalOrExternalLink,
+  ResolvedInternalOrExternalLink
+} from '@/app/types/link'
 
-export const getInternalLinkUrl = (link: InternalResultType): string => {
+export const getInternalLinkUrl = (link: InternalLink): string => {
   switch (link.document) {
     // case "post":
     //   return `/${link.document}/${link.slug}`;
@@ -12,8 +15,8 @@ export const getInternalLinkUrl = (link: InternalResultType): string => {
 }
 
 export const resolveInternalOrExternalLink = (
-  link: LinkResultType
-): ResolvedLink => {
+  link: InternalOrExternalLink
+): ResolvedInternalOrExternalLink => {
   let result = {
     _key: link._key
   }
@@ -22,7 +25,7 @@ export const resolveInternalOrExternalLink = (
     return {
       ...result,
       _type: link.internal._type,
-      label: link.internal.label,
+      label: link.internal?.label || '',
       href: getInternalLinkUrl(link.internal)
     }
   }

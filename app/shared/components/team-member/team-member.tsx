@@ -1,10 +1,10 @@
-import { TeamResultType } from '@/sanity/lib/results'
+import { Team, TeamMembers } from 'sanity.types'
 import { TeamMemberFull } from './team-member-full'
 import { TeamMemberTeaser } from './team-member-teaser'
 
 interface Props {
   variant?: 'teaser' | 'full'
-  team: TeamResultType
+  team: Team
 }
 export const TeamMember = ({ variant = 'teaser', team }: Props) => {
   return (

@@ -2,16 +2,18 @@
 
 import { Menu } from 'app/shared/containers/header/components/menu/menu'
 import { Container } from 'app/shared/layouts/container/container'
-import { ImageResultType, LinkResultType } from '@/sanity/lib/results'
 import debounce from 'lodash/debounce'
 import { useEffect, useRef, useState } from 'react'
 import { Logo } from './components/logo/logo'
 import styles from './header.module.scss'
 import classNames from 'classnames'
+import { SanityImage } from '@/app/types/image'
+import { ResolvedLink } from '@/app/types/resolved-link'
+import { InternalOrExternalLink } from '@/app/types/link'
 
 interface Props {
-  logo: ImageResultType
-  items: LinkResultType[]
+  logo: SanityImage
+  items: InternalOrExternalLink[]
 }
 
 export const Header = ({ logo, items }: Props) => {

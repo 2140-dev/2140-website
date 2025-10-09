@@ -1,9 +1,10 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 
-import { fetchPageProps } from '@/sanity/lib/queries'
+import { getPageProps } from '@/sanity/lib/queries'
 import { notFound } from 'next/navigation'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { PageTemplate } from '@/app/templates/page/page-template'
+import { client } from '@/sanity/lib/client'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -17,18 +18,16 @@ export async function generateStaticParams() {
   })
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const page = await fetchPageProps(params)
-  if (!page) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const props = await getPageProps(client, params)
+
+  if (!props) {
     notFound()
   }
 
   return {
-    title: `2140 | ${page?.title}`,
-    description: page?.excerpt,
+    title: props.title,
+    description: props?.excerpt || '',
     openGraph: {
       images: []
     }
@@ -36,7 +35,11 @@ export async function generateMetadata(
 }
 
 export default async function Page({ params }: Props) {
-  const pageProps = await fetchPageProps(params)
+  const props = await getPageProps(client, params)
 
-  return <PageTemplate {...pageProps} />
+  if (!props) {
+    notFound()
+  }
+
+  return <PageTemplate {...props} />
 }

@@ -4,19 +4,10 @@ import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-
 import { TeamMember } from 'app/shared/components/team-member/team-member'
 import { Container } from 'app/shared/layouts/container/container'
 import { Section } from 'app/shared/layouts/section/section'
-import { TeamResultType } from '@/sanity/lib/results'
-import { PortableTextBlock } from 'next-sanity'
 import styles from './team-members.module.scss'
 import classNames from 'classnames'
+import { TeamMembersProps } from '@/app/types/team'
 
-interface Props {
-  eyebrow?: string
-  variant?: 'teaser' | 'full'
-  title: string
-  summary?: string
-  team: TeamResultType[]
-  additional?: PortableTextBlock
-}
 const TeamMembers = ({
   eyebrow,
   variant = 'full',
@@ -24,7 +15,7 @@ const TeamMembers = ({
   summary,
   team,
   additional
-}: Props) => {
+}: TeamMembersProps) => {
   return (
     <Section className={styles['team-members']}>
       <Container size="sm" className={styles.header}>
@@ -46,10 +37,7 @@ const TeamMembers = ({
         ))}
       </Container>
       {additional && (
-        <Container
-          size="sm"
-          className={classNames(styles.header, styles.additional)}
-        >
+        <Container size="sm" className={styles.additional}>
           <RichTextRenderer content={additional} />
         </Container>
       )}

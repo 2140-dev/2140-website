@@ -1,13 +1,13 @@
 import { SanityImage } from 'app/shared/components/sanity-image/sanity-image'
-import { TeamResultType } from '@/sanity/lib/results'
 import Link from 'next/link'
 import styles from './team-member-teaser.module.scss'
 import classNames from 'classnames'
+import { TeamMemberProps } from '@/app/types/team'
+import Image from 'next/image'
 
-interface Props {
-  team: Omit<TeamResultType, 'bio'>
-}
-export const TeamMemberTeaser = ({ team }: Props) => {
+export const TeamMemberTeaser = ({
+  team
+}: Omit<TeamMemberProps, 'variant'>) => {
   return (
     <div className={styles.teaser}>
       <div className={styles['image-wrapper']}>
@@ -26,14 +26,14 @@ export const TeamMemberTeaser = ({ team }: Props) => {
             {team.github && (
               <li>
                 <Link target="_blank" href={team.github}>
-                  <img src="images/icons/github.svg" alt="Github icon" />
+                  <Image src="images/icons/github.svg" alt="Github icon" />
                 </Link>
               </li>
             )}
             {team.x && (
               <li>
                 <Link target="_blank" href={team.x}>
-                  <img src="images/icons/twitter.svg" alt="X icon" />
+                  <Image src="images/icons/twitter.svg" alt="X icon" />
                 </Link>
               </li>
             )}

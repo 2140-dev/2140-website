@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { MenuProps } from './menu'
 import styles from './mobile-menu.module.scss'
 import classNames from 'classnames'
+import Image from 'next/image'
 
 export const MobileMenu = ({ items }: MenuProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -52,7 +53,7 @@ const MenuIcon = ({
         onClick={handleClick}
         aria-label="Toggle menu"
       >
-        <img
+        <Image
           src={isOpen ? 'images/menu-close.svg' : 'images/menu-open.svg'}
           alt="Mobile menu icon"
         />

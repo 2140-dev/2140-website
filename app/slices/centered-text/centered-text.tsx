@@ -5,19 +5,13 @@ import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-
 import { SanityImage } from 'app/shared/components/sanity-image/sanity-image'
 import { Container } from 'app/shared/layouts/container/container'
 import { Section } from 'app/shared/layouts/section/section'
-import { Image as ImageType } from 'app/types/image'
 import { getInternalLinkUrl } from 'app/utils/link'
-import { InternalResultType } from '@/sanity/lib/results'
-import { PortableTextBlock } from 'next-sanity'
 import styles from './centered-text.module.scss'
+import { CenteredText as CenteredTextType } from 'sanity.types'
+import { InternalLink } from '@/app/types/link'
 
-interface Props {
-  eyebrow?: string
-  title: string
-  content?: PortableTextBlock
-  image?: ImageType
-  link?: InternalResultType
-  layout?: 'above' | 'below'
+type CenteredTextProps = CenteredTextType & {
+  link: InternalLink
 }
 const CenteredText = ({
   eyebrow,
@@ -26,7 +20,7 @@ const CenteredText = ({
   image,
   link,
   layout
-}: Props) => {
+}: CenteredTextProps) => {
   return (
     <Section className={styles['centered-text']}>
       <Container size="sm" className={styles.container}>
@@ -37,9 +31,9 @@ const CenteredText = ({
           </h2>
           <Container size="xs">
             {content && <RichTextRenderer content={content} />}
-            {link && (
+            {link?.slug && link?.label && (
               <Button variant="secondary" href={getInternalLinkUrl(link)}>
-                {link?.label}
+                {link.label}
               </Button>
             )}
           </Container>

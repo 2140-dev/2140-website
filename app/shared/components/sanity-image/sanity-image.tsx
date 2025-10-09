@@ -1,14 +1,14 @@
-import { Image as ImageType } from 'app/types/image'
+import { SanityImage as SanityImageType } from 'app/types/image'
 import { urlForImage } from '@/sanity/lib/utils'
 import Image from 'next/image'
 
 interface Props {
-  image: ImageType
+  image: SanityImageType
   className?: string
 }
 export const SanityImage = ({ image, className = '' }: Props) => {
   return (
-    <img
+    <Image
       className={className}
       src={urlForImage(image)?.url() as string}
       width={100}
