@@ -4,6 +4,7 @@ import { MenuProps } from './menu'
 import styles from './desktop-menu.module.scss'
 import { usePathname } from 'next/navigation'
 import classNames from 'classnames'
+import Image from 'next/image'
 
 export const DesktopMenu = ({ items }: MenuProps) => {
   const [activeLinkKey, setActiveLinkKey] = useState<string | null>(null)
@@ -38,7 +39,7 @@ export const DesktopMenu = ({ items }: MenuProps) => {
               </Link>
               {item._type === 'external' && (
                 <div className={styles.icon}>
-                  <img src="images/icons/external-link.svg" alt="" />
+                  <Image src="images/icons/external-link.svg" alt="" />
                 </div>
               )}
             </li>

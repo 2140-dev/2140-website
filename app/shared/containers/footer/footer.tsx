@@ -4,6 +4,7 @@ import Link from 'next/link'
 import styles from './footer.module.scss'
 import classNames from 'classnames'
 import type { PortableTextBlock } from 'sanity'
+import Image from 'next/image'
 
 type FooterProps = {
   email: string
@@ -16,7 +17,7 @@ export const Footer = ({ email, disclaimer, gpg }: FooterProps) => {
     <Container size="lg" className={classNames('text-s', styles.footer)}>
       <div className={styles.email}>
         <Link href={mailto} className={styles.link}>
-          <img src="images/icons/email.svg" alt="" className={styles.icon} />
+          <Image src="images/icons/email.svg" alt="" className={styles.icon} />
           {email}
         </Link>
         {gpg && (

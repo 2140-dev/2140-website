@@ -6,6 +6,7 @@ import { Section } from 'app/shared/layouts/section/section'
 import { imageBuilder } from '@/sanity/lib/utils'
 import styles from './donors.module.scss'
 import { Donors as DonorsProps } from 'sanity.types'
+import Image from 'next/image'
 
 const Donors = ({ eyebrow, title, content, logos }: DonorsProps) => {
   return (
@@ -20,7 +21,7 @@ const Donors = ({ eyebrow, title, content, logos }: DonorsProps) => {
       <Container className={styles.logos}>
         {logos.map((image, index) => (
           <div key={index} className={styles.logo}>
-            <img
+            <Image
               src={imageBuilder?.image(image).url()}
               alt={image?.alt || ''}
             />

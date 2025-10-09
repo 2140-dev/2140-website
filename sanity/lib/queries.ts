@@ -110,12 +110,10 @@ const homepageQuery = defineQuery(`
   *[_type == "homepage"][0] {
     ...,
     link {
-      internal {
-        "_type": _type,
-        "label": label,
-        "slug": reference->slug.current,
-        "document": reference->_type
-      },
+      "_type": _type,
+      "label": label,
+      "slug": reference->slug.current,
+      "document": reference->_type
     },
     slices[] {
       ...,

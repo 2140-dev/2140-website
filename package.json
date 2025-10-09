@@ -7,11 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "validate": "npm run type-check && npm run lint",
     "presetup": "echo 'about to setup env variables, follow the guide here: https://github.com/vercel/next.js/tree/canary/examples/cms-sanity#using-the-sanity-cli'",
     "setup": "npx sanity@latest init --env .env.local",
     "postsetup": "echo 'create the read token by following the rest of the guide: https://github.com/vercel/next.js/tree/canary/examples/cms-sanity#creating-a-read-token'",
     "typegen": "sanity schema extract --enforce-required-fields && sanity typegen generate",
-    "studio": "sanity dev --cwd sanity"
+    "studio": "sanity dev --cwd sanity",
+    "prepare": "husky"
   },
   "dependencies": {
     "@emotion/react": "^11.0.0",
@@ -45,9 +48,18 @@
     "typescript": "5.6.3"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
     "eslint": "^9.13.0",
     "eslint-config-next": "^15.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.3",
     "sass": "^1.92.0",
     "sass-loader": "^16.0.4"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "bash -c 'tsc --noEmit'"
+    ]
   }
 }

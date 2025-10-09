@@ -32,7 +32,7 @@ export const Hero = ({ title, excerpt, image, link }: HeroProps) => {
         </div>
         <div className={classNames(styles.child, styles.right)}>
           <div className={styles.background}>
-            <img src="images/background.svg" alt="" />
+            <Image priority src="images/background.svg" alt="" />
           </div>
           <Image
             width={0}

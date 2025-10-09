@@ -4,6 +4,7 @@ import Link from 'next/link'
 import styles from './team-member-full.module.scss'
 import classNames from 'classnames'
 import { TeamMemberProps } from '@/app/types/team'
+import Image from 'next/image'
 
 export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
   return (
@@ -22,12 +23,12 @@ export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
           <div className={styles.social}>
             {team.github && (
               <Link target="_blank" href={team.github} className={styles.icon}>
-                <img src="images/icons/github-black.svg" alt="Github icon" />
+                <Image src="images/icons/github-black.svg" alt="Github icon" />
               </Link>
             )}
             {team.x && (
               <Link target="_blank" href={team.x} className={styles.icon}>
-                <img src="images/icons/twitter-black.svg" alt="X icon" />
+                <Image src="images/icons/twitter-black.svg" alt="X icon" />
               </Link>
             )}
           </div>
