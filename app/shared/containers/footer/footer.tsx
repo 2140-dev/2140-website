@@ -17,7 +17,13 @@ export const Footer = ({ email, disclaimer, gpg }: FooterProps) => {
     <Container size="lg" className={classNames('text-s', styles.footer)}>
       <div className={styles.email}>
         <Link href={mailto} className={styles.link}>
-          <Image src="images/icons/email.svg" alt="" className={styles.icon} />
+          <Image
+            height="20"
+            width="20"
+            src="images/icons/email.svg"
+            alt=""
+            className={styles.icon}
+          />
           {email}
         </Link>
         {gpg && (

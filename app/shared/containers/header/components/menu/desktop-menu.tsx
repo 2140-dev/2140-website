@@ -39,7 +39,12 @@ export const DesktopMenu = ({ items }: MenuProps) => {
               </Link>
               {item._type === 'external' && (
                 <div className={styles.icon}>
-                  <Image src="images/icons/external-link.svg" alt="" />
+                  <Image
+                    height="16"
+                    width="16"
+                    src="images/icons/external-link.svg"
+                    alt=""
+                  />
                 </div>
               )}
             </li>

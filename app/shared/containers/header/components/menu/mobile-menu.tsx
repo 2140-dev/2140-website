@@ -54,6 +54,8 @@ const MenuIcon = ({
         aria-label="Toggle menu"
       >
         <Image
+          width="16"
+          height="16"
           src={isOpen ? 'images/menu-close.svg' : 'images/menu-open.svg'}
           alt="Mobile menu icon"
         />

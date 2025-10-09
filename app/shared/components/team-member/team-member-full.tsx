@@ -23,12 +23,22 @@ export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
           <div className={styles.social}>
             {team.github && (
               <Link target="_blank" href={team.github} className={styles.icon}>
-                <Image src="images/icons/github-black.svg" alt="Github icon" />
+                <Image
+                  height="20"
+                  width="20"
+                  src="images/icons/github-black.svg"
+                  alt="Github icon"
+                />
               </Link>
             )}
             {team.x && (
               <Link target="_blank" href={team.x} className={styles.icon}>
-                <Image src="images/icons/twitter-black.svg" alt="X icon" />
+                <Image
+                  height="20"
+                  width="20"
+                  src="images/icons/twitter-black.svg"
+                  alt="X icon"
+                />
               </Link>
             )}
           </div>

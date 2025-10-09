@@ -26,14 +26,24 @@ export const TeamMemberTeaser = ({
             {team.github && (
               <li>
                 <Link target="_blank" href={team.github}>
-                  <Image src="images/icons/github.svg" alt="Github icon" />
+                  <Image
+                    height="20"
+                    width="20"
+                    src="images/icons/github.svg"
+                    alt="Github icon"
+                  />
                 </Link>
               </li>
             )}
             {team.x && (
               <li>
                 <Link target="_blank" href={team.x}>
-                  <Image src="images/icons/twitter.svg" alt="X icon" />
+                  <Image
+                    height="20"
+                    width="20"
+                    src="images/icons/twitter.svg"
+                    alt="X icon"
+                  />
                 </Link>
               </li>
             )}
