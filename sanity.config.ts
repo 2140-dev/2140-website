@@ -9,7 +9,7 @@ import {
   presentationTool,
   type DocumentLocation
 } from 'sanity/presentation'
-import { apiVersion, dataset, projectId, studioUrl } from './sanity/lib/api'
+import { dataset, projectId } from './sanity/lib/api'
 import { singletonPlugin } from './sanity/plugins/settings'
 import { schemaTypes } from './sanity/schemas'
 import menu from './sanity/schemas/singletons/menu'
@@ -47,7 +47,7 @@ export default defineConfig({
             message: 'This document is used on all pages',
             tone: 'caution'
           }),
-          siteMenu: defineLocations({
+          menu: defineLocations({
             locations: [home],
             message: 'This document is used on all pages',
             tone: 'caution'
@@ -89,7 +89,8 @@ export default defineConfig({
       }
     }),
     singletonPlugin([settings.name, menu.name]),
-    unsplashImageAsset()
+    unsplashImageAsset(),
+    visionTool()
   ].filter(Boolean) as PluginOptions[],
   typegen: {
     path: './sanity.types.ts',

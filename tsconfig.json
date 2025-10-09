@@ -9,7 +9,6 @@
     "noEmit": true,
     "module": "preserve",
     "moduleResolution": "node",
-    "jsx": "react-jsx",
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,

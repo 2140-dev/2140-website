@@ -1,5 +1,4 @@
-import { SanityClient, defineQuery, groq } from 'next-sanity'
-import { QueryParams } from 'sanity'
+import { SanityClient, defineQuery } from 'next-sanity'
 import {
   HomepageQueryResult,
   MenuQueryResult,
@@ -7,50 +6,6 @@ import {
   PageQueryResult,
   SettingsQueryResult
 } from 'sanity.types'
-
-const internalLinkFields = /* groq */ `
-  "_type": _type,
-  "label": label,
-  "slug": reference->slug.current,
-  "document": reference->_type
-`
-
-const externalLinkFields = /* groq */ `
-  "_type": _type,
-  "label": label,
-  "url": url,
-`
-
-// const postFields = /* groq */ `
-//   _id,
-//   "status": select(_originalId in path("drafts.**") => "draft", "published"),
-//   "title": coalesce(title, "Untitled"),
-//   "slug": slug.current,
-//   excerpt,
-//   coverImage,
-//   "date": coalesce(date, _updatedAt),
-//   "author": author->{"name": coalesce(name, "Anonymous"), picture},
-// `
-
-// export const heroQuery = defineQuery(`
-//   *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {
-//     content,
-//     ${postFields}
-//   }
-// `)
-
-// export const moreStoriesQuery = defineQuery(`
-//   *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
-//     ${postFields}
-//   }
-// `)
-
-// export const postQuery = defineQuery(`
-//   *[_type == "post" && slug.current == $slug] [0] {
-//     content,
-//     ${postFields}
-//   }
-// `)
 
 const settingsQuery = defineQuery(`*[_type == "settings"][0]`)
 export const getSiteSettings = async (client: SanityClient) => {
@@ -168,44 +123,44 @@ export const getHomepageProps = async (client: SanityClient) => {
 }
 
 const pageQuery = defineQuery(`
-*[_type == "page" && slug.current == $slug][0] {
-  ...,
-  slices[] {
+  *[_type == "page" && slug.current == $slug][0] {
     ...,
-    link {
-      internal {
-        "_type": _type,
-        "label": label,
-        "slug": reference->slug.current,
-        "document": reference->_type
-      },
-    },
-    _type == 'text-block-with-image' => {
-      ...,
-    },
-    _type == 'call-to-action' => {
+    slices[] {
       ...,
       link {
-        "_type": _type,
-        "label": label,
-        "slug": reference->slug.current,
-        "document": reference->_type
-      }
-    },
-    _type == 'team-members' => {
-      ...,
-      team[]->{
-        name,
-        content,
-        role,
-        github,
-        x,
-        bio,
-        picture
-      }
-    },
+        internal {
+          "_type": _type,
+          "label": label,
+          "slug": reference->slug.current,
+          "document": reference->_type
+        },
+      },
+      _type == 'text-block-with-image' => {
+        ...,
+      },
+      _type == 'call-to-action' => {
+        ...,
+        link {
+          "_type": _type,
+          "label": label,
+          "slug": reference->slug.current,
+          "document": reference->_type
+        }
+      },
+      _type == 'team-members' => {
+        ...,
+        team[]->{
+          name,
+          content,
+          role,
+          github,
+          x,
+          bio,
+          picture
+        }
+      },
+    }
   }
-}
 `)
 export const getPageProps = async (
   client: SanityClient,
