@@ -99,7 +99,7 @@ export type Homepage = {
   _rev: string
   title: string
   excerpt?: string
-  link?: Internal
+  link: Internal
   image: {
     asset?: {
       _ref: string
@@ -870,7 +870,7 @@ export type HomepageQueryResult = {
   excerpt?: string
   link: {
     internal: null
-  } | null
+  }
   image: {
     asset?: {
       _ref: string

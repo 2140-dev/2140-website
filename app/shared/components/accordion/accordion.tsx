@@ -1,10 +1,17 @@
 'use client'
-// import { CaretIcon } from 'app/icons/caret'
 import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
 import { AccordionItems } from 'app/types/accordion'
 import React, { useState } from 'react'
 import styles from './accordion.module.scss'
 import classNames from 'classnames'
+import { AnimatePresence, motion, Variants } from 'framer-motion'
+import { CaretIcon } from '@/app/icons/caret'
+
+const animationVariants = {
+  initial: { height: 0 },
+  animate: { height: 'auto' },
+  exit: { height: 0 }
+}
 
 interface Props {
   items: AccordionItems
@@ -17,7 +24,7 @@ export const Accordion = ({ items }: Props) => {
   }
 
   return (
-    <div className={styles.accordionWrapper}>
+    <>
       {items.map((item) => (
         <div
           key={item._key}
@@ -35,18 +42,22 @@ export const Accordion = ({ items }: Props) => {
           >
             <h5 className={styles.title}>{item.title}</h5>
             <span className={styles.icon}>
-              {/* <CaretIcon color={colors.primary.main} /> */}
+              <CaretIcon />
             </span>
           </button>
-          <div
-            id={`panel-${item._key}`}
-            className={styles.details}
-            hidden={expanded !== item._key}
-          >
-            <RichTextRenderer content={item.content} />
-          </div>
+          <AnimatePresence mode="wait">
+            {expanded === item._key && (
+              <motion.div
+                {...animationVariants}
+                key={`panel-${item._key}`}
+                className={styles.details}
+              >
+                <RichTextRenderer content={item.content} />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       ))}
-    </div>
+    </>
   )
 }

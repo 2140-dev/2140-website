@@ -4,10 +4,14 @@ import { Eyebrow } from 'app/shared/components/eyebrow/eyebrow'
 import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
 import { resolveInternalOrExternalLink } from 'app/utils/link'
 import { Button } from 'app/shared/components/button/button'
-import { PageNotFoundQueryResult } from 'sanity.types'
+import { NotFoundTemplateProps } from '@/app/types/templates'
 
-export const NotFoundTemplate = ({ ...props }: PageNotFoundQueryResult) => {
-  const { eyebrow, title, content, items } = props
+export const NotFoundTemplate = ({
+  eyebrow,
+  title,
+  content,
+  items
+}: Partial<NotFoundTemplateProps>) => {
   return (
     <div className={styles['not-found']}>
       <Container size="sm">

@@ -38,7 +38,6 @@ export default async function Page({ params }: Props) {
   const props = await getPageProps(client, params)
 
   if (!props) {
-    console.error('Missing page props.')
     notFound()
   }
 

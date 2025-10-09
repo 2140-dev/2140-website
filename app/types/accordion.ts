@@ -1,7 +1,7 @@
-import { PortableTextBlock } from "next-sanity";
+import { PortableTextBlock } from 'sanity'
 
 export type AccordionItems = {
-  _key: string;
-  title: string;
-  content: PortableTextBlock;
-}[];
+  _key: string
+  title: string
+  content: PortableTextBlock[]
+}[]

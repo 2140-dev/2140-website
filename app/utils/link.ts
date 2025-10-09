@@ -2,7 +2,7 @@ import {
   InternalLink,
   InternalOrExternalLink,
   ResolvedInternalOrExternalLink
-} from '@/sanity/lib/types'
+} from '@/app/types/link'
 
 export const getInternalLinkUrl = (link: InternalLink): string => {
   switch (link.document) {

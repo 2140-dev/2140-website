@@ -1,18 +1,18 @@
-import { Accordion } from "app/shared/components/accordion/accordion";
-import { Eyebrow } from "app/shared/components/eyebrow/eyebrow";
-import { MarkdownRender } from "app/shared/components/markdown-renderer/markdown-renderer";
-import { RichTextRenderer } from "app/shared/components/rich-text-renderer/rich-text-renderer";
-import { Container } from "app/shared/layouts/container/container";
-import { Section } from "app/shared/layouts/section/section";
-import { AccordionItems } from "app/types/accordion";
-import { PortableTextBlock } from "next-sanity";
-import styles from './faqs.module.scss';
+import { Accordion } from 'app/shared/components/accordion/accordion'
+import { Eyebrow } from 'app/shared/components/eyebrow/eyebrow'
+import { MarkdownRender } from 'app/shared/components/markdown-renderer/markdown-renderer'
+import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
+import { Container } from 'app/shared/layouts/container/container'
+import { Section } from 'app/shared/layouts/section/section'
+import { AccordionItems } from 'app/types/accordion'
+import styles from './faqs.module.scss'
+import { PortableTextBlock } from 'sanity'
 
 interface Props {
-  eyebrow?: string;
-  title: string;
-  content?: PortableTextBlock;
-  items: AccordionItems;
+  eyebrow?: string
+  title: string
+  content?: PortableTextBlock[]
+  items: AccordionItems
 }
 const Faqs = ({ eyebrow, title, content, items }: Props) => {
   return (
@@ -32,7 +32,7 @@ const Faqs = ({ eyebrow, title, content, items }: Props) => {
         </div>
       </Container>
     </Section>
-  );
-};
+  )
+}
 
-export default Faqs;
+export default Faqs

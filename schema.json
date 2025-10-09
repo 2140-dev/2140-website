@@ -611,7 +611,7 @@
           "type": "inline",
           "name": "internal"
         },
-        "optional": true
+        "optional": false
       },
       "image": {
         "type": "objectAttribute",

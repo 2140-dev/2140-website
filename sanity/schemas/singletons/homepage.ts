@@ -31,7 +31,9 @@ export default defineType({
     }),
     defineField({
       name: 'link',
-      type: 'internal'
+      title: 'Link',
+      type: 'internal',
+      validation: (rule) => rule.required()
     }),
     defineField({
       name: 'image',
