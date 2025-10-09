@@ -79,10 +79,7 @@ export default defineConfig({
         }
       },
       previewUrl: {
-        origin:
-          process.env.NODE_ENV === 'development'
-            ? 'http://localhost:3000'
-            : process.env.NEXT_PUBLIC_SITE_URL,
+        origin: process.env.NEXT_PUBLIC_SITE_URL,
         draftMode: {
           enable: '/api/draft-mode/enable'
         }
