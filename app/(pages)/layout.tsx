@@ -1,5 +1,5 @@
-import '../styles/normalize.css'
 import '../scss/index.scss'
+import '../styles/normalize.css'
 
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
