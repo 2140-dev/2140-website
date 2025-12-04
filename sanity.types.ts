@@ -23,24 +23,7 @@ export type Team = {
   role: string
   github?: string
   x?: string
-  bio: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'blockquote'
-    listItem?: 'bullet'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
+  bio: BasicTextEditor
   picture: {
     asset?: {
       _ref: string
@@ -56,6 +39,41 @@ export type Team = {
   }
 }
 
+export type SanityImageCrop = {
+  _type: 'sanity.imageCrop'
+  top: number
+  bottom: number
+  left: number
+  right: number
+}
+
+export type SanityImageHotspot = {
+  _type: 'sanity.imageHotspot'
+  x: number
+  y: number
+  height: number
+  width: number
+}
+
+export type BasicTextEditor = Array<{
+  children?: Array<{
+    marks?: Array<string>
+    text?: string
+    _type: 'span'
+    _key: string
+  }>
+  style?: 'normal' | 'blockquote'
+  listItem?: 'bullet'
+  markDefs?: Array<{
+    href?: string
+    _type: 'link'
+    _key: string
+  }>
+  level?: number
+  _type: 'block'
+  _key: string
+}>
+
 export type NotFound = {
   _id: string
   _type: 'not-found'
@@ -64,24 +82,7 @@ export type NotFound = {
   _rev: string
   eyebrow?: string
   title: string
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'blockquote'
-    listItem?: 'bullet'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
+  content?: BasicTextEditor
   items?: Array<{
     type?: 'internal' | 'external'
     external?: External
@@ -133,6 +134,17 @@ export type Homepage = {
         _key: string
       } & TextBlockWithImage)
   >
+}
+
+export type Internal = {
+  _type: 'internal'
+  reference?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'page'
+  }
+  label?: string
 }
 
 export type Menu = {
@@ -210,40 +222,7 @@ export type Settings = {
 export type TextBlockWithImage = {
   _type: 'text-block-with-image'
   layout?: 'left' | 'right'
-  content?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>
-          text?: string
-          _type: 'span'
-          _key: string
-        }>
-        style?: 'eyebrow' | 'h2' | 'h3' | 'h4' | 'h5' | 'normal' | 'blockquote'
-        listItem?: 'bullet'
-        markDefs?: Array<{
-          href?: string
-          _type: 'link'
-          _key: string
-        }>
-        level?: number
-        _type: 'block'
-        _key: string
-      }
-    | {
-        asset?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-        }
-        media?: unknown
-        hotspot?: SanityImageHotspot
-        crop?: SanityImageCrop
-        alt?: string
-        _type: 'image'
-        _key: string
-      }
-  >
+  content?: TextEditor
   image: {
     asset?: {
       _ref: string
@@ -272,107 +251,17 @@ export type TeamMembers = {
     _key: string
     [internalGroqTypeReferenceTo]?: 'team'
   }>
-  additional?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>
-          text?: string
-          _type: 'span'
-          _key: string
-        }>
-        style?: 'eyebrow' | 'h2' | 'h3' | 'h4' | 'h5' | 'normal' | 'blockquote'
-        listItem?: 'bullet'
-        markDefs?: Array<{
-          href?: string
-          _type: 'link'
-          _key: string
-        }>
-        level?: number
-        _type: 'block'
-        _key: string
-      }
-    | {
-        asset?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-        }
-        media?: unknown
-        hotspot?: SanityImageHotspot
-        crop?: SanityImageCrop
-        alt?: string
-        _type: 'image'
-        _key: string
-      }
-  >
+  additional?: TextEditor
 }
 
 export type Faqs = {
   _type: 'faqs'
   eyebrow?: string
   title: string
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'blockquote'
-    listItem?: 'bullet'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
+  content?: BasicTextEditor
   items: Array<{
     title: string
-    content: Array<
-      | {
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?:
-            | 'eyebrow'
-            | 'h2'
-            | 'h3'
-            | 'h4'
-            | 'h5'
-            | 'normal'
-            | 'blockquote'
-          listItem?: 'bullet'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }
-      | {
-          asset?: {
-            _ref: string
-            _type: 'reference'
-            _weak?: boolean
-            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-          }
-          media?: unknown
-          hotspot?: SanityImageHotspot
-          crop?: SanityImageCrop
-          alt?: string
-          _type: 'image'
-          _key: string
-        }
-    >
+    content: TextEditor
     _key: string
   }>
 }
@@ -381,24 +270,7 @@ export type Donors = {
   _type: 'donors'
   eyebrow?: string
   title: string
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'blockquote'
-    listItem?: 'bullet'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
+  content?: BasicTextEditor
   logos: Array<{
     asset?: {
       _ref: string
@@ -420,24 +292,7 @@ export type CenteredText = {
   layout?: 'above' | 'below'
   eyebrow?: string
   title: string
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'blockquote'
-    listItem?: 'bullet'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
+  content?: BasicTextEditor
   link?: Internal
   image?: {
     asset?: {
@@ -511,25 +366,6 @@ export type TextEditor = Array<
     }
 >
 
-export type BasicTextEditor = Array<{
-  children?: Array<{
-    marks?: Array<string>
-    text?: string
-    _type: 'span'
-    _key: string
-  }>
-  style?: 'normal' | 'blockquote'
-  listItem?: 'bullet'
-  markDefs?: Array<{
-    href?: string
-    _type: 'link'
-    _key: string
-  }>
-  level?: number
-  _type: 'block'
-  _key: string
-}>
-
 export type Link = {
   _type: 'link'
   type?: 'internal' | 'external'
@@ -541,17 +377,6 @@ export type External = {
   _type: 'external'
   url: string
   label: string
-}
-
-export type Internal = {
-  _type: 'internal'
-  reference?: {
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'page'
-  }
-  label?: string
 }
 
 export type Page = {
@@ -585,6 +410,12 @@ export type Page = {
   >
 }
 
+export type Slug = {
+  _type: 'slug'
+  current: string
+  source?: string
+}
+
 export type SanityImagePaletteSwatch = {
   _type: 'sanity.imagePaletteSwatch'
   background?: string
@@ -611,20 +442,15 @@ export type SanityImageDimensions = {
   aspectRatio: number
 }
 
-export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot'
-  x: number
-  y: number
-  height: number
-  width: number
-}
-
-export type SanityImageCrop = {
-  _type: 'sanity.imageCrop'
-  top: number
-  bottom: number
-  left: number
-  right: number
+export type SanityImageMetadata = {
+  _type: 'sanity.imageMetadata'
+  location?: Geopoint
+  dimensions?: SanityImageDimensions
+  palette?: SanityImagePalette
+  lqip?: string
+  blurHash?: string
+  hasAlpha?: boolean
+  isOpaque?: boolean
 }
 
 export type SanityFileAsset = {
@@ -647,6 +473,13 @@ export type SanityFileAsset = {
   path?: string
   url?: string
   source?: SanityAssetSourceData
+}
+
+export type SanityAssetSourceData = {
+  _type: 'sanity.assetSourceData'
+  name?: string
+  id?: string
+  url?: string
 }
 
 export type SanityImageAsset = {
@@ -672,17 +505,6 @@ export type SanityImageAsset = {
   source?: SanityAssetSourceData
 }
 
-export type SanityImageMetadata = {
-  _type: 'sanity.imageMetadata'
-  location?: Geopoint
-  dimensions?: SanityImageDimensions
-  palette?: SanityImagePalette
-  lqip?: string
-  blurHash?: string
-  hasAlpha?: boolean
-  isOpaque?: boolean
-}
-
 export type Geopoint = {
   _type: 'geopoint'
   lat?: number
@@ -690,23 +512,14 @@ export type Geopoint = {
   alt?: number
 }
 
-export type Slug = {
-  _type: 'slug'
-  current: string
-  source?: string
-}
-
-export type SanityAssetSourceData = {
-  _type: 'sanity.assetSourceData'
-  name?: string
-  id?: string
-  url?: string
-}
-
 export type AllSanitySchemaTypes =
   | Team
+  | SanityImageCrop
+  | SanityImageHotspot
+  | BasicTextEditor
   | NotFound
   | Homepage
+  | Internal
   | Menu
   | Settings
   | TextBlockWithImage
@@ -716,22 +529,18 @@ export type AllSanitySchemaTypes =
   | CenteredText
   | CallToAction
   | TextEditor
-  | BasicTextEditor
   | Link
   | External
-  | Internal
   | Page
+  | Slug
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
-  | SanityImageHotspot
-  | SanityImageCrop
-  | SanityFileAsset
-  | SanityImageAsset
   | SanityImageMetadata
-  | Geopoint
-  | Slug
+  | SanityFileAsset
   | SanityAssetSourceData
+  | SanityImageAsset
+  | Geopoint
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
@@ -822,24 +631,7 @@ export type PageNotFoundQueryResult = {
   _rev: string
   eyebrow?: string
   title: string
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'blockquote' | 'normal'
-    listItem?: 'bullet'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
+  content?: BasicTextEditor
   items: Array<{
     type?: 'external' | 'internal'
     external: {
@@ -921,24 +713,7 @@ export type HomepageQueryResult = {
         layout?: 'above' | 'below'
         eyebrow?: string
         title: string
-        content?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'normal'
-          listItem?: 'bullet'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
+        content?: BasicTextEditor
         link: {
           internal: null
         } | null
@@ -961,24 +736,7 @@ export type HomepageQueryResult = {
         _type: 'donors'
         eyebrow?: string
         title: string
-        content?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'normal'
-          listItem?: 'bullet'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
+        content?: BasicTextEditor
         logos: Array<{
           asset?: {
             _ref: string
@@ -1000,67 +758,10 @@ export type HomepageQueryResult = {
         _type: 'faqs'
         eyebrow?: string
         title: string
-        content?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'normal'
-          listItem?: 'bullet'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
+        content?: BasicTextEditor
         items: Array<{
           title: string
-          content: Array<
-            | {
-                children?: Array<{
-                  marks?: Array<string>
-                  text?: string
-                  _type: 'span'
-                  _key: string
-                }>
-                style?:
-                  | 'blockquote'
-                  | 'eyebrow'
-                  | 'h2'
-                  | 'h3'
-                  | 'h4'
-                  | 'h5'
-                  | 'normal'
-                listItem?: 'bullet'
-                markDefs?: Array<{
-                  href?: string
-                  _type: 'link'
-                  _key: string
-                }>
-                level?: number
-                _type: 'block'
-                _key: string
-              }
-            | {
-                asset?: {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-                }
-                media?: unknown
-                hotspot?: SanityImageHotspot
-                crop?: SanityImageCrop
-                alt?: string
-                _type: 'image'
-                _key: string
-              }
-          >
+          content: TextEditor
           _key: string
         }>
         link: null
@@ -1078,24 +779,7 @@ export type HomepageQueryResult = {
           github: string | null
           content: null
           x: string | null
-          bio: Array<{
-            children?: Array<{
-              marks?: Array<string>
-              text?: string
-              _type: 'span'
-              _key: string
-            }>
-            style?: 'blockquote' | 'normal'
-            listItem?: 'bullet'
-            markDefs?: Array<{
-              href?: string
-              _type: 'link'
-              _key: string
-            }>
-            level?: number
-            _type: 'block'
-            _key: string
-          }>
+          bio: BasicTextEditor
           picture: {
             asset?: {
               _ref: string
@@ -1110,94 +794,14 @@ export type HomepageQueryResult = {
             _type: 'image'
           }
         }>
-        additional?: Array<
-          | {
-              children?: Array<{
-                marks?: Array<string>
-                text?: string
-                _type: 'span'
-                _key: string
-              }>
-              style?:
-                | 'blockquote'
-                | 'eyebrow'
-                | 'h2'
-                | 'h3'
-                | 'h4'
-                | 'h5'
-                | 'normal'
-              listItem?: 'bullet'
-              markDefs?: Array<{
-                href?: string
-                _type: 'link'
-                _key: string
-              }>
-              level?: number
-              _type: 'block'
-              _key: string
-            }
-          | {
-              asset?: {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-              }
-              media?: unknown
-              hotspot?: SanityImageHotspot
-              crop?: SanityImageCrop
-              alt?: string
-              _type: 'image'
-              _key: string
-            }
-        >
+        additional?: TextEditor
         link: null
       }
     | {
         _key: string
         _type: 'text-block-with-image'
         layout?: 'left' | 'right'
-        content?: Array<
-          | {
-              children?: Array<{
-                marks?: Array<string>
-                text?: string
-                _type: 'span'
-                _key: string
-              }>
-              style?:
-                | 'blockquote'
-                | 'eyebrow'
-                | 'h2'
-                | 'h3'
-                | 'h4'
-                | 'h5'
-                | 'normal'
-              listItem?: 'bullet'
-              markDefs?: Array<{
-                href?: string
-                _type: 'link'
-                _key: string
-              }>
-              level?: number
-              _type: 'block'
-              _key: string
-            }
-          | {
-              asset?: {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-              }
-              media?: unknown
-              hotspot?: SanityImageHotspot
-              crop?: SanityImageCrop
-              alt?: string
-              _type: 'image'
-              _key: string
-            }
-        >
+        content?: TextEditor
         image: {
           asset?: {
             _ref: string
@@ -1260,24 +864,7 @@ export type PageQueryResult = {
         layout?: 'above' | 'below'
         eyebrow?: string
         title: string
-        content?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'normal'
-          listItem?: 'bullet'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
+        content?: BasicTextEditor
         link: {
           internal: null
         } | null
@@ -1300,24 +887,7 @@ export type PageQueryResult = {
         _type: 'donors'
         eyebrow?: string
         title: string
-        content?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'normal'
-          listItem?: 'bullet'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
+        content?: BasicTextEditor
         logos: Array<{
           asset?: {
             _ref: string
@@ -1339,67 +909,10 @@ export type PageQueryResult = {
         _type: 'faqs'
         eyebrow?: string
         title: string
-        content?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'normal'
-          listItem?: 'bullet'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
+        content?: BasicTextEditor
         items: Array<{
           title: string
-          content: Array<
-            | {
-                children?: Array<{
-                  marks?: Array<string>
-                  text?: string
-                  _type: 'span'
-                  _key: string
-                }>
-                style?:
-                  | 'blockquote'
-                  | 'eyebrow'
-                  | 'h2'
-                  | 'h3'
-                  | 'h4'
-                  | 'h5'
-                  | 'normal'
-                listItem?: 'bullet'
-                markDefs?: Array<{
-                  href?: string
-                  _type: 'link'
-                  _key: string
-                }>
-                level?: number
-                _type: 'block'
-                _key: string
-              }
-            | {
-                asset?: {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-                }
-                media?: unknown
-                hotspot?: SanityImageHotspot
-                crop?: SanityImageCrop
-                alt?: string
-                _type: 'image'
-                _key: string
-              }
-          >
+          content: TextEditor
           _key: string
         }>
         link: null
@@ -1417,24 +930,7 @@ export type PageQueryResult = {
           role: string
           github: string | null
           x: string | null
-          bio: Array<{
-            children?: Array<{
-              marks?: Array<string>
-              text?: string
-              _type: 'span'
-              _key: string
-            }>
-            style?: 'blockquote' | 'normal'
-            listItem?: 'bullet'
-            markDefs?: Array<{
-              href?: string
-              _type: 'link'
-              _key: string
-            }>
-            level?: number
-            _type: 'block'
-            _key: string
-          }>
+          bio: BasicTextEditor
           picture: {
             asset?: {
               _ref: string
@@ -1449,94 +945,14 @@ export type PageQueryResult = {
             _type: 'image'
           }
         }>
-        additional?: Array<
-          | {
-              children?: Array<{
-                marks?: Array<string>
-                text?: string
-                _type: 'span'
-                _key: string
-              }>
-              style?:
-                | 'blockquote'
-                | 'eyebrow'
-                | 'h2'
-                | 'h3'
-                | 'h4'
-                | 'h5'
-                | 'normal'
-              listItem?: 'bullet'
-              markDefs?: Array<{
-                href?: string
-                _type: 'link'
-                _key: string
-              }>
-              level?: number
-              _type: 'block'
-              _key: string
-            }
-          | {
-              asset?: {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-              }
-              media?: unknown
-              hotspot?: SanityImageHotspot
-              crop?: SanityImageCrop
-              alt?: string
-              _type: 'image'
-              _key: string
-            }
-        >
+        additional?: TextEditor
         link: null
       }
     | {
         _key: string
         _type: 'text-block-with-image'
         layout?: 'left' | 'right'
-        content?: Array<
-          | {
-              children?: Array<{
-                marks?: Array<string>
-                text?: string
-                _type: 'span'
-                _key: string
-              }>
-              style?:
-                | 'blockquote'
-                | 'eyebrow'
-                | 'h2'
-                | 'h3'
-                | 'h4'
-                | 'h5'
-                | 'normal'
-              listItem?: 'bullet'
-              markDefs?: Array<{
-                href?: string
-                _type: 'link'
-                _key: string
-              }>
-              level?: number
-              _type: 'block'
-              _key: string
-            }
-          | {
-              asset?: {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-              }
-              media?: unknown
-              hotspot?: SanityImageHotspot
-              crop?: SanityImageCrop
-              alt?: string
-              _type: 'image'
-              _key: string
-            }
-        >
+        content?: TextEditor
         image: {
           asset?: {
             _ref: string

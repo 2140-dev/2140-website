@@ -20,6 +20,11 @@ const home = {
   href: '/'
 } satisfies DocumentLocation
 
+const previewUrl =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+
 export default defineConfig({
   projectId,
   dataset,
@@ -77,7 +82,7 @@ export default defineConfig({
         }
       },
       previewUrl: {
-        origin: process.env.NEXT_PUBLIC_SITE_URL,
+        origin: previewUrl,
         draftMode: {
           enable: '/api/draft-mode/enable'
         }
