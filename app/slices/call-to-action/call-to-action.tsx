@@ -22,6 +22,7 @@ const CallToAction = ({
   content,
   link
 }: CallToActionProps) => {
+  const src = urlForImage(image)?.url() as string
   return (
     <Section className={styles['call-to-action']}>
       <Container>
@@ -38,20 +39,22 @@ const CallToAction = ({
               </Button>
             )}
           </div>
-          <div
-            className={classNames(
-              styles.inner,
-              layout === 'left' ? styles.left : ''
-            )}
-          >
-            <Image
-              src={urlForImage(image)?.url() as string}
-              width={0}
-              height={0}
-              style={{ width: '100%', height: 'auto' }}
-              alt={image?.alt || ''}
-            />
-          </div>
+          {src && (
+            <div
+              className={classNames(
+                styles.inner,
+                layout === 'left' ? styles.left : ''
+              )}
+            >
+              <Image
+                src={src}
+                width={0}
+                height={0}
+                style={{ width: '100%', height: 'auto' }}
+                alt={image?.alt || ''}
+              />
+            </div>
+          )}
         </div>
       </Container>
     </Section>

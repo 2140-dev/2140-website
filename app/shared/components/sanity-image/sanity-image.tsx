@@ -7,14 +7,15 @@ interface Props {
   className?: string
 }
 export const SanityImage = ({ image, className = '' }: Props) => {
-  return (
+  const src = urlForImage(image)?.url()
+  return src ? (
     <Image
       className={className}
-      src={urlForImage(image)?.url() as string}
+      src={src}
       width={100}
       height={100}
       style={{ width: '100%', maxWidth: '100%', height: 'auto' }}
       alt={image?.alt || ''}
     />
-  )
+  ) : null
 }

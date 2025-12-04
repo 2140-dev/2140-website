@@ -16,6 +16,7 @@ interface HeroProps {
   link: InternalLink
 }
 export const Hero = ({ title, excerpt, image, link }: HeroProps) => {
+  const src = urlForImage(image)?.url()
   return (
     <div className={styles.hero}>
       <Container size="lg" className={styles.container}>
@@ -34,18 +35,20 @@ export const Hero = ({ title, excerpt, image, link }: HeroProps) => {
           <div className={styles.background}>
             <img src="images/background.svg" alt="" />
           </div>
-          <Image
-            width={0}
-            height={0}
-            alt={image?.alt || ''}
-            src={urlForImage(image)?.url() as string}
-            priority
-            style={{
-              maxWidth: '100%',
-              width: '100%',
-              height: 'auto'
-            }}
-          />
+          {src && (
+            <Image
+              width={0}
+              height={0}
+              alt={image?.alt || ''}
+              src={src}
+              priority
+              style={{
+                maxWidth: '100%',
+                width: '100%',
+                height: 'auto'
+              }}
+            />
+          )}
         </div>
       </Container>
     </div>
