@@ -14,13 +14,7 @@ interface Props {
   className?: string
 }
 export const Container = ({ size = 'md', className = '', children }: Props) => (
-  <div
-    className={classNames(
-      'mx-auto px-5 md:px-10 xl:px-20',
-      WIDTH[size],
-      className
-    )}
-  >
+  <div className={classNames('mx-auto px-5 lg:px-10', WIDTH[size], className)}>
     {children}
   </div>
 )

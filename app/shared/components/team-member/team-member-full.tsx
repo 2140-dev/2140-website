@@ -16,7 +16,7 @@ export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
         </div>
       </div>
       <div className="flex items-center justify-center gap-2">
-        <h4 className="mb-0.5">{team.name}</h4>
+        <h4 className="text-custom-l my-2">{team.name}</h4>
         {(team.github || team.x) && (
           <div className="flex gap-2">
             {team.github && (
@@ -42,7 +42,9 @@ export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
           </div>
         )}
       </div>
-      <p className="mb-3 text-center text-gray-200 text-custom-s">{team.role}</p>
+      <p className="mb-3 text-center text-gray-200 text-custom-s">
+        {team.role}
+      </p>
       <RichTextRenderer content={team.bio} />
     </div>
   )

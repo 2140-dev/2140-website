@@ -691,36 +691,6 @@
                 },
                 "rest": {
                   "type": "inline",
-                  "name": "donors"
-                }
-              },
-              {
-                "type": "object",
-                "attributes": {
-                  "_key": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "rest": {
-                  "type": "inline",
-                  "name": "faqs"
-                }
-              },
-              {
-                "type": "object",
-                "attributes": {
-                  "_key": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "rest": {
-                  "type": "inline",
                   "name": "subscribe"
                 }
               },
@@ -1314,6 +1284,30 @@
           }
         },
         "optional": false
+      }
+    }
+  },
+  {
+    "name": "text-block",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "text-block"
+          }
+        },
+        "content": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "text-editor"
+          },
+          "optional": true
+        }
       }
     }
   },
@@ -2541,6 +2535,21 @@
                 "rest": {
                   "type": "inline",
                   "name": "team-members"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "text-block"
                 }
               },
               {

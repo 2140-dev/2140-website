@@ -26,7 +26,7 @@ const CallToAction = ({
     <Section className="bg-yellow-200 mt-20 [&:not(:last-of-type)]:mb-20">
       <Container>
         <div className="flex items-center justify-between flex-col gap-20 lg:gap-40 lg:flex-row">
-          <div className="flex-1 max-w-[480px]">
+          <div className="flex-1">
             {eyebrow && <Eyebrow color="white" text={eyebrow} />}
             <h2 className="strikethrough-white underline-white">
               <MarkdownRender>{title}</MarkdownRender>

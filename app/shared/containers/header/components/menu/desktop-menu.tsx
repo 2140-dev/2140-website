@@ -39,8 +39,8 @@ export const DesktopMenu = ({ items }: MenuProps) => {
               {item._type === 'external' && (
                 <div className="h-4 left-[calc(100%+0.25rem)] absolute w-4">
                   <Image
-                    height="16"
-                    width="16"
+                    height={16}
+                    width={16}
                     src="images/icons/external-link.svg"
                     alt=""
                   />

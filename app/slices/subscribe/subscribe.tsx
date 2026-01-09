@@ -1,6 +1,8 @@
 import { Container } from 'app/shared/layouts/container/container'
 import { Section } from 'app/shared/layouts/section/section'
 import { Eyebrow } from '../../shared/components/eyebrow/eyebrow'
+import Link from 'next/link'
+import Image from 'next/image'
 
 interface SubscribeProps {
   title: string
@@ -13,8 +15,58 @@ const Subscribe = ({ title, description }: SubscribeProps) => {
       <Container size="sm" className="text-center">
         <Eyebrow text="Follow us" color="blue" />
         <h2>{title}</h2>
-        {description && <p className="mb-8">{description}</p>}
-        [Substack embed goes here]
+        <Container size="sm">
+          {description && <p>{description}</p>}
+
+          <div className="flex justify-center gap-20 mt-20">
+            <div className="text-center">
+              <Link
+                href="https://2140blog.substack.com/"
+                target="_blank"
+                className="no-underline"
+              >
+                <i className="h-20 w-20 bg-yellow-200 inline-flex items-center justify-center rounded-full">
+                  <Image
+                    src="images/icons/substack.svg"
+                    alt="Substack icon"
+                    height={20}
+                    width={20}
+                  />
+                </i>
+                <p className="text-custom-s mt-2 flex items-center justify-center gap-2">
+                  Subscribe to our blog{' '}
+                  <Image
+                    height={16}
+                    width={16}
+                    src="images/icons/external-link.svg"
+                    alt=""
+                  />
+                </p>
+              </Link>
+            </div>
+            <div>
+              <Link href="https://2140blog.substack.com/" target="_blank">
+                <i className="h-20 w-20 bg-yellow-200 inline-flex items-center justify-center rounded-full">
+                  <Image
+                    src="images/icons/twitter.svg"
+                    alt="X icon"
+                    height={20}
+                    width={20}
+                  />
+                </i>
+              </Link>
+              <p className="text-custom-s mt-2 flex items-center justify-center gap-2">
+                Follow up on Twitter{' '}
+                <Image
+                  height={16}
+                  width={16}
+                  src="images/icons/external-link.svg"
+                  alt=""
+                />
+              </p>
+            </div>
+          </div>
+        </Container>
       </Container>
     </Section>
   )

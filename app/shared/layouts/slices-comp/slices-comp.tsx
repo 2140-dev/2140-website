@@ -6,6 +6,7 @@ import Faqs from '../../../slices/faqs/faqs'
 import TeamMembers from '../../../slices/team-members/team-members'
 import TextBlockWithImage from '../../../slices/text-block-with-image/text-block-with-image'
 import Subscribe from '../../../slices/subscribe/subscribe'
+import Text from '../../../slices/text/text'
 
 const mapSliceTypeToComponent = {
   'call-to-action': CallToAction,
@@ -14,7 +15,8 @@ const mapSliceTypeToComponent = {
   faqs: Faqs,
   'team-members': TeamMembers,
   'text-block-with-image': TextBlockWithImage,
-  subscribe: Subscribe
+  subscribe: Subscribe,
+  'text-block': Text
 }
 interface Props {
   slices: any[]

@@ -123,12 +123,6 @@ export type Homepage = {
       } & CenteredText)
     | ({
         _key: string
-      } & Donors)
-    | ({
-        _key: string
-      } & Faqs)
-    | ({
-        _key: string
       } & Subscribe)
     | ({
         _key: string
@@ -220,6 +214,11 @@ export type Settings = {
     _type: 'block'
     _key: string
   }>
+}
+
+export type TextBlock = {
+  _type: 'text-block'
+  content?: TextEditor
 }
 
 export type Subscribe = {
@@ -418,6 +417,9 @@ export type Page = {
       } & TeamMembers)
     | ({
         _key: string
+      } & TextBlock)
+    | ({
+        _key: string
       } & TextBlockWithImage)
   >
 }
@@ -534,6 +536,7 @@ export type AllSanitySchemaTypes =
   | Internal
   | Menu
   | Settings
+  | TextBlock
   | Subscribe
   | TextBlockWithImage
   | TeamMembers
@@ -743,41 +746,6 @@ export type HomepageQueryResult = {
           alt?: string
           _type: 'image'
         }
-      }
-    | {
-        _key: string
-        _type: 'donors'
-        eyebrow?: string
-        title: string
-        content?: BasicTextEditor
-        logos: Array<{
-          asset?: {
-            _ref: string
-            _type: 'reference'
-            _weak?: boolean
-            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-          }
-          media?: unknown
-          hotspot?: SanityImageHotspot
-          crop?: SanityImageCrop
-          alt?: string
-          _type: 'image'
-          _key: string
-        }>
-        link: null
-      }
-    | {
-        _key: string
-        _type: 'faqs'
-        eyebrow?: string
-        title: string
-        content?: BasicTextEditor
-        items: Array<{
-          title: string
-          content: TextEditor
-          _key: string
-        }>
-        link: null
       }
     | {
         _key: string
@@ -993,6 +961,12 @@ export type PageQueryResult = {
           alt?: string
           _type: 'image'
         }
+        link: null
+      }
+    | {
+        _key: string
+        _type: 'text-block'
+        content?: TextEditor
         link: null
       }
   > | null
