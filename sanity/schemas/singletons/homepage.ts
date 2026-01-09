@@ -1,4 +1,4 @@
-import { slices } from '../slices'
+import { HOMEPAGE_SLICES } from '../slices'
 import { sliceTypeFromNames } from '@/sanity/utils/slice'
 import { HomeIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
@@ -61,7 +61,7 @@ export default defineType({
       name: 'slices',
       type: 'array' as const,
       of: [
-        ...sliceTypeFromNames(slices).sort((a, b) =>
+        ...sliceTypeFromNames(HOMEPAGE_SLICES).sort((a, b) =>
           a.name?.localeCompare(b.name)
         )
       ]

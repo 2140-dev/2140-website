@@ -1,22 +1,17 @@
-import { Container } from "app/shared/layouts/container/container";
-import { Section } from "app/shared/layouts/section/section";
-import styles from './page-title.module.scss'
+import { Container } from 'app/shared/layouts/container/container'
+import { Section } from 'app/shared/layouts/section/section'
 
 interface Props {
-  title: string;
-  excerpt?: string;
+  title: string
+  excerpt?: string
 }
 export const PageTitle = ({ title, excerpt }: Props) => {
   return (
-    <Section className={styles['page-title']}>
+    <Section className="pt-40 text-center bg-yellow-200">
       <Container size="sm">
         <h1>{title}</h1>
-        {excerpt && (
-          <p className="text-l">
-            {excerpt}
-          </p>
-        )}
+        {excerpt && <p className="text-custom-l">{excerpt}</p>}
       </Container>
     </Section>
-  );
-};
+  )
+}

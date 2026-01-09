@@ -1,21 +1,22 @@
-import dynamic from 'next/dynamic'
 import { Fragment, Suspense } from 'react'
+import CallToAction from '../../../slices/call-to-action/call-to-action'
+import CenteredText from '../../../slices/centered-text/centered-text'
+import Donors from '../../../slices/donors/donors'
+import Faqs from '../../../slices/faqs/faqs'
+import TeamMembers from '../../../slices/team-members/team-members'
+import TextBlockWithImage from '../../../slices/text-block-with-image/text-block-with-image'
+import Subscribe from '../../../slices/subscribe/subscribe'
+import Text from '../../../slices/text/text'
 
 const mapSliceTypeToComponent = {
-  'call-to-action': dynamic(
-    () => import('../../../slices/call-to-action/call-to-action')
-  ),
-  'centered-text': dynamic(
-    () => import('../../../slices/centered-text/centered-text')
-  ),
-  donors: dynamic(() => import('../../../slices/donors/donors')),
-  faqs: dynamic(() => import('../../../slices/faqs/faqs')),
-  'team-members': dynamic(
-    () => import('../../../slices/team-members/team-members')
-  ),
-  'text-block-with-image': dynamic(
-    () => import('../../../slices/text-block-with-image/text-block-with-image')
-  )
+  'call-to-action': CallToAction,
+  'centered-text': CenteredText,
+  donors: Donors,
+  faqs: Faqs,
+  'team-members': TeamMembers,
+  'text-block-with-image': TextBlockWithImage,
+  subscribe: Subscribe,
+  'text-block': Text
 }
 interface Props {
   slices: any[]

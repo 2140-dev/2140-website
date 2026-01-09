@@ -3,27 +3,25 @@ import { MarkdownRender } from 'app/shared/components/markdown-renderer/markdown
 import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
 import { Container } from 'app/shared/layouts/container/container'
 import { Section } from 'app/shared/layouts/section/section'
-import { imageBuilder } from '@/sanity/lib/utils'
-import styles from './donors.module.scss'
 import { Donors as DonorsProps } from 'sanity.types'
-import Image from 'next/image'
+import { SanityImage } from '../../shared/components/sanity-image/sanity-image'
 
 const Donors = ({ eyebrow, title, content, logos }: DonorsProps) => {
   return (
-    <Section className={styles.donors}>
+    <Section className="text-center">
       <Container size="sm">
         {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
-        <h2 className="strike-black under-black">
+        <h2 className="strikethrough-black underline-black">
           <MarkdownRender>{title}</MarkdownRender>
         </h2>
         {content && <RichTextRenderer content={content} />}
       </Container>
-      <Container className={styles.logos}>
+      <Container className="flex items-center justify-center gap-10 mt-10 flex-wrap">
         {logos.map((image, index) => (
-          <div key={index} className={styles.logo}>
-            <Image
-              src={imageBuilder?.image(image).url()}
-              alt={image?.alt || ''}
+          <div key={index} className="max-w-[180px]">
+            <SanityImage
+              image={image}
+              className="max-w-full w-auto h-auto max-h-[80px]"
             />
           </div>
         ))}

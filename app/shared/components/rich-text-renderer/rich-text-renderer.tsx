@@ -3,18 +3,17 @@ import Link from 'next/link'
 
 import React from 'react'
 import { Eyebrow } from '../eyebrow/eyebrow'
-import styles from './rich-text-renderer.module.scss'
-import classNames from 'classnames'
 import {
   PortableText,
   // PortableTextBlock,
   PortableTextReactComponents
 } from 'next-sanity'
+import classNames from 'classnames'
 const components: Partial<PortableTextReactComponents> = {
   block: {
     eyebrow: ({ children }) => <Eyebrow color="blue" text={children} />,
     h2: ({ children }) => (
-      <h2 className="strike-black under-black">{children}</h2>
+      <h2 className="strikethrough-black underline-black">{children}</h2>
     ),
     h3: ({ children }) => <h3>{children}</h3>,
     h4: ({ children }) => <h4>{children}</h4>,
@@ -22,12 +21,12 @@ const components: Partial<PortableTextReactComponents> = {
     normal: ({ children }) => <p>{children}</p>
   },
   list: {
-    bullet: ({ children }) => {
-      return <ul>{children}</ul>
-    },
-    number: ({ children }) => {
-      return <ol>{children}</ol>
-    }
+    bullet: ({ children }: { children?: React.ReactNode }) => (
+      <ul className="list-disc list-outside ml-6 my-4">{children}</ul>
+    ),
+    number: ({ children }: { children?: React.ReactNode }) => (
+      <ol className="list-decimal list-outside ml-6 my-4">{children}</ol>
+    )
   },
   marks: {
     strong: ({ children }) => <b>{children}</b>,
@@ -70,7 +69,7 @@ interface Props {
 }
 export const RichTextRenderer = ({ content, className = '' }: Props) => {
   return (
-    <div className={classNames(styles['rich-text-renderer'], className)}>
+    <div className={classNames('portable-text', className)}>
       <PortableText value={content} components={components} />
     </div>
   )

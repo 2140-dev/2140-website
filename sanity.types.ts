@@ -123,10 +123,7 @@ export type Homepage = {
       } & CenteredText)
     | ({
         _key: string
-      } & Donors)
-    | ({
-        _key: string
-      } & Faqs)
+      } & Subscribe)
     | ({
         _key: string
       } & TeamMembers)
@@ -217,6 +214,17 @@ export type Settings = {
     _type: 'block'
     _key: string
   }>
+}
+
+export type TextBlock = {
+  _type: 'text-block'
+  content?: TextEditor
+}
+
+export type Subscribe = {
+  _type: 'subscribe'
+  title: string
+  description?: string
 }
 
 export type TextBlockWithImage = {
@@ -403,7 +411,13 @@ export type Page = {
       } & Faqs)
     | ({
         _key: string
+      } & Subscribe)
+    | ({
+        _key: string
       } & TeamMembers)
+    | ({
+        _key: string
+      } & TextBlock)
     | ({
         _key: string
       } & TextBlockWithImage)
@@ -522,6 +536,8 @@ export type AllSanitySchemaTypes =
   | Internal
   | Menu
   | Settings
+  | TextBlock
+  | Subscribe
   | TextBlockWithImage
   | TeamMembers
   | Faqs
@@ -733,37 +749,9 @@ export type HomepageQueryResult = {
       }
     | {
         _key: string
-        _type: 'donors'
-        eyebrow?: string
+        _type: 'subscribe'
         title: string
-        content?: BasicTextEditor
-        logos: Array<{
-          asset?: {
-            _ref: string
-            _type: 'reference'
-            _weak?: boolean
-            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-          }
-          media?: unknown
-          hotspot?: SanityImageHotspot
-          crop?: SanityImageCrop
-          alt?: string
-          _type: 'image'
-          _key: string
-        }>
-        link: null
-      }
-    | {
-        _key: string
-        _type: 'faqs'
-        eyebrow?: string
-        title: string
-        content?: BasicTextEditor
-        items: Array<{
-          title: string
-          content: TextEditor
-          _key: string
-        }>
+        description?: string
         link: null
       }
     | {
@@ -919,6 +907,13 @@ export type PageQueryResult = {
       }
     | {
         _key: string
+        _type: 'subscribe'
+        title: string
+        description?: string
+        link: null
+      }
+    | {
+        _key: string
         _type: 'team-members'
         eyebrow?: string
         title?: string
@@ -966,6 +961,12 @@ export type PageQueryResult = {
           alt?: string
           _type: 'image'
         }
+        link: null
+      }
+    | {
+        _key: string
+        _type: 'text-block'
+        content?: TextEditor
         link: null
       }
   > | null

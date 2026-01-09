@@ -1,4 +1,4 @@
-import { Team, TeamMembers } from 'sanity.types'
+import { Team } from 'sanity.types'
 import { TeamMemberFull } from './team-member-full'
 import { TeamMemberTeaser } from './team-member-teaser'
 

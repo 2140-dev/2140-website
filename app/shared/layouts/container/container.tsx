@@ -1,12 +1,11 @@
 import React from 'react'
-import styles from './container.module.scss'
 import classNames from 'classnames'
 
-const WIDTH: Record<'lg' | 'md' | 'sm' | 'xs', number> = {
-  lg: 1568,
-  md: 1248,
-  sm: 848,
-  xs: 596
+const WIDTH: Record<'lg' | 'md' | 'sm' | 'xs', string> = {
+  lg: 'max-w-lg',
+  md: 'max-w-md',
+  sm: 'max-w-sm',
+  xs: 'max-w-xs'
 }
 
 interface Props {
@@ -15,10 +14,7 @@ interface Props {
   className?: string
 }
 export const Container = ({ size = 'md', className = '', children }: Props) => (
-  <div
-    className={classNames(styles.container, className)}
-    style={{ maxWidth: WIDTH[size] }}
-  >
+  <div className={classNames('mx-auto px-5 lg:px-10', WIDTH[size], className)}>
     {children}
   </div>
 )

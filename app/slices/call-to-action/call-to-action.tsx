@@ -6,7 +6,6 @@ import { Section } from 'app/shared/layouts/section/section'
 import { getInternalLinkUrl } from 'app/utils/link'
 import { urlForImage } from '@/sanity/lib/utils'
 import Image from 'next/image'
-import styles from './call-to-action.module.scss'
 import classNames from 'classnames'
 import { CallToAction as CallToActionType } from 'sanity.types'
 import { InternalLink } from '@/app/types/link'
@@ -24,15 +23,15 @@ const CallToAction = ({
 }: CallToActionProps) => {
   const src = urlForImage(image)?.url() as string
   return (
-    <Section className={styles['call-to-action']}>
+    <Section className="bg-yellow-200 mt-20 [&:not(:last-of-type)]:mb-20">
       <Container>
-        <div className={styles.wrapper}>
-          <div className={styles.inner}>
+        <div className="flex items-center justify-between flex-col gap-20 lg:gap-40 lg:flex-row">
+          <div className="flex-1">
             {eyebrow && <Eyebrow color="white" text={eyebrow} />}
-            <h2 className="strike-white under-white">
+            <h2 className="strikethrough-white underline-white">
               <MarkdownRender>{title}</MarkdownRender>
             </h2>
-            {content && <p className={styles.content}>{content}</p>}
+            {content && <p className="mb-10">{content}</p>}
             {link?.slug && link?.label && (
               <Button variant="donate" href={getInternalLinkUrl(link)}>
                 {link.label}
@@ -42,8 +41,8 @@ const CallToAction = ({
           {src && (
             <div
               className={classNames(
-                styles.inner,
-                layout === 'left' ? styles.left : ''
+                'flex-1 max-w-[480px]',
+                layout === 'left' && 'md:order-first'
               )}
             >
               <Image

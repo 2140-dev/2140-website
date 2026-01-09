@@ -1,4 +1,3 @@
-import styles from './not-found-template.module.scss'
 import { Container } from 'app/shared/layouts/container/container'
 import { Eyebrow } from 'app/shared/components/eyebrow/eyebrow'
 import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
@@ -13,7 +12,7 @@ export const NotFoundTemplate = ({
   items
 }: Partial<NotFoundTemplateProps>) => {
   return (
-    <div className={styles['not-found']}>
+    <div className="flex items-center justify-center min-h-screen text-center">
       <Container size="sm">
         {eyebrow && <Eyebrow color="blue" text={eyebrow} />}
         <h1>{title}</h1>

@@ -1,0 +1,274 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-family-base: 'Poppins', monospace;
+
+  /* Colors */
+  --color-black: #212121;
+  --color-dark-gray: #454545;
+  --color-white: #fff;
+
+  --color-yellow-50: #fffbf4;
+  --color-yellow-100: #f0e0c4;
+  --color-yellow-200: #fbcc31;
+  --color-yellow-300: #eeba0e;
+  --color-yellow-400: #e3b100;
+
+  --color-gray-100: #9e9c99;
+  --color-gray-200: #5e5d5b;
+
+  --color-blue-100: #62ccef;
+
+  /* Breakpoints */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1600px;
+
+  /* Container Max Widths */
+  --max-width-xs: 596px;
+  --max-width-sm: 848px;
+  --max-width-md: 1248px;
+  --max-width-lg: 1568px;
+}
+
+@layer base {
+  html {
+    min-height: 100%;
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-white);
+    box-sizing: border-box;
+    color: var(--color-dark-gray);
+    font-family: var(--font-family-base);
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    min-height: 100%;
+    overflow: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    transition: 0.2s color ease-in-out;
+
+    &:focus,
+    &:hover {
+      color: var(--color-black);
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-black);
+    line-height: 1.15;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: clamp(3.5rem, 3rem + 2vw, 4rem);
+  }
+
+  h2 {
+    font-size: clamp(3rem, 2.75rem + 1.5vw, 3.5rem);
+  }
+
+  h3 {
+    font-size: clamp(2rem, 1.75rem + 1.25vw, 2.5rem);
+  }
+
+  h4 {
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  }
+
+  h5,
+  h6 {
+    font-size: 1.25rem;
+  }
+
+  h6 {
+    text-transform: uppercase;
+  }
+}
+
+@layer utilities {
+  /* Text size utilities */
+  .text-custom-4xl {
+    font-size: clamp(3.5rem, 3rem + 2vw, 4rem);
+  }
+
+  .text-custom-3xl {
+    font-size: clamp(3rem, 2.75rem + 1.5vw, 3.5rem);
+  }
+
+  .text-custom-2xl {
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  }
+
+  .text-custom-xl {
+    font-size: clamp(1.25rem, 1.125rem + 0.625vw, 1.5rem);
+  }
+
+  .text-custom-l {
+    font-size: 1.25rem;
+  }
+
+  .text-custom-m {
+    font-size: 1rem;
+  }
+
+  .text-custom-s {
+    font-size: 0.85rem;
+  }
+
+  /* Strikethrough utilities */
+  .strikethrough-black,
+  .strikethrough-yellow,
+  .strikethrough-white {
+    s {
+      text-decoration: none;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -2.5%;
+        height: 1rem;
+        z-index: 1;
+        width: 105%;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+  }
+
+  .strikethrough-black s::after {
+    background-image: url('/images/strikethrough-black.svg');
+  }
+
+  .strikethrough-white s::after {
+    background-image: url('/images/strikethrough-white.svg');
+  }
+
+  .strikethrough-yellow s::after {
+    background-image: url('/images/strikethrough-yellow.svg');
+  }
+
+  /* Underline utilities */
+  .underline-white,
+  .underline-black,
+  .underline-yellow {
+    u {
+      text-decoration: none;
+      position: relative;
+      z-index: 1;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: -0.5rem;
+        height: 1rem;
+        z-index: -1;
+        width: 105%;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+  }
+
+  .underline-black u::after {
+    background-image: url('/images/underline-black.svg');
+  }
+
+  .underline-white u::after {
+    background-image: url('/images/underline-white.svg');
+  }
+
+  .underline-yellow u::after {
+    background-image: url('/images/underline-yellow.svg');
+  }
+}
+
+/* Hero title with custom underline */
+.hero-title u::after {
+  background-image: url('/images/underline.svg');
+}
+
+/* Markdown renderer utilities */
+.markdown-content {
+  padding-left: 0;
+  counter-reset: item;
+}
+
+.markdown-content li {
+  position: relative;
+  flex-direction: row;
+}
+
+.markdown-content li p {
+  display: inline;
+}
+
+/* Logo background shape */
+.logo-backdrop {
+  &::before {
+    content: '';
+    display: block;
+    height: 600px;
+    background-color: var(--color-yellow-200);
+    right: -250px;
+    border-radius: 100% 30% 60% 70% / 50% 40% 70% 70%;
+    position: absolute;
+    width: 1000px;
+    z-index: -1;
+    top: -500px;
+  }
+}
+
+/* Desktop menu item underline effect */
+.menu-item::before,
+.menu-item::after {
+  content: '';
+  background-color: var(--color-black);
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  position: absolute;
+  transition: all 0.2s ease-in;
+}
+
+.menu-item::before {
+  right: 50%;
+}
+
+.menu-item::after {
+  left: 50%;
+}
+
+.menu-item:hover::before,
+.menu-item:hover::after,
+.menu-item.active::before,
+.menu-item.active::after {
+  width: 50%;
+}
+
+.portable-text {
+  p {
+    @apply mb-4;
+  }
+}

@@ -1,5 +1,5 @@
 import { stripHTMLMarkup } from '@/sanity/utils/markdown'
-import { slices } from '../slices'
+import { PAGE_SLICES } from '../slices'
 import { sliceTypeFromNames } from '@/sanity/utils/slice'
 import { DocumentTextIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
@@ -49,7 +49,7 @@ export default defineType({
       name: 'slices',
       type: 'array' as const,
       of: [
-        ...sliceTypeFromNames(slices).sort((a, b) =>
+        ...sliceTypeFromNames(PAGE_SLICES).sort((a, b) =>
           a.name?.localeCompare(b.name)
         )
       ]

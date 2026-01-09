@@ -2,7 +2,6 @@
 import pickBy from "lodash/pickBy";
 import Markdown from "markdown-to-jsx";
 import React, { ComponentType, createElement } from "react";
-import styles from "./markdown-renderer.module.scss";
 
 interface ComponentsOverrides {
   [name: string]: ComponentType<any>;
@@ -44,7 +43,7 @@ export const MarkdownRender = ({ children, components }: Props) => {
 
   const str = Array.isArray(children) ? children.join("") : children;
   return (
-    <div className={styles.markdown}>
+    <div className="markdown-content">
       <Markdown
         options={{
           createElement: executableSafeCreateElement,

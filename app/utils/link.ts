@@ -6,8 +6,6 @@ import {
 
 export const getInternalLinkUrl = (link: InternalLink): string => {
   switch (link.document) {
-    // case "post":
-    //   return `/${link.document}/${link.slug}`;
     case 'page':
     default:
       return `/${link.slug}`

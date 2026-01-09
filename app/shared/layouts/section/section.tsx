@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
-import styles from './section.module.scss'
+import classNames from 'classnames';
+
 interface Props {
   children: ReactNode;
   className?: string;
@@ -10,7 +11,7 @@ export const Section = ({ children, className = '', id }: Props) => {
   return (
     <section
       id={id}
-      className={[styles.section, className].join(' ')}
+      className={classNames('py-20 overflow-hidden md:overflow-auto', className)}
     >
       {children}
     </section>

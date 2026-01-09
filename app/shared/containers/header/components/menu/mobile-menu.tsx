@@ -2,7 +2,6 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { MenuProps } from './menu'
-import styles from './mobile-menu.module.scss'
 import classNames from 'classnames'
 import Image from 'next/image'
 
@@ -14,16 +13,18 @@ export const MobileMenu = ({ items }: MenuProps) => {
   }
 
   return (
-    <div className={styles['mobile-menu']}>
+    <div>
       <MenuIcon isOpen={isMobileMenuOpen} handleClick={handleMenuItemClick} />
-      <nav
-        className={classNames(styles.nav, isMobileMenuOpen ? styles.open : '')}
-      >
-        <ul className={styles.list}>
+      <nav className={classNames('hidden', isMobileMenuOpen && 'block')}>
+        <ul className="flex flex-col items-center bg-yellow-200 h-screen justify-center left-0 p-3 fixed top-0 transition-all duration-500 delay-1000 ease-in w-screen z-[4] list-none m-0">
           {items.map((item) => {
             return (
-              <li key={item._key} className={styles.item}>
+              <li
+                key={item._key}
+                className="text-2xl font-semibold text-center w-auto [&:not(:last-child)]:mb-3"
+              >
                 <Link
+                  className="no-underline"
                   target={item._type === 'external' ? '_blank' : undefined}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -47,9 +48,9 @@ const MenuIcon = ({
   isOpen: boolean
 }) => {
   return (
-    <div className={styles.icon}>
+    <div className="relative z-[5]">
       <button
-        className={styles.button}
+        className="bg-black rounded-[48px] h-12 w-12 border-none cursor-pointer flex items-center justify-center"
         onClick={handleClick}
         aria-label="Toggle menu"
       >
