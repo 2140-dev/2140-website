@@ -1,21 +1,12 @@
-import imageUrlBuilder from '@sanity/image-url'
 import { NotFoundTemplate } from 'app/templates/not-found/not-found-template'
-import { client } from '@/sanity/lib/client'
 import { getPageNotFoundProps, getSiteSettings } from '@/sanity/lib/queries'
 import { Metadata } from 'next'
+import { resolveOpenGraphImage } from '../../sanity/lib/utils'
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings()
 
-  const images = settings?.ogImage
-    ? [
-        {
-          url: imageUrlBuilder(client).image(settings?.ogImage).url(),
-          width: 1200,
-          height: 630
-        }
-      ]
-    : []
+  const images = resolveOpenGraphImage(settings?.ogImage)
   return {
     title: 'Page not found',
     description:

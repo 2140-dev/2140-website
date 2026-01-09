@@ -1,11 +1,9 @@
-import imageUrlBuilder from '@sanity/image-url'
 import type { Metadata } from 'next'
 
 import { getPageProps, getSiteSettings } from '@/sanity/lib/queries'
 import { notFound } from 'next/navigation'
-import { sanityFetch } from '@/sanity/lib/fetch'
 import { PageTemplate } from '@/app/templates/page/page-template'
-import { client } from '@/sanity/lib/client'
+import { resolveOpenGraphImage } from '../../../sanity/lib/utils'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -19,15 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {}
   }
 
-  const images = settings?.ogImage
-    ? [
-        {
-          url: imageUrlBuilder(client).image(settings?.ogImage).url(),
-          width: 1200,
-          height: 630
-        }
-      ]
-    : []
+  const images = resolveOpenGraphImage(settings?.ogImage)
   return {
     title: props.title,
     description: props?.excerpt || '',

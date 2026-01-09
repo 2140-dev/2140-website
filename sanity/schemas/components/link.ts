@@ -1,5 +1,5 @@
 import { LinkIcon } from '@sanity/icons'
-import { defineField, defineType } from 'sanity'
+import { defineField } from 'sanity'
 
 export const external = defineField({
   name: 'external',
