@@ -45,7 +45,7 @@ const TeamMembers = ({
             className={classNames(
               'grid gap-8 mt-10 grid-cols-1',
               variant === 'teaser'
-                ? 'max-w-md mx-auto px-5 lg:px-10 max-w-sm sm:grid-cols-2'
+                ? 'max-w-md mx-auto px-5 lg:px-10 max-w-md sm:grid-cols-2'
                 : 'md:grid-cols-2'
             )}
           >
