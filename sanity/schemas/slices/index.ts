@@ -6,6 +6,7 @@ import donors from "./donors";
 import faqs from "./faqs";
 import team from "./team-members";
 import textBlockWithImage from "./text-block-with-image";
+import subscribe from "./subscribe";
 
 export const slices: SchemaTypeDefinition[] = [
   callToAction,
@@ -14,4 +15,5 @@ export const slices: SchemaTypeDefinition[] = [
   faqs,
   team,
   textBlockWithImage,
+  subscribe,
 ];

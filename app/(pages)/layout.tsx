@@ -1,5 +1,6 @@
-import '../styles/normalize.css'
-import '../scss/index.scss'
+// import '../styles/normalize.css'
+import './globals.css'
+// import '../scss/index.scss'
 
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
@@ -11,7 +12,6 @@ import { SanityVisualEditing } from 'app/shared/components/sanity-visual-editing
 import { client } from '@/sanity/lib/client'
 import { resolveOpenGraphImage } from '@/sanity/lib/utils'
 import { getSiteSettings, getSiteSettingsAndMenu } from '@/sanity/lib/queries'
-import { PortableTextBlock } from 'sanity'
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const settings = await getSiteSettings(client)

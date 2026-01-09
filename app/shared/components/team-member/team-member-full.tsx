@@ -1,28 +1,26 @@
 import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
 import { SanityImage } from 'app/shared/components/sanity-image/sanity-image'
 import Link from 'next/link'
-import styles from './team-member-full.module.scss'
-import classNames from 'classnames'
 import { TeamMemberProps } from '@/app/types/team'
 import Image from 'next/image'
 
 export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
   return (
-    <div className={styles.full}>
-      <div className={styles['image-wrapper']}>
-        <div className={styles.outline}>
+    <div className="max-w-[350px] mx-auto">
+      <div className="flex items-center justify-center relative mb-5 pt-3">
+        <div className="absolute">
           <OutlineCircle />
         </div>
-        <div className={styles.avatar}>
+        <div className="w-[100px] h-[100px] overflow-hidden rounded-full">
           <SanityImage image={team.picture} />
         </div>
       </div>
-      <div className={styles.header}>
-        <h4 className={styles.name}>{team.name}</h4>
+      <div className="flex items-center justify-center gap-2">
+        <h4 className="mb-0.5">{team.name}</h4>
         {(team.github || team.x) && (
-          <div className={styles.social}>
+          <div className="flex gap-2">
             {team.github && (
-              <Link target="_blank" href={team.github} className={styles.icon}>
+              <Link target="_blank" href={team.github} className="w-5">
                 <Image
                   height="20"
                   width="20"
@@ -32,7 +30,7 @@ export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
               </Link>
             )}
             {team.x && (
-              <Link target="_blank" href={team.x} className={styles.icon}>
+              <Link target="_blank" href={team.x} className="w-5">
                 <Image
                   height="20"
                   width="20"
@@ -44,7 +42,7 @@ export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
           </div>
         )}
       </div>
-      <p className={classNames(styles.role, 'text-s')}>{team.role}</p>
+      <p className="mb-3 text-center text-gray-200 text-custom-s">{team.role}</p>
       <RichTextRenderer content={team.bio} />
     </div>
   )

@@ -1,7 +1,5 @@
 import { SanityImage } from 'app/shared/components/sanity-image/sanity-image'
 import Link from 'next/link'
-import styles from './team-member-teaser.module.scss'
-import classNames from 'classnames'
 import { TeamMemberProps } from '@/app/types/team'
 import Image from 'next/image'
 
@@ -9,22 +7,22 @@ export const TeamMemberTeaser = ({
   team
 }: Omit<TeamMemberProps, 'variant'>) => {
   return (
-    <div className={styles.teaser}>
-      <div className={styles['image-wrapper']}>
-        <div className={styles.outline}>
+    <div className="flex items-center bg-yellow-200 rounded-[8rem] gap-12 px-8 py-6">
+      <div className="flex items-center justify-center rounded-full relative md:h-20 md:max-w-20">
+        <div className="absolute">
           <OutlineCircle />
         </div>
-        <div className={styles.image}>
+        <div className="rounded-full h-20 w-20 overflow-hidden">
           <SanityImage image={team.picture} />
         </div>
       </div>
-      <div className={styles.content}>
-        <p className={styles.name}>{team.name}</p>
-        <span className={classNames('text-s', styles.role)}>{team.role}</span>
+      <div className="text-left">
+        <p className="font-semibold m-0">{team.name}</p>
+        <span className="text-custom-s m-0">{team.role}</span>
         {(team.github || team.x) && (
-          <ul className={styles.social}>
+          <ul className="flex gap-4 list-none p-0 mt-4 mb-0">
             {team.github && (
-              <li>
+              <li className="p-0 w-5">
                 <Link target="_blank" href={team.github}>
                   <Image
                     height="20"
@@ -36,7 +34,7 @@ export const TeamMemberTeaser = ({
               </li>
             )}
             {team.x && (
-              <li>
+              <li className="p-0 w-5">
                 <Link target="_blank" href={team.x}>
                   <Image
                     height="20"

@@ -5,10 +5,8 @@ import { Container } from 'app/shared/layouts/container/container'
 import debounce from 'lodash/debounce'
 import { useEffect, useRef, useState } from 'react'
 import { Logo } from './components/logo/logo'
-import styles from './header.module.scss'
 import classNames from 'classnames'
 import { SanityImage } from '@/app/types/image'
-import { ResolvedLink } from '@/app/types/resolved-link'
 import { InternalOrExternalLink } from '@/app/types/link'
 
 interface Props {
@@ -84,9 +82,12 @@ export const Header = ({ logo, items }: Props) => {
   return (
     <header
       ref={ref}
-      className={classNames(styles.header, isSticky ? styles.sticky : '')}
+      className={classNames(
+        'text-black absolute w-full z-[99]',
+        isSticky ? 'overflow-hidden' : 'overflow-visible'
+      )}
     >
-      <Container size="lg" className={styles.container}>
+      <Container size="lg" className="flex items-center h-20 justify-between">
         <Logo image={logo} />
         <Menu isMobile={isMobile} items={items} />
       </Container>

@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { MenuProps } from './menu'
-import styles from './desktop-menu.module.scss'
 import { usePathname } from 'next/navigation'
 import classNames from 'classnames'
 import Image from 'next/image'
@@ -16,8 +15,8 @@ export const DesktopMenu = ({ items }: MenuProps) => {
   }, [pathname])
 
   return (
-    <nav className={styles['desktop-menu']}>
-      <ul className={styles.list}>
+    <nav className="flex justify-end">
+      <ul className="flex gap-10 list-none">
         {items.map((item) => {
           const isActive = activeLinkKey === item._key
           const isExternalLink = item._type === 'external'
@@ -25,20 +24,20 @@ export const DesktopMenu = ({ items }: MenuProps) => {
             <li
               key={item._key}
               className={classNames(
-                styles.item,
-                isActive ? styles['is-active'] : '',
-                isExternalLink ? styles['is-external'] : ''
+                'mb-0 p-0 relative whitespace-nowrap menu-item',
+                isActive && 'active',
+                isExternalLink && 'flex items-center justify-end mr-5'
               )}
             >
               <Link
-                className={styles.link}
+                className="no-underline"
                 target={item._type === 'external' ? '_blank' : undefined}
                 href={item.href}
               >
                 {item.label}
               </Link>
               {item._type === 'external' && (
-                <div className={styles.icon}>
+                <div className="h-4 left-[calc(100%+0.25rem)] absolute w-4">
                   <Image
                     height="16"
                     width="16"

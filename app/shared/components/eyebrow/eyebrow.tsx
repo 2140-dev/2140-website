@@ -1,24 +1,27 @@
-import { ReactNode } from 'react'
-import styles from './eyebrow.module.scss'
 import classNames from 'classnames'
-const mapColorsToValues: Record<'yellow' | 'white' | 'black' | 'blue', string> =
-  {
-    yellow: '#eeba0e',
-    black: '#212121',
-    white: '#fff',
-    blue: '#62ccef'
-  }
+import { ReactNode } from 'react'
+
+const colorClasses: Record<'yellow' | 'white' | 'black' | 'blue', string> = {
+  yellow: 'text-yellow-300',
+  black: 'text-black',
+  white: 'text-white',
+  blue: 'text-blue-100'
+}
+
 interface Props {
   color: 'yellow' | 'white' | 'black' | 'blue'
   text: string | ReactNode
   className?: string
 }
+
 export const Eyebrow = ({ color, text, className = '' }: Props) => {
   return (
     <span
-      color={mapColorsToValues[color]}
-      className={classNames('text-s', styles.eyebrow, className)}
-      style={{ color: mapColorsToValues[color] }}
+      className={classNames(
+        'inline-block uppercase tracking-wider mb-4 font-semibold text-custom-s',
+        colorClasses[color],
+        className
+      )}
     >
       {text}
     </span>

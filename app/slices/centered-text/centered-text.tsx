@@ -6,7 +6,7 @@ import { SanityImage } from 'app/shared/components/sanity-image/sanity-image'
 import { Container } from 'app/shared/layouts/container/container'
 import { Section } from 'app/shared/layouts/section/section'
 import { getInternalLinkUrl } from 'app/utils/link'
-import styles from './centered-text.module.scss'
+import classNames from 'classnames'
 import { CenteredText as CenteredTextType } from 'sanity.types'
 import { InternalLink } from '@/app/types/link'
 
@@ -22,26 +22,23 @@ const CenteredText = ({
   layout
 }: CenteredTextProps) => {
   return (
-    <Section className={styles['centered-text']}>
-      <Container size="sm" className={styles.container}>
+    <Section>
+      <Container size="sm" className="flex flex-col text-center gap-20">
         <div>
           {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
-          <h2 className="strike-black under-black">
+          <h2 className="strikethrough-black underline-black">
             <MarkdownRender>{title}</MarkdownRender>
           </h2>
-          <Container size="xs">
-            {content && <RichTextRenderer content={content} />}
-            {link?.slug && link?.label && (
-              <Button variant="secondary" href={getInternalLinkUrl(link)}>
-                {link.label}
-              </Button>
-            )}
-          </Container>
+          {content && <RichTextRenderer content={content} />}
+          {link?.slug && link?.label && (
+            <Button variant="secondary" href={getInternalLinkUrl(link)}>
+              {link.label}
+            </Button>
+          )}
         </div>
         {image && (
           <div
-            className={styles.image}
-            style={{ order: layout === 'below' ? -1 : 1 }}
+            className={classNames('px-20', layout === 'below' ? 'order-first' : 'order-last')}
           >
             <SanityImage image={image} />
           </div>

@@ -129,6 +129,9 @@ export type Homepage = {
       } & Faqs)
     | ({
         _key: string
+      } & Subscribe)
+    | ({
+        _key: string
       } & TeamMembers)
     | ({
         _key: string
@@ -217,6 +220,12 @@ export type Settings = {
     _type: 'block'
     _key: string
   }>
+}
+
+export type Subscribe = {
+  _type: 'subscribe'
+  title: string
+  description?: string
 }
 
 export type TextBlockWithImage = {
@@ -403,6 +412,9 @@ export type Page = {
       } & Faqs)
     | ({
         _key: string
+      } & Subscribe)
+    | ({
+        _key: string
       } & TeamMembers)
     | ({
         _key: string
@@ -522,6 +534,7 @@ export type AllSanitySchemaTypes =
   | Internal
   | Menu
   | Settings
+  | Subscribe
   | TextBlockWithImage
   | TeamMembers
   | Faqs
@@ -768,6 +781,13 @@ export type HomepageQueryResult = {
       }
     | {
         _key: string
+        _type: 'subscribe'
+        title: string
+        description?: string
+        link: null
+      }
+    | {
+        _key: string
         _type: 'team-members'
         eyebrow?: string
         title?: string
@@ -915,6 +935,13 @@ export type PageQueryResult = {
           content: TextEditor
           _key: string
         }>
+        link: null
+      }
+    | {
+        _key: string
+        _type: 'subscribe'
+        title: string
+        description?: string
         link: null
       }
     | {
