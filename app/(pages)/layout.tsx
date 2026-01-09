@@ -1,6 +1,4 @@
-// import '../styles/normalize.css'
 import './globals.css'
-// import '../scss/index.scss'
 
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
@@ -9,43 +7,15 @@ import { draftMode } from 'next/headers'
 import { Footer } from 'app/shared/containers/footer/footer'
 import { Header } from 'app/shared/containers/header/header'
 import { SanityVisualEditing } from 'app/shared/components/sanity-visual-editing/sanity-visual-editing'
-import { client } from '@/sanity/lib/client'
-import { resolveOpenGraphImage } from '@/sanity/lib/utils'
-import { getSiteSettings, getSiteSettingsAndMenu } from '@/sanity/lib/queries'
+import { getSiteSettingsAndMenu } from '@/sanity/lib/queries'
+import SettingsProvider from '../contexts/SettingsProvider'
+import { ReactNode } from 'react'
 
-export const generateMetadata = async (): Promise<Metadata> => {
-  const settings = await getSiteSettings(client)
-  if (settings) {
-    const title = settings.title
-    const ogImage = resolveOpenGraphImage(settings.ogImage)
-    return {
-      title: {
-        template: `%s | ${title}`,
-        default: title
-      },
-      description: settings?.description,
-      openGraph: {
-        images: ogImage ? [ogImage] : []
-      }
-    }
-  }
-
-  // fallback for empty dataset
-  return {
-    title: 'Missing title',
-    description: 'Missing site description.',
-    openGraph: {
-      images: []
-    }
-  }
+interface RootLayoutProps {
+  children: ReactNode
 }
-
-export default async function RootLayout({
-  children
-}: {
-  children: React.ReactNode
-}) {
-  const { settings, menu } = await getSiteSettingsAndMenu(client)
+export default async function RootLayout({ children }: RootLayoutProps) {
+  const { settings, menu } = await getSiteSettingsAndMenu()
   const { isEnabled: isDraftMode } = await draftMode()
 
   if (!settings) {
@@ -68,7 +38,9 @@ export default async function RootLayout({
       </head>
       <body>
         <Header logo={settings.logo} items={menu?.items || []} />
-        {children}
+        <SettingsProvider settings={settings}>
+          {children}
+        </SettingsProvider>
         {isDraftMode && <SanityVisualEditing />}
         <Footer
           gpg={settings?.gpg}

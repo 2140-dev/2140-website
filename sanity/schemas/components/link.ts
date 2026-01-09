@@ -93,12 +93,15 @@ export const link = defineField({
   ],
   preview: {
     select: {
-      link: 'link'
+      type: 'type',
+      internal: 'internal',
+      external: 'external'
     },
-    prepare: ({ link }) => {
-      const isInternal = link.type === 'internal'
+    prepare: ({ type, internal, external }) => {
+      const isInternal = type === 'internal'
+      const link = isInternal ? internal : external
       return {
-        title: link[link.type].label,
+        title: link?.label || 'No label',
         subtitle: `${isInternal ? 'Internal' : 'External'} link`,
         media: LinkIcon
       }

@@ -7,7 +7,6 @@ export default defineType({
   type: 'document',
   icon: WrenchIcon,
 
-  // ✅ Define the tabs (groups)
   groups: [
     { name: 'general', title: 'General' },
     { name: 'metadata', title: 'Metadata' },
@@ -15,11 +14,10 @@ export default defineType({
   ],
 
   fields: [
-    // 🟢 General
     defineField({
       name: 'title',
       title: 'Title',
-      type: 'text',
+      type: 'string',
       group: 'general',
       description: 'This is the title of your website.',
       validation: (rule) => rule.required()
@@ -46,12 +44,34 @@ export default defineType({
       validation: (rule) => rule.required()
     }),
     defineField({
-      title: 'Donation link',
-      name: 'donation',
-      type: 'url',
+      title: 'Links',
+      name: 'links',
+      type: 'object',
       group: 'general',
-      validation: (rule) =>
-        rule.required().uri({ scheme: ['http', 'https', 'tel', 'mailto'] })
+      fields: [
+        defineField({
+          title: 'Donations',
+          name: 'donation',
+          type: 'url',
+          validation: (rule) =>
+            rule.required().uri({ scheme: ['http', 'https'] })
+        }),
+        defineField({
+          title: 'Substack',
+          name: 'substack',
+          type: 'url',
+          validation: (rule) =>
+            rule.required().uri({ scheme: ['http', 'https'] })
+        }),
+        defineField({
+          title: 'Twitter',
+          name: 'twitter',
+          type: 'url',
+          validation: (rule) =>
+            rule.required().uri({ scheme: ['http', 'https'] })
+        })
+      ],
+      validation: (rule) => rule.required()
     }),
 
     // 🟣 Metadata

@@ -17,14 +17,9 @@ export const NotFoundTemplate = ({
         {eyebrow && <Eyebrow color="blue" text={eyebrow} />}
         <h1>{title}</h1>
         {content && <RichTextRenderer content={content} />}
-        {items?.map((item, index) => {
-          const { href, label } = resolveInternalOrExternalLink(item)
-          return (
-            <Button key={index} variant="secondary" href={href}>
-              {label}
-            </Button>
-          )
-        })}
+        <Button variant="primary" href="/">
+          Back to homepage
+        </Button>
       </Container>
     </div>
   )

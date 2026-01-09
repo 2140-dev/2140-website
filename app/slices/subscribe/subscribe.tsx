@@ -1,8 +1,11 @@
+'use client'
 import { Container } from 'app/shared/layouts/container/container'
 import { Section } from 'app/shared/layouts/section/section'
 import { Eyebrow } from '../../shared/components/eyebrow/eyebrow'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useContext } from 'react'
+import SettingsContext from '../../contexts/SettingsContext'
 
 interface SubscribeProps {
   title: string
@@ -10,8 +13,12 @@ interface SubscribeProps {
 }
 
 const Subscribe = ({ title, description }: SubscribeProps) => {
+  const settings = useContext(SettingsContext)
+
+  console.log('settings: ', settings?.links)
   return (
     <Section>
+      Hi
       <Container size="sm" className="text-center">
         <Eyebrow text="Follow us" color="blue" />
         <h2>{title}</h2>
@@ -19,9 +26,9 @@ const Subscribe = ({ title, description }: SubscribeProps) => {
           {description && <p>{description}</p>}
 
           <div className="flex justify-center gap-20 mt-20">
-            <div className="text-center">
+            {settings?.links?.substack && (
               <Link
-                href="https://2140blog.substack.com/"
+                href={settings.links.substack}
                 target="_blank"
                 className="no-underline"
               >
@@ -43,9 +50,13 @@ const Subscribe = ({ title, description }: SubscribeProps) => {
                   />
                 </p>
               </Link>
-            </div>
-            <div>
-              <Link href="https://2140blog.substack.com/" target="_blank">
+            )}
+            {settings?.links?.twitter && (
+              <Link
+                href={settings.links.twitter}
+                target="_blank"
+                className="no-underline"
+              >
                 <i className="h-20 w-20 bg-yellow-200 inline-flex items-center justify-center rounded-full">
                   <Image
                     src="images/icons/twitter.svg"
@@ -54,17 +65,17 @@ const Subscribe = ({ title, description }: SubscribeProps) => {
                     width={20}
                   />
                 </i>
+                <p className="text-custom-s mt-2 flex items-center justify-center gap-2">
+                  Follow up on Twitter{' '}
+                  <Image
+                    height={16}
+                    width={16}
+                    src="images/icons/external-link.svg"
+                    alt=""
+                  />
+                </p>
               </Link>
-              <p className="text-custom-s mt-2 flex items-center justify-center gap-2">
-                Follow up on Twitter{' '}
-                <Image
-                  height={16}
-                  width={16}
-                  src="images/icons/external-link.svg"
-                  alt=""
-                />
-              </p>
-            </div>
+            )}
           </div>
         </Container>
       </Container>

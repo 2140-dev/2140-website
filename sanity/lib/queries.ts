@@ -6,9 +6,10 @@ import {
   PageQueryResult,
   SettingsQueryResult
 } from 'sanity.types'
+import { client } from './client'
 
 const settingsQuery = defineQuery(`*[_type == "settings"][0]`)
-export const getSiteSettings = async (client: SanityClient) => {
+export const getSiteSettings = async () => {
   return await client.fetch<SettingsQueryResult>(settingsQuery)
 }
 
@@ -28,7 +29,7 @@ export const menuQuery = defineQuery(`*[_type == "menu"][0] {
     }
   }
 }`)
-export const getSiteSettingsAndMenu = async (client: SanityClient) => {
+export const getSiteSettingsAndMenu = async () => {
   const result = await Promise.all([
     client.fetch<SettingsQueryResult>(settingsQuery),
     client.fetch<MenuQueryResult>(menuQuery)
@@ -56,7 +57,7 @@ const pageNotFoundQuery = defineQuery(`
     }
   }
 `)
-export const getPageNotFoundProps = async (client: SanityClient) => {
+export const getPageNotFoundProps = async () => {
   const result = await client.fetch<PageNotFoundQueryResult>(pageNotFoundQuery)
   return result
 }
@@ -118,7 +119,7 @@ const homepageQuery = defineQuery(`
     }
   }
 `)
-export const getHomepageProps = async (client: SanityClient) => {
+export const getHomepageProps = async () => {
   return await client.fetch<HomepageQueryResult>(homepageQuery)
 }
 
@@ -162,10 +163,7 @@ const pageQuery = defineQuery(`
     }
   }
 `)
-export const getPageProps = async (
-  client: SanityClient,
-  params: Promise<{ slug: string }>
-) => {
+export const getPageProps = async (params: Promise<{ slug: string }>) => {
   const { slug } = await params
   return await client.fetch<PageQueryResult>(pageQuery, {
     slug

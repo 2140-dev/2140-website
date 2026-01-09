@@ -179,7 +179,11 @@ export type Settings = {
     alt?: string
     _type: 'image'
   }
-  donation: string
+  links: {
+    donation: string
+    substack: string
+    twitter: string
+  }
   description: string
   ogImage: {
     asset?: {
@@ -581,7 +585,11 @@ export type SettingsQueryResult = {
     alt?: string
     _type: 'image'
   }
-  donation: string
+  links: {
+    donation: string
+    substack: string
+    twitter: string
+  }
   description: string
   ogImage: {
     asset?: {

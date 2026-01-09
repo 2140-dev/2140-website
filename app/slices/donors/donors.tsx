@@ -9,22 +9,27 @@ import { SanityImage } from '../../shared/components/sanity-image/sanity-image'
 const Donors = ({ eyebrow, title, content, logos }: DonorsProps) => {
   return (
     <Section className="text-center">
-      <Container size="sm">
+      <Container size="md">
         {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
         <h2 className="strikethrough-black underline-black">
           <MarkdownRender>{title}</MarkdownRender>
         </h2>
-        {content && <RichTextRenderer content={content} />}
-      </Container>
-      <Container className="flex items-center justify-center gap-10 mt-10 flex-wrap">
-        {logos.map((image, index) => (
-          <div key={index} className="max-w-[180px]">
-            <SanityImage
-              image={image}
-              className="max-w-full w-auto h-auto max-h-[80px]"
-            />
-          </div>
-        ))}
+        {content && (
+          <RichTextRenderer
+            className="max-w-sm mx-auto lg:px-10"
+            content={content}
+          />
+        )}
+        <div className="flex items-center justify-center gap-10 mt-10 flex-wrap">
+          {logos.map((image, index) => (
+            <div key={index} className="max-w-[180px]">
+              <SanityImage
+                image={image}
+                className="max-w-full w-auto h-auto max-h-[80px]"
+              />
+            </div>
+          ))}
+        </div>
       </Container>
     </Section>
   )
