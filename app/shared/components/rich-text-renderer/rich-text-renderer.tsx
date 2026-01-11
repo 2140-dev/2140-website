@@ -3,13 +3,14 @@ import Link from 'next/link'
 
 import React from 'react'
 import { Eyebrow } from '../eyebrow/eyebrow'
-import {
-  PortableText,
-  // PortableTextBlock,
-  PortableTextReactComponents
-} from 'next-sanity'
+import { PortableText, PortableTextReactComponents } from 'next-sanity'
 import classNames from 'classnames'
+import DonateEmbed from '../donate/donate'
+
 const components: Partial<PortableTextReactComponents> = {
+  types: {
+    donate: ({ value }) => <DonateEmbed value={value} />
+  },
   block: {
     eyebrow: ({ children }) => <Eyebrow color="blue" text={children} />,
     h2: ({ children }) => (

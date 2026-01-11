@@ -23,12 +23,18 @@ export const Hero = ({ title, excerpt, image, link }: HeroProps) => {
         className="items-center gap-16 min-h-screen justify-between relative 2xl:flex"
       >
         <div className="flex-1 pt-48 lg:pl-20 2xl:pt-0">
-          <h1 className="lg:text-[5rem] underline-yellow strikethrough-yellow hero-title">
+          <h1 className="lg:text-[5rem] underline-yellow strikethrough-yellow text-custom-5xl">
             <MarkdownRender>{title}</MarkdownRender>
           </h1>
           {excerpt && <p className="text-custom-l">{excerpt}</p>}
           {link?.slug && link?.label && (
-            <Button href={getInternalLinkUrl(link)}>{link.label}</Button>
+            <Button
+              variant="primary"
+              className="mt-10"
+              href={getInternalLinkUrl(link)}
+            >
+              {link.label}
+            </Button>
           )}
         </div>
         <div className="flex-1 z-10 max-w-[50rem] mx-auto">

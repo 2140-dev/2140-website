@@ -14,7 +14,7 @@ const Text = ({ content }: TextProps) => {
 
   return (
     <Section>
-      <Container size="sm">
+      <Container size="xs">
         <RichTextRenderer content={content} />
       </Container>
     </Section>

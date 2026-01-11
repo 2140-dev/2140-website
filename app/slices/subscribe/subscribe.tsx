@@ -14,8 +14,6 @@ interface SubscribeProps {
 
 const Subscribe = ({ title, description }: SubscribeProps) => {
   const settings = useContext(SettingsContext)
-
-  console.log('settings: ', settings?.links)
   return (
     <Section>
       Hi

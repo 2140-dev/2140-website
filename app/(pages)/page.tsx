@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { getHomepageProps, getSiteSettings } from '@/sanity/lib/queries'
 import { Metadata } from 'next'
 import { resolveOpenGraphImage } from '../../sanity/lib/utils'
+import { stripHTMLMarkup } from '../utils/markdown'
 
 export async function generateMetadata(): Promise<Metadata> {
   const props = await getHomepageProps()
@@ -15,10 +16,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const images = resolveOpenGraphImage(settings?.ogImage)
   return {
-    title: props.title,
+    title: stripHTMLMarkup(props.title),
     description: props?.excerpt || '',
     openGraph: {
-      title: props.title,
+      title: stripHTMLMarkup(props.title),
       description: props?.excerpt || settings?.description,
       siteName: '2140',
       images

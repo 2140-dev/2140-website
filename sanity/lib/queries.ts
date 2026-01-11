@@ -1,4 +1,4 @@
-import { SanityClient, defineQuery } from 'next-sanity'
+import { defineQuery } from 'next-sanity'
 import {
   HomepageQueryResult,
   MenuQueryResult,
@@ -8,7 +8,12 @@ import {
 } from 'sanity.types'
 import { client } from './client'
 
-const settingsQuery = defineQuery(`*[_type == "settings"][0]`)
+const settingsQuery = defineQuery(`*[_type == "settings"][0] {
+  ...,
+  disclaimer[] {
+    ...
+  }
+}`)
 export const getSiteSettings = async () => {
   return await client.fetch<SettingsQueryResult>(settingsQuery)
 }
@@ -40,21 +45,9 @@ export const getSiteSettingsAndMenu = async () => {
 const pageNotFoundQuery = defineQuery(`
   *[_type == "not-found"][0] {
     ...,
-    items[] {
+    content[] {
       ...,
-      internal {
-        _key,
-        "_type": _type,
-        "label": label,
-        "slug": reference->slug.current,
-        "document": reference->_type
-      },
-      external {
-        "_type": _type,
-        "label": label,
-        "url": url,
-      }
-    }
+    },
   }
 `)
 export const getPageNotFoundProps = async () => {
@@ -73,6 +66,9 @@ const homepageQuery = defineQuery(`
     },
     slices[] {
       ...,
+      content[] {
+        ...,
+      },
       link {
         internal {
           "_type": _type,
@@ -128,6 +124,9 @@ const pageQuery = defineQuery(`
     ...,
     slices[] {
       ...,
+      content[] {
+        ...,
+      },
       link {
         internal {
           "_type": _type,

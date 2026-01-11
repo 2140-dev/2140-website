@@ -1,7 +1,6 @@
 import { PageTemplateProps } from '@/app/types/templates'
 import { PageTitle } from 'app/shared/components/page-title/page-title'
 import { SlicesComp } from 'app/shared/layouts/slices-comp/slices-comp'
-import { PageQueryResult } from 'sanity.types'
 
 export const PageTemplate = ({ title, excerpt, slices }: PageTemplateProps) => {
   return (

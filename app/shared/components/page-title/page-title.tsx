@@ -1,5 +1,6 @@
 import { Container } from 'app/shared/layouts/container/container'
 import { Section } from 'app/shared/layouts/section/section'
+import { MarkdownRender } from '../markdown-renderer/markdown-renderer'
 
 interface Props {
   title: string
@@ -7,9 +8,11 @@ interface Props {
 }
 export const PageTitle = ({ title, excerpt }: Props) => {
   return (
-    <Section className="pt-40 text-center bg-yellow-200">
+    <Section className="pt-45 text-center pb-0">
       <Container size="sm">
-        <h1>{title}</h1>
+        <h1 className="underline-yellow strikethrough-black text-custom-5xl">
+          <MarkdownRender>{title}</MarkdownRender>
+        </h1>
         {excerpt && <p className="text-custom-l">{excerpt}</p>}
       </Container>
     </Section>

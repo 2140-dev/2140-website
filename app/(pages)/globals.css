@@ -27,10 +27,10 @@
   --breakpoint-2xl: 1600px;
 
   /* Container Max Widths */
-  --max-width-xs: 596px;
-  --max-width-sm: 848px;
-  --max-width-md: 1248px;
-  --max-width-lg: 1568px;
+  --container-xs: 696px;
+  --container-sm: 848px;
+  --container-md: 1248px;
+  --container-lg: 1568px;
 }
 
 @layer base {
@@ -106,6 +106,10 @@
 
 @layer utilities {
   /* Text size utilities */
+  .text-custom-5xl {
+    font-size: clamp(4rem, 3.5rem + 2vw, 5rem);
+  }
+
   .text-custom-4xl {
     font-size: clamp(3.5rem, 3rem + 2vw, 4rem);
   }
@@ -204,11 +208,6 @@
   }
 }
 
-/* Hero title with custom underline */
-.hero-title u::after {
-  background-image: url('/images/underline.svg');
-}
-
 /* Markdown renderer utilities */
 .markdown-content {
   padding-left: 0;
@@ -227,48 +226,127 @@
 /* Logo background shape */
 .logo-backdrop {
   &::before {
+    @apply block h-150 w-250 bg-yellow-200 absolute;
+
     content: '';
-    display: block;
-    height: 600px;
-    background-color: var(--color-yellow-200);
     right: -250px;
     border-radius: 100% 30% 60% 70% / 50% 40% 70% 70%;
-    position: absolute;
-    width: 1000px;
     z-index: -1;
     top: -500px;
   }
 }
 
 /* Desktop menu item underline effect */
-.menu-item::before,
-.menu-item::after {
-  content: '';
-  background-color: var(--color-black);
-  bottom: 0;
-  width: 0;
-  height: 1px;
-  position: absolute;
-  transition: all 0.2s ease-in;
+.menu-item {
+  &::before,
+  &::after {
+    @apply bg-black bottom-0 w-0 h-[1px] absolute;
+
+    content: '';
+    transition: all 0.2s ease-in;
+  }
 }
 
-.menu-item::before {
-  right: 50%;
+.menu-item {
+  &::before {
+    right: 50%;
+  }
+  &::after {
+    left: 50%;
+  }
 }
 
-.menu-item::after {
-  left: 50%;
-}
-
-.menu-item:hover::before,
-.menu-item:hover::after,
-.menu-item.active::before,
-.menu-item.active::after {
-  width: 50%;
+.menu-item {
+  &:hover::before,
+  &:hover::after,
+  &.active::before,
+  &.active::after {
+    width: 50%;
+  }
 }
 
 .portable-text {
   p {
     @apply mb-4;
+  }
+}
+
+/* Button styles */
+.button {
+  @apply items-center inline-flex gap-4 no-underline;
+
+  cursor: pointer;
+
+  &:hover {
+    .outline {
+      transform: rotate(0deg);
+    }
+  }
+}
+
+.button {
+  .outline {
+    transform: rotate(205deg);
+    transition: all 0.5s cubic-bezier(0.83, 0, 0.17, 1);
+  }
+
+  .icon::after {
+    @apply w-10 h-10 bg-yellow-200 block rounded-full absolute;
+
+    content: '';
+    background-image: url('/images/icons/arrow-right.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.2s cubic-bezier(0.83, 0, 0.17, 1);
+  }
+}
+
+/* Button Primary */
+.button-primary {
+  @apply p-0 bg-transparent text-black;
+
+  .circle {
+    stroke: var(--color-black);
+  }
+
+  &:hover {
+    .icon::after {
+      background-color: var(--color-yellow-400);
+    }
+  }
+}
+
+/* Button Secondary */
+.button-secondary {
+  @apply bg-black rounded-xl text-white py-4 px-8 font-semibold;
+
+  .icon::after {
+    @apply h-4 w-4 static bg-transparent;
+  }
+
+  &:hover {
+    @apply text-white bg-yellow-400;
+  }
+}
+
+/* Button Donate */
+.button-donate {
+  @apply bg-white text-black rounded-full py-4 px-16 font-semibold text-xl;
+
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  letter-spacing: 2px;
+
+  .circle {
+    stroke: var(--color-black);
+  }
+}
+
+.button-donate {
+  &:hover {
+    @apply bg-white;
+  }
+
+  .icon::after {
+    @apply bg-yellow-200;
   }
 }

@@ -4,6 +4,7 @@ import { getPageProps, getSiteSettings } from '@/sanity/lib/queries'
 import { notFound } from 'next/navigation'
 import { PageTemplate } from '@/app/templates/page/page-template'
 import { resolveOpenGraphImage } from '../../../sanity/lib/utils'
+import { stripHTMLMarkup } from '../../utils/markdown'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -19,17 +20,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const images = resolveOpenGraphImage(settings?.ogImage)
   return {
-    title: props.title,
+    title: stripHTMLMarkup(props.title),
     description: props?.excerpt || '',
     openGraph: {
-      title: props.title,
+      title: stripHTMLMarkup(props.title),
       description: props?.excerpt || settings?.description,
       siteName: '2140',
       images
     },
     twitter: {
       card: 'summary_large_image',
-      title: props.title,
+      title: stripHTMLMarkup(props.title),
       description: props?.excerpt || settings?.description,
       images
     }

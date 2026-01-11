@@ -2,6 +2,7 @@ import { SanityImage } from 'app/shared/components/sanity-image/sanity-image'
 import Link from 'next/link'
 import { TeamMemberProps } from '@/app/types/team'
 import Image from 'next/image'
+import { OutlineCircle } from '../outline-circle/outline-circle'
 
 export const TeamMemberTeaser = ({
   team
@@ -9,8 +10,8 @@ export const TeamMemberTeaser = ({
   return (
     <div className="flex items-center bg-yellow-200 rounded-[8rem] gap-12 px-8 py-6">
       <div className="flex items-center justify-center rounded-full relative md:h-20 md:max-w-20">
-        <div className="absolute">
-          <OutlineCircle />
+        <div className="absolute text-white">
+          <OutlineCircle size="md" />
         </div>
         <div className="rounded-full h-20 w-20 overflow-hidden">
           <SanityImage image={team.picture} />
@@ -49,22 +50,5 @@ export const TeamMemberTeaser = ({
         )}
       </div>
     </div>
-  )
-}
-
-const OutlineCircle = () => {
-  return (
-    <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
-      <circle
-        cx="55"
-        cy="55"
-        r="54.5"
-        style={{
-          stroke: '#fff',
-          strokeWidth: 1,
-          strokeDasharray: 280
-        }}
-      />
-    </svg>
   )
 }

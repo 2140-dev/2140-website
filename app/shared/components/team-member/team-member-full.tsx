@@ -3,13 +3,14 @@ import { SanityImage } from 'app/shared/components/sanity-image/sanity-image'
 import Link from 'next/link'
 import { TeamMemberProps } from '@/app/types/team'
 import Image from 'next/image'
+import { OutlineCircle } from '../outline-circle/outline-circle'
 
 export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
   return (
     <div className="max-w-[350px] mx-auto">
       <div className="flex items-center justify-center relative mb-5 pt-3">
-        <div className="absolute">
-          <OutlineCircle />
+        <div className="absolute text-yellow-200">
+          <OutlineCircle size="lg" />
         </div>
         <div className="w-[100px] h-[100px] overflow-hidden rounded-full">
           <SanityImage image={team.picture} />
@@ -42,27 +43,10 @@ export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
           </div>
         )}
       </div>
-      <p className="mb-3 text-center text-gray-200 text-custom-s">
+      <p className="text-center text-gray-200 text-custom-s mb-5">
         {team.role}
       </p>
       <RichTextRenderer content={team.bio} />
     </div>
-  )
-}
-
-const OutlineCircle = () => {
-  return (
-    <svg width="150" height="150" viewBox="0 0 130 130" fill="none">
-      <circle
-        cx="65"
-        cy="65"
-        r="54.5"
-        style={{
-          stroke: '#FBCC31',
-          strokeWidth: 1,
-          strokeDasharray: 280
-        }}
-      />
-    </svg>
   )
 }

@@ -376,7 +376,15 @@ export type TextEditor = Array<
       _type: 'image'
       _key: string
     }
+  | ({
+      _key: string
+    } & Donate)
 >
+
+export type Donate = {
+  _type: 'donate'
+  settings?: string
+}
 
 export type Link = {
   _type: 'link'
@@ -549,6 +557,7 @@ export type AllSanitySchemaTypes =
   | CenteredText
   | CallToAction
   | TextEditor
+  | Donate
   | Link
   | External
   | Page
@@ -564,7 +573,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"][0]
+// Query: *[_type == "settings"][0] {  ...,  disclaimer[] {    ...  }}
 export type SettingsQueryResult = {
   _id: string
   _type: 'settings'
@@ -646,7 +655,7 @@ export type MenuQueryResult = {
   }> | null
 } | null
 // Variable: pageNotFoundQuery
-// Query: *[_type == "not-found"][0] {    ...,    items[] {      ...,      internal {        _key,        "_type": _type,        "label": label,        "slug": reference->slug.current,        "document": reference->_type      },      external {        "_type": _type,        "label": label,        "url": url,      }    }  }
+// Query: *[_type == "not-found"][0] {    ...,    content[] {      ...,    },  }
 export type PageNotFoundQueryResult = {
   _id: string
   _type: 'not-found'
@@ -655,27 +664,34 @@ export type PageNotFoundQueryResult = {
   _rev: string
   eyebrow?: string
   title: string
-  content?: BasicTextEditor
-  items: Array<{
-    type?: 'external' | 'internal'
-    external: {
-      _type: 'external'
-      label: string
-      url: string
-    } | null
-    internal: {
-      _key: null
-      _type: 'internal'
-      label: string | null
-      slug: string | null
-      document: 'page' | null
-    } | null
-    _type: 'link'
+  content: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'blockquote' | 'normal'
+    listItem?: 'bullet'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
     _key: string
   }> | null
+  items?: Array<{
+    type?: 'external' | 'internal'
+    external?: External
+    internal?: Internal
+    _type: 'link'
+    _key: string
+  }>
 } | null
 // Variable: homepageQuery
-// Query: *[_type == "homepage"][0] {    ...,    link {      "_type": _type,      "label": label,      "slug": reference->slug.current,      "document": reference->_type    },    slices[] {      ...,      link {        internal {          "_type": _type,          "label": label,          "slug": reference->slug.current,          "document": reference->_type        },      },      _type == 'text-block-with-image' => {        ...,      },      _type == 'call-to-action' => {        ...,        link {          "_type": _type,          "label": label,          "slug": reference->slug.current,          "document": reference->_type        }      },      _type == 'centered-text' => {        ...,        link {          internal {            "_type": _type,            "label": label,            "slug": reference->slug.current,            "document": reference->_type          },        }      },      _type == 'team-members' => {      ...,      team[]->{        name,        role,        github,        content,        x,        bio,        picture      }    },    }  }
+// Query: *[_type == "homepage"][0] {    ...,    link {      "_type": _type,      "label": label,      "slug": reference->slug.current,      "document": reference->_type    },    slices[] {      ...,      content[] {        ...,      },      link {        internal {          "_type": _type,          "label": label,          "slug": reference->slug.current,          "document": reference->_type        },      },      _type == 'text-block-with-image' => {        ...,      },      _type == 'call-to-action' => {        ...,        link {          "_type": _type,          "label": label,          "slug": reference->slug.current,          "document": reference->_type        }      },      _type == 'centered-text' => {        ...,        link {          internal {            "_type": _type,            "label": label,            "slug": reference->slug.current,            "document": reference->_type          },        }      },      _type == 'team-members' => {      ...,      team[]->{        name,        role,        github,        content,        x,        bio,        picture      }    },    }  }
 export type HomepageQueryResult = {
   _id: string
   _type: 'homepage'
@@ -760,6 +776,7 @@ export type HomepageQueryResult = {
         _type: 'subscribe'
         title: string
         description?: string
+        content: null
         link: null
       }
     | {
@@ -791,6 +808,7 @@ export type HomepageQueryResult = {
           }
         }>
         additional?: TextEditor
+        content: null
         link: null
       }
     | {
@@ -816,7 +834,7 @@ export type HomepageQueryResult = {
   > | null
 } | null
 // Variable: pageQuery
-// Query: *[_type == "page" && slug.current == $slug][0] {    ...,    slices[] {      ...,      link {        internal {          "_type": _type,          "label": label,          "slug": reference->slug.current,          "document": reference->_type        },      },      _type == 'text-block-with-image' => {        ...,      },      _type == 'call-to-action' => {        ...,        link {          "_type": _type,          "label": label,          "slug": reference->slug.current,          "document": reference->_type        }      },      _type == 'team-members' => {        ...,        team[]->{          name,          content,          role,          github,          x,          bio,          picture        }      },    }  }
+// Query: *[_type == "page" && slug.current == $slug][0] {    ...,    slices[] {      ...,      content[] {        ...,      },      link {        internal {          "_type": _type,          "label": label,          "slug": reference->slug.current,          "document": reference->_type        },      },      _type == 'text-block-with-image' => {        ...,      },      _type == 'call-to-action' => {        ...,        link {          "_type": _type,          "label": label,          "slug": reference->slug.current,          "document": reference->_type        }      },      _type == 'team-members' => {        ...,        team[]->{          name,          content,          role,          github,          x,          bio,          picture        }      },    }  }
 export type PageQueryResult = {
   _id: string
   _type: 'page'
@@ -860,7 +878,24 @@ export type PageQueryResult = {
         layout?: 'above' | 'below'
         eyebrow?: string
         title: string
-        content?: BasicTextEditor
+        content: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'normal'
+          listItem?: 'bullet'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }> | null
         link: {
           internal: null
         } | null
@@ -883,7 +918,24 @@ export type PageQueryResult = {
         _type: 'donors'
         eyebrow?: string
         title: string
-        content?: BasicTextEditor
+        content: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'normal'
+          listItem?: 'bullet'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }> | null
         logos: Array<{
           asset?: {
             _ref: string
@@ -905,7 +957,24 @@ export type PageQueryResult = {
         _type: 'faqs'
         eyebrow?: string
         title: string
-        content?: BasicTextEditor
+        content: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'normal'
+          listItem?: 'bullet'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }> | null
         items: Array<{
           title: string
           content: TextEditor
@@ -918,6 +987,7 @@ export type PageQueryResult = {
         _type: 'subscribe'
         title: string
         description?: string
+        content: null
         link: null
       }
     | {
@@ -949,6 +1019,7 @@ export type PageQueryResult = {
           }
         }>
         additional?: TextEditor
+        content: null
         link: null
       }
     | {
@@ -974,7 +1045,52 @@ export type PageQueryResult = {
     | {
         _key: string
         _type: 'text-block'
-        content?: TextEditor
+        content: Array<
+          | {
+              children?: Array<{
+                marks?: Array<string>
+                text?: string
+                _type: 'span'
+                _key: string
+              }>
+              style?:
+                | 'blockquote'
+                | 'eyebrow'
+                | 'h2'
+                | 'h3'
+                | 'h4'
+                | 'h5'
+                | 'normal'
+              listItem?: 'bullet'
+              markDefs?: Array<{
+                href?: string
+                _type: 'link'
+                _key: string
+              }>
+              level?: number
+              _type: 'block'
+              _key: string
+            }
+          | {
+              _key: string
+              _type: 'donate'
+              settings?: string
+            }
+          | {
+              asset?: {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+              }
+              media?: unknown
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              alt?: string
+              _type: 'image'
+              _key: string
+            }
+        > | null
         link: null
       }
   > | null
@@ -984,10 +1100,10 @@ export type PageQueryResult = {
 import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
-    '*[_type == "settings"][0]': SettingsQueryResult
+    '*[_type == "settings"][0] {\n  ...,\n  disclaimer[] {\n    ...\n  }\n}': SettingsQueryResult
     '*[_type == "menu"][0] {\n  items[] {\n    ...,\n    internal {\n      "_type": _type,\n      "label": label,\n      "slug": reference->slug.current,\n      "document": reference->_type\n    },\n    external {\n      "_type": _type,\n      "label": label,\n      "url": url,\n    }\n  }\n}': MenuQueryResult
-    '\n  *[_type == "not-found"][0] {\n    ...,\n    items[] {\n      ...,\n      internal {\n        _key,\n        "_type": _type,\n        "label": label,\n        "slug": reference->slug.current,\n        "document": reference->_type\n      },\n      external {\n        "_type": _type,\n        "label": label,\n        "url": url,\n      }\n    }\n  }\n': PageNotFoundQueryResult
-    '\n  *[_type == "homepage"][0] {\n    ...,\n    link {\n      "_type": _type,\n      "label": label,\n      "slug": reference->slug.current,\n      "document": reference->_type\n    },\n    slices[] {\n      ...,\n      link {\n        internal {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        },\n      },\n      _type == \'text-block-with-image\' => {\n        ...,\n      },\n      _type == \'call-to-action\' => {\n        ...,\n        link {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        }\n      },\n      _type == \'centered-text\' => {\n        ...,\n        link {\n          internal {\n            "_type": _type,\n            "label": label,\n            "slug": reference->slug.current,\n            "document": reference->_type\n          },\n        }\n      },\n      _type == \'team-members\' => {\n      ...,\n      team[]->{\n        name,\n        role,\n        github,\n        content,\n        x,\n        bio,\n        picture\n      }\n    },\n    }\n  }\n': HomepageQueryResult
-    '\n  *[_type == "page" && slug.current == $slug][0] {\n    ...,\n    slices[] {\n      ...,\n      link {\n        internal {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        },\n      },\n      _type == \'text-block-with-image\' => {\n        ...,\n      },\n      _type == \'call-to-action\' => {\n        ...,\n        link {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        }\n      },\n      _type == \'team-members\' => {\n        ...,\n        team[]->{\n          name,\n          content,\n          role,\n          github,\n          x,\n          bio,\n          picture\n        }\n      },\n    }\n  }\n': PageQueryResult
+    '\n  *[_type == "not-found"][0] {\n    ...,\n    content[] {\n      ...,\n    },\n  }\n': PageNotFoundQueryResult
+    '\n  *[_type == "homepage"][0] {\n    ...,\n    link {\n      "_type": _type,\n      "label": label,\n      "slug": reference->slug.current,\n      "document": reference->_type\n    },\n    slices[] {\n      ...,\n      content[] {\n        ...,\n      },\n      link {\n        internal {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        },\n      },\n      _type == \'text-block-with-image\' => {\n        ...,\n      },\n      _type == \'call-to-action\' => {\n        ...,\n        link {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        }\n      },\n      _type == \'centered-text\' => {\n        ...,\n        link {\n          internal {\n            "_type": _type,\n            "label": label,\n            "slug": reference->slug.current,\n            "document": reference->_type\n          },\n        }\n      },\n      _type == \'team-members\' => {\n      ...,\n      team[]->{\n        name,\n        role,\n        github,\n        content,\n        x,\n        bio,\n        picture\n      }\n    },\n    }\n  }\n': HomepageQueryResult
+    '\n  *[_type == "page" && slug.current == $slug][0] {\n    ...,\n    slices[] {\n      ...,\n      content[] {\n        ...,\n      },\n      link {\n        internal {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        },\n      },\n      _type == \'text-block-with-image\' => {\n        ...,\n      },\n      _type == \'call-to-action\' => {\n        ...,\n        link {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        }\n      },\n      _type == \'team-members\' => {\n        ...,\n        team[]->{\n          name,\n          content,\n          role,\n          github,\n          x,\n          bio,\n          picture\n        }\n      },\n    }\n  }\n': PageQueryResult
   }
 }
