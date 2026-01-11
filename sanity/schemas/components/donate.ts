@@ -13,7 +13,6 @@ export default defineType({
       type: 'url',
       // hidden: true,
       readOnly: true,
-       
       initialValue: async (_: unknown, context: any) => {
         const client = context.getClient({ apiVersion: '2023-10-01' })
 
