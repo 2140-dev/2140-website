@@ -37,10 +37,12 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         />
       </head>
       <body>
-        <Header logo={settings.logo} items={menu?.items || []} />
-        <SettingsProvider settings={settings}>
-          {children}
-        </SettingsProvider>
+        <Header
+          logo={settings.logo}
+          items={menu?.items || []}
+          donate={settings?.links?.donation}
+        />
+        <SettingsProvider settings={settings}>{children}</SettingsProvider>
         {isDraftMode && <SanityVisualEditing />}
         <Footer
           gpg={settings?.gpg}

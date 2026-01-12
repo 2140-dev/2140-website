@@ -22,16 +22,17 @@ const TeamMembers = ({
       >
         <div
           className={
-            variant === 'full' ? 'flex gap-10 justify-between relative' : ''
+            variant === 'full'
+              ? 'flex gap-10 flex-col lg:flex-row justify-between relative'
+              : ''
           }
         >
           <div
-            className={classNames(
-              'mb-20',
+            className={
               variant === 'teaser'
                 ? 'text-center mx-auto px-5 lg:px-10 max-w-sm'
-                : 'basis-md px-0 lg:px-0 sticky top-20'
-            )}
+                : 'lg:basis-md px-0 lg:px-0'
+            }
           >
             {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
             {title && (

@@ -331,22 +331,43 @@
 
 /* Button Donate */
 .button-donate {
-  @apply bg-white text-black rounded-full py-4 px-16 font-semibold text-xl;
+  @apply bg-white text-black rounded-full p-4 lg:px-16 font-semibold text-xl justify-center;
 
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   letter-spacing: 2px;
 
+  .icon::after {
+    @apply bg-yellow-200;
+  }
+
   .circle {
     stroke: var(--color-black);
   }
-}
 
-.button-donate {
   &:hover {
     @apply bg-white;
   }
+}
 
-  .icon::after {
-    @apply bg-yellow-200;
+/* Mobile menu active link */
+.mobile-menu-item {
+  @apply text-2xl font-semibold text-center pb-4 relative;
+  /* z-index: 1; */
+
+  &.active {
+    &::after {
+      @apply h-4;
+      content: '';
+
+      background-image: url('/images/underline-white.svg');
+      position: absolute;
+      bottom: 0;
+      left: -25%;
+      /* height: 1rem; */
+      z-index: -1;
+      width: 150%;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
   }
 }

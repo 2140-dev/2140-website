@@ -12,9 +12,10 @@ import { InternalOrExternalLink } from '@/app/types/link'
 interface Props {
   logo: SanityImage
   items: InternalOrExternalLink[]
+  donate?: string
 }
 
-export const Header = ({ logo, items }: Props) => {
+export const Header = ({ logo, items, donate }: Props) => {
   const [isMobile, setIsMobile] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -89,7 +90,7 @@ export const Header = ({ logo, items }: Props) => {
     >
       <Container size="lg" className="flex items-center h-20 justify-between">
         <Logo image={logo} />
-        <Menu isMobile={isMobile} items={items} />
+        <Menu isMobile={isMobile} items={items} donate={donate} />
       </Container>
     </header>
   )

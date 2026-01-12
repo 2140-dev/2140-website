@@ -7,8 +7,8 @@ interface Props {
   image: SanityImage
 }
 export const Logo = ({ image }: Props) => (
-  <div className="max-w-[100px] relative z-1 logo-backdrop">
-    <Link href="/" className="relative z-2">
+  <div className="max-w-[100px] relative z-5 logo-backdrop">
+    <Link href="/" className="relative">
       <Image
         alt={image?.alt || ''}
         width={0}

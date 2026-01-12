@@ -64,7 +64,7 @@ const Subscribe = ({ title, description }: SubscribeProps) => {
                   />
                 </i>
                 <p className="text-custom-s mt-2 flex items-center justify-center gap-2">
-                  Follow up on Twitter{' '}
+                  Follow us on Twitter{' '}
                   <Image
                     height={16}
                     width={16}
