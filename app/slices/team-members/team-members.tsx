@@ -23,7 +23,7 @@ const TeamMembers = ({
         <div
           className={
             variant === 'full'
-              ? 'flex gap-10 flex-col lg:flex-row justify-between relative'
+              ? 'flex gap-10 flex-col lg:flex-row justify-between'
               : ''
           }
         >
@@ -31,7 +31,7 @@ const TeamMembers = ({
             className={
               variant === 'teaser'
                 ? 'text-center mx-auto px-5 lg:px-10 max-w-sm'
-                : 'lg:basis-md px-0 lg:px-0'
+                : 'lg:basis-120 px-0 lg:px-0'
             }
           >
             {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
