@@ -3,15 +3,18 @@ import { Eyebrow } from 'app/shared/components/eyebrow/eyebrow'
 import { MarkdownRender } from 'app/shared/components/markdown-renderer/markdown-renderer'
 import { Container } from 'app/shared/layouts/container/container'
 import { Section } from 'app/shared/layouts/section/section'
-import { getInternalLinkUrl } from 'app/utils/link'
+import {
+  getInternalLinkUrl,
+  resolveInternalOrExternalLink
+} from 'app/utils/link'
 import { urlForImage } from '@/sanity/lib/utils'
 import Image from 'next/image'
 import classNames from 'classnames'
 import { CallToAction as CallToActionType } from 'sanity.types'
-import { InternalLink } from '@/app/types/link'
+import { InternalLink, InternalOrExternalLink } from '@/app/types/link'
 
 type CallToActionProps = Omit<CallToActionType, 'link'> & {
-  link: InternalLink
+  link: InternalOrExternalLink
 }
 const CallToAction = ({
   eyebrow,
@@ -21,7 +24,9 @@ const CallToAction = ({
   content,
   link
 }: CallToActionProps) => {
-  const src = urlForImage(image)?.url() as string
+  const src = urlForImage(image)?.url()
+
+  const { label, href } = resolveInternalOrExternalLink(link)
   return (
     <Section className="bg-yellow-200 mt-20 [&:not(:last-of-type)]:mb-20">
       <Container>
@@ -32,9 +37,9 @@ const CallToAction = ({
               <MarkdownRender>{title}</MarkdownRender>
             </h2>
             {content && <p className="mb-10">{content}</p>}
-            {link?.slug && link?.label && (
-              <Button variant="donate" href={getInternalLinkUrl(link)}>
-                {link.label}
+            {label && href && (
+              <Button variant="donate" href={href}>
+                {label}
               </Button>
             )}
           </div>

@@ -40,7 +40,7 @@ export default defineType({
     defineField({
       name: 'link',
       title: 'Link',
-      type: 'internal',
+      type: 'link',
       validation: (rule) => rule.required()
     }),
     defineField({

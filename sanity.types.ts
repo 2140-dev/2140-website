@@ -327,7 +327,7 @@ export type CallToAction = {
   eyebrow?: string
   title: string
   content?: string
-  link: Internal
+  link: Link
   image: {
     asset?: {
       _ref: string
@@ -691,7 +691,7 @@ export type PageNotFoundQueryResult = {
   }>
 } | null
 // Variable: homepageQuery
-// Query: *[_type == "homepage"][0] {    ...,    link {      "_type": _type,      "label": label,      "slug": reference->slug.current,      "document": reference->_type    },    slices[] {      ...,      content[] {        ...,      },      link {        internal {          "_type": _type,          "label": label,          "slug": reference->slug.current,          "document": reference->_type        },      },      _type == 'text-block-with-image' => {        ...,      },      _type == 'call-to-action' => {        ...,        link {          "_type": _type,          "label": label,          "slug": reference->slug.current,          "document": reference->_type        }      },      _type == 'centered-text' => {        ...,        link {          internal {            "_type": _type,            "label": label,            "slug": reference->slug.current,            "document": reference->_type          },        }      },      _type == 'team-members' => {      ...,      team[]->{        name,        role,        github,        content,        x,        bio,        picture      }    },    }  }
+// Query: *[_type == "homepage"][0] {    ...,    link {      "_type": _type,      "label": label,      "slug": reference->slug.current,      "document": reference->_type    },    slices[] {      ...,      content[] {        ...,      },      link {        internal {          "_type": _type,          "label": label,          "slug": reference->slug.current,          "document": reference->_type        },      },      _type == 'text-block-with-image' => {        ...,      },      _type == 'call-to-action' => {        ...,        link {          type,          internal {            "_type": _type,            "label": label,            "slug": reference->slug.current,            "document": reference->_type          },          external {            "_type": _type,            "label": label,            "url": url,          }        }      },      _type == 'centered-text' => {        ...,        link {          internal {            "_type": _type,            "label": label,            "slug": reference->slug.current,            "document": reference->_type          },        }      },      _type == 'team-members' => {      ...,      team[]->{        name,        role,        github,        content,        x,        bio,        picture      }    },    }  }
 export type HomepageQueryResult = {
   _id: string
   _type: 'homepage'
@@ -728,10 +728,18 @@ export type HomepageQueryResult = {
         title: string
         content?: string
         link: {
-          _type: 'internal'
-          label: string | null
-          slug: string | null
-          document: 'page' | null
+          type: 'external' | 'internal' | null
+          internal: {
+            _type: 'internal'
+            label: string | null
+            slug: string | null
+            document: 'page' | null
+          } | null
+          external: {
+            _type: 'external'
+            label: string
+            url: string
+          } | null
         }
         image: {
           asset?: {
@@ -834,7 +842,7 @@ export type HomepageQueryResult = {
   > | null
 } | null
 // Variable: pageQuery
-// Query: *[_type == "page" && slug.current == $slug][0] {    ...,    slices[] {      ...,      content[] {        ...,      },      link {        internal {          "_type": _type,          "label": label,          "slug": reference->slug.current,          "document": reference->_type        },      },      _type == 'text-block-with-image' => {        ...,      },      _type == 'call-to-action' => {        ...,        link {          "_type": _type,          "label": label,          "slug": reference->slug.current,          "document": reference->_type        }      },      _type == 'team-members' => {        ...,        team[]->{          name,          content,          role,          github,          x,          bio,          picture        }      },    }  }
+// Query: *[_type == "page" && slug.current == $slug][0] {    ...,    slices[] {      ...,      content[] {        ...,      },      link {        internal {          "_type": _type,          "label": label,          "slug": reference->slug.current,          "document": reference->_type        },      },      _type == 'text-block-with-image' => {        ...,      },      _type == 'call-to-action' => {        ...,        link {          type,          internal {            "_type": _type,            "label": label,            "slug": reference->slug.current,            "document": reference->_type          },          external {            "_type": _type,            "label": label,            "url": url,          }        }      },      _type == 'team-members' => {        ...,        team[]->{          name,          content,          role,          github,          x,          bio,          picture        }      },    }  }
 export type PageQueryResult = {
   _id: string
   _type: 'page'
@@ -853,10 +861,18 @@ export type PageQueryResult = {
         title: string
         content?: string
         link: {
-          _type: 'internal'
-          label: string | null
-          slug: string | null
-          document: 'page' | null
+          type: 'external' | 'internal' | null
+          internal: {
+            _type: 'internal'
+            label: string | null
+            slug: string | null
+            document: 'page' | null
+          } | null
+          external: {
+            _type: 'external'
+            label: string
+            url: string
+          } | null
         }
         image: {
           asset?: {
@@ -1103,7 +1119,7 @@ declare module '@sanity/client' {
     '*[_type == "settings"][0] {\n  ...,\n  disclaimer[] {\n    ...\n  }\n}': SettingsQueryResult
     '*[_type == "menu"][0] {\n  items[] {\n    ...,\n    internal {\n      "_type": _type,\n      "label": label,\n      "slug": reference->slug.current,\n      "document": reference->_type\n    },\n    external {\n      "_type": _type,\n      "label": label,\n      "url": url,\n    }\n  }\n}': MenuQueryResult
     '\n  *[_type == "not-found"][0] {\n    ...,\n    content[] {\n      ...,\n    },\n  }\n': PageNotFoundQueryResult
-    '\n  *[_type == "homepage"][0] {\n    ...,\n    link {\n      "_type": _type,\n      "label": label,\n      "slug": reference->slug.current,\n      "document": reference->_type\n    },\n    slices[] {\n      ...,\n      content[] {\n        ...,\n      },\n      link {\n        internal {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        },\n      },\n      _type == \'text-block-with-image\' => {\n        ...,\n      },\n      _type == \'call-to-action\' => {\n        ...,\n        link {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        }\n      },\n      _type == \'centered-text\' => {\n        ...,\n        link {\n          internal {\n            "_type": _type,\n            "label": label,\n            "slug": reference->slug.current,\n            "document": reference->_type\n          },\n        }\n      },\n      _type == \'team-members\' => {\n      ...,\n      team[]->{\n        name,\n        role,\n        github,\n        content,\n        x,\n        bio,\n        picture\n      }\n    },\n    }\n  }\n': HomepageQueryResult
-    '\n  *[_type == "page" && slug.current == $slug][0] {\n    ...,\n    slices[] {\n      ...,\n      content[] {\n        ...,\n      },\n      link {\n        internal {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        },\n      },\n      _type == \'text-block-with-image\' => {\n        ...,\n      },\n      _type == \'call-to-action\' => {\n        ...,\n        link {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        }\n      },\n      _type == \'team-members\' => {\n        ...,\n        team[]->{\n          name,\n          content,\n          role,\n          github,\n          x,\n          bio,\n          picture\n        }\n      },\n    }\n  }\n': PageQueryResult
+    '\n  *[_type == "homepage"][0] {\n    ...,\n    link {\n      "_type": _type,\n      "label": label,\n      "slug": reference->slug.current,\n      "document": reference->_type\n    },\n    slices[] {\n      ...,\n      content[] {\n        ...,\n      },\n      link {\n        internal {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        },\n      },\n      _type == \'text-block-with-image\' => {\n        ...,\n      },\n      _type == \'call-to-action\' => {\n        ...,\n        link {\n          type,\n          internal {\n            "_type": _type,\n            "label": label,\n            "slug": reference->slug.current,\n            "document": reference->_type\n          },\n          external {\n            "_type": _type,\n            "label": label,\n            "url": url,\n          }\n        }\n      },\n      _type == \'centered-text\' => {\n        ...,\n        link {\n          internal {\n            "_type": _type,\n            "label": label,\n            "slug": reference->slug.current,\n            "document": reference->_type\n          },\n        }\n      },\n      _type == \'team-members\' => {\n      ...,\n      team[]->{\n        name,\n        role,\n        github,\n        content,\n        x,\n        bio,\n        picture\n      }\n    },\n    }\n  }\n': HomepageQueryResult
+    '\n  *[_type == "page" && slug.current == $slug][0] {\n    ...,\n    slices[] {\n      ...,\n      content[] {\n        ...,\n      },\n      link {\n        internal {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        },\n      },\n      _type == \'text-block-with-image\' => {\n        ...,\n      },\n      _type == \'call-to-action\' => {\n        ...,\n        link {\n          type,\n          internal {\n            "_type": _type,\n            "label": label,\n            "slug": reference->slug.current,\n            "document": reference->_type\n          },\n          external {\n            "_type": _type,\n            "label": label,\n            "url": url,\n          }\n        }\n      },\n      _type == \'team-members\' => {\n        ...,\n        team[]->{\n          name,\n          content,\n          role,\n          github,\n          x,\n          bio,\n          picture\n        }\n      },\n    }\n  }\n': PageQueryResult
   }
 }

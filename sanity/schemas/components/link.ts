@@ -12,7 +12,8 @@ export const external = defineField({
       title: 'URL',
       validation: (Rule) =>
         Rule.required().uri({
-          scheme: ['http', 'https', 'tel', 'mailto']
+          scheme: ['http', 'https', 'mailto', 'tel', 'javascript'],
+          allowRelative: true
         })
     }),
     defineField({
