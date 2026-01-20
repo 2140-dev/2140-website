@@ -17,7 +17,7 @@ interface HeroProps {
 export const Hero = ({ title, excerpt, image, link }: HeroProps) => {
   const src = urlForImage(image)?.url()
   return (
-    <div className="overflow-hidden min-h-screen 2xl:overflow-visible">
+    <div className="overflow-hidden mb-20 lg:mb-0 min-h-screen 2xl:overflow-visible">
       <Container
         size="lg"
         className="items-center gap-16 min-h-screen justify-between relative 2xl:flex"

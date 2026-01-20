@@ -33,7 +33,18 @@ export const Footer = ({ email, disclaimer, gpg }: FooterProps) => {
           </p>
         )}
       </div>
-      <RichTextRenderer className="text-gray-200 text-s" content={disclaimer} />
+      <div>
+        <RichTextRenderer
+          className="text-gray-200 text-xs"
+          content={disclaimer}
+        />
+        <p className="text-gray-200 text-xs flex gap-2 items-center">
+          Designed & developed by{' '}
+          <Link href="http://cherryale.dev/" target="_blank">
+            <img src="images/cherry-ale.svg" alt="Logo of Cherry Ale" />
+          </Link>
+        </p>
+      </div>
     </Container>
   )
 }

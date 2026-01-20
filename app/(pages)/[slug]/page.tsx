@@ -3,8 +3,8 @@ import type { Metadata } from 'next'
 import { getPageProps, getSiteSettings } from '@/sanity/lib/queries'
 import { notFound } from 'next/navigation'
 import { PageTemplate } from '@/app/templates/page/page-template'
-import { resolveOpenGraphImage } from '../../../sanity/lib/utils'
 import { stripHTMLMarkup } from '../../utils/markdown'
+import { getPageMetadata } from '../../utils/metadata'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -14,27 +14,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const props = await getPageProps(params)
   const settings = await getSiteSettings()
 
-  if (!props) {
+  if (!props || !settings) {
     return {}
   }
 
-  const images = resolveOpenGraphImage(settings?.ogImage)
-  return {
+  return getPageMetadata({
     title: stripHTMLMarkup(props.title),
     description: props?.excerpt || '',
-    openGraph: {
-      title: stripHTMLMarkup(props.title),
-      description: props?.excerpt || settings?.description,
-      siteName: '2140',
-      images
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: stripHTMLMarkup(props.title),
-      description: props?.excerpt || settings?.description,
-      images
-    }
-  } satisfies Metadata
+    settings
+  })
 }
 
 export default async function Page({ params }: Props) {

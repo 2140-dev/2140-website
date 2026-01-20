@@ -8,6 +8,7 @@ import { Logo } from './components/logo/logo'
 import classNames from 'classnames'
 import { SanityImage } from '@/app/types/image'
 import { InternalOrExternalLink } from '@/app/types/link'
+import { resolveInternalOrExternalLink } from '../../../utils/link'
 
 interface Props {
   logo: SanityImage
@@ -20,15 +21,25 @@ export const Header = ({ logo, items, donate }: Props) => {
   const ref = useRef<HTMLDivElement>(null)
 
   const [isSticky, setIsSticky] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const [hasWindow, setHasWindow] = useState(false)
+  const checkScreenSize = () => {
+    const isSmallScreen = window.innerWidth < 900
+    setIsMobile(isSmallScreen)
+
+    if (!isSmallScreen) {
+      setIsMobileMenuOpen(false)
+    }
+  }
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setHasWindow(true)
-      const checkMobile = () => setIsMobile(window.innerWidth < 900)
-      checkMobile()
-      window.addEventListener('resize', checkMobile)
-      return () => window.removeEventListener('resize', checkMobile)
+
+      checkScreenSize()
+      window.addEventListener('resize', checkScreenSize)
+      return () => window.removeEventListener('resize', checkScreenSize)
     }
   }, [])
 
@@ -81,16 +92,31 @@ export const Header = ({ logo, items, donate }: Props) => {
   }, [handleScroll])
 
   return (
-    <header
-      ref={ref}
-      className={classNames(
-        'text-black absolute w-full z-[99]',
-        isSticky ? 'overflow-hidden' : 'overflow-visible'
-      )}
-    >
-      <Container size="lg" className="flex items-center h-20 justify-between">
-        <Logo image={logo} />
-        <Menu isMobile={isMobile} items={items} donate={donate} />
+    <header ref={ref} className="text-black absolute w-full z-99">
+      <Container
+        size="lg"
+        className="flex items-center h-20 justify-between relative yellow-backdrop"
+      >
+        <Logo
+          image={logo}
+          onClick={isMobile ? () => setIsMobileMenuOpen(false) : undefined}
+        />
+        <Menu
+          isMobile={isMobile}
+          items={items.map((item) => resolveInternalOrExternalLink(item))}
+          donate={donate}
+          isMobileMenuOpen={isMobileMenuOpen}
+          onMobileMenuToggle={() => {
+            setIsMobileMenuOpen((state: boolean) => {
+              const newState = !state
+              document.documentElement.classList.toggle(
+                'overflow-hidden',
+                newState
+              )
+              return newState
+            })
+          }}
+        />
       </Container>
     </header>
   )

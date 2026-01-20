@@ -63,7 +63,7 @@ export default defineType({
     prepare({ title, slug }) {
       return {
         title: stripHTMLMarkup(title),
-        subtitle: slug ? `/${slug}` : 'No slug'
+        subtitle: slug ? `/${slug}` : 'N/A'
       }
     }
   }
