@@ -5,10 +5,11 @@ import { SanityImage } from '@/app/types/image'
 
 interface Props {
   image: SanityImage
+  onClick?: () => void
 }
-export const Logo = ({ image }: Props) => (
-  <div className="max-w-[100px] relative z-5 logo-backdrop">
-    <Link href="/" className="relative">
+export const Logo = ({ image, onClick }: Props) => (
+  <div className="max-w-[100px] z-5">
+    <Link href="/" onClick={onClick}>
       <Image
         alt={image?.alt || ''}
         width={0}

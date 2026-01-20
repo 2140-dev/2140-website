@@ -11,7 +11,7 @@
   --color-yellow-50: #fffbf4;
   --color-yellow-100: #f0e0c4;
   --color-yellow-200: #fbcc31;
-  --color-yellow-300: #eeba0e;
+  --color-yellow-300: #eec12d;
   --color-yellow-400: #e3b100;
 
   --color-gray-100: #9e9c99;
@@ -224,15 +224,15 @@
 }
 
 /* Logo background shape */
-.logo-backdrop {
+.yellow-backdrop {
   &::before {
     @apply block h-150 w-250 bg-yellow-200 absolute;
 
     content: '';
-    right: -250px;
+    left: -500px;
     border-radius: 100% 30% 60% 70% / 50% 40% 70% 70%;
     z-index: -1;
-    top: -500px;
+    bottom: 0;
   }
 }
 
@@ -318,14 +318,14 @@
 
 /* Button Secondary */
 .button-secondary {
-  @apply bg-black rounded-xl text-white py-4 px-8 font-semibold;
+  @apply bg-black rounded-full text-white py-4 px-8 font-semibold justify-center;
 
   .icon::after {
     @apply h-4 w-4 static bg-transparent;
   }
 
   &:hover {
-    @apply text-white bg-yellow-400;
+    @apply text-white lg:bg-yellow-400;
   }
 }
 
@@ -362,10 +362,10 @@
       background-image: url('/images/underline-white.svg');
       position: absolute;
       bottom: 0;
-      left: -25%;
+      left: -12%;
       /* height: 1rem; */
       z-index: -1;
-      width: 150%;
+      width: 124%;
       background-repeat: no-repeat;
       background-size: contain;
     }

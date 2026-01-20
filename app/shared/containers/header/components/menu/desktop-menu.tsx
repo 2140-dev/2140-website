@@ -5,7 +5,9 @@ import { usePathname } from 'next/navigation'
 import classNames from 'classnames'
 import Image from 'next/image'
 
-export const DesktopMenu = ({ items }: MenuProps) => {
+export const DesktopMenu = ({
+  items
+}: Omit<MenuProps, 'isMobileMenuOpen' | 'onMobileMenuToggle'>) => {
   const pathname = usePathname()
 
   return (

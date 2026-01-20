@@ -7,21 +7,15 @@ import { InternalOrExternalLink } from '@/app/types/link'
 export interface MenuProps {
   items: ResolvedLink[]
   donate?: string
+  isMobileMenuOpen: boolean
+  onMobileMenuToggle: () => void
 }
 
-interface Props {
+export const Menu = ({
+  isMobile,
+  ...props
+}: MenuProps & {
   isMobile: boolean
-  items: InternalOrExternalLink[]
-  donate?: string
-}
-export const Menu = ({ isMobile, items, donate }: Props) => {
-  const commonProps = {
-    items: items.map((item) => resolveInternalOrExternalLink(item))
-  }
-
-  return isMobile ? (
-    <MobileMenu {...commonProps} donate={donate} />
-  ) : (
-    <DesktopMenu {...commonProps} />
-  )
+}) => {
+  return isMobile ? <MobileMenu {...props} /> : <DesktopMenu {...props} />
 }

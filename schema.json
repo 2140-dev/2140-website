@@ -1985,7 +1985,7 @@
           "type": "objectAttribute",
           "value": {
             "type": "inline",
-            "name": "internal"
+            "name": "link"
           },
           "optional": false
         },

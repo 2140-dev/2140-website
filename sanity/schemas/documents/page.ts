@@ -57,10 +57,14 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'title'
+      title: 'title',
+      slug: 'slug.current'
     },
-    prepare({ title }) {
-      return { title: stripHTMLMarkup(title) }
+    prepare({ title, slug }) {
+      return {
+        title: stripHTMLMarkup(title),
+        subtitle: slug ? `/${slug}` : 'N/A'
+      }
     }
   }
 })

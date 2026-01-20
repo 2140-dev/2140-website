@@ -3,34 +3,22 @@ import { HomepageTemplate } from 'app/templates/homepage/homepage-template'
 import { notFound } from 'next/navigation'
 import { getHomepageProps, getSiteSettings } from '@/sanity/lib/queries'
 import { Metadata } from 'next'
-import { resolveOpenGraphImage } from '../../sanity/lib/utils'
 import { stripHTMLMarkup } from '../utils/markdown'
+import { getPageMetadata } from '../utils/metadata'
 
 export async function generateMetadata(): Promise<Metadata> {
   const props = await getHomepageProps()
   const settings = await getSiteSettings()
 
-  if (!props) {
+  if (!props || !settings) {
     return {}
   }
 
-  const images = resolveOpenGraphImage(settings?.ogImage)
-  return {
+  return getPageMetadata({
     title: stripHTMLMarkup(props.title),
     description: props?.excerpt || '',
-    openGraph: {
-      title: stripHTMLMarkup(props.title),
-      description: props?.excerpt || settings?.description,
-      siteName: '2140',
-      images
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: props.title,
-      description: props?.excerpt || settings?.description,
-      images
-    }
-  } satisfies Metadata
+    settings
+  })
 }
 
 export default async function Homepage() {
