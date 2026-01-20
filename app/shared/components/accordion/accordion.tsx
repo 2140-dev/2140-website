@@ -2,9 +2,8 @@
 import { RichTextRenderer } from 'app/shared/components/rich-text-renderer/rich-text-renderer'
 import { AccordionItems } from 'app/types/accordion'
 import React, { useState } from 'react'
-import styles from './accordion.module.scss'
 import classNames from 'classnames'
-import { AnimatePresence, motion, Variants } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { CaretIcon } from '@/app/icons/caret'
 
 const animationVariants = {
@@ -29,8 +28,8 @@ export const Accordion = ({ items }: Props) => {
         <div
           key={item._key}
           className={classNames(
-            styles.accordion,
-            expanded === item._key ? styles.expanded : ''
+            'shadow-none border border-black/[0.08] rounded-2xl my-3 p-6 transition-all duration-400 ease-in overflow-hidden bg-white hover:bg-yellow-50',
+            expanded === item._key && 'bg-yellow-50'
           )}
         >
           <button
@@ -38,10 +37,15 @@ export const Accordion = ({ items }: Props) => {
             aria-controls={`panel-${item._key}`}
             aria-expanded={expanded === item._key}
             onClick={handleToggle(item._key)}
-            className={styles.summary}
+            className="m-0 flex justify-between items-center w-full border-none bg-transparent cursor-pointer text-left"
           >
-            <h5 className={styles.title}>{item.title}</h5>
-            <span className={styles.icon}>
+            <h5 className="m-0 pr-4">{item.title}</h5>
+            <span
+              className={classNames(
+                'flex items-center justify-center transition-transform duration-300 ease',
+                expanded === item._key && 'rotate-180'
+              )}
+            >
               <CaretIcon />
             </span>
           </button>
@@ -50,9 +54,9 @@ export const Accordion = ({ items }: Props) => {
               <motion.div
                 {...animationVariants}
                 key={`panel-${item._key}`}
-                className={styles.details}
+                className="bg-yellow-50 overflow-hidden [&>*:last-child]:mb-0"
               >
-                <RichTextRenderer content={item.content} />
+                <RichTextRenderer className="pt-5" content={item.content} />
               </motion.div>
             )}
           </AnimatePresence>

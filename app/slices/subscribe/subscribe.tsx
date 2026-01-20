@@ -16,7 +16,6 @@ const Subscribe = ({ title, description }: SubscribeProps) => {
   const settings = useContext(SettingsContext)
   return (
     <Section>
-      Hi
       <Container size="sm" className="text-center">
         <Eyebrow text="Follow us" color="blue" />
         <h2>{title}</h2>

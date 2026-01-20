@@ -18,7 +18,7 @@ export const Eyebrow = ({ color, text, className = '' }: Props) => {
   return (
     <span
       className={classNames(
-        'inline-block uppercase tracking-wider mb-4 font-semibold text-custom-s',
+        'inline-block uppercase tracking-wider mb-2 font-semibold text-custom-s',
         colorClasses[color],
         className
       )}
