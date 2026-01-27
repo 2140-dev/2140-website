@@ -15,7 +15,13 @@ const settingsQuery = defineQuery(`*[_type == "settings"][0] {
   }
 }`)
 export const getSiteSettings = async () => {
-  return await client.fetch<SettingsQueryResult>(settingsQuery)
+  return await client.fetch<SettingsQueryResult>(
+    settingsQuery,
+    {},
+    {
+      next: { tags: ['settings'] }
+    }
+  )
 }
 
 export const menuQuery = defineQuery(`*[_type == "menu"][0] {
@@ -36,8 +42,20 @@ export const menuQuery = defineQuery(`*[_type == "menu"][0] {
 }`)
 export const getSiteSettingsAndMenu = async () => {
   const result = await Promise.all([
-    client.fetch<SettingsQueryResult>(settingsQuery),
-    client.fetch<MenuQueryResult>(menuQuery)
+    client.fetch<SettingsQueryResult>(
+      settingsQuery,
+      {},
+      {
+        next: { tags: ['settings'] }
+      }
+    ),
+    client.fetch<MenuQueryResult>(
+      menuQuery,
+      {},
+      {
+        next: { tags: ['menu'] }
+      }
+    )
   ])
   return { settings: result[0], menu: result[1] }
 }
@@ -51,7 +69,13 @@ const pageNotFoundQuery = defineQuery(`
   }
 `)
 export const getPageNotFoundProps = async () => {
-  const result = await client.fetch<PageNotFoundQueryResult>(pageNotFoundQuery)
+  const result = await client.fetch<PageNotFoundQueryResult>(
+    pageNotFoundQuery,
+    {},
+    {
+      next: { tags: ['not-found'] }
+    }
+  )
   return result
 }
 
@@ -124,7 +148,13 @@ const homepageQuery = defineQuery(`
   }
 `)
 export const getHomepageProps = async () => {
-  return await client.fetch<HomepageQueryResult>(homepageQuery)
+  return await client.fetch<HomepageQueryResult>(
+    homepageQuery,
+    {},
+    {
+      next: { tags: ['homepage', 'team'] }
+    }
+  )
 }
 
 const pageQuery = defineQuery(`
@@ -180,7 +210,11 @@ const pageQuery = defineQuery(`
 `)
 export const getPageProps = async (params: Promise<{ slug: string }>) => {
   const { slug } = await params
-  return await client.fetch<PageQueryResult>(pageQuery, {
-    slug
-  })
+  return await client.fetch<PageQueryResult>(
+    pageQuery,
+    { slug },
+    {
+      next: { tags: ['page', `page:${slug}`, 'team'] }
+    }
+  )
 }

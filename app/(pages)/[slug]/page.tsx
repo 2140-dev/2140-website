@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 
 import { getPageProps, getSiteSettings } from '@/sanity/lib/queries'
 import { notFound } from 'next/navigation'
-import { PageTemplate } from '@/app/templates/page/page-template'
-import { stripHTMLMarkup } from '../../utils/markdown'
-import { getPageMetadata } from '../../utils/metadata'
+import { stripHTMLMarkup } from 'utils/markdown'
+import { getPageMetadata } from 'utils/metadata'
+import { PageTemplate } from '../../../components/templates/page/page-template'
 
 type Props = {
   params: Promise<{ slug: string }>

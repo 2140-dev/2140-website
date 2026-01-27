@@ -1,10 +1,10 @@
-import { HomepageTemplate } from 'app/templates/homepage/homepage-template'
+import { HomepageTemplate } from 'components/templates/homepage/homepage-template'
 
 import { notFound } from 'next/navigation'
 import { getHomepageProps, getSiteSettings } from '@/sanity/lib/queries'
 import { Metadata } from 'next'
-import { stripHTMLMarkup } from '../utils/markdown'
-import { getPageMetadata } from '../utils/metadata'
+import { stripHTMLMarkup } from 'utils/markdown'
+import { getPageMetadata } from 'utils/metadata'
 
 export async function generateMetadata(): Promise<Metadata> {
   const props = await getHomepageProps()
