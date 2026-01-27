@@ -21,6 +21,28 @@ const menuWrapperVariant: Variants = {
     height: 0,
     transition: {
       duration: 0.75,
+      ease: [0.19, 1, 0.22, 1],
+      delay: 0.5
+    }
+  }
+}
+
+const contentVariant: Variants = {
+  initial: { opacity: 0, y: 20 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.19, 1, 0.22, 1],
+      delay: 0.5
+    }
+  },
+  exit: {
+    y: -20,
+    opacity: 0,
+    transition: {
+      duration: 0.3,
       ease: [0.19, 1, 0.22, 1]
     }
   }
@@ -53,7 +75,13 @@ export const MobileMenu = ({
           exit="exit"
           className="flex items-center justify-center bg-yellow-200 h-screen w-screen left-0 fixed top-0 z-4"
         >
-          <ul className="flex flex-col items-center gap-5 list-none m-0 p-3">
+          <motion.ul
+            variants={contentVariant}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            className="flex flex-col items-center gap-5 list-none m-0 p-3"
+          >
             {items.map((item) => {
               return (
                 <li
@@ -89,7 +117,7 @@ export const MobileMenu = ({
                 </Button>
               </li>
             )}
-          </ul>
+          </motion.ul>
         </motion.nav>
       )}
     </AnimatePresence>
@@ -110,12 +138,21 @@ const MenuIcon = ({
         onClick={handleClick}
         aria-label="Toggle menu"
       >
-        <Image
-          width="12"
-          height="12"
-          src={isOpen ? 'images/menu-close.svg' : 'images/menu-open.svg'}
-          alt="Mobile menu icon"
-        />
+        {isOpen ? (
+          <Image
+            width="12"
+            height="12"
+            src="images/menu-close.svg"
+            alt="Mobile menu icon"
+          />
+        ) : (
+          <Image
+            width="16"
+            height="16"
+            src="images/menu-open.svg"
+            alt="Mobile menu icon"
+          />
+        )}
       </button>
     </div>
   )
