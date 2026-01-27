@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   const description =
-    'The page you were looking either does not exist or has been delete. We apologize for the confusion.'
+    'The page you were looking for either does not exist or has been delete. We apologize for the confusion.'
 
   return getPageMetadata({
     title: 'Page not found',
