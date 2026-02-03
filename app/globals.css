@@ -107,7 +107,7 @@
 @layer utilities {
   /* Text size utilities */
   .text-custom-5xl {
-    font-size: clamp(4rem, 3.5rem + 2vw, 5rem);
+    font-size: clamp(3.5rem, 3rem + 2vw, 5rem);
   }
 
   .text-custom-4xl {
