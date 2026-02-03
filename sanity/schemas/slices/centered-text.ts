@@ -34,7 +34,7 @@ export default defineType({
     defineField({
       name: "content",
       title: "Content",
-      type: "textBlock",
+      type: "basic-text-editor",
     }),
     defineField({
       name: "link",

@@ -1,38 +1,36 @@
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from 'next'
 
-import { PageTemplate } from "@/app/templates/page/page-template";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { fetchPageProps } from "@/sanity/lib/queries";
+import { getPageProps, getSiteSettings } from '@/sanity/lib/queries'
+import { notFound } from 'next/navigation'
+import { stripHTMLMarkup } from 'utils/markdown'
+import { getPageMetadata } from 'utils/metadata'
+import { PageTemplate } from '../../../components/templates/page/page-template'
 
 type Props = {
-  params: Promise<{ slug: string }>;
-};
-
-export async function generateStaticParams() {
-  return await sanityFetch({
-    query: `*[_type == "page" && defined(slug.current)]{"slug": slug.current}`,
-    perspective: "published",
-    stega: false,
-  });
+  params: Promise<{ slug: string }>
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const page = await fetchPageProps(params);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const props = await getPageProps(params)
+  const settings = await getSiteSettings()
 
-  return {
-    title: `2140 | ${page?.title}`,
-    description: page?.excerpt,
-    openGraph: {
-      images: [],
-    },
-  } satisfies Metadata;
+  if (!props || !settings) {
+    return {}
+  }
+
+  return getPageMetadata({
+    title: stripHTMLMarkup(props.title),
+    description: props?.excerpt || '',
+    settings
+  })
 }
 
 export default async function Page({ params }: Props) {
-  const pageProps = await fetchPageProps(params);
+  const props = await getPageProps(params)
 
-  return <PageTemplate {...pageProps} />;
+  if (!props) {
+    notFound()
+  }
+
+  return <PageTemplate {...props} />
 }

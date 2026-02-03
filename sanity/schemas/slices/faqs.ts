@@ -21,7 +21,7 @@ export default defineType({
     defineField({
       name: "content",
       title: "Content",
-      type: "textBlock",
+      type: "basic-text-editor",
     }),
     defineField({
       name: "items",
@@ -39,7 +39,7 @@ export default defineType({
             defineField({
               title: "Content",
               name: "content",
-              type: "textEditor",
+              type: "text-editor",
               validation: (rule) => rule.required(),
             }),
           ],

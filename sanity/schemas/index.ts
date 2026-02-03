@@ -1,12 +1,13 @@
 // singletons
-import homepage from "./singletons/homepage";
-import menu from "./singletons/menu";
-import settings from "./singletons/settings";
+import homepage from './singletons/homepage'
+import menu from './singletons/menu'
+import notFound from './singletons/not-found'
+import settings from './singletons/settings'
+import { components } from './components'
+import { slices } from './slices'
 // content types
-import { components } from "@/sanity/schemas/components";
-import { slices } from "@/sanity/schemas/slices";
-import page from "./documents/page";
-import team from "./documents/team";
+import page from './documents/page'
+import team from './documents/team'
 
 export const schemaTypes = [
   ...components,
@@ -14,6 +15,7 @@ export const schemaTypes = [
   settings,
   menu,
   homepage,
+  notFound,
   page,
-  team,
-];
+  team
+]

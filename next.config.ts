@@ -1,11 +1,9 @@
-import type { NextConfig } from "next";
-import path from "path";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["cdn.sanity.io"],
-  },
-  SC_DISABLE_SPEEDY: "false",
-};
+    domains: ['cdn.sanity.io']
+  }
+}
 
-export default nextConfig;
+export default nextConfig

@@ -7,45 +7,60 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "validate": "npm run type-check && npm run lint",
     "presetup": "echo 'about to setup env variables, follow the guide here: https://github.com/vercel/next.js/tree/canary/examples/cms-sanity#using-the-sanity-cli'",
     "setup": "npx sanity@latest init --env .env.local",
     "postsetup": "echo 'create the read token by following the rest of the guide: https://github.com/vercel/next.js/tree/canary/examples/cms-sanity#creating-a-read-token'",
-    "typegen": "cd sanity && sanity schema extract && sanity typegen generate --output=./sanity/sanity.types.ts",
-    "studio": "sanity dev --cwd sanity"
+    "typegen": "sanity schema extract --enforce-required-fields && sanity typegen generate",
+    "studio": "sanity dev --cwd sanity",
+    "prepare": "husky"
   },
   "dependencies": {
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
-    "@mui/material": "^5.0.0",
-    "@sanity/assist": "^3.0.8",
-    "@sanity/icons": "^3.4.0",
-    "@sanity/image-url": "^1.0.2",
+    "@sanity/assist": "^5.0.0",
+    "@sanity/icons": "^3.7.4",
+    "@sanity/image-url": "^1.2.0",
     "@sanity/preview-url-secret": "^2.0.0",
-    "@sanity/vision": "^3.62.0",
+    "@sanity/vision": "^4.10.2",
+    "@tailwindcss/postcss": "^4.1.18",
     "@types/lodash": "^4.14.202",
     "@types/node": "^22.7.8",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
     "@vercel/speed-insights": "^1.0.13",
     "autoprefixer": "^10.4.20",
+    "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
+    "framer-motion": "^12.27.2",
     "lodash": "^4.17.21",
     "markdown-to-jsx": "^7.7.4",
-    "next": "^15.0.0",
-    "next-sanity": "^9.7.0",
+    "motion": "^12.27.2",
+    "next": "^16.0.7",
+    "next-sanity": "^11.6.10",
     "postcss": "^8.4.47",
+    "prettier": "^3.6.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sanity": "^3.62.0",
+    "sanity": "^4.10.2",
     "sanity-plugin-asset-source-unsplash": "^3.0.1",
     "server-only": "^0.0.1",
-    "styled-components": "^6.1.13",
+    "styled-components": "^6.1.15",
     "typescript": "5.6.3"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
     "eslint": "^9.13.0",
     "eslint-config-next": "^15.0.0",
-    "sass": "^1.83.0",
-    "sass-loader": "^16.0.4"
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.3",
+    "tailwindcss": "^4.1.18"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "bash -c 'tsc --noEmit'"
+    ]
   }
 }

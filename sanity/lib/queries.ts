@@ -1,144 +1,196 @@
-import { sanityFetch } from "@/sanity/lib/fetch";
+import { defineQuery } from 'next-sanity'
 import {
-  HomepageQueryResultType,
-  MenuQueryResultType,
-  PageQueryResultType,
-  SettingsQueryResultType,
-} from "@/sanity/lib/results";
-import { SanityClient, defineQuery } from "next-sanity";
-import { QueryParams } from "sanity";
+  HomepageQueryResult,
+  MenuQueryResult,
+  PageNotFoundQueryResult,
+  PageQueryResult,
+  SettingsQueryResult
+} from 'sanity.types'
+import { client } from './client'
 
-const internalLinkFields = /* groq */ `
-  "_type": _type,
-  "label": label,
-  "slug": reference->slug.current,
-  "document": reference->_type
-`;
-
-const externalLinkFields = /* groq */ `
-  "_type": _type,
-  "label": label,
-  "url": url,
-`;
-
-const postFields = /* groq */ `
-  _id,
-  "status": select(_originalId in path("drafts.**") => "draft", "published"),
-  "title": coalesce(title, "Untitled"),
-  "slug": slug.current,
-  excerpt,
-  coverImage,
-  "date": coalesce(date, _updatedAt),
-  "author": author->{"name": coalesce(name, "Anonymous"), picture},
-`;
-
-export const heroQuery = defineQuery(`
-  *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {
-    content,
-    ${postFields}
+const settingsQuery = defineQuery(`*[_type == "settings"][0] {
+  ...,
+  disclaimer[] {
+    ...
   }
-`);
-
-export const moreStoriesQuery = defineQuery(`
-  *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
-    ${postFields}
-  }
-`);
-
-export const postQuery = defineQuery(`
-  *[_type == "post" && slug.current == $slug] [0] {
-    content,
-    ${postFields}
-  }
-`);
+}`)
+export const getSiteSettings = async () => {
+  return await client.fetch<SettingsQueryResult>(
+    settingsQuery,
+    {},
+    {
+      next: { tags: ['settings'] }
+    }
+  )
+}
 
 export const menuQuery = defineQuery(`*[_type == "menu"][0] {
   items[] {
     ...,
     internal {
-      ${internalLinkFields}
+      "_type": _type,
+      "label": label,
+      "slug": reference->slug.current,
+      "document": reference->_type
     },
     external {
-      ${externalLinkFields}
+      "_type": _type,
+      "label": label,
+      "url": url,
     }
   }
-}`);
-const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
-export const fetchSettings = async (client: SanityClient) => {
-  const result = await client.fetch<SettingsQueryResultType>(settingsQuery);
-
-  return result;
-};
-export const fetchSettingsAndMenu = async (client: SanityClient) => {
+}`)
+export const getSiteSettingsAndMenu = async () => {
   const result = await Promise.all([
-    client.fetch<SettingsQueryResultType>(settingsQuery),
-    client.fetch<MenuQueryResultType>(menuQuery),
-  ]);
-
-  return { settings: result[0], menu: result[1] };
-};
-
-export const fetchHomepageProps = async (client: SanityClient) => {
-  const query = defineQuery(`
-    *[_type == "homepage"][0] {
-      ...,
-      link {
-        ${internalLinkFields}
-      },
-      slices[] {
-        ...,
-        link {
-          ${internalLinkFields}
-        },
-        _type == 'text-block-with-image' => {
-          ...,
-        },
-        _type == 'call-to-action' => {
-          ...,
-          link {
-            ${internalLinkFields}
-          }
-        },
-        _type == 'centered-text' => {
-          ...,
-          link {
-            ${internalLinkFields}
-          }
-        },
-        _type == 'team-members' => {
-        ...,
-        team[]->{
-          name,
-          role,
-          github,
-          content,
-          x,
-          bio,
-          picture
-        }
-      },
+    client.fetch<SettingsQueryResult>(
+      settingsQuery,
+      {},
+      {
+        next: { tags: ['settings'] }
       }
-    }
-  `);
-  const result = await client.fetch<HomepageQueryResultType>(query);
-  return result;
-};
+    ),
+    client.fetch<MenuQueryResult>(
+      menuQuery,
+      {},
+      {
+        next: { tags: ['menu'] }
+      }
+    )
+  ])
+  return { settings: result[0], menu: result[1] }
+}
 
-export const fetchPageProps = async (
-  params?: QueryParams | Promise<QueryParams>
-) => {
-  const query = defineQuery(`
-  *[_type == "page" && slug.current == $slug][0] {
+const pageNotFoundQuery = defineQuery(`
+  *[_type == "not-found"][0] {
     ...,
+    content[] {
+      ...,
+    },
+  }
+`)
+export const getPageNotFoundProps = async () => {
+  const result = await client.fetch<PageNotFoundQueryResult>(
+    pageNotFoundQuery,
+    {},
+    {
+      next: { tags: ['not-found'] }
+    }
+  )
+  return result
+}
+
+const homepageQuery = defineQuery(`
+  *[_type == "homepage"][0] {
+    ...,
+    link {
+      "_type": _type,
+      "label": label,
+      "slug": reference->slug.current,
+      "document": reference->_type
+    },
     slices[] {
       ...,
+      content[] {
+        ...,
+      },
       link {
-        ${internalLinkFields}
+        internal {
+          "_type": _type,
+          "label": label,
+          "slug": reference->slug.current,
+          "document": reference->_type
+        },
+      },
+      _type == 'text-block-with-image' => {
+        ...,
       },
       _type == 'call-to-action' => {
         ...,
         link {
-          ${internalLinkFields}
+          type,
+          internal {
+            "_type": _type,
+            "label": label,
+            "slug": reference->slug.current,
+            "document": reference->_type
+          },
+          external {
+            "_type": _type,
+            "label": label,
+            "url": url,
+          }
+        }
+      },
+      _type == 'centered-text' => {
+        ...,
+        link {
+          internal {
+            "_type": _type,
+            "label": label,
+            "slug": reference->slug.current,
+            "document": reference->_type
+          },
+        }
+      },
+      _type == 'team-members' => {
+      ...,
+      team[]->{
+        name,
+        role,
+        github,
+        content,
+        x,
+        bio,
+        picture
+      }
+    },
+    }
+  }
+`)
+export const getHomepageProps = async () => {
+  return await client.fetch<HomepageQueryResult>(
+    homepageQuery,
+    {},
+    {
+      next: { tags: ['homepage', 'team'] }
+    }
+  )
+}
+
+const pageQuery = defineQuery(`
+  *[_type == "page" && slug.current == $slug][0] {
+    ...,
+    slices[] {
+      ...,
+      content[] {
+        ...,
+      },
+      link {
+        internal {
+          "_type": _type,
+          "label": label,
+          "slug": reference->slug.current,
+          "document": reference->_type
+        },
+      },
+      _type == 'text-block-with-image' => {
+        ...,
+      },
+      _type == 'call-to-action' => {
+        ...,
+        link {
+          type,
+          internal {
+            "_type": _type,
+            "label": label,
+            "slug": reference->slug.current,
+            "document": reference->_type
+          },
+          external {
+            "_type": _type,
+            "label": label,
+            "url": url,
+          }
         }
       },
       _type == 'team-members' => {
@@ -155,9 +207,14 @@ export const fetchPageProps = async (
       },
     }
   }
-`);
-
-  const result: PageQueryResultType = await sanityFetch({ query, params });
-
-  return result;
-};
+`)
+export const getPageProps = async (params: Promise<{ slug: string }>) => {
+  const { slug } = await params
+  return await client.fetch<PageQueryResult>(
+    pageQuery,
+    { slug },
+    {
+      next: { tags: ['page', `page:${slug}`, 'team'] }
+    }
+  )
+}
