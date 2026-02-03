@@ -20,9 +20,9 @@ export const Hero = ({ title, excerpt, image, link }: HeroProps) => {
     <div className="overflow-hidden mb-20 lg:mb-0 min-h-screen 2xl:overflow-visible">
       <Container
         size="lg"
-        className="items-center gap-16 min-h-screen justify-between relative 2xl:flex"
+        className="items-center gap-16 min-h-screen justify-between relative lg:flex"
       >
-        <div className="flex-1 pt-48 lg:pl-20 2xl:pt-0">
+        <div className="flex-1 pt-48 lg:pl-10 2xl:pl-20 2xl:pt-0">
           <h1 className="lg:text-[5rem] underline-yellow strikethrough-yellow text-custom-5xl">
             <MarkdownRender>{title}</MarkdownRender>
           </h1>
