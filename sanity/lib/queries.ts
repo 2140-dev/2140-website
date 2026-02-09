@@ -107,6 +107,8 @@ const homepageQuery = defineQuery(`
       _type == 'call-to-action' => {
         ...,
         link {
+          _key,
+          _id,
           type,
           internal {
             "_type": _type,
@@ -179,6 +181,7 @@ const pageQuery = defineQuery(`
       _type == 'call-to-action' => {
         ...,
         link {
+          _id,
           type,
           internal {
             "_type": _type,

@@ -3,16 +3,12 @@ import { Eyebrow } from 'components/shared/eyebrow/eyebrow'
 import { MarkdownRender } from 'components/shared/markdown-renderer/markdown-renderer'
 import { Container } from 'components/shared/layouts/container/container'
 import { Section } from 'components/shared/layouts/section/section'
-import { getInternalLinkUrl, resolveInternalOrExternalLink } from 'utils/link'
+import { resolveInternalOrExternalLink } from 'utils/link'
 import { urlForImage } from '@/sanity/lib/utils'
 import Image from 'next/image'
 import classNames from 'classnames'
-import { CallToAction as CallToActionType } from 'sanity.types'
-import { InternalLink, InternalOrExternalLink } from 'types/link'
+import { CallToAction as CallToActionProps } from 'sanity.types'
 
-type CallToActionProps = Omit<CallToActionType, 'link'> & {
-  link: InternalOrExternalLink
-}
 const CallToAction = ({
   eyebrow,
   title,
