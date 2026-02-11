@@ -123,6 +123,9 @@ export type Homepage = {
       } & CenteredText)
     | ({
         _key: string
+      } & ImageCarousel)
+    | ({
+        _key: string
       } & Subscribe)
     | ({
         _key: string
@@ -264,6 +267,27 @@ export type TeamMembers = {
     [internalGroqTypeReferenceTo]?: 'team'
   }>
   additional?: TextEditor
+}
+
+export type ImageCarousel = {
+  _type: 'image-carousel'
+  eyebrow?: string
+  title: string
+  text?: BasicTextEditor
+  images: Array<{
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+    _key: string
+  }>
 }
 
 export type Faqs = {
@@ -423,6 +447,9 @@ export type Page = {
       } & Faqs)
     | ({
         _key: string
+      } & ImageCarousel)
+    | ({
+        _key: string
       } & Subscribe)
     | ({
         _key: string
@@ -552,6 +579,7 @@ export type AllSanitySchemaTypes =
   | Subscribe
   | TextBlockWithImage
   | TeamMembers
+  | ImageCarousel
   | Faqs
   | Donors
   | CenteredText
@@ -783,6 +811,29 @@ export type HomepageQueryResult = {
       }
     | {
         _key: string
+        _type: 'image-carousel'
+        eyebrow?: string
+        title: string
+        text?: BasicTextEditor
+        images: Array<{
+          asset?: {
+            _ref: string
+            _type: 'reference'
+            _weak?: boolean
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+          }
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          alt?: string
+          _type: 'image'
+          _key: string
+        }>
+        content: null
+        link: null
+      }
+    | {
+        _key: string
         _type: 'subscribe'
         title: string
         description?: string
@@ -999,6 +1050,29 @@ export type PageQueryResult = {
           content: TextEditor
           _key: string
         }>
+        link: null
+      }
+    | {
+        _key: string
+        _type: 'image-carousel'
+        eyebrow?: string
+        title: string
+        text?: BasicTextEditor
+        images: Array<{
+          asset?: {
+            _ref: string
+            _type: 'reference'
+            _weak?: boolean
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+          }
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          alt?: string
+          _type: 'image'
+          _key: string
+        }>
+        content: null
         link: null
       }
     | {
