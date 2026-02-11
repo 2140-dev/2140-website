@@ -19,7 +19,7 @@ export const CarouselControl = ({
       className={classNames(
         'flex items-center justify-center',
         '2xl:absolute w-10 h-10 rounded-full cursor-pointer',
-        'bg-black text-white transition-colors hover:bg-yellow-400',
+        'bg-black text-white transition-colors lg:hover:bg-yellow-400',
         className
       )}
       aria-label={label}
