@@ -3,7 +3,6 @@
 import { Eyebrow } from 'components/shared/eyebrow/eyebrow'
 import { MarkdownRender } from 'components/shared/markdown-renderer/markdown-renderer'
 import { RichTextRenderer } from 'components/shared/rich-text-renderer/rich-text-renderer'
-import { SanityImage } from 'components/shared/sanity-image/sanity-image'
 import { Container } from 'components/shared/layouts/container/container'
 import { Section } from 'components/shared/layouts/section/section'
 import { ImageCarousel as ImageCarouselType } from 'sanity.types'
@@ -17,7 +16,7 @@ import 'swiper/css'
 import Image from 'next/image'
 import { urlForImage } from '../../../sanity/lib/utils'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { CarouselControl } from './carousel-control'
+import { ImageCarouselButton } from './image-carousel-button'
 
 type ImageCarouselProps = ImageCarouselType & {
   link: InternalLink
@@ -70,14 +69,14 @@ const ImageCarousel = ({
           </Swiper>
         )}
         <div className="flex justify-center gap-2">
-          <CarouselControl
+          <ImageCarouselButton
             icon={<ChevronLeft size={16} />}
             label="Previous slide"
             onClick={() => swiperRef.current?.slidePrev()}
             className="left-0"
           />
 
-          <CarouselControl
+          <ImageCarouselButton
             icon={<ChevronRight size={16} />}
             label="Next slide"
             onClick={() => swiperRef.current?.slideNext()}

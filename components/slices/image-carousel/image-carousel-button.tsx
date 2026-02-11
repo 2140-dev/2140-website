@@ -1,18 +1,18 @@
 import classNames from 'classnames'
 import { ReactElement } from 'react'
 
-interface CarouselControlProps {
+interface ImageCarouselButtonProps {
   onClick?: () => void
   icon: ReactElement
   label: string
   className?: string
 }
-export const CarouselControl = ({
+export const ImageCarouselButton = ({
   onClick,
   icon,
   label,
   className
-}: CarouselControlProps) => {
+}: ImageCarouselButtonProps) => {
   return (
     <button
       onClick={onClick}
