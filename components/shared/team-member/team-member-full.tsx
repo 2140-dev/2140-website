@@ -12,7 +12,7 @@ export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
         <div className="absolute text-yellow-200">
           <OutlineCircle size="lg" />
         </div>
-        <div className="w-[100px] h-[100px] overflow-hidden rounded-full">
+        <div className="w-25 h-25 overflow-hidden rounded-full">
           <SanityImage image={team.picture} />
         </div>
       </div>

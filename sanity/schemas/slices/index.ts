@@ -4,6 +4,7 @@ import callToAction from './call-to-action'
 import centeredText from './centered-text'
 import donors from './donors'
 import faqs from './faqs'
+import imageCarousel from './image-carousel'
 import team from './team-members'
 import textBlockWithImage from './text-block-with-image'
 import subscribe from './subscribe'
@@ -15,6 +16,7 @@ export const slices: SchemaTypeDefinition[] = [
   centeredText,
   donors,
   faqs,
+  imageCarousel,
   team,
   textBlockWithImage,
   subscribe,
@@ -25,6 +27,7 @@ export const slices: SchemaTypeDefinition[] = [
 export const HOMEPAGE_SLICES: SchemaTypeDefinition[] = [
   callToAction,
   centeredText,
+  imageCarousel,
   team,
   textBlockWithImage,
   subscribe
@@ -36,6 +39,7 @@ export const PAGE_SLICES: SchemaTypeDefinition[] = [
   centeredText,
   donors,
   faqs,
+  imageCarousel,
   team,
   textBlockWithImage,
   subscribe,

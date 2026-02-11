@@ -22,10 +22,10 @@ const Donors = ({ eyebrow, title, content, logos }: DonorsProps) => {
         )}
         <div className="flex items-center justify-center gap-10 mt-10 flex-wrap">
           {logos.map((image, index) => (
-            <div key={index} className="max-w-[180px]">
+            <div key={index} className="max-w-45">
               <SanityImage
                 image={image}
-                className="max-w-full w-auto h-auto max-h-[80px]"
+                className="max-w-full w-auto h-auto max-h-20"
               />
             </div>
           ))}

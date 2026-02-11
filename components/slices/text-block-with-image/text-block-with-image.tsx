@@ -19,12 +19,9 @@ const TextBlockWithImage = ({
     <Section>
       <Container>
         <div className="flex items-center flex-col justify-center gap-10 md:justify-between md:flex-row md:gap-20">
-          <RichTextRenderer
-            className="flex-1 max-w-[480px]"
-            content={content}
-          />
+          <RichTextRenderer className="flex-1 max-w-120" content={content} />
           <div
-            className={classNames('flex-1 max-w-[480px]', {
+            className={classNames('flex-1 max-w-120', {
               'md:order-first': layout === 'right'
             })}
           >
