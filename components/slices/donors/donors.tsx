@@ -11,7 +11,7 @@ const Donors = ({ eyebrow, title, content, logos }: DonorsProps) => {
     <Section className="text-center">
       <Container size="md">
         {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
-        <h2 className="strikethrough-black underline-black">
+        <h2 className="strikethrough-black underline-yellow">
           <MarkdownRender>{title}</MarkdownRender>
         </h2>
         {content && (

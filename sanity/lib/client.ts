@@ -6,7 +6,7 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: process.env.NEXT_PUBLIC_SANITY_DATASET === 'production',
+  useCdn: false,
   token: process.env.SANITY_API_READ_TOKEN,
   perspective: 'published',
   stega: {

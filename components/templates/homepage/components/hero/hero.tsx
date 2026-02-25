@@ -23,7 +23,7 @@ export const Hero = ({ title, excerpt, image, link }: HeroProps) => {
         className="items-center gap-16 min-h-screen justify-between relative lg:flex"
       >
         <div className="flex-1 pt-48 lg:pl-10 2xl:pl-20 2xl:pt-0">
-          <h1 className="lg:text-[5rem] underline-yellow strikethrough-yellow text-custom-5xl">
+          <h1 className="lg:text-[5rem] underline-yellow strikethrough-yellow text-custom-4xl">
             <MarkdownRender>{title}</MarkdownRender>
           </h1>
           {excerpt && <p className="text-custom-l">{excerpt}</p>}

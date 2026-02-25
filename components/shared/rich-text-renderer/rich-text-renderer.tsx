@@ -14,7 +14,7 @@ const components: Partial<PortableTextReactComponents> = {
   block: {
     eyebrow: ({ children }) => <Eyebrow color="blue" text={children} />,
     h2: ({ children }) => (
-      <h2 className="strikethrough-black underline-black">{children}</h2>
+      <h2 className="strikethrough-black underline-yellow">{children}</h2>
     ),
     h3: ({ children }) => <h3>{children}</h3>,
     h4: ({ children }) => <h4>{children}</h4>,

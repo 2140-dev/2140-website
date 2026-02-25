@@ -26,7 +26,7 @@ const CenteredText = ({
       <Container size="sm" className="flex flex-col text-center gap-20">
         <div>
           {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
-          <h2 className="strikethrough-black underline-black">
+          <h2 className="strikethrough-black underline-yellow">
             <MarkdownRender>{title}</MarkdownRender>
           </h2>
           {content && <RichTextRenderer content={content} />}

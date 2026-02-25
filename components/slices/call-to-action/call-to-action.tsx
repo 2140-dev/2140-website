@@ -22,9 +22,9 @@ const CallToAction = ({
   const { label, href } = resolveInternalOrExternalLink(link)
   return (
     <Section className="bg-yellow-200 mt-20 [&:not(:last-of-type)]:mb-20">
-      <Container>
+      <Container size="lg">
         <div className="flex items-center justify-between flex-col gap-20 lg:gap-40 lg:flex-row">
-          <div className="flex-1">
+          <div className="max-w-145">
             {eyebrow && <Eyebrow color="white" text={eyebrow} />}
             <h2 className="strikethrough-white underline-white">
               <MarkdownRender>{title}</MarkdownRender>
@@ -39,7 +39,7 @@ const CallToAction = ({
           {src && (
             <div
               className={classNames(
-                'flex-1 max-w-[480px]',
+                'flex-1 max-w-145',
                 layout === 'left' && 'md:order-first'
               )}
             >
