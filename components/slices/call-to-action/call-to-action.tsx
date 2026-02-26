@@ -23,7 +23,7 @@ const CallToAction = ({
   return (
     <Section className="bg-yellow-200 mt-20 [&:not(:last-of-type)]:mb-20">
       <Container size="lg">
-        <div className="flex items-center justify-between flex-col gap-20 lg:gap-40 lg:flex-row">
+        <div className="flex items-center justify-center flex-col gap-20 lg:gap-40 lg:flex-row">
           <div className="max-w-145">
             {eyebrow && <Eyebrow color="white" text={eyebrow} />}
             <h2 className="strikethrough-white underline-white">
