@@ -83,7 +83,7 @@
   }
 
   h2 {
-    font-size: clamp(3rem, 2.75rem + 1.5vw, 3.5rem);
+    font-size: clamp(3rem, 2.75rem + 1.5vw, 3.25rem);
   }
 
   h3 {
@@ -262,6 +262,38 @@
   &.active::before,
   &.active::after {
     width: 50%;
+  }
+}
+
+.subscribe-link {
+  .subscribe-label {
+    @apply relative;
+
+    &::before,
+    &::after {
+      @apply bg-black bottom-[-2px] w-0 h-[1px] absolute;
+
+      content: '';
+      transition: all 0.2s ease-in;
+    }
+  }
+
+  .subscribe-label {
+    &::before {
+      right: 50%;
+    }
+    &::after {
+      left: 50%;
+    }
+  }
+
+  &:hover {
+    .subscribe-label {
+      &::before,
+      &::after {
+        width: 50%;
+      }
+    }
   }
 }
 

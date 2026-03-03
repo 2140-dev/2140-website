@@ -2,8 +2,9 @@ import { RichTextRenderer } from 'components/shared/rich-text-renderer/rich-text
 import { SanityImage } from 'components/shared/sanity-image/sanity-image'
 import Link from 'next/link'
 import { TeamMemberProps } from 'types/team'
-import Image from 'next/image'
 import { OutlineCircle } from '../outline-circle/outline-circle'
+import { Github } from '../../../svgs/Github'
+import { Twitter } from '../../../svgs/Twitter'
 
 export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
   return (
@@ -21,23 +22,23 @@ export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
         {(team.github || team.x) && (
           <div className="flex gap-2">
             {team.github && (
-              <Link target="_blank" href={team.github} className="w-5">
-                <Image
-                  height="20"
-                  width="20"
-                  src="images/icons/github-black.svg"
-                  alt="Github icon"
-                />
+              <Link
+                target="_blank"
+                href={team.github}
+                title="Github"
+                className="text-black md:hover:text-yellow-400"
+              >
+                <Github />
               </Link>
             )}
             {team.x && (
-              <Link target="_blank" href={team.x} className="w-5">
-                <Image
-                  height="20"
-                  width="20"
-                  src="images/icons/twitter-black.svg"
-                  alt="X icon"
-                />
+              <Link
+                target="_blank"
+                href={team.x}
+                title="X"
+                className="text-black md:hover:text-yellow-400"
+              >
+                <Twitter />
               </Link>
             )}
           </div>

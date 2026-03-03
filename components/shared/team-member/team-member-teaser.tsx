@@ -1,8 +1,9 @@
 import { SanityImage } from 'components/shared/sanity-image/sanity-image'
 import Link from 'next/link'
 import { TeamMemberProps } from 'types/team'
-import Image from 'next/image'
 import { OutlineCircle } from '../outline-circle/outline-circle'
+import { Github } from '../../../svgs/Github'
+import { Twitter } from '../../../svgs/Twitter'
 
 export const TeamMemberTeaser = ({
   team
@@ -24,25 +25,25 @@ export const TeamMemberTeaser = ({
           <ul className="flex gap-4 list-none p-0 mt-4 mb-0">
             {team.github && (
               <li className="p-0 w-5">
-                <Link target="_blank" href={team.github}>
-                  <Image
-                    height="20"
-                    width="20"
-                    src="images/icons/github.svg"
-                    alt="Github icon"
-                  />
+                <Link
+                  target="_blank"
+                  href={team.github}
+                  title="Github"
+                  className="text-white md:hover:text-black"
+                >
+                  <Github />
                 </Link>
               </li>
             )}
             {team.x && (
               <li className="p-0 w-5">
-                <Link target="_blank" href={team.x}>
-                  <Image
-                    height="20"
-                    width="20"
-                    src="images/icons/twitter.svg"
-                    alt="X icon"
-                  />
+                <Link
+                  target="_blank"
+                  href={team.x}
+                  title="X"
+                  className="text-white md:hover:text-black"
+                >
+                  <Twitter />
                 </Link>
               </li>
             )}
