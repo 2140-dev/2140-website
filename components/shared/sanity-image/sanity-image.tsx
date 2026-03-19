@@ -12,8 +12,8 @@ export const SanityImage = ({ image, className = '' }: Props) => {
     <Image
       className={className}
       src={src}
-      width={100}
-      height={100}
+      width={500}
+      height={500}
       style={{ width: '100%', maxWidth: '100%', height: 'auto' }}
       alt={image?.alt || ''}
     />

@@ -1,63 +1,83 @@
-import { UsersIcon } from "@sanity/icons";
-import { defineField, defineType } from "sanity";
+import { UsersIcon } from '@sanity/icons'
+import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  title: "Donors & sponsors",
-  name: "donors",
+  title: 'Donors & sponsors',
+  name: 'donors',
   icon: UsersIcon,
-  type: "object", // ✅ must be object
+  type: 'object', // ✅ must be object
   fields: [
     defineField({
-      title: "Eyebrow",
-      name: "eyebrow",
-      type: "string",
+      title: 'Eyebrow',
+      name: 'eyebrow',
+      type: 'string'
     }),
     defineField({
-      name: "title",
-      title: "Title",
-      type: "string",
-      validation: (rule) => rule.required(),
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      validation: (rule) => rule.required()
     }),
     defineField({
-      name: "content",
-      title: "Content",
-      type: "basic-text-editor",
+      name: 'content',
+      title: 'Content',
+      type: 'basic-text-editor'
     }),
     defineField({
-      name: "logos",
-      type: "array",
+      title: 'List of donors',
+      name: 'items',
+      type: 'array',
       of: [
-        defineField({
-          name: "image",
-          type: "image",
+        {
+          type: 'object',
           fields: [
-            {
-              name: "alt",
-              type: "string",
-              title: "Alternative text",
-              description: "Important for SEO and accessibility.",
+            defineField({
+              name: 'image',
+              title: 'Image',
+              type: 'image',
+              fields: [
+                {
+                  name: 'alt',
+                  type: 'string',
+                  title: 'Alternative text',
+                  description: 'Important for SEO and accessibility.',
+                  validation: (rule) =>
+                    rule.custom((alt, context) => {
+                      const hasImage = (context.parent as any)?.asset?._ref
+                      if (hasImage && !alt) {
+                        return 'Required'
+                      }
+                      return true
+                    })
+                }
+              ],
+              validation: (rule) => rule.required()
+            }),
+            defineField({
+              name: 'name',
+              title: 'Name',
+              type: 'string',
+              validation: (rule) => rule.required()
+            }),
+            defineField({
+              name: 'url',
+              title: 'External Link',
+              type: 'url',
               validation: (rule) =>
-                rule.custom((alt, context) => {
-                  const hasImage = (context.parent as any)?.asset?._ref;
-                  if (hasImage && !alt) {
-                    return "Required";
-                  }
-                  return true;
-                }),
-            },
-          ],
-          validation: (rule) => rule.required(),
-        }),
+                rule.required().uri({ scheme: ['http', 'https'] })
+            })
+          ]
+        }
       ],
-      validation: (rule) => rule.required().min(3),
-    }),
+      validation: (rule) => rule.required().min(3)
+    })
   ],
   preview: {
     select: {
-      title: "title",
+      title: 'title'
     },
     prepare({ title }) {
-      return { title, subtitle: "Donors & sponsors" };
-    },
-  },
-});
+      return { title, subtitle: 'Donors & sponsors' }
+    }
+  }
+})

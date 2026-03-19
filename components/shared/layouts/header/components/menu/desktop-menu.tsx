@@ -4,6 +4,7 @@ import { MenuProps } from './menu'
 import { usePathname } from 'next/navigation'
 import classNames from 'classnames'
 import Image from 'next/image'
+import { ExternalLink } from 'lucide-react'
 
 export const DesktopMenu = ({
   items
@@ -33,12 +34,7 @@ export const DesktopMenu = ({
               </Link>
               {item._type === 'external' && (
                 <div className="h-4 left-[calc(100%+0.25rem)] absolute w-4">
-                  <Image
-                    height={16}
-                    width={16}
-                    src="images/icons/external-link.svg"
-                    alt=""
-                  />
+                  <ExternalLink size={16} />
                 </div>
               )}
             </li>

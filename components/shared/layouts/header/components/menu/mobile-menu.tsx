@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Button } from '../../../../button/button'
 import { motion, AnimatePresence, Variants } from 'framer-motion'
+import { ExternalLink } from 'lucide-react'
 
 const menuWrapperVariant: Variants = {
   initial: { height: 0, overflow: 'hidden' },
@@ -98,14 +99,7 @@ export const MobileMenu = ({
                     onClick={onMobileMenuToggle}
                   >
                     {item.label}
-                    {item._type === 'external' && (
-                      <Image
-                        height={16}
-                        width={16}
-                        src="images/icons/external-link.svg"
-                        alt=""
-                      />
-                    )}
+                    {item._type === 'external' && <ExternalLink size={18} />}
                   </Link>
                 </li>
               )

@@ -307,18 +307,22 @@ export type Donors = {
   eyebrow?: string
   title: string
   content?: BasicTextEditor
-  logos: Array<{
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+  items: Array<{
+    image: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      alt?: string
+      _type: 'image'
     }
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    alt?: string
-    _type: 'image'
+    name: string
+    url: string
     _key: string
   }>
 }
@@ -1006,18 +1010,22 @@ export type PageQueryResult = {
           _type: 'block'
           _key: string
         }> | null
-        logos: Array<{
-          asset?: {
-            _ref: string
-            _type: 'reference'
-            _weak?: boolean
-            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        items: Array<{
+          image: {
+            asset?: {
+              _ref: string
+              _type: 'reference'
+              _weak?: boolean
+              [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+            }
+            media?: unknown
+            hotspot?: SanityImageHotspot
+            crop?: SanityImageCrop
+            alt?: string
+            _type: 'image'
           }
-          media?: unknown
-          hotspot?: SanityImageHotspot
-          crop?: SanityImageCrop
-          alt?: string
-          _type: 'image'
+          name: string
+          url: string
           _key: string
         }>
         link: null

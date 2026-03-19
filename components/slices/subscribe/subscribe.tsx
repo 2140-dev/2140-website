@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { useContext } from 'react'
 import SettingsContext from 'contexts/SettingsContext'
 import classNames from 'classnames'
+import { ExternalLink } from 'lucide-react'
 
 const cssClasses = {
   link: 'subscribe-link no-underline group',
@@ -52,12 +53,7 @@ const Subscribe = ({ title, description }: SubscribeProps) => {
                   >
                     Subscribe to our blog
                   </span>
-                  <Image
-                    height={16}
-                    width={16}
-                    src="images/icons/external-link.svg"
-                    alt=""
-                  />
+                  <ExternalLink size={16} />
                 </p>
               </Link>
             )}
@@ -84,12 +80,7 @@ const Subscribe = ({ title, description }: SubscribeProps) => {
                   >
                     Follow us on Twitter
                   </span>
-                  <Image
-                    height={16}
-                    width={16}
-                    src="images/icons/external-link.svg"
-                    alt=""
-                  />
+                  <ExternalLink size={16} />
                 </p>
               </Link>
             )}
