@@ -51,7 +51,6 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           items={menu?.items || []}
           donate={settings?.links?.donation}
         />
-        <SettingsProvider settings={settings}>{children}</SettingsProvider>
         {isDraftMode && (
           <>
             <SanityLive onError={handleError} />
@@ -59,6 +58,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             <VisualEditing />
           </>
         )}
+        <SettingsProvider settings={settings}>{children}</SettingsProvider>
         <Footer
           gpg={settings?.gpg}
           email={settings.email}

@@ -24,8 +24,8 @@ export function DraftModeToast() {
         id: 'draft-mode-toast',
         description:
           env === 'live'
-            ? 'Content is live, refreshing automatically'
-            : 'Refresh manually to see changes',
+            ? 'Content is live, refreshing automatically.'
+            : 'Refresh manually to see changes.',
         duration: Infinity,
         action: {
           label: 'Disable',

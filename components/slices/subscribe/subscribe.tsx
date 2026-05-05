@@ -30,7 +30,7 @@ const Subscribe = ({
     background: cleanBackground === 'yellow' ? 'bg-yellow-200' : 'bg-white',
     link:
       cleanBackground === 'yellow'
-        ? 'bg-white text-yellow-200 group-hover:bg-black group-hover:text-white'
+        ? 'bg-white text-black group-hover:bg-black group-hover:text-white'
         : 'bg-yellow-200 text-white group-hover:bg-yellow-400'
   }
   return (

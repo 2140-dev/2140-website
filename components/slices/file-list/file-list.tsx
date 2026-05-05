@@ -31,12 +31,7 @@ const FileList = ({
         : 'bg-yellow-200 hover:bg-yellow-400 text-black'
   }
   return (
-    <Section
-      className={classNames(
-        classes.background,
-        'mt-20 [&:not(:last-of-type)]:mb-20'
-      )}
-    >
+    <Section className={classes.background}>
       <Container size="lg">
         {eyebrow && (
           <Eyebrow
