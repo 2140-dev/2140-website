@@ -38,20 +38,22 @@ const FileList = ({
       )}
     >
       <Container size="lg">
-        <div className="flex items-center justify-center flex-col gap-20 lg:gap-40 lg:flex-row">
+        {eyebrow && (
+          <Eyebrow
+            color={cleanBackground === 'yellow' ? 'white' : 'blue'}
+            text={eyebrow}
+          />
+        )}
+        <div className="flex justify-between flex-col gap-20 lg:gap-40 lg:flex-row">
           <div className="max-w-145">
-            {eyebrow && (
-              <Eyebrow
-                color={cleanBackground === 'yellow' ? 'white' : 'blue'}
-                text={eyebrow}
-              />
-            )}
-            <h2 className={classes.decoration}>
-              <MarkdownRender>{title}</MarkdownRender>
-            </h2>
-            {description && <p className="mb-10">{description}</p>}
+            <div className="max-w-145">
+              <h2 className={classes.decoration}>
+                <MarkdownRender>{title}</MarkdownRender>
+              </h2>
+              {description && <p className="mb-10">{description}</p>}
+            </div>
           </div>
-          <div className={classNames('flex flex-col w-full max-w-145')}>
+          <div className="flex flex-col w-full max-w-145 mt-4">
             {items?.map((item) => (
               <a
                 key={item._key}
