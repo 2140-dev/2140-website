@@ -309,6 +309,10 @@
   p + h6 {
     @apply mt-8 mb-3;
   }
+
+  p:last-of-type {
+    @apply mb-0;
+  }
 }
 
 /* Button styles */

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 
 import { getPageProps, getSiteSettings } from '@/sanity/lib/queries'
 import { notFound } from 'next/navigation'
-import { stripHTMLMarkup } from 'utils/markdown'
-import { getPageMetadata } from 'utils/metadata'
+import { stripHTMLMarkup } from 'lib/markdown'
+import { getPageMetadata } from 'lib/metadata'
 import { PageTemplate } from '../../../components/templates/page/page-template'
 
 type Props = {

@@ -5,7 +5,7 @@ import { RichTextRenderer } from 'components/shared/rich-text-renderer/rich-text
 import { SanityImage } from 'components/shared/sanity-image/sanity-image'
 import { Container } from 'components/shared/layouts/container/container'
 import { Section } from 'components/shared/layouts/section/section'
-import { getInternalLinkUrl } from 'utils/link'
+import { getInternalLinkUrl } from 'lib/link'
 import classNames from 'classnames'
 import { CenteredText as CenteredTextType } from 'sanity.types'
 import { InternalLink } from 'types/link'
@@ -25,7 +25,9 @@ const CenteredText = ({
     <Section>
       <Container size="sm" className="flex flex-col text-center gap-20">
         <div>
-          {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
+          {eyebrow && (
+            <Eyebrow color="yellow" text={eyebrow} className="mx-auto" />
+          )}
           <h2 className="strikethrough-black underline-yellow">
             <MarkdownRender>{title}</MarkdownRender>
           </h2>

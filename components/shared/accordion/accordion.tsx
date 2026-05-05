@@ -5,6 +5,7 @@ import { useState } from 'react'
 import classNames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
+import { CaretIcon } from '../icons/caret-icon'
 
 const animationVariants = {
   initial: { height: 0 },
@@ -40,19 +41,14 @@ export const Accordion = ({ items }: Props) => {
             className="m-0 flex justify-between items-center w-full border-none bg-transparent cursor-pointer text-left"
           >
             <h5 className="m-0 pr-4">{item.title}</h5>
-            <span
+            <i
               className={classNames(
                 'flex items-center justify-center transition-transform duration-300 ease',
                 expanded === item._key && 'rotate-180'
               )}
             >
-              <Image
-                width={12}
-                height={12}
-                src="images/icons/caret.svg"
-                alt=""
-              />
-            </span>
+              <CaretIcon />
+            </i>
           </button>
           <AnimatePresence mode="wait">
             {expanded === item._key && (

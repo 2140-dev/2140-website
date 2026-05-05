@@ -1,7 +1,7 @@
 import { NotFoundTemplate } from 'components/templates/not-found/not-found-template'
 import { getPageNotFoundProps, getSiteSettings } from '@/sanity/lib/queries'
 import { Metadata } from 'next'
-import { getPageMetadata } from 'utils/metadata'
+import { getPageMetadata } from 'lib/metadata'
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings()

@@ -1,7 +1,7 @@
 import { Button } from 'components/shared/button/button'
 import { MarkdownRender } from 'components/shared/markdown-renderer/markdown-renderer'
 import { Container } from 'components/shared/layouts/container/container'
-import { getInternalLinkUrl } from 'utils/link'
+import { getInternalLinkUrl } from 'lib/link'
 import { urlForImage } from '@/sanity/lib/utils'
 import Image from 'next/image'
 import { SanityImage } from 'types/image'
