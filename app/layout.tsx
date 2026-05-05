@@ -5,7 +5,6 @@ import { draftMode } from 'next/headers'
 
 import { Footer } from 'components/shared/layouts/footer/footer'
 import { Header } from 'components/shared/layouts/header/header'
-import { SanityVisualEditing } from 'components/shared/sanity-visual-editing/sanity-visual-editing'
 import { getSiteSettingsAndMenu } from '@/sanity/lib/queries'
 import SettingsProvider from 'contexts/SettingsProvider'
 import { ReactNode } from 'react'
