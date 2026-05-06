@@ -182,11 +182,11 @@ const pageQuery = defineQuery(`
           picture
         }
       },
-      _type == 'file-link' => {
+      _type == 'file-list' => {
         ...,
-        items[]->{
+        items[]{
           name,
-          'file': file.asset->
+          "file": file.asset->url
         }
       },
     }

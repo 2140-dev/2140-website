@@ -12,7 +12,7 @@ import { Navigation } from 'swiper/modules'
 import { useRef } from 'react'
 import type { Swiper as SwiperType } from 'swiper'
 
-import 'swiper/css'
+import 'swiper/swiper.css'
 import Image from 'next/image'
 import { urlForImage } from '../../../sanity/lib/utils'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
