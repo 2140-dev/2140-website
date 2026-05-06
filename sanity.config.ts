@@ -20,10 +20,7 @@ const home = {
   href: '/'
 } satisfies DocumentLocation
 
-const previewUrl =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+const previewUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
 export default defineConfig({
   projectId,
