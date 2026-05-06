@@ -12,9 +12,15 @@ const FileList = ({
   eyebrow,
   title,
   description,
-  items
-}: FileListProps) => {
-  if ((items || [])?.length === 0) {
+  items = []
+}: Omit<FileListProps, 'items'> & {
+  items: {
+    _key: string
+    file: string
+    name: string
+  }[]
+}) => {
+  if (items?.length === 0) {
     return null
   }
 
@@ -51,11 +57,13 @@ const FileList = ({
           <div className="flex flex-col w-full max-w-145 mt-4">
             {items?.map((item) => (
               <a
-                key={item._key}
-                download={item.file}
+                key={item._key + 1}
+                href={item.file}
+                download
+                target="_blank"
                 className={classNames(
                   classes.item,
-                  'flex rounded-2xl px-6 py-8 no-underline text-lg justify-between items-center cursor-pointer'
+                  'flex transition-colors rounded-2xl px-6 py-8 no-underline text-lg justify-between items-center cursor-pointer'
                 )}
               >
                 {item.name}

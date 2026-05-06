@@ -16,7 +16,7 @@ export const NotFoundTemplate = ({
         {eyebrow && <Eyebrow color="blue" text={eyebrow} />}
         <h1>{title}</h1>
         {content && <RichTextRenderer content={content} />}
-        <Button variant="primary" href="/">
+        <Button variant="primary" className="mt-10" href="/">
           Back to homepage
         </Button>
       </Container>

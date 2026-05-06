@@ -35,7 +35,7 @@ export default defineConfig({
       resolve: {
         mainDocuments: defineDocuments([
           { route: '/', filter: `_type == "homepage"` },
-          { route: '/404', filter: `_type == "notFoundPage"` },
+          { route: '/404', filter: `_type == "not-found"` },
           {
             route: '/:slug',
             filter: `_type == "page" && slug.current == $slug`
