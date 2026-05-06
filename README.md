@@ -48,6 +48,14 @@ To regenerate TypeScript types after editing any GROQ queries or Sanity schemas:
 npm run typegen
 ```
 
+After merging schema changes into `main`, the Studio needs to be redeployed to reflect them for editors. You can do via the Sanity CLI. Run the following from the `sanity/` directory:
+
+```bash
+cd sanity && sanity deploy
+```
+
+This pushes the updated Studio to Sanity's hosting at the URL defined by `SANITY_STUDIO_HOST` in your `.env`.
+
 ## Folder structure
 
 ```
