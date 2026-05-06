@@ -2,8 +2,8 @@ import { SanityImage } from 'components/shared/sanity-image/sanity-image'
 import Link from 'next/link'
 import { TeamMemberProps } from 'types/team'
 import { OutlineCircle } from '../outline-circle/outline-circle'
-import { Github } from '../../../svgs/Github'
-import { Twitter } from '../../../svgs/Twitter'
+import { TwitterIcon } from '../icons/twitter-icon'
+import { GithubIcon } from '../icons/github-icon'
 
 export const TeamMemberTeaser = ({
   team
@@ -31,7 +31,7 @@ export const TeamMemberTeaser = ({
                   title="Github"
                   className="text-white md:hover:text-black"
                 >
-                  <Github />
+                  <GithubIcon />
                 </Link>
               </li>
             )}
@@ -43,7 +43,7 @@ export const TeamMemberTeaser = ({
                   title="X"
                   className="text-white md:hover:text-black"
                 >
-                  <Twitter />
+                  <TwitterIcon />
                 </Link>
               </li>
             )}

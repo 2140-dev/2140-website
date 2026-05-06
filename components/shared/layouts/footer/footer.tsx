@@ -2,7 +2,6 @@ import { RichTextRenderer } from 'components/shared/rich-text-renderer/rich-text
 import { Container } from 'components/shared/layouts/container/container'
 import Link from 'next/link'
 import type { PortableTextBlock } from 'sanity'
-import Image from 'next/image'
 import { EmailIcon } from '../../icons/email-icon'
 
 type FooterProps = {

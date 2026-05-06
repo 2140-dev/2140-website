@@ -8,7 +8,7 @@ import { Logo } from './components/logo/logo'
 import classNames from 'classnames'
 import { SanityImage } from 'types/image'
 import { InternalOrExternalLink } from 'types/link'
-import { resolveInternalOrExternalLink } from 'lib/link'
+import { resolveInternalOrExternalLink } from 'utils/link'
 
 interface Props {
   logo: SanityImage

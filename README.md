@@ -48,15 +48,32 @@ To regenerate TypeScript types after editing any GROQ queries or Sanity schemas:
 npm run typegen
 ```
 
+## Folder structure
+
+```
+app/              # Next.js App Router — pages, layouts, API routes
+components/
+  shared/         # Reusable UI components
+  slices/         # Page section components driven by Sanity content
+  templates/      # Page-level layout templates
+contexts/         # React context providers
+utils/              # Utility functions (metadata, links, markdown, etc.)
+public/           # Static assets (images, favicon)
+sanity/           # Sanity Studio config, schemas, and helpers
+  schemas/        # Content type definitions
+  plugins/        # Sanity plugin configuration
+types/            # Shared TypeScript types
+```
+
 ## Useful commands
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Start the local dev server |
-| `npm run build` | Build for production |
-| `npm start` | Run the production build locally |
-| `npm run studio` | Start Sanity Studio locally |
-| `npm run typegen` | Regenerate TypeScript types from Sanity schemas |
-| `npm run lint` | Run ESLint |
-| `npm run type-check` | Run TypeScript type checking |
-| `npm run validate` | Run lint and type checking together |
+| Command              | Description                                     |
+| -------------------- | ----------------------------------------------- |
+| `npm run dev`        | Start the local dev server                      |
+| `npm run build`      | Build for production                            |
+| `npm start`          | Run the production build locally                |
+| `npm run studio`     | Start Sanity Studio locally                     |
+| `npm run typegen`    | Regenerate TypeScript types from Sanity schemas |
+| `npm run lint`       | Run ESLint                                      |
+| `npm run type-check` | Run TypeScript type checking                    |
+| `npm run validate`   | Run lint and type checking together             |

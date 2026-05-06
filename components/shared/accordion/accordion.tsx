@@ -4,8 +4,7 @@ import { AccordionItems } from 'types/accordion'
 import { useState } from 'react'
 import classNames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
-import Image from 'next/image'
-import { CaretIcon } from '../icons/caret-icon'
+import { ChevronDown } from 'lucide-react'
 
 const animationVariants = {
   initial: { height: 0 },
@@ -47,7 +46,7 @@ export const Accordion = ({ items }: Props) => {
                 expanded === item._key && 'rotate-180'
               )}
             >
-              <CaretIcon />
+              <ChevronDown />
             </i>
           </button>
           <AnimatePresence mode="wait">

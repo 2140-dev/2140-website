@@ -4,7 +4,7 @@ import { useDraftModeEnvironment } from 'next-sanity/hooks'
 import { useRouter } from 'next/navigation'
 import { useEffect, useTransition } from 'react'
 import { toast } from 'sonner'
-import { disableDraftMode } from '../../../lib/draft'
+import { disableDraftMode } from '../../../utils/draft'
 
 export function DraftModeToast() {
   const env = useDraftModeEnvironment()

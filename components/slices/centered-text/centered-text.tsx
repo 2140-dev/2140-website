@@ -5,7 +5,7 @@ import { RichTextRenderer } from 'components/shared/rich-text-renderer/rich-text
 import { SanityImage } from 'components/shared/sanity-image/sanity-image'
 import { Container } from 'components/shared/layouts/container/container'
 import { Section } from 'components/shared/layouts/section/section'
-import { getInternalLinkUrl } from 'lib/link'
+import { getInternalLinkUrl } from 'utils/link'
 import classNames from 'classnames'
 import { CenteredText as CenteredTextType } from 'sanity.types'
 import { InternalLink } from 'types/link'

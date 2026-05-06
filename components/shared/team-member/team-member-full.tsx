@@ -3,8 +3,8 @@ import { SanityImage } from 'components/shared/sanity-image/sanity-image'
 import Link from 'next/link'
 import { TeamMemberProps } from 'types/team'
 import { OutlineCircle } from '../outline-circle/outline-circle'
-import { Github } from '../../../svgs/Github'
-import { Twitter } from '../../../svgs/Twitter'
+import { GithubIcon } from '../icons/github-icon'
+import { TwitterIcon } from '../icons/twitter-icon'
 
 export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
   return (
@@ -28,7 +28,7 @@ export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
                 title="Github"
                 className="text-black md:hover:text-yellow-400"
               >
-                <Github />
+                <GithubIcon />
               </Link>
             )}
             {team.x && (
@@ -36,9 +36,9 @@ export const TeamMemberFull = ({ team }: Omit<TeamMemberProps, 'variant'>) => {
                 target="_blank"
                 href={team.x}
                 title="X"
-                className="text-black md:hover:text-yellow-400"
+                className="h-4 text-black md:hover:text-yellow-400"
               >
-                <Twitter />
+                <TwitterIcon />
               </Link>
             )}
           </div>

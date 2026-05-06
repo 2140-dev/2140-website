@@ -12,7 +12,7 @@ import { Credit } from '../components/shared/credit/credit'
 import { SanityLive } from '../sanity/lib/live'
 import { VisualEditing } from 'next-sanity/visual-editing'
 import { Toaster } from 'sonner'
-import { handleError } from '../lib/error'
+import { handleError } from '../utils/error'
 import { DraftModeToast } from '../components/shared/draft-mode-toast/draft-mode-toast'
 
 interface RootLayoutProps {
@@ -50,7 +50,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           items={menu?.items || []}
           donate={settings?.links?.donation}
         />
-        <SettingsProvider settings={settings}>{children}</SettingsProvider>
+        <main>
+          <SettingsProvider settings={settings}>{children}</SettingsProvider>
+        </main>
         {isDraftMode && (
           <>
             <SanityLive onError={handleError} />
