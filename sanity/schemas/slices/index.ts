@@ -1,6 +1,7 @@
 import { type SchemaTypeDefinition } from 'sanity'
 
 import callToAction from './call-to-action'
+import fileList from './file-list'
 import centeredText from './centered-text'
 import donors from './donors'
 import faqs from './faqs'
@@ -20,7 +21,8 @@ export const slices: SchemaTypeDefinition[] = [
   team,
   textBlockWithImage,
   subscribe,
-  text
+  text,
+  fileList
 ]
 
 // Slices available for homepage
@@ -34,14 +36,4 @@ export const HOMEPAGE_SLICES: SchemaTypeDefinition[] = [
 ]
 
 // Slices available for pages
-export const PAGE_SLICES: SchemaTypeDefinition[] = [
-  callToAction,
-  centeredText,
-  donors,
-  faqs,
-  imageCarousel,
-  team,
-  textBlockWithImage,
-  subscribe,
-  text
-]
+export const PAGE_SLICES: SchemaTypeDefinition[] = [...slices]

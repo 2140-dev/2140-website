@@ -5,11 +5,15 @@ import { draftMode } from 'next/headers'
 
 import { Footer } from 'components/shared/layouts/footer/footer'
 import { Header } from 'components/shared/layouts/header/header'
-import { SanityVisualEditing } from 'components/shared/sanity-visual-editing/sanity-visual-editing'
 import { getSiteSettingsAndMenu } from '@/sanity/lib/queries'
 import SettingsProvider from 'contexts/SettingsProvider'
 import { ReactNode } from 'react'
 import { Credit } from '../components/shared/credit/credit'
+import { SanityLive } from '../sanity/lib/live'
+import { VisualEditing } from 'next-sanity/visual-editing'
+import { Toaster } from 'sonner'
+import { handleError } from '../utils/error'
+import { DraftModeToast } from '../components/shared/draft-mode-toast/draft-mode-toast'
 
 interface RootLayoutProps {
   children: ReactNode
@@ -38,7 +42,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet"
-        ></link>
+        />
       </head>
       <body>
         <Header
@@ -46,14 +50,23 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           items={menu?.items || []}
           donate={settings?.links?.donation}
         />
-        <SettingsProvider settings={settings}>{children}</SettingsProvider>
-        {isDraftMode && <SanityVisualEditing />}
+        <main>
+          <SettingsProvider settings={settings}>{children}</SettingsProvider>
+        </main>
+        {isDraftMode && (
+          <>
+            <SanityLive onError={handleError} />
+            <DraftModeToast />
+            <VisualEditing />
+          </>
+        )}
         <Footer
           gpg={settings?.gpg}
           email={settings.email}
           disclaimer={settings.disclaimer}
         />
         <Credit />
+        <Toaster position="bottom-right" richColors />
         <SpeedInsights />
       </body>
     </html>

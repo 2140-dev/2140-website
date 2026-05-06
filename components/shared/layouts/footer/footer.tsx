@@ -2,7 +2,7 @@ import { RichTextRenderer } from 'components/shared/rich-text-renderer/rich-text
 import { Container } from 'components/shared/layouts/container/container'
 import Link from 'next/link'
 import type { PortableTextBlock } from 'sanity'
-import Image from 'next/image'
+import { EmailIcon } from '../../icons/email-icon'
 
 type FooterProps = {
   email: string
@@ -18,13 +18,7 @@ export const Footer = ({ email, disclaimer, gpg }: FooterProps) => {
     >
       <div className="flex gap-2">
         <Link href={mailto} className="flex items-center gap-2">
-          <Image
-            height="20"
-            width="20"
-            src="images/icons/email.svg"
-            alt=""
-            className="max-w-5"
-          />
+          <EmailIcon />
           {email}
         </Link>
         {gpg && (

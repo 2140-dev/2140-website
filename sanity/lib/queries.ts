@@ -1,12 +1,14 @@
 import { defineQuery } from 'next-sanity'
-import {
-  HomepageQueryResult,
-  MenuQueryResult,
-  PageNotFoundQueryResult,
-  PageQueryResult,
-  SettingsQueryResult
-} from 'sanity.types'
-import { client } from './client'
+import { sanityFetch } from './live'
+
+const allPagesQuery = defineQuery(`
+    *[_type == "page"] { "slug": slug.current }
+  `)
+
+export async function getAllPageSlugs() {
+  const { data } = await sanityFetch({ query: allPagesQuery })
+  return data
+}
 
 const settingsQuery = defineQuery(`*[_type == "settings"][0] {
   ...,
@@ -15,13 +17,8 @@ const settingsQuery = defineQuery(`*[_type == "settings"][0] {
   }
 }`)
 export const getSiteSettings = async () => {
-  return await client.fetch<SettingsQueryResult>(
-    settingsQuery,
-    {},
-    {
-      next: { tags: ['settings'] }
-    }
-  )
+  const { data } = await sanityFetch({ query: settingsQuery })
+  return data
 }
 
 export const menuQuery = defineQuery(`*[_type == "menu"][0] {
@@ -41,23 +38,11 @@ export const menuQuery = defineQuery(`*[_type == "menu"][0] {
   }
 }`)
 export const getSiteSettingsAndMenu = async () => {
-  const result = await Promise.all([
-    client.fetch<SettingsQueryResult>(
-      settingsQuery,
-      {},
-      {
-        next: { tags: ['settings'] }
-      }
-    ),
-    client.fetch<MenuQueryResult>(
-      menuQuery,
-      {},
-      {
-        next: { tags: ['menu'] }
-      }
-    )
+  const [{ data: settings }, { data: menu }] = await Promise.all([
+    sanityFetch({ query: settingsQuery }),
+    sanityFetch({ query: menuQuery })
   ])
-  return { settings: result[0], menu: result[1] }
+  return { settings, menu }
 }
 
 const pageNotFoundQuery = defineQuery(`
@@ -69,14 +54,8 @@ const pageNotFoundQuery = defineQuery(`
   }
 `)
 export const getPageNotFoundProps = async () => {
-  const result = await client.fetch<PageNotFoundQueryResult>(
-    pageNotFoundQuery,
-    {},
-    {
-      next: { tags: ['not-found'] }
-    }
-  )
-  return result
+  const { data } = await sanityFetch({ query: pageNotFoundQuery })
+  return data
 }
 
 const homepageQuery = defineQuery(`
@@ -150,13 +129,8 @@ const homepageQuery = defineQuery(`
   }
 `)
 export const getHomepageProps = async () => {
-  return await client.fetch<HomepageQueryResult>(
-    homepageQuery,
-    {},
-    {
-      next: { tags: ['homepage', 'team'] }
-    }
-  )
+  const { data } = await sanityFetch({ query: homepageQuery })
+  return data
 }
 
 const pageQuery = defineQuery(`
@@ -208,16 +182,18 @@ const pageQuery = defineQuery(`
           picture
         }
       },
+      _type == 'file-link' => {
+        ...,
+        items[]->{
+          name,
+          'file': file.asset->
+        }
+      },
     }
   }
 `)
 export const getPageProps = async (params: Promise<{ slug: string }>) => {
   const { slug } = await params
-  return await client.fetch<PageQueryResult>(
-    pageQuery,
-    { slug },
-    {
-      next: { tags: ['page', `page:${slug}`, 'team'] }
-    }
-  )
+  const { data } = await sanityFetch({ query: pageQuery, params: { slug } })
+  return data
 }

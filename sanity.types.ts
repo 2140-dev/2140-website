@@ -223,6 +223,29 @@ export type Settings = {
   }>
 }
 
+export type FileList = {
+  _type: 'file-list'
+  background?: 'yellow' | 'white'
+  eyebrow?: string
+  title: string
+  description?: string
+  items?: Array<{
+    name: string
+    file: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.fileAsset'
+      }
+      media?: unknown
+      _type: 'file'
+    }
+    _type: 'item'
+    _key: string
+  }>
+}
+
 export type TextBlock = {
   _type: 'text-block'
   content?: TextEditor
@@ -230,6 +253,7 @@ export type TextBlock = {
 
 export type Subscribe = {
   _type: 'subscribe'
+  background?: 'yellow' | 'white'
   title: string
   description?: string
 }
@@ -451,6 +475,9 @@ export type Page = {
       } & Faqs)
     | ({
         _key: string
+      } & FileList)
+    | ({
+        _key: string
       } & ImageCarousel)
     | ({
         _key: string
@@ -579,6 +606,7 @@ export type AllSanitySchemaTypes =
   | Internal
   | Menu
   | Settings
+  | FileList
   | TextBlock
   | Subscribe
   | TextBlockWithImage
@@ -604,6 +632,11 @@ export type AllSanitySchemaTypes =
   | Geopoint
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ./sanity/lib/queries.ts
+// Variable: allPagesQuery
+// Query: *[_type == "page"] { "slug": slug.current }
+export type AllPagesQueryResult = Array<{
+  slug: string
+}>
 // Variable: settingsQuery
 // Query: *[_type == "settings"][0] {  ...,  disclaimer[] {    ...  }}
 export type SettingsQueryResult = {
@@ -839,6 +872,7 @@ export type HomepageQueryResult = {
     | {
         _key: string
         _type: 'subscribe'
+        background?: 'white' | 'yellow'
         title: string
         description?: string
         content: null
@@ -899,7 +933,7 @@ export type HomepageQueryResult = {
   > | null
 } | null
 // Variable: pageQuery
-// Query: *[_type == "page" && slug.current == $slug][0] {    ...,    slices[] {      ...,      content[] {        ...,      },      link {        internal {          "_type": _type,          "label": label,          "slug": reference->slug.current,          "document": reference->_type        },      },      _type == 'text-block-with-image' => {        ...,      },      _type == 'call-to-action' => {        ...,        link {          _id,          type,          internal {            "_type": _type,            "label": label,            "slug": reference->slug.current,            "document": reference->_type          },          external {            "_type": _type,            "label": label,            "url": url,          }        }      },      _type == 'team-members' => {        ...,        team[]->{          name,          content,          role,          github,          x,          bio,          picture        }      },    }  }
+// Query: *[_type == "page" && slug.current == $slug][0] {    ...,    slices[] {      ...,      content[] {        ...,      },      link {        internal {          "_type": _type,          "label": label,          "slug": reference->slug.current,          "document": reference->_type        },      },      _type == 'text-block-with-image' => {        ...,      },      _type == 'call-to-action' => {        ...,        link {          _id,          type,          internal {            "_type": _type,            "label": label,            "slug": reference->slug.current,            "document": reference->_type          },          external {            "_type": _type,            "label": label,            "url": url,          }        }      },      _type == 'team-members' => {        ...,        team[]->{          name,          content,          role,          github,          x,          bio,          picture        }      },      _type == 'file-link' => {        ...,        items[]->{          name,          'file': file.asset->        }      },    }  }
 export type PageQueryResult = {
   _id: string
   _type: 'page'
@@ -1062,6 +1096,31 @@ export type PageQueryResult = {
       }
     | {
         _key: string
+        _type: 'file-list'
+        background?: 'white' | 'yellow'
+        eyebrow?: string
+        title: string
+        description?: string
+        items?: Array<{
+          name: string
+          file: {
+            asset?: {
+              _ref: string
+              _type: 'reference'
+              _weak?: boolean
+              [internalGroqTypeReferenceTo]?: 'sanity.fileAsset'
+            }
+            media?: unknown
+            _type: 'file'
+          }
+          _type: 'item'
+          _key: string
+        }>
+        content: null
+        link: null
+      }
+    | {
+        _key: string
         _type: 'image-carousel'
         eyebrow?: string
         title: string
@@ -1086,6 +1145,7 @@ export type PageQueryResult = {
     | {
         _key: string
         _type: 'subscribe'
+        background?: 'white' | 'yellow'
         title: string
         description?: string
         content: null
@@ -1201,10 +1261,11 @@ export type PageQueryResult = {
 import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
+    '\n    *[_type == "page"] { "slug": slug.current }\n  ': AllPagesQueryResult
     '*[_type == "settings"][0] {\n  ...,\n  disclaimer[] {\n    ...\n  }\n}': SettingsQueryResult
     '*[_type == "menu"][0] {\n  items[] {\n    ...,\n    internal {\n      "_type": _type,\n      "label": label,\n      "slug": reference->slug.current,\n      "document": reference->_type\n    },\n    external {\n      "_type": _type,\n      "label": label,\n      "url": url,\n    }\n  }\n}': MenuQueryResult
     '\n  *[_type == "not-found"][0] {\n    ...,\n    content[] {\n      ...,\n    },\n  }\n': PageNotFoundQueryResult
     '\n  *[_type == "homepage"][0] {\n    ...,\n    link {\n      "_type": _type,\n      "label": label,\n      "slug": reference->slug.current,\n      "document": reference->_type\n    },\n    slices[] {\n      ...,\n      content[] {\n        ...,\n      },\n      link {\n        internal {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        },\n      },\n      _type == \'text-block-with-image\' => {\n        ...,\n      },\n      _type == \'call-to-action\' => {\n        ...,\n        link {\n          _key,\n          _id,\n          type,\n          internal {\n            "_type": _type,\n            "label": label,\n            "slug": reference->slug.current,\n            "document": reference->_type\n          },\n          external {\n            "_type": _type,\n            "label": label,\n            "url": url,\n          }\n        }\n      },\n      _type == \'centered-text\' => {\n        ...,\n        link {\n          internal {\n            "_type": _type,\n            "label": label,\n            "slug": reference->slug.current,\n            "document": reference->_type\n          },\n        }\n      },\n      _type == \'team-members\' => {\n      ...,\n      team[]->{\n        name,\n        role,\n        github,\n        content,\n        x,\n        bio,\n        picture\n      }\n    },\n    }\n  }\n': HomepageQueryResult
-    '\n  *[_type == "page" && slug.current == $slug][0] {\n    ...,\n    slices[] {\n      ...,\n      content[] {\n        ...,\n      },\n      link {\n        internal {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        },\n      },\n      _type == \'text-block-with-image\' => {\n        ...,\n      },\n      _type == \'call-to-action\' => {\n        ...,\n        link {\n          _id,\n          type,\n          internal {\n            "_type": _type,\n            "label": label,\n            "slug": reference->slug.current,\n            "document": reference->_type\n          },\n          external {\n            "_type": _type,\n            "label": label,\n            "url": url,\n          }\n        }\n      },\n      _type == \'team-members\' => {\n        ...,\n        team[]->{\n          name,\n          content,\n          role,\n          github,\n          x,\n          bio,\n          picture\n        }\n      },\n    }\n  }\n': PageQueryResult
+    '\n  *[_type == "page" && slug.current == $slug][0] {\n    ...,\n    slices[] {\n      ...,\n      content[] {\n        ...,\n      },\n      link {\n        internal {\n          "_type": _type,\n          "label": label,\n          "slug": reference->slug.current,\n          "document": reference->_type\n        },\n      },\n      _type == \'text-block-with-image\' => {\n        ...,\n      },\n      _type == \'call-to-action\' => {\n        ...,\n        link {\n          _id,\n          type,\n          internal {\n            "_type": _type,\n            "label": label,\n            "slug": reference->slug.current,\n            "document": reference->_type\n          },\n          external {\n            "_type": _type,\n            "label": label,\n            "url": url,\n          }\n        }\n      },\n      _type == \'team-members\' => {\n        ...,\n        team[]->{\n          name,\n          content,\n          role,\n          github,\n          x,\n          bio,\n          picture\n        }\n      },\n      _type == \'file-link\' => {\n        ...,\n        items[]->{\n          name,\n          \'file\': file.asset->\n        }\n      },\n    }\n  }\n': PageQueryResult
   }
 }

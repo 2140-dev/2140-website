@@ -128,7 +128,7 @@ const MenuIcon = ({
   return (
     <div className="relative z-[5]">
       <button
-        className="bg-black rounded-[48px] h-10 w-10 border-none cursor-pointer flex items-center justify-center"
+        className="bg-black rounded-full h-10 w-10 border-none cursor-pointer flex items-center justify-center"
         onClick={handleClick}
         aria-label="Toggle menu"
       >

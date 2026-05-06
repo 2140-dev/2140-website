@@ -1,4 +1,4 @@
-export const Github = () => {
+export const GithubIcon = () => {
   return (
     <svg
       width="20"

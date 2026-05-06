@@ -84,7 +84,7 @@ export default defineConfig({
       previewUrl: {
         origin: previewUrl,
         draftMode: {
-          enable: '/api/draft-mode/enable'
+          enable: '/api/draft'
         }
       }
     }),

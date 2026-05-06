@@ -25,7 +25,9 @@ const CenteredText = ({
     <Section>
       <Container size="sm" className="flex flex-col text-center gap-20">
         <div>
-          {eyebrow && <Eyebrow color="yellow" text={eyebrow} />}
+          {eyebrow && (
+            <Eyebrow color="yellow" text={eyebrow} className="mx-auto" />
+          )}
           <h2 className="strikethrough-black underline-yellow">
             <MarkdownRender>{title}</MarkdownRender>
           </h2>

@@ -8,9 +8,11 @@ import TeamMembers from '../../../slices/team-members/team-members'
 import TextBlockWithImage from '../../../slices/text-block-with-image/text-block-with-image'
 import Subscribe from '../../../slices/subscribe/subscribe'
 import Text from '../../../slices/text/text'
+import FileList from '../../../slices/file-list/file-list'
 
 const mapSliceTypeToComponent = {
   'call-to-action': CallToAction,
+  'file-list': FileList,
   'centered-text': CenteredText,
   donors: Donors,
   faqs: Faqs,
