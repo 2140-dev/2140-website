@@ -92,7 +92,10 @@ export const Header = ({ logo, items, donate }: Props) => {
   }, [handleScroll, hasWindow])
 
   return (
-    <header ref={ref} className="text-black absolute w-full z-99">
+    <header
+      ref={ref}
+      className="text-black absolute w-full z-99 overflow-hidden"
+    >
       <Container
         size="lg"
         className="flex items-center h-20 justify-between relative yellow-backdrop"

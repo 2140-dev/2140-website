@@ -12,25 +12,27 @@ type FooterProps = {
 export const Footer = ({ email, disclaimer, gpg }: FooterProps) => {
   const mailto = `mailto:${email}`
   return (
-    <Container
-      size="lg"
-      className="text-custom-s flex flex-col gap-8 pb-4 pt-4 md:items-center md:flex-row md:justify-between"
-    >
-      <div className="flex gap-2">
-        <Link href={mailto} className="flex items-center gap-2">
-          <EmailIcon />
-          {email}
-        </Link>
-        {gpg && (
-          <p>
-            <b>GPG</b>: {gpg}
-          </p>
-        )}
-      </div>
-      <RichTextRenderer
-        className="text-gray-200 text-xs"
-        content={disclaimer}
-      />
-    </Container>
+    <div className="border-t border-gray-100/20">
+      <Container
+        size="lg"
+        className="text-custom-s flex flex-col gap-8 pb-4 pt-4 md:items-center md:flex-row md:justify-between"
+      >
+        <div className="flex gap-2">
+          <Link href={mailto} className="flex items-center gap-2">
+            <EmailIcon />
+            {email}
+          </Link>
+          {gpg && (
+            <p>
+              <b>GPG</b>: {gpg}
+            </p>
+          )}
+        </div>
+        <RichTextRenderer
+          className="text-gray-200 text-xs"
+          content={disclaimer}
+        />
+      </Container>
+    </div>
   )
 }
