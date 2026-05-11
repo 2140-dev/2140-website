@@ -53,9 +53,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         <main>
           <SettingsProvider settings={settings}>{children}</SettingsProvider>
         </main>
+        <SanityLive onError={handleError} />
         {isDraftMode && (
           <>
-            <SanityLive onError={handleError} />
             <DraftModeToast />
             <VisualEditing />
           </>
